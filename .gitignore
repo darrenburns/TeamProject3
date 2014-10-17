@@ -1,3 +1,12 @@
+# LaTeX
+example.aux
+example.bbl
+example.blg
+example.out
+example.pdf
+example.toc
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
