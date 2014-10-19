@@ -5,7 +5,7 @@ Before doing anything you need a local copy of the repository:
 
 Then the most common workflow looks something like:
 
-1. `git pull origin HEAD` to get any changes that other people have pushed to GitHub
+1. `git pull origin master` to get any changes that other people have pushed to GitHub
 2. Do some work.
 3. `git status` to check the files that you've changed show up as altered.
 4. `git add .`  or `git add file1 file2 file3 ...` to tell Git that you want to commit these files.
