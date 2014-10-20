@@ -65,6 +65,34 @@ Adobe.
 \label{producteev}
 
 %==============================================================================
+
+
+\section{Bugzilla}
+\label{Bugzilla}
+
+Bugzilla is a bug tracker and testing tool created and used by Mozila,
+and while not an actual version control system it still has some
+interesting features which could be useful.
+
+It integrates with SVN, Git, CVS and Bazaar.  Some interesting
+features include automated 'reminders', whereby when bugs are
+reported but left unresolved the system can be configured to send
+regular e-mails to specified people informing them of these bugs.
+This system is known as the 'whine' system.  
+
+When any change is made to a known bug, this change is added to an
+automated bug report, the format of which is:\\
+Bug ID || Description || Component\footnote{The part of software the
+  bug is in.} || Current Status
+
+Bugzilla integrates with e-mail, although this seems like it could be
+redundant when integrating with IM.  
+Although comparatively simple to use, criticisms of Bugzilla have been
+made that it is hard to manage errors and there exist many bugs in the
+program itself.  
+
+
+
 \chapter{Design}
 \label{design}
 
