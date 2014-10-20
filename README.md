@@ -2,6 +2,8 @@ A Social Network for Project Task Management
 ============
 Before doing anything you need a local copy of the repository:
 `git clone <<clone URL>>`
+*Note*: If you're using a lab machine, you need to clone using SSH or you'll get an error.
+
 
 Then the most common workflow looks something like:
 
