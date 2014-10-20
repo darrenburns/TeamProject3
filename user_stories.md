@@ -1,4 +1,4 @@
-er Stories
+User Stories
 =========
 
 * As a **user** I want to **create an account** on the system so that I can **use the features it offers**.
