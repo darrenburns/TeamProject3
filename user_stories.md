@@ -28,8 +28,11 @@ User Stories
 Hierarchy of users:
 
 User
+
   Developers inherits User
+  
     QA Manager inherits Developers
+    
       Project Manager inherits QA Manager 
 
   Client inherits User
