@@ -12,3 +12,9 @@ User Stories
 * As a **user** I want to **link to a version control repository** so that I can **quickly access the technical side of the ticket**.
 * As a **user** I want to **end a conversation or ticket** so that I **don't have to look at irrelevant tickets**.
 * As a **user** I want to **attach multimedia to a conversation or ticket** so that I can explain problems or ideas more easily.
+* As a **[someone]** I want to **[something]** so that I can [something]
+* As a **[someone]** I want to **[something]** so that I can [something]
+* As a **[someone]** I want to **[something]** so that I can [something]
+* As a **[someone]** I want to **[something]** so that I can [something]
+* As a **[someone]** I want to **[something]** so that I can [something]
+* As a **[someone]** I want to **[something]** so that I can [something]
