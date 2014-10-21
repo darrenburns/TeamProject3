@@ -29,10 +29,10 @@ Hierarchy of users:
 
 User
 
-  Developers inherits User
+---Developers inherits User
   
-    QA Manager inherits Developers
+------QA Manager inherits Developers
     
-      Project Manager inherits QA Manager 
+---------Project Manager inherits QA Manager 
 
-  Client inherits User
+---Client inherits User
