@@ -63,4 +63,6 @@ docs/_build/
 target/
 
 # IDE related files
-.idea/ 
+.idea/
+
+bower_components/
