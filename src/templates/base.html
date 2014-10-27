@@ -11,7 +11,11 @@
 <!-- We can put things such as a navigation bar here - stuff that remains constant throughout the app -->
 <div class="row">
     <div class="col-md-12">
-        this stuff will always be here
+        {% if user.is_authenticated %}
+            Logged in as {{ user }}. <a href="{% url 'user_logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'user_login' %}">Login</a>
+        {% endif %}
     </div>
 </div>
 <div class="container">

@@ -1,5 +1,44 @@
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    """
+    Renders the home page.
+    """
+    return render(request, 'home.html')
+
+
+def user_login(request):
+    """
+    Logs the user in and redirects them to the home page if they have submitted the login form
+    successfully. Otherwise just renders the login page.
+    """
+
+    # If the user has just submitted the login form
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                return render(request, 'login.html', {'account_deleted': True})
+        else:
+            return render(request, 'login.html', {'login_invalid': True})
+    else:  # If the user is just looking to view the login page (hasn't submitted form)
+        return render(request, 'login.html')
+
+
+def user_logout(request):
+    """
+    Logs the user out and renders the home page with a message informing them that
+    they've just logged out.
+    """
+    logout(request)
+    return render(request, 'home.html', {'just_logged_out': True})
