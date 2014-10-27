@@ -3,6 +3,9 @@ A Social Network for Project Task Management
 
 ###Setup Intructions
 
+You need to install NodeJS and then use Node Package Manager to install Bower globally:
+`npm install -g bower`
+
 1. Clone the project.
 2. Install server dependencies: `pip install -r requirements.txt`
 3. Install front-end dependencies: `bower install`
