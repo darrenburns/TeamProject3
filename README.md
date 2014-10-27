@@ -6,7 +6,7 @@ A Social Network for Project Task Management
 1. Clone the project.
 2. Install server dependencies: `pip install -r requirements.txt`
 3. Install front-end dependencies: `bower install`
-4. Create development database: `python manage.py sycndb`
+4. Create development database: `python manage.py syncdb`
 5. Run the local server: `python manage.py runserver`
 
 ###Doing Work
