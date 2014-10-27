@@ -26,17 +26,3 @@ User Stories
 * As a **project manager** I want to **track the activity of other users** so that **I know what is happening in the project**
 * As a **developer** I want to **be able to change priorities of my tickets** so that **more important tasks get priority**
 * As a **QA manager** I want to **be able to change the priorities of other peoples tickets** so that **I can decide the importance of certain tasks**
-
-
-========
-Hierarchy of users:
-
-User
-
----Developers inherits User
-  
-------QA Manager inherits Developers
-    
----------Project Manager inherits QA Manager 
-
----Client inherits User
