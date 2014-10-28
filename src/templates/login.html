@@ -17,6 +17,17 @@
     </div>
     {% endif %}
 
+    {% if register_success %}
+        <div class="panel panel-success">
+            <div class="panel-header">
+                Success!
+            </div>
+            <div class="panel-body">
+                You're account has been created successfully.
+            </div>
+        </div>
+    {% endif %}
+
     <form action="/accounts/login/" method="post" role="form">{% csrf_token  %}
 
     <div class="form-group">

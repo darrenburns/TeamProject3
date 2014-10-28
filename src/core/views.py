@@ -51,7 +51,9 @@ def user_register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/accounts/register_success')
+            return render(request, 'login.html', {'register_success': True})
+        else:
+            return render(request, 'register.html', {'register_success': False})
 
     args = {}
     args.update(csrf(request))
@@ -59,3 +61,7 @@ def user_register(request):
     args['form'] = UserCreationForm()
 
     return render_to_response('register.html', args)
+
+
+def register_success(request):
+    return render(request, 'register_success.html')
