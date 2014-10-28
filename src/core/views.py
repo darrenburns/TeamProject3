@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 
 
 def home(request):
@@ -42,3 +44,21 @@ def user_logout(request):
     """
     logout(request)
     return render(request, 'home.html', {'just_logged_out': True})
+
+
+def user_register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'login.html', {'register_success': True})
+        else:
+            return render(request, 'register.html', {'form': form})
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = UserCreationForm()
+
+    return render_to_response('register.html', args)
+
