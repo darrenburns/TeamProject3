@@ -62,6 +62,3 @@ def user_register(request):
 
     return render_to_response('register.html', args)
 
-
-def register_success(request):
-    return render(request, 'register_success.html')
