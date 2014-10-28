@@ -53,7 +53,7 @@ def user_register(request):
             form.save()
             return render(request, 'login.html', {'register_success': True})
         else:
-            return render(request, 'register.html', {'register_success': False})
+            return render(request, 'register.html', {'form': form})
 
     args = {}
     args.update(csrf(request))
