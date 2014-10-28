@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Register</h2>
+<form action="/accounts/register/" method="post" role="form">{% csrf_token %}
+    {% for field in form %}
+        <div class="form-group">
+            {{ field.label }}<br>
+            {{ field }}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Register"/>
+</form>
+
+{% endblock %}
