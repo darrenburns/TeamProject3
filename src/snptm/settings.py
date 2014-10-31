@@ -90,7 +90,7 @@ STATIC_URL = '/static/'
 
 # For static files that aren't tied to a particular app
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),  # Static files we've created ourselves
+    os.path.join(BASE_DIR, "static"),  # Static files we've created ourselves TODO: doesnt exist yet
     os.path.join(BASE_DIR, "bower_components")  # Static files we've got from Bower (e.g. jQuery)
 )
 
