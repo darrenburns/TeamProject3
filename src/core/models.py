@@ -16,7 +16,6 @@ from django.db import models
 
     Discussion points:
         Should user roles be CharFields?
-        How do we represent images and logos?
         Do we add primary keys, or use the built-in django IDs?
 
 '''
@@ -33,13 +32,12 @@ class Chat(models.Model):
 
 
 class Permission(models.Model): # We need to discuss this more. See TODO list up top.
-    permissionName = models.CharField(max_length = 50) # The name of the permission.
-
+    permissionName = models.CharField(max_length = 50) # The name of the permission. 
 
 class UserProfile(models.Model):
     role = models.CharField(max_length = 50) # A user's role. Should this be a CharField?
     linkedinURL = models.CharField(max_length = 50) # A user's Linkedin Profile.
-    # IMAGE GOES HERE...
+    image = models.ImageField(upload_to=None) # A User's Profile Picture
 
 
 class Priority(models.Model):
@@ -59,7 +57,7 @@ class Company(models.Model):
     url = models.CharField(max_length = 50) # The URL of the company's website.
     name = models.CharField(max_length = 50) # The company's name...
     desc = models.CharField(max_length = 500) # A description of the company. We allow room for length here.
-    # LOGO GOES HERE...
+    logo = models.ImageField(upload_to=None) # A company logo.
 
 
 class User(models.Model):
