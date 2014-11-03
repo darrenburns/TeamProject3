@@ -12,7 +12,7 @@ from django.db import models
     TODO: We need to fix the problem we have below, where Users have Companies as foreign keys and Companies have Users as Foreign Keys.
             ...the way Django does this is such that we reference the class in a function call. 
             ...how are we supposed to do this if one is defined before the other?
-            ..see lines 58, 68. 
+            ..see lines 64, 74. 
 
     Discussion points:
         Should user roles be CharFields?
@@ -42,6 +42,12 @@ class UserProfile(models.Model):
     # IMAGE GOES HERE...
 
 
+
+class Message(models.Model):
+    project = models.ForeignKey(Chat) # The chat this message is contained in.
+    user = models.ForeignKey(User) # The user who created the message.
+    sent = models.DateTimeField() # The date and time the message was sent at.
+
 class Priority(models.Model):
     name = models.CharField(max_length = 20) # The name of a priority.
     colour = models.CharField(max_length = 20, primary_key = True) # The name of the priority, which is unique.
@@ -67,9 +73,3 @@ class User(models.Model):
     permission = models.ManyToManyField(Permission) # Django will create a new table for us using this.
     company = models.ForeignKey(Company) # The company the user works for
     chat = models.ManyToManyField(Chat) # The chats the user belongs to. (Django will create a new table for this.)
-
-
-class Message(models.Model):
-    project = models.ForeignKey(Chat) # The chat this message is contained in.
-    user = models.ForeignKey(User) # The user who created the message.
-    sent = models.DateTimeField() # The date and time the message was sent at.
