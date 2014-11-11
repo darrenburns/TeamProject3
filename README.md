@@ -1,6 +1,8 @@
 A Social Network for Project Task Management
 ============
 
+[ ![Codeship Status for darrenburns/TeamProject3](https://codeship.com/projects/a9a382a0-4c1d-0132-f820-2ebd99ec2702/status)](https://codeship.com/projects/46976)
+
 ###Setup Intructions
 
 1. Clone the project.
