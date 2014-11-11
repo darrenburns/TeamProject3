@@ -3,7 +3,11 @@
 {% block content %}
 
     <div class="col-md-12">
-        Home
+        {% if just_logged_out %}
+           You've just logged out!
+        {% else %}
+            Standard home page without logged out message.
+        {% endif %}
     </div>
 
 {% endblock %}
