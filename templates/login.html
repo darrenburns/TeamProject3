@@ -25,7 +25,13 @@
                 </div>
             {% endif %}
 
-            <form action="{% url 'user_login' %}" method="post" role="form">{% csrf_token  %}
+                {% if next %}
+                    <form action="/accounts/login/?next={{ next }}" method="post" role="form">
+                {% else %}
+                    <form action="/accounts/login/" method="post" role="form">
+                {% endif %}
+
+                {% csrf_token %}
 
                 <div class="form-group">
                     <label for="username">Username:</label>
