@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <title>Social Network for Project Task Management</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="row">
+    <div class="col-md-12">
+        {% if user.is_authenticated %}
+            Logged in as {{ user }}. <a href="{% url 'user_logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'user_login' %}">Login</a>
+            <a href="{% url 'user_register' %}">Register</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+        {% block content %}{% endblock %}
+</div>
+
+</body>
+
+{% block scripts %}{% endblock %}
+
+</html>

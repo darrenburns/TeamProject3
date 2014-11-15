@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        {% if just_logged_out %}
+           You've just logged out!
+        {% else %}
+            Standard home page without logged out message.<br>
+            Testing continuous deployment here.
+        {% endif %}
+    </div>
+
+{% endblock %}
