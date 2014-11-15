@@ -62,5 +62,5 @@ def user_register(request):
 
     return render_to_response('register.html', args)
 
-def user_projects(request):
-    return render(request, 'projects.html')
+def dashboard(request):
+    return render(request, 'dashboard.html')
