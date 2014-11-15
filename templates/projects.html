@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+
+        <div class="col-xs-3 col-md-2 sidebar">
+
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Projects
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                </ul>
+            </div>
+
+
+            <ul class="nav nav-pills nav-stacked" id="test">
+                <li role="presentation"><a href="#">Ticket 1</a></li>
+                <li role="presentation"><a href="#">Ticket 2</a></li>
+                <li role="presentation"><a href="#">Ticket 3</a></li>
+                <li role="presentation"><a href="#">Ticket 4</a></li>
+                <li role="presentation"><a href="#">Ticket 5</a></li>
+                <li role="presentation"><a href="#">Ticket 6</a></li>
+            </ul>
+
+        </div>
+
+        <div class="col-xs-9 col-md-10 main">
+            <h1 class="page-header">Dashboard</h1>
+
+            <ul class="nav nav-tabs">
+              <li role="presentation" class="active"><a href="#">Home</a></li>
+              <li role="presentation"><a href="#">Profile</a></li>
+              <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+{% endblock %}
