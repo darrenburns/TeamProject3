@@ -1,6 +1,10 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
+from django.contrib import admin
+
+admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'core.views.home', name='home'),
     url(r'^accounts/login/', 'core.views.user_login', name='user_login'),
     url(r'^accounts/logout/', 'core.views.user_logout', name='user_logout'),
