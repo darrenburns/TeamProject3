@@ -27,3 +27,12 @@ Then the most common workflow looks something like:
 6. `git commit -m 'Message explaining the commit, what did you change/do'`.
 7. `git status` again there should be no changes to commit. Do `git log` to see your commit has been added.
 8. `git push origin HEAD` will your new local commit to the remote repository on GitHub.
+
+###Database Instructions
+
+When testing the database models, or running/hosting the project, we'll need to update Django's databases with our own additions. 
+This is straightforward. Steps as follows:
+
+1. `$ python manage.py makemigrations`
+2. `$ python manage.py migrate`
+3. `$ python manage.py runserver` if/when you then want to launch the project with the new database models. 
