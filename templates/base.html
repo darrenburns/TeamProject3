@@ -4,27 +4,59 @@
     <meta charset="UTF-8">
     {% load staticfiles %}
     <title>Social Network for Project Task Management</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
-<div class="row">
-    <div class="col-md-12">
-        {% if user.is_authenticated %}
-            Logged in as {{ user }}. <a href="{% url 'user_logout' %}">Logout</a>
-        {% else %}
-            <a href="{% url 'user_login' %}">Login</a>
-            <a href="{% url 'user_register' %}">Register</a>
-        {% endif %}
-    </div>
-</div>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}">Team Project</a>
+        </div>
 
-<div class="container">
-        {% block content %}{% endblock %}
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% if user.is_authenticated %}
+                <li><a href="#" >Logged in as {{ user }}.</a></li>
+                <li><a href="{% url 'user_logout' %}">Logout</a> </li>
+                {% else %}
+                <li><a href="{% url 'user_login' %}">Login</a></li>
+                <li><a href="{% url 'user_register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                         </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-md-12 -->
+            </form>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+    {% block content %}{% endblock %}
 </div>
 
 </body>
 
-{% block scripts %}{% endblock %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="{% static 'core/js/dashboard-sidebar.js' %}"></script>
 
 </html>

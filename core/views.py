@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.db.models.signals import post_save
@@ -22,23 +23,30 @@ def user_login(request):
     successfully. Otherwise just renders the login page.
     """
 
+    # We capture the page that the user was trying to access, so that
+    # we can redirect them to it if they login successfully.
+    if request.method == 'GET':
+        next = request.GET.get('next')
+
+
     # If the user has just submitted the login form
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        next = request.GET.get('next')
 
         user = authenticate(username=username, password=password)
 
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect(next) if next else HttpResponseRedirect('/')
             else:
                 return render(request, 'login.html', {'account_deleted': True})
         else:
             return render(request, 'login.html', {'login_invalid': True})
     else:  # If the user is just looking to view the login page (hasn't submitted form)
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'next': next})
 
 
 def user_logout(request):
@@ -65,3 +73,9 @@ def user_register(request):
     args['form'] = UserCreationForm()
 
     return render_to_response('register.html', args)
+
+
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
