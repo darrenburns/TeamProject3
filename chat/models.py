@@ -1,16 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Chat(models.Model):
     project = models.ForeignKey('core.Project')
     created = models.DateTimeField()
     closed = models.DateTimeField(null=True)
-    user = models.ManyToManyField('core.User')
+    users = models.ManyToManyField(User)
 
 
 class Message(models.Model):
     project = models.ForeignKey('chat.Chat')
-    user = models.ForeignKey('core.User')
+    user = models.ForeignKey(User)
     sent = models.DateTimeField()
 
 

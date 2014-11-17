@@ -1,8 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
+from django.contrib.auth.models import User
+from core.models import UserProfile
 
 
 def home(request):
@@ -61,4 +65,3 @@ def user_register(request):
     args['form'] = UserCreationForm()
 
     return render_to_response('register.html', args)
-
