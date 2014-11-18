@@ -79,3 +79,11 @@ def user_register(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+
+def sidebar_ticket_list(request, project_id):
+    """
+    From the project_id and the logged in user we can generate the list of tickets
+    that the user can see. Returns a rendered template of a list of tickets which
+    is dynamically injected into the sidebar using Ajax.
+    """
+    pass
