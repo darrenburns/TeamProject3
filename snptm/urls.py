@@ -10,4 +10,7 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/', 'core.views.user_logout', name='user_logout'),
     url(r'^accounts/register/$', 'core.views.user_register', name='user_register'),
     url(r'^dashboard/$', 'core.views.dashboard', name='dashboard'),
+
+    #API
+    url(r'^api/sidebar_tickets/<<project_id_here>>$', name='get_tickets_list'),
 )

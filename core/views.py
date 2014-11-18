@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import User
+from chat.models import Ticket
 from core.models import UserProfile
 
 
@@ -86,4 +87,5 @@ def sidebar_ticket_list(request, project_id):
     that the user can see. Returns a rendered template of a list of tickets which
     is dynamically injected into the sidebar using Ajax.
     """
-    pass
+    tickets = Ticket.objects.query()
+    return render(request, 'ajax/dashboard/sidebar_ticket_list.html', {'tickets': tickets})
