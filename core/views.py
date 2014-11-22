@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.db.models.signals import post_save
@@ -86,6 +86,18 @@ def user_profile(request, username):
     profile = UserProfile.objects.get(user = user)
     return render(request, 'user_profile.html', {'user': user,
                                                  'userProfile': profile})
+
+@login_required
+@permission_required("is_superuser")
+def user_permissions(request, username):
+    user = User.objects.get(username=username)
+    userProfile = UserProfile.objects.get(user=user)
+    permissions = user.get_all_permissions()
+    return render(request, 'user_permissions.html', {'user': user,
+                                                     'userProfile': userProfile,
+                                                     'permissions': permissions
+                                                    })
+
 
 
 
