@@ -12,7 +12,7 @@
 
                 <div class="col-sm-12">
 
-                    <h1><strong> <u> {{ userProfile.user }} </u> </strong></h1>
+                    <h1><strong> <u> {{ userProfile.user }} </u> </strong></h1> <HR>
 
                 </div>
 
@@ -20,8 +20,9 @@
 
             <div class="row">
 
+
                 <div class="col-sm-6">
-                    <br><br>
+                    <br>
                     <ul>
                         <li><strong>Role:</strong> {{ userProfile.role }}</li>
                         <li><strong>linkedinURL:</strong> {{ userProfile.linkedinURL }}</li>
@@ -30,50 +31,62 @@
 
                 <div class="col-sm-6">
                     <br><br>
-                    {{ "[[profile picture to go here here]]" }}
+                    {{ "[[profile picture goes here]]" }}
 
                 </div>
-
+ 
             </div>
 
-        </div>
+            <HR>
+            <div class="row">
+                <div class="col-sm-12">
+                    <br><br>
 
+                    <div class="btn-group">
 
-        <div class="row">
-            <div class="col-sm-12">
-                <br><br>
+                        <div class="btn-group">
 
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                            data-toggle="dropdown"
-                            aria-expanded="true">
-                        Tickets
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket1</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket2</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket3</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket4</a></li>
-                    </ul>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                        data-toggle="dropdown"
+                                        aria-expanded="true">
+                                    Tickets
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket1</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket2</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket3</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket4</a></li>
+                                </ul>
 
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                            data-toggle="dropdown"
-                            aria-expanded="true">
-                        Projects
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Social network for project
-                            task management</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Password Cracking</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                    </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="btn-group">
+
+                            <div class="dropdown">
+
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2"
+                                        data-toggle="dropdown"
+                                        aria-expanded="true">
+                                    Projects
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Project 1</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Project 2</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">You get the idea...</a></li>
+                                    <!--Note to self: menu items should be created based on list of projects/list of tickets (FOR i in tickets: create new menuitem(then add a divider? Dunno man. ) -->
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
-
             </div>
         </div>
     </div>
