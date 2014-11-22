@@ -80,6 +80,14 @@ def user_register(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+@login_required
+def user_profile(request, username):
+    user = User.objects.get(username=username)
+    profile = UserProfile.objects.get(user = user)
+    return render(request, 'user_profile.html', {'user': user,
+                                                 'userProfile': profile})
+
+
 
 def sidebar_ticket_list(request, project_id):
     """
