@@ -1,3 +1,7 @@
 from django.contrib import admin
+from chat.models import Chat, Message, Priority, Ticket
 
-# Register your models here.
+admin.site.register(Chat)
+admin.site.register(Message)
+admin.site.register(Priority)
+admin.site.register(Ticket)
