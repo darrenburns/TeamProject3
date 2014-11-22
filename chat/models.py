@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 class Chat(models.Model):
     project = models.ForeignKey('core.Project')
     created = models.DateTimeField()
-    closed = models.DateTimeField(null=True)
+    closed = models.DateTimeField(null=True, blank=True)
     users = models.ManyToManyField(User)
-    ticket = models.OneToOneField('chat.Ticket', null=True)
+    ticket = models.OneToOneField('chat.Ticket', null=True, blank=True)
 
     def __unicode__(self):
-        return u'Chat %d in project "%s"' % (self.id, self.project.desc)
+        return u'Chat %d in project "%s" (project_id = %d)' % (self.id, self.project.desc, self.project.id)
 
 
 class Message(models.Model):
