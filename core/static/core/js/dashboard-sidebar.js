@@ -1,7 +1,7 @@
 $(function() {
 
     var sidebarDropdownButton = $('#sidebar-dropdown-button');
-    sidebarDropdownButton.prop('disabled', 'true');
+    sidebarDropdownButton.prop('disabled', true);
 
     $.getJSON( "/api/v1/project/")
         .success(function(projects){
@@ -11,7 +11,7 @@ $(function() {
 
             if (projectObjects.length > 0) {
 
-                sidebarDropdownButton.removeProp('disabled');
+                sidebarDropdownButton.prop('disabled', false);
 
                 var initialProjectId = projectObjects[0].id;
                 selectProject(initialProjectId);
