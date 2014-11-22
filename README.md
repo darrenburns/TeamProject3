@@ -19,11 +19,20 @@ Before doing anything you need a local copy of the repository:
 
 Then the most common workflow looks something like:
 
-1. `git pull` to get any changes that other people have pushed to GitHub
-2. Do some work.
+1. `git fetch origin` to get any changes that other people have pushed to GitHub
+2. Create a branch `git checkout -b <<well_named_branch>>` and do some work on it.
 3. `git status` to check the files that you've changed show up as altered.
 4. `git add .` to tell Git that you want to commit these files.
 5. `git status` again to see that all of the files you added are now in the staging area, ready to be commited.
 6. `git commit -m 'Message explaining the commit, what did you change/do'`.
 7. `git status` again there should be no changes to commit. Do `git log` to see your commit has been added.
-8. `git push origin HEAD` will your new local commit to the remote repository on GitHub.
+8. `git push origin HEAD` will your new local commit to the remote equivalent of the branch you're currently on.
+
+###Database Instructions
+
+When testing the database models, or running/hosting the project, we'll need to update Django's databases with our own additions. 
+This is straightforward. Steps as follows:
+
+1. `$ python manage.py makemigrations`
+2. `$ python manage.py migrate`
+3. `$ python manage.py runserver` if/when you then want to launch the project with the new database models. 

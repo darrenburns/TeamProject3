@@ -11,41 +11,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Chat',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created', models.DateTimeField()),
-                ('closed', models.DateTimeField()),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='Company',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('url', models.CharField(max_length=50)),
-                ('name', models.CharField(max_length=50)),
-                ('desc', models.CharField(max_length=500)),
-                ('logo', models.ImageField(upload_to=None)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='Message',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('sent', models.DateTimeField()),
-                ('project', models.ForeignKey(to='core.Chat')),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
             name='Permission',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -69,7 +34,6 @@ class Migration(migrations.Migration):
             name='Project',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('manager', models.CharField(max_length=50)),
                 ('desc', models.CharField(max_length=500)),
             ],
             options={
@@ -93,8 +57,6 @@ class Migration(migrations.Migration):
             name='User',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('chat', models.ManyToManyField(to='core.Chat')),
-                ('company', models.ForeignKey(to='core.Company')),
                 ('permission', models.ManyToManyField(to='core.Permission')),
             ],
             options={
@@ -106,8 +68,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('role', models.CharField(max_length=50)),
-                ('linkedinURL', models.CharField(max_length=50)),
-                ('image', models.ImageField(upload_to=None)),
+                ('linkedinURL', models.URLField(max_length=50)),
             ],
             options={
             },
@@ -120,21 +81,9 @@ class Migration(migrations.Migration):
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='message',
-            name='user',
+            model_name='project',
+            name='manager',
             field=models.ForeignKey(to='core.User'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='company',
-            name='project',
-            field=models.ManyToManyField(to='core.Project'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='chat',
-            name='project',
-            field=models.ForeignKey(to='core.Project'),
             preserve_default=True,
         ),
     ]

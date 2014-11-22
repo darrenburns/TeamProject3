@@ -69,3 +69,6 @@ bower_components/
 
 # SQLite (used in dev)
 *.sqlite3
+
+# Emacs backups
+*~
