@@ -1,7 +1,7 @@
 $(function() {
 
     var sidebarDropdownButton = $('#sidebar-dropdown-button');
-    sidebarDropdownButton.prop('disabled');
+    sidebarDropdownButton.prop('disabled', 'true');
 
     $.getJSON( "/api/v1/project/")
         .success(function(projects){
