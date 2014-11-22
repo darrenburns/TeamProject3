@@ -9,4 +9,5 @@ $(function() {
         $('#dashboard-title').html(selText);
         ticketsList.css('display', 'block');
     });
+
 });
