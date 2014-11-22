@@ -36,6 +36,9 @@ class Ticket(models.Model):
     created = models.DateTimeField()
     closed = models.DateTimeField(null=True)
     priority = models.ForeignKey(Priority)
-
+    #Meta.permissions = (('editAllTickets', 'Can edit all tickets'))
+    class Meta:
+            permissions = (('editAllTickets', 'Can edit all tickets'),)
+	
     def __unicode__(self):
         return u'Ticket %d' % self.id
