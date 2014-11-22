@@ -10,4 +10,12 @@ $(function() {
         ticketsList.css('display', 'block');
     });
 
+    $.getJSON( "/api/v1/project/", function(data) {
+        var htmlElements = "";
+        $.each(data.objects, function(object){
+            htmlElements += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" >'+this.desc+'</a></li>';
+        })
+        $('#sidebar-dropdown-list').html(htmlElements);
+    });
+
 });
