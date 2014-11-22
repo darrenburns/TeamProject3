@@ -101,3 +101,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),  # Static files we've created ourselves
 )
 
+# TastyPie settings
+TASTYPIE_DEFAULT_FORMATS = ['json']
