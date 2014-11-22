@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'core',
     'chat',
+    'tastypie',
 )
 
 MIDDLEWARE_CLASSES = (
