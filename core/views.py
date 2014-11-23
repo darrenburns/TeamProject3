@@ -2,8 +2,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
+from django.core.urlresolvers import reverse
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
+from django.contrib.auth.models import User
+from chat.models import Ticket
+from core.models import UserProfile
 
 
 def home(request):
@@ -36,7 +42,7 @@ def user_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(next) if next else HttpResponseRedirect('/')
+                return HttpResponseRedirect(next) if next else HttpResponseRedirect(reverse('core.views.dashboard'))
             else:
                 return render(request, 'login.html', {'account_deleted': True})
         else:
@@ -70,6 +76,17 @@ def user_register(request):
 
     return render_to_response('register.html', args)
 
+
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+
+def sidebar_ticket_list(request, project_id):
+    """
+    From the project_id and the logged in user we can generate the list of tickets
+    that the user can see. Returns a rendered template of a list of tickets which
+    is dynamically injected into the sidebar using Ajax.
+    """
+    tickets = Ticket.objects.query()
+    return render(request, 'ajax/dashboard/sidebar_ticket_list.html', {'tickets': tickets})

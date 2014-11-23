@@ -13,6 +13,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+def is_production():
+    return 'HEROKU' in os.environ
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -20,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'c20m%-55-pu+m+_@3)4=l#d^t611n%9o2xsfo4iuz=ru2(ht-r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not is_production()
 
 TEMPLATE_DEBUG = True
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'core',
     'chat',
+    'tastypie',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,6 +73,10 @@ DATABASES = {
     }
 }
 
+if is_production():
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
@@ -82,10 +90,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-if 'HEROKU' in os.environ:
-    import dj_database_url
-    DATABASES['default'] =  dj_database_url.config()
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -97,3 +101,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),  # Static files we've created ourselves
 )
 
+# TastyPie settings
+TASTYPIE_DEFAULT_FORMATS = ['json']
