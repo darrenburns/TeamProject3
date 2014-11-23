@@ -3,8 +3,6 @@ from django.contrib import admin
 from tastypie.api import Api
 from chat.api.resources import ChatResource
 from core.api.resources import ProjectResource
-from django.conf import settings
-from django.conf.urls.static import static
 
 # Enable the admin interface
 admin.autodiscover()
@@ -25,5 +23,5 @@ urlpatterns = patterns('',
 
     # Add the URLs for the API
     (r'^api/', include(v1_api.urls)),
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
 
