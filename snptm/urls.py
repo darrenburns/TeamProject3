@@ -19,9 +19,8 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', 'core.views.user_register', name='user_register'),
     url(r'^dashboard/$', 'core.views.dashboard', name='dashboard'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/$', 'core.views.user_profile', name="user_profile"),
-    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/permissions/$', 'core.views.user_permissions', name="user_permissions"),
-
+    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/permissions/changed$', 'core.user_permission_change', name="user_permission_change")
     # Add the URLs for the API
-    (r'^api/', include(v1_api.urls)),
+    #(r'^api/', include(v1_api.urls)),
 
 )

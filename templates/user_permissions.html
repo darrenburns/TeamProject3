@@ -20,14 +20,13 @@
 
             <div class="dropdown">
 
+                <form method="post" action="{% url 'user_permission_change' %}">
+                    {% csrf_token %}
+                    <input type="radio" name="choice" value="dev" id="dev"><br>
+                    <input type="radio" name="choice" value="qam" id="qam"><br>
+                    <input type="radio" name="choice" value="pm" id="pm"><br>
 
-                <ul>
-
-                    {% for perm in permissions %}
-                        <li>{{perm}}</li>
-                    {% endfor %}
-
-                </ul>
+                </form>
 
             </div>
 

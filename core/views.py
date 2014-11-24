@@ -87,16 +87,14 @@ def user_profile(request, username):
     return render(request, 'user_profile.html', {'user': user,
                                                  'userProfile': profile})
 
+
 @login_required
 @permission_required("is_superuser")
-def user_permissions(request, username):
+def user_permission_change(request, username):
     user = User.objects.get(username=username)
-    userProfile = UserProfile.objects.get(user=user)
-    permissions = user.get_all_permissions()
-    return render(request, 'user_permissions.html', {'user': user,
-                                                     'userProfile': userProfile,
-                                                     'permissions': permissions
-                                                    })
+    if request.method = "POST":
+        group = request.POST['choice']
+    else:
 
 
 
