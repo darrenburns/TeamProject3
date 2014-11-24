@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
+from django.core.urlresolvers import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.http import HttpResponseRedirect
@@ -41,7 +42,7 @@ def user_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(next) if next else HttpResponseRedirect('/')
+                return HttpResponseRedirect(next) if next else HttpResponseRedirect(reverse('core.views.dashboard'))
             else:
                 return render(request, 'login.html', {'account_deleted': True})
         else:
