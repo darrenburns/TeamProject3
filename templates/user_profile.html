@@ -34,57 +34,34 @@
                     {{ "[[profile picture goes here]]" }}
 
                 </div>
- 
+
             </div>
 
             <HR>
             <div class="row">
-                <div class="col-sm-12">
-                    <br><br>
+                <div class="col-sm-6">
 
-                    <div class="btn-group">
-
-                        <div class="btn-group">
-
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                                        data-toggle="dropdown"
-                                        aria-expanded="true">
-                                    Tickets
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket1</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket2</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket3</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket4</a></li>
-                                </ul>
-
-                            </div>
-
-                        </div>
-
-                        <div class="btn-group">
-
-                            <div class="dropdown">
-
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2"
-                                        data-toggle="dropdown"
-                                        aria-expanded="true">
-                                    Projects
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Project 1</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Project 2</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">You get the idea...</a></li>
-                                    <!--Note to self: menu items should be created based on list of projects/list of tickets (FOR i in tickets: create new menuitem(then add a divider? Dunno man. ) -->
-                                </ul>
-                            </div>
-
-                        </div>
-
+                    <div class="list-group">
+                     <!--  for ticket in tickets %} -->
+                        <a href="#" class="list-group-item active">
+                            <h4 class="list-group-item-heading">List group item heading</h4>
+                            <p class="list-group-item-text">...</p>
+                        </a>
+                       <!--  endfor %}-->
                     </div>
+                   </div>
+
+                <div class="col-sm-6">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            <h4 class="list-group-item-heading">List group item heading</h4>
+                            <p class="list-group-item-text">...</p>
+                        </a>
+                    </div>
+
+
+                </div>
+
 
                 </div>
             </div>
