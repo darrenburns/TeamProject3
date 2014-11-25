@@ -10,6 +10,10 @@ class Chat(models.Model):
     users = models.ManyToManyField(User)
     ticket = models.OneToOneField('chat.Ticket', null=True, blank=True)
 
+    class Meta:
+        permissions = (('canTagTickets', 'Can tag chats as tickets'),
+                       ('canSplitChats', 'Can Split Chats into Multiple Conversations'),)
+
     def __unicode__(self):
         return u'Chat %d in project "%s" (project_id = %d)' % (self.id, self.project.desc, self.project.id)
 
@@ -20,6 +24,9 @@ class Message(models.Model):
     chat = models.ForeignKey('chat.Chat')
     text = models.CharField(max_length=2000)
 
+    class Meta:
+        permissions = (('canPost', 'Can Write Messages'),)
+
     def __unicode__(self):
         return u'%s in chat %d' % (self.text, self.chat.id)
 
@@ -27,6 +34,9 @@ class Message(models.Model):
 class Priority(models.Model):
     name = models.CharField(max_length=20)  # e.g. High, Normal, Low
     colour = models.CharField(max_length=20)
+
+    class Meta:
+        permissions = (('canCreatePriorities','Can Create a Priority'),)
 
     def __unicode__(self):
         return u'Priority: %s, Colour: %s' % (self.name, self.colour)
@@ -37,9 +47,8 @@ class Ticket(models.Model):
     created = models.DateTimeField()
     closed = models.DateTimeField(null=True)
     priority = models.ForeignKey(Priority)
-    #Meta.permissions = (('editAllTickets', 'Can edit all tickets'))
     class Meta:
-            permissions = (('editAllTickets', 'Can edit all tickets'),)
-	
+            permissions = (('canEditAllTickets', 'Can edit all tickets'),)  # Intended for use with ticket priorities.
+
     def __unicode__(self):
         return u'Ticket %d' % self.id

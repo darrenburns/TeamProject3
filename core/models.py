@@ -23,6 +23,9 @@ class Project(models.Model):
     manager = models.ForeignKey(User)
     desc = models.CharField(max_length=500)
 
+    class Meta:
+        permissions = (('canManageProjects', 'Is allowed to manage a project'),)
+
     def __unicode__(self):
         return u'%s' % self.desc
 
