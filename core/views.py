@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from chat.models import Ticket
 from core.models import UserProfile
 
@@ -93,9 +93,14 @@ def user_profile(request, username):
 @permission_required("is_superuser")
 def user_permission_change(request, username):
     user = User.objects.get(username=username)
-    if request.method = "POST":
+    if request.method == "POST":
         group = request.POST['choice']
+        user.groups.add(Group.objects.get(name=group))
     else:
+        print "Hello, error! This should only be called on a POST request."
+
+    return render(request, 'user_permissions.html', {'user':user,
+                                                     'userProfile': UserProfile.objects.get(user=user)})
 
 
 

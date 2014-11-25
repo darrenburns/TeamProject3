@@ -20,12 +20,12 @@
 
             <div class="dropdown">
 
-                <form method="post" action="{% url 'user_permission_change' %}">
+                <form method="post" action="{% url "user_permission_change" user %}">
                     {% csrf_token %}
-                    <input type="radio" name="choice" value="dev" id="dev"><br>
-                    <input type="radio" name="choice" value="qam" id="qam"><br>
-                    <input type="radio" name="choice" value="pm" id="pm"><br>
-
+                    <input type="radio" name="choice" value="developer" id="developerGroup"><label>Developer</label><br>
+                    <input type="radio" name="choice" value="qa manager" id="qa manager"><label>QA Manager</label><br>
+                    <input type="radio" name="choice" value="project manager" id="project manager"><label>Project Manager</label><br>
+                    <input type="submit" value="Submit">
                 </form>
 
             </div>
