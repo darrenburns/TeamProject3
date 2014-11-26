@@ -104,8 +104,8 @@ def user_permission_change(request, username):
         group = Group.objects.get(name=group_choice)
         [user.groups.remove(user_group) for user_group in user_groups]
         user.groups.add(group)
-        message = group.name
         current_group = group.name
+        message = 'Submitted!'
     else:
         print "Hello, error! This should only be called on a POST request."
 
