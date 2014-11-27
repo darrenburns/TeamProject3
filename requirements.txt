@@ -11,4 +11,5 @@ python-dateutil==2.2
 python-mimeparse==0.1.4
 six==1.8.0
 static3==0.5.1
+whitenoise==1.0.4
 wsgiref==0.1.2

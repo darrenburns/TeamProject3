@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from chat.models import Ticket
 from core.models import UserProfile
 
@@ -80,6 +80,41 @@ def user_register(request):
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+@login_required
+def user_profile(request, username):
+    user = User.objects.get(username=username)
+    profile = UserProfile.objects.get(user = user)
+    return render(request, 'user_profile.html', {'user': user,
+                                                 'userProfile': profile})
+
+
+# temporary until group layer is properly sorted out.
+user_groups = [Group.objects.get(name="qa manager"), Group.objects.get(name="project manager"),Group.objects.get(name="developer")]
+
+@login_required
+@permission_required("is_superuser")
+def user_permission_change(request, username):
+    message = ''
+    user = User.objects.get(username=username)
+    current_group = ''
+
+    if request.method == "POST":
+        group_choice = request.POST['choice']
+        group = Group.objects.get(name=group_choice)
+        [user.groups.remove(user_group) for user_group in user_groups]
+        user.groups.add(group)
+        current_group = group.name
+        message = 'Submitted!'
+    else:
+        print "Hello, error! This should only be called on a POST request."
+
+    return render(request, 'user_permissions.html', {'user': user,
+                                                     'userProfile': UserProfile.objects.get(user=user),
+                                                     'current_group': current_group,
+                                                     'message': message})
+
+
 
 
 def sidebar_ticket_list(request, project_id):
