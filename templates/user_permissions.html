@@ -23,13 +23,10 @@
                 <form method="post" action="{% url "user_permission_change" user %}">
                     {% csrf_token %}
                     <input type="radio" name="choice" value="developer" id="developer" {% if current_group == 'developer' %}checked{% endif %}><label>Developer</label>
-
                     <br>
                     <input type="radio" name="choice" value="qa manager" id="qa manager" {% if current_group == 'qa manager' %}checked{% endif %}><label>QA Manager</label>
-
                     <br>
                     <input type="radio" name="choice" value="project manager" id="project manager" {% if current_group == 'project manager' %}checked{% endif %}><label>Project Manager</label>
-
                     <br>
                     <input type="submit" value="Save">
                 </form>
