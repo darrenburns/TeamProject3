@@ -102,7 +102,8 @@ def user_permission_change(request, username):
     if request.method == "POST":
         group_choice = request.POST['choice']
         group = Group.objects.get(name=group_choice)
-        [user.groups.remove(user_group) for user_group in user_groups]
+        for user_group in user_groups:
+            user.groups.remove(user_group) 
         user.groups.add(group)
         current_group = group.name
         message = 'Submitted!'
