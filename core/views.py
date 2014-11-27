@@ -102,12 +102,15 @@ def user_permission_change(request, username):
     if request.method == "POST":
         group_choice = request.POST['choice']
         group = Group.objects.get(name=group_choice)
-        [user.groups.remove(user_group) for user_group in user_groups]
+        for user_group in user_groups:
+            user.groups.remove(user_group) 
         user.groups.add(group)
         current_group = group.name
         message = 'Submitted!'
     else:
-        print "Hello, error! This should only be called on a POST request."
+        # Note that this will match for at most one group, as we will only ever have one group set.
+        for potentialGroup in user_groups:
+            if potentialGroup in user.groups.all(): current_group = potentialGroup.name
 
     return render(request, 'user_permissions.html', {'user': user,
                                                      'userProfile': UserProfile.objects.get(user=user),

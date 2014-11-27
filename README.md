@@ -35,5 +35,4 @@ This is straightforward. Steps as follows:
 
 1. `$ python manage.py makemigrations`
 2. `$ python manage.py migrate`
-3. `$ python manage.py syncdb`
-4. `$ python manage.py runserver` if/when you then want to launch the project with the new database models.
+3. `$ python manage.py runserver` if/when you then want to launch the project with the new database models.
