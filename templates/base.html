@@ -51,7 +51,10 @@
 </nav>
 
 <div class="container-fluid">
-    {% block content %}{% endblock %}
+    <div class="row">
+        {% block sidebar %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
 </div>
 
 </body>
