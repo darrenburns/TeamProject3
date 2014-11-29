@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+
+
+    <div class="col-xs-3 col-md-2 sidebar">
+
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="sidebar-dropdown-button" data-toggle="dropdown" aria-expanded="true">
+                No projects
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="sidebar-dropdown-list" id="sidebar-dropdown-list"></ul>
+        </div>
+
+        <ul class="nav nav-pills nav-stacked" id="tickets-list"></ul>
+
+    </div>
+
+{% endblock %}
+
+{% block content %}
+{% endblock %}
