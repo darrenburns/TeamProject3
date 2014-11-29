@@ -6,44 +6,87 @@
         <div class="col-xs-3 col-md-2 sidebar">
 
             <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="sidebarDropdownMenu" data-toggle="dropdown" aria-expanded="true">
-                    Projects
+                <button class="btn btn-default dropdown-toggle" type="button" id="sidebar-dropdown-button" data-toggle="dropdown" aria-expanded="true">
+                    No projects
                     <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="sidebarDropdownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" >Project A</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Project B</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Project C</a></li>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="sidebar-dropdown-list" id="sidebar-dropdown-list">
+
                 </ul>
             </div>
 
-
-            <ul class="nav nav-pills nav-stacked" id="list-tickets">
-                <li role="presentation"><a href="#">Ticket 1</a></li>
-                <li role="presentation"><a href="#">Ticket 2</a></li>
-                <li role="presentation"><a href="#">Ticket 3</a></li>
-                <li role="presentation"><a href="#">Ticket 4</a></li>
-                <li role="presentation"><a href="#">Ticket 5</a></li>
-                <li role="presentation"><a href="#">Ticket 6</a></li>
-            </ul>
+            <ul class="nav nav-pills nav-stacked" id="tickets-list"></ul>
 
         </div>
 
         <div class="col-xs-9 col-md-10 main">
-            <h1 class="page-header" id="dashboardTitle">Dashboard</h1>
 
-            <ul class="nav nav-tabs">
-              <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#home">Home</a></li>
-              <li role="presentation"><a role="tab" data-toggle="tab" href="#profile" >Profile</a></li>
-              <li role="presentation"><a role="tab" data-toggle="tab" href="#messages">Messages</a></li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="home">Home Content</div>
-                <div role="tabpanel" class="tab-pane" id="profile">Profile Content</div>
-                <div role="tabpanel" class="tab-pane" id="messages">Messages content</div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="page-header" id="dashboard-title">Dashboard</h1>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
+                        <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-chats" >Chat</a></li>
+                        <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-users">Users</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- Tab information -->
+                        <div role="tabpanel" class="tab-pane active" id="tab-information">
+                            <div class="row" style="margin-top: 1em;">
+                                <div class="col-sm-12">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-pencil"></span> Modify ticket
+                                        </button>
+                                        <button type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-lock"></span> Close ticket
+                                        </button>
+                                        <button type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-remove"></span> Delete ticket
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    Owner: [Owner name]
+                                </div>
+                                <div class="col-sm-4">
+                                    <p>Date created: [Date created]</p>
+                                    <p>Date closed: [Date closed]</p>
+                                </div>
+                                <div class="col-sm-4">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End tab information -->
+
+                        <!-- Tab chats -->
+                        <div role="tabpanel" class="tab-pane" id="tab-chats">
+
+                        </div>
+                        <!-- End tab chats -->
+                        <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
+                    </div>
+                    <!-- End tab panes -->
+                </div>
+            </div>
+
+
 
         </div>
     </div>

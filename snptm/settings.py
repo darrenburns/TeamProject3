@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'core',
     'chat',
+    'tastypie',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,10 +94,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+STATIC_ROOT = 'staticfiles'
+
 STATIC_URL = '/static/'
 
-# For static files that aren't tied to a particular app
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),  # Static files we've created ourselves
+    os.path.join(BASE_DIR, 'static'),
 )
 
+# For static files that aren't tied to a particular app
+
+STATICFILES_DIRS = ()  # Static files we've created ourselves
+
+# TastyPie settings
+TASTYPIE_DEFAULT_FORMATS = ['json']
