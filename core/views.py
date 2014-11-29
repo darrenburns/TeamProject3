@@ -90,7 +90,7 @@ def user_profile(request, username):
 
 
 # temporary until group layer   is properly sorted out.
-# user_groups = [Group.objects.get(name="qa manager"), Group.objects.get(name="project manager"),Group.objects.get(name="developer")]
+user_groups = [Group.objects.get(name="qa manager"), Group.objects.get(name="project manager"),Group.objects.get(name="developer")]
 
 @login_required
 @permission_required("is_superuser")
@@ -103,7 +103,7 @@ def user_permission_change(request, username):
         group_choice = request.POST['choice']
         group = Group.objects.get(name=group_choice)
         for user_group in user_groups:
-            user.groups.remove(user_group) 
+            user.groups.remove(user_group)
         user.groups.add(group)
         current_group = group.name
         message = 'Submitted!'
