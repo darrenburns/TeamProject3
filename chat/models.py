@@ -45,8 +45,9 @@ class Priority(models.Model):
 class Ticket(models.Model):
     notes = models.CharField(max_length=500)
     created = models.DateTimeField()
-    closed = models.DateTimeField(null=True)
-    priority = models.ForeignKey(Priority)
+    closed = models.DateTimeField(null=True, blank=True)
+    priority = models.ForeignKey(Priority, null=True, blank=True)
+
     class Meta:
             permissions = (('canEditAllTickets', 'Can edit all tickets'),)  # Intended for use with ticket priorities.
 

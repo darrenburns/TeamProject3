@@ -89,8 +89,8 @@ def user_profile(request, username):
                                                  'userProfile': profile})
 
 
-# temporary until group layer is properly sorted out.
-user_groups = [Group.objects.get(name="qa manager"), Group.objects.get(name="project manager"),Group.objects.get(name="developer")]
+# temporary until group layer   is properly sorted out.
+# user_groups = [Group.objects.get(name="qa manager"), Group.objects.get(name="project manager"),Group.objects.get(name="developer")]
 
 @login_required
 @permission_required("is_superuser")
@@ -107,8 +107,6 @@ def user_permission_change(request, username):
         user.groups.add(group)
         current_group = group.name
         message = 'Submitted!'
-    else:
-        print "Hello, error! This should only be called on a POST request."
 
     return render(request, 'user_permissions.html', {'user': user,
                                                      'userProfile': UserProfile.objects.get(user=user),
