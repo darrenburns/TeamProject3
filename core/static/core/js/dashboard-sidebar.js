@@ -19,7 +19,7 @@ $(function () {
                 selectProject(selected_project);
 
                 //Render template. Update display
-                projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{desc}}</a></li>{{/projects}}';
+                projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{name}}</a></li>{{/projects}}';
 
                 var renderedTemplate = Mustache.to_html(projectsListTemplate, {'projects': projectObjects});
                 $('#sidebar-dropdown-list').html(renderedTemplate);

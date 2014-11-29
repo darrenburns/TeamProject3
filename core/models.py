@@ -6,8 +6,8 @@ from django.dispatch import receiver
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True)
-    role = models.CharField(max_length=50)
-    linkedinURL = models.URLField(max_length=50)
+    role = models.CharField(max_length=50, null=True, blank=True)
+    linkedinURL = models.URLField(max_length=255, null=True, blank=True)
     #image = models.ImageField(upload_to=None)
 
     def __unicode__(self):
@@ -21,7 +21,10 @@ def initialise_profile(sender, **kwargs):
 
 class Project(models.Model):
     manager = models.ForeignKey(User)
-    desc = models.CharField(max_length=500)
+    name = models.CharField(max_length=2000)
+    desc = models.CharField(max_length=255)
+    homepage = models.URLField(max_length=255, null=True, blank=True)
+    repo = models.URLField(max_length=255, null=True, blank=True)
 
     class Meta:
         permissions = (('canManageProjects', 'Is allowed to manage a project'),)
