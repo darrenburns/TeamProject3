@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.signals import post_save
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.dispatch import receiver
 
 
@@ -25,6 +25,9 @@ class Project(models.Model):
     desc = models.CharField(max_length=255)
     homepage = models.URLField(max_length=255, null=True, blank=True)
     repo = models.URLField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        permissions = (('canManageProjects', 'Is allowed to manage a project'),)
 
     def __unicode__(self):
         return u'%s' % self.desc
