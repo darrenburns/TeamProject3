@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.signals import post_save
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.dispatch import receiver
 
 
@@ -22,6 +22,9 @@ def initialise_profile(sender, **kwargs):
 class Project(models.Model):
     manager = models.ForeignKey(User)
     desc = models.CharField(max_length=500)
+
+    class Meta:
+        permissions = (('canManageProjects', 'Is allowed to manage a project'),)
 
     def __unicode__(self):
         return u'%s' % self.desc
