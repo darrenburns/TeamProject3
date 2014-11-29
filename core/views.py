@@ -8,8 +8,8 @@ from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import User
-from chat.models import Ticket
-from core.models import UserProfile
+from chat.models import Ticket, Chat
+from core.models import UserProfile, Project
 
 
 def home(request):
@@ -85,10 +85,12 @@ def dashboard(request):
 def user_profile(request, username):
     user = User.objects.get(username=username)
     profile = UserProfile.objects.get(user = user)
-    tickets = Ticket.objects.all();  # Todo: instead of getting them all, get only the tickets that this user is part of
+    projects = Project.objects.all()
+    chats = Chat.objects.all()  # Todo: instead of getting them all, get only the tickets that this user is part of
     return render(request, 'user_profile.html', {'user': user,
                                                  'userProfile': profile,
-                                                 'tickets': tickets})
+                                                 'chats': chats,
+                                                 'projects': projects})
 
 
 

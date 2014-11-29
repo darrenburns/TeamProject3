@@ -40,19 +40,21 @@
             <div class="row">
                 <div class="col-sm-6">
 
+                    {% for project in projects %}
                     <div class="list-group">
-                     <!--  for ticket in tickets %} -->
-                        <a href="#" class="list-group-item active">
-                            <h4 class="list-group-item-heading">List group item heading</h4>
-                            <p class="list-group-item-text">...</p>
+                        {% for chat in project.chats.all %}
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{ chat.title }}</h4>
+                            <p class="list-group-item-text">{{ chat.project.name }}</p>
                         </a>
-                       <!--  endfor %}-->
+                        {% endfor %}
                     </div>
+                    {% endfor %}
                    </div>
 
                 <div class="col-sm-6">
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">
+                        <a href="#" class="list-group-item">
                             <h4 class="list-group-item-heading">List group item heading</h4>
                             <p class="list-group-item-text">...</p>
                         </a>
