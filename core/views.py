@@ -11,12 +11,12 @@ from django.contrib.auth.models import User
 from chat.models import Ticket
 from core.models import UserProfile
 
-
+@login_required
 def home(request):
     """
     Renders the home page.
     """
-    return render(request, 'home.html')
+    return render(request, 'dashboard.html')
 
 
 def user_login(request):
@@ -42,7 +42,7 @@ def user_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(next) if next else HttpResponseRedirect(reverse('core.views.dashboard'))
+                return HttpResponseRedirect(next) if next else HttpResponseRedirect(reverse('core.views.home'))
             else:
                 return render(request, 'login.html', {'account_deleted': True})
         else:
@@ -50,7 +50,7 @@ def user_login(request):
     else:  # If the user is just looking to view the login page (hasn't submitted form)
         return render(request, 'login.html', {'next': next})
 
-
+@login_required
 def user_logout(request):
     """
     Logs the user out and renders the home page with a message informing them that
