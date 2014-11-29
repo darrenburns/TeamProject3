@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^accounts/login/', 'core.views.user_login', name='user_login'),
     url(r'^accounts/logout/', 'core.views.user_logout', name='user_logout'),
     url(r'^accounts/register/$', 'core.views.user_register', name='user_register'),
-    url(r'^chat/$', 'chat.views.chat', name='chat'),
+    url(r'^chats/([0-9]+)$', 'chat.views.chat', name='chat'),
 
     # Add the URLs for the API
     (r'^api/', include(v1_api.urls)),
