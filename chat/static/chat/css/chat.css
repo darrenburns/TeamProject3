@@ -1,4 +1,4 @@
 .latest-messages {
-    height: 780px;
+    max-height: 670px;
     overflow-y: scroll;
 }

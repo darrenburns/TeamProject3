@@ -5,5 +5,5 @@ from chat.models import Chat
 
 @login_required()
 def chat(request, chat_id):
-    chats = Chat.objects.get(id=chat_id)
-    return render(request, 'chat.html')
+    chat = Chat.objects.get(id=chat_id)
+    return render(request, 'chat.html', {'chat': chat})
