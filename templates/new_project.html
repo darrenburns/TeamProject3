@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load core_extras %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-12">
+
+            <h1>Create a new project:</h1>
+
+            {% if form.non_field_errors  %}
+                <div class="alert alert-warning">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+        <label for="id_title">Project Title:</label>
+        {{ form.title  | add_attrs:"class:form-control,placeholder:Enter project title." }}<br/>
+        <label for="id_manager">Project Manager:</label>
+        {{ form.manager  | add_attrs:"class:form-control,placeholder:Enter the name of the manager." }}<br/>
+        <label for="id_description">Project Description:</label>
+        {{ form.description  | add_attrs:"class:form-control,placeholder:Enter a brief description of your project." }}<br/>
+
+{#            <form action="{% url 'new_project' %}" method="post">#}
+{#                 <input type="text" name="title"><br />#}
+{#                <input type="text" name="manager" /><br />#}
+{#                <input type="text" name="description" /><br />#}
+
+
+<input type="submit" value="Submit" />
+</form>
+            <br/>
+        </div>
+    </div>
+
+{% endblock %}

@@ -5,10 +5,12 @@ from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.forms import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import User
 from chat.models import Ticket
+from core.forms import ProjectCreationForm
 from core.models import UserProfile
 
 
@@ -90,3 +92,21 @@ def sidebar_ticket_list(request, project_id):
     """
     tickets = Ticket.objects.query()
     return render(request, 'ajax/dashboard/sidebar_ticket_list.html', {'tickets': tickets})
+
+
+def new_project(request):
+    if request.method == 'POST':
+        form = ProjectCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'new_project.html', {'new_project_success': True})
+        else:
+            return render(request, 'new_project.html', {'form': form})
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = ProjectCreationForm()
+
+    return render_to_response('new_project.html', args)
+
