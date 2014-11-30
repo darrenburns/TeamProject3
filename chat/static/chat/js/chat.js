@@ -22,16 +22,22 @@ $(function() {
     });
 
     messagesRef.on("child_added", function(object) {
-        var child = object.val();
-        var user = child.user;
-        var msg = child.desc;
-        var date = new Date(child.dt);
 
-        // Todo: move this abomination to Mustache.js
-        messages.append('<li class="list-group-item">' +
-                            '<strong>' + child.user + ':</strong> '+ child.desc + "" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() +
-                        '</li>'
-        );
+        var child = object.val();
+
+        //Create a new get Date function to use in Mustache
+        child.getFormattedDate = function(dt){
+            var date = new Date(child.dt);
+            return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+        }
+
+        var messagesTemplate =
+            '<li class="list-group-item">' +
+                '<strong>{{ user }}:</strong> {{ desc }} {{ getFormattedDate }}' +
+            '</li>'
+
+        var renderedTemplate = Mustache.to_html(messagesTemplate, child);
+        messages.append(renderedTemplate);
 
 
         // On new message load, scroll to the top.
