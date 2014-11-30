@@ -28,7 +28,7 @@ $(function() {
         //Create a new get Date function to use in Mustache
         child.getFormattedDate = function(dt){
             var date = new Date(child.dt);
-            return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+            return date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
         }
 
         var messagesTemplate =
