@@ -56,8 +56,10 @@
                                 Owner: [Owner name]
                             </div>
                             <div class="col-sm-4">
-                                <p>Date created: [Date created]</p>
-                                <p>Date closed: [Date closed]</p>
+                                <p>Date created: {{ chat.created | date:'d/m/Y H:i' }}</p>
+                                {% if chat.closed %}
+                                    <p>Date closed: {{ chat.closed | date:'d/m/Y H:i' }}</p>
+                                {% endif %}
                             </div>
                             <div class="col-sm-4">
 

@@ -25,15 +25,12 @@ $(function() {
 
         var child = object.val();
 
-        //Create a new get Date function to use in Mustache
-        child.getFormattedDate = function(dt){
-            var date = new Date(child.dt);
-            return date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
-        }
+        //Create a new date field to use in Mustache
+        child.formattedDate = getFormattedDate(child.dt);
 
         var messagesTemplate =
             '<li class="list-group-item">' +
-                '<strong>{{ user }}:</strong> {{ desc }} {{ getFormattedDate }}' +
+            '<strong>{{ user }}:</strong> {{ desc }} {{ formattedDate }}' +
             '</li>'
 
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
@@ -43,4 +40,11 @@ $(function() {
         // On new message load, scroll to the top.
         messages[0].scrollTop = messages[0].scrollHeight;
     });
+
+    //Format the date into day/month/year format
+    function getFormattedDate (dt){
+        var date = new Date(dt);
+        return date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
+    }
+
 });
