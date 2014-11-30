@@ -137,12 +137,12 @@ def new_project(request):
 
             return render_to_response('dashboard.html', context_instance=RequestContext(request))
         else:
-            return render_to_response('new_project.html', context_instance=RequestContext(request))
+            return render(request, 'new_project.html', {'form':form, 'error': True})
 
     args = {}
     args.update(csrf(request))
 
     args['form'] = ProjectCreationForm()
 
-    return render_to_response('new_project.html', args)
+    return render(request, 'new_project.html', args)
 

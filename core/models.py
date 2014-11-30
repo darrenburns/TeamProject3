@@ -21,7 +21,7 @@ def initialise_profile(sender, **kwargs):
 
 class Project(models.Model):
     manager = models.ForeignKey(User)
-    name = models.CharField(max_length=2000)
+    name = models.CharField(max_length=32)
     desc = models.CharField(max_length=255)
     homepage = models.URLField(max_length=255, null=True, blank=True)
     repo = models.URLField(max_length=255, null=True, blank=True)
