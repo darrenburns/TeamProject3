@@ -1,9 +1,9 @@
-from django import forms
+from django.forms import ModelForm
+from core.models import Project
 
-__author__ = '2161574s'
 
-class ProjectCreationForm(forms.Form):
-    title = forms.CharField(label='Project Title', max_length=20)
-    manager = forms.CharField(label='Manager', max_length=20)
-    description = forms.CharField(label='Description', max_length=500)
+class ProjectCreationForm(ModelForm):
+
+    class Meta:
+        model = Project
 

@@ -9,6 +9,7 @@ from django.forms import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import User, Group
+from django.template import RequestContext
 from chat.models import Ticket
 from core.forms import ProjectCreationForm
 from core.models import UserProfile
@@ -133,9 +134,10 @@ def new_project(request):
         form = ProjectCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'new_project.html', {'new_project_success': True})
+
+            return render_to_response('dashboard.html', context_instance=RequestContext(request))
         else:
-            return render(request, 'new_project.html', {'form': form})
+            return render_to_response('new_project.html', context_instance=RequestContext(request))
 
     args = {}
     args.update(csrf(request))

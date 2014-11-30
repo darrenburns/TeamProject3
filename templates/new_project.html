@@ -8,26 +8,29 @@
 
             <h1>Create a new project:</h1>
 
-            {% if form.non_field_errors  %}
-                <div class="alert alert-warning">
-                    {{ form.non_field_errors }}
-                </div>
-            {% endif %}
-        <label for="id_title">Project Title:</label>
-        {{ form.title  | add_attrs:"class:form-control,placeholder:Enter project title." }}<br/>
-        <label for="id_manager">Project Manager:</label>
-        {{ form.manager  | add_attrs:"class:form-control,placeholder:Enter the name of the manager." }}<br/>
-        <label for="id_description">Project Description:</label>
-        {{ form.description  | add_attrs:"class:form-control,placeholder:Enter a brief description of your project." }}<br/>
+            <form action="{% url 'new_project' %}" method="post" role="form">
+                {% if form.non_field_errors %}
+                    <div class="alert alert-warning">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+                <label for="id_title">Project Title:</label>
+                {{ form.name  | add_attrs:"class:form-control,placeholder:Enter project title." }}<br/>
+                <label for="id_manager">Project Manager:</label>
+                {{ form.manager  | add_attrs:"class:form-control,placeholder:Enter the name of the manager." }}<br/>
+                <label for="id_description">Project Description:</label>
+                {{ form.desc  | add_attrs:"class:form-control,placeholder:Enter a brief description of your project." }}
+                <br/>
 
-{#            <form action="{% url 'new_project' %}" method="post">#}
-{#                 <input type="text" name="title"><br />#}
-{#                <input type="text" name="manager" /><br />#}
-{#                <input type="text" name="description" /><br />#}
+                {#            <form action="{% url 'new_project' %}" method="post">#}
+                {#                 <input type="text" name="title"><br />#}
+                {#                <input type="text" name="manager" /><br />#}
+                {#                <input type="text" name="description" /><br />#}
 
 
-<input type="submit" value="Submit" />
-</form>
+                <input class="btn btn-default" type="submit" value="Create Project"/>
+            <input type='hidden' name='csrfmiddlewaretoken' value='{{csrf_token}}'>
+            </form>
             <br/>
         </div>
     </div>
