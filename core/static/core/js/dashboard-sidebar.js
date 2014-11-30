@@ -19,7 +19,7 @@ $(function () {
                 selectProject(selected_project);
 
                 //Render template. Update display
-                projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{desc}}</a></li>{{/projects}}';
+                projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{name}}</a></li>{{/projects}}';
 
                 var renderedTemplate = Mustache.to_html(projectsListTemplate, {'projects': projectObjects});
                 $('#sidebar-dropdown-list').html(renderedTemplate);
@@ -44,7 +44,7 @@ $(function () {
             .success(function (chats) {
                 // Create mustache template for rendering tickets list
                 var chatObjects = chats.objects;
-                var chatsListTemplate = '{{#chats}}<li role="presentation"><a href="#">{{ title }}</a></li>{{/chats}}';
+                var chatsListTemplate = '{{#chats}}<li role="presentation"><a href="/chats/{{ id }}">{{ title }}</a></li>{{/chats}}';
                 var renderedTemplate = Mustache.to_html(chatsListTemplate, {'chats': chatObjects});
 
                 // Update ticket list
