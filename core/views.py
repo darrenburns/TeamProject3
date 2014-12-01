@@ -7,10 +7,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, Permission
 from chat.models import Ticket
 from core.models import UserProfile
-
+from django.utils.translation import ugettext, ugettext_lazy as _
+from django.contrib.auth import forms
 
 def home(request):
     """
@@ -60,9 +61,33 @@ def user_logout(request):
     return render(request, 'home.html', {'just_logged_out': True})
 
 
+# Helper function to avoid list comprehensions.
+def usersInGroup(groupName):
+	group = Group.objects.filter(name=groupName)[0]
+	usersToReturn = []
+	for user in User.objects.all():
+		if group in user.groups.all():
+			usersToReturn.append(user)
+	return usersToReturn
+
+
+# We need to set groups and permissions in a custom form, so create one here. 
+class CustomUserCreationForm(UserCreationForm):
+    def save(self, commit=True):
+        user = super(UserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+            if len(usersInGroup("project manager")) == 0:
+                user.groups.add(Group.objects.filter(name="project manager")[0])
+            else:
+                user.groups.add(Group.objects.filter(name="developer")[0])
+        return user
+
+
 def user_register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return render(request, 'login.html', {'register_success': True})
