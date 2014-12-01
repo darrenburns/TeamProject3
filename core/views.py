@@ -10,8 +10,6 @@ from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import User, Group, Permission
 from chat.models import Ticket
 from core.models import UserProfile
-from django.utils.translation import ugettext, ugettext_lazy as _
-from django.contrib.auth import forms
 
 def home(request):
     """
