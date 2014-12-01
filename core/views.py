@@ -10,6 +10,8 @@ from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import User, Group, Permission
 from chat.models import Ticket
 from core.models import UserProfile
+from core.forms import CustomUserCreationForm
+
 
 def home(request):
     """
@@ -67,20 +69,6 @@ def usersInGroup(groupName):
 		if group in user.groups.all():
 			usersToReturn.append(user)
 	return usersToReturn
-
-
-# We need to set groups and permissions in a custom form, so create one here. 
-class CustomUserCreationForm(UserCreationForm):
-    def save(self, commit=True):
-        user = super(UserCreationForm, self).save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-            if len(usersInGroup("project manager")) == 0:
-                user.groups.add(Group.objects.filter(name="project manager")[0])
-            else:
-                user.groups.add(Group.objects.filter(name="developer")[0])
-        return user
 
 
 def user_register(request):
