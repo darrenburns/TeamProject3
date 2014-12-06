@@ -11,12 +11,22 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12" align="right">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats" >Chat</a></li>
                     <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Modify ticket
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-lock"></span> Close ticket
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove"></span> Delete ticket
+                        </button>
+                    </div>
                 </ul>
-            </div>
         </div>
 
         <div class="row">
@@ -35,21 +45,6 @@
 
                     <!-- Tab information -->
                     <div role="tabpanel" class="tab-pane" id="tab-information">
-                        <div class="row" style="margin-top: 1em;">
-                            <div class="col-sm-12">
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-pencil"></span> Modify ticket
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-lock"></span> Close ticket
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-remove"></span> Delete ticket
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="row">
                             <div class="col-sm-4">
@@ -82,5 +77,6 @@
         CHAT_ID = "{{ chat.id }}";
         console.log(CHAT_ID);
     </script>
+
 
 {% endblock %}
