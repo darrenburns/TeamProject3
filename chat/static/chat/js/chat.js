@@ -4,7 +4,10 @@ $(function() {
     var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
 
     // Get the messages reference for this chat
-    var messagesRef = ref.child('chats');
+    var messagesRef = ref.child('chats/' + CHAT_ID);
+    console.log(messagesRef);
+
+
 
     // Select the input box and the latest messages list
     var messages = $(".latest-messages");
