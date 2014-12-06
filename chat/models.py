@@ -44,7 +44,7 @@ class Priority(models.Model):
 class Progress(models.Model):
 	maximum = models.IntegerField()
 	current = models.IntegerField()
-
+	status = models.CharField(max_length=500) # e.g. not building, everything but <feature/> working, etc
 
 class Ticket(models.Model):
     notes = models.CharField(max_length=500)
