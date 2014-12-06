@@ -6,3 +6,12 @@
 #chat-title{
     margin-top: 0;
 }
+
+.message-user{
+    background-color: #F8F8F8 ;
+}
+
+.message-container{
+    padding: 0 0 0 5px;
+    margin-top: 7px;
+}

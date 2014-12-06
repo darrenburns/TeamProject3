@@ -42,19 +42,19 @@ $(function () {
             child.formattedDate = getFormattedDate(child.dt);
 
             var messagesTemplate =
-                '<div class="list-group">' +
-                    '<a href="#" class="list-group-item active">'+
-                        '<h4 class="list-group-item-heading">List group item heading</h4>'+
-                        '<p class="list-group-item-text">'+
+            '<div class="list-group-item message-container">'+
+                '<div class="row">' +
+                    '<div class="col-md-2 message-user">' +
+                        '<h5 class="list-group-item-heading"><strong>{{ user }} <br> {{ formattedDate }}</h5>'+
+                    '</div>' +
+                        '<div class="col-md-10">' +
+                '<p class="list-group-item-text">'+
+                    '</strong> {{ desc }} '+
+                '</p>'+
+                        '</div>' +
+                    '</div>' +
 
-            '<li class="list-group-item">' +
-            '<strong> {{ formattedDate }} </strong>' +
-            '<br>' +
-            '<strong>{{ user }}:</strong> {{ desc }} ' +
-            '</li>'
-                        '</p>'+
-                    '</a>'+
-                '</div>'
+            '</div>';
 
             var renderedTemplate = Mustache.to_html(messagesTemplate, child);
             messages.append(renderedTemplate);
@@ -67,7 +67,7 @@ $(function () {
         //Format the date into day/month/year format
         function getFormattedDate(dt) {
             var date = new Date(dt);
-            return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+            return ("0" + date.getDate()).slice(-2) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
         }
     }
 
