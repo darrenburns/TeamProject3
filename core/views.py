@@ -1,3 +1,4 @@
+import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -6,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
-from core.forms import ProjectCreationForm
+from core.forms import ProjectCreationForm, ChatCreationForm
 from django.contrib.auth.models import User
 from chat.models import Ticket, Chat
 from core.models import UserProfile, Project
@@ -120,3 +121,28 @@ def new_project(request):
 
     return render(request, 'new_project.html', args)
 
+def new_chat(request, project_id):
+    if request.method == 'POST':
+        form = ChatCreationForm(request.POST)
+        #form.project = project_id
+        form.data = form.data.copy()
+        form.data['project'] = project_id
+        form.data['created'] = datetime.datetime.now() #TODO: change to django timezone
+
+        if form.is_valid():
+            print "POST Test"
+            form.save()
+            return render(request, 'dashboard.html', {}) # TODO: the url is wrong!
+        else:
+            return render(request, 'new_chat.html', {'form':form, 'project_id': project_id})
+
+    args = {}
+    args.update(csrf(request))
+    get_form = ChatCreationForm()
+
+    # Add the project ID to the form here, before rendering it to the user
+
+    args['form'] = get_form
+    args['project_id'] = project_id
+
+    return render(request, 'new_chat.html', args)

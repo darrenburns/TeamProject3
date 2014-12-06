@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', 'core.views.user_register', name='user_register'),
     url(r'^dashboard/$', 'core.views.dashboard', name='dashboard'),
     url(r'^newproject/$', 'core.views.new_project', name='new_project'),
+    url(r'^projects/([0-9]+)/newchat/$', 'core.views.new_chat', name='new_chat'),
     url(r'^chats/([0-9]+)$', 'chat.views.chat', name='chat'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/$', 'core.views.user_profile', name="user_profile"),
 
