@@ -1,0 +1,82 @@
+{% extends 'sidebar_base.html' %}
+
+{% block content %}
+
+    <div class="col-xs-9 col-md-10 main">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="page-header" id="chat-title">{{ chat.title }}</h1>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12" align="right">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats" >Chat</a></li>
+                    <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Modify ticket
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-lock"></span> Close ticket
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove"></span> Delete ticket
+                        </button>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <!-- Tab chats -->
+                    <div role="tabpanel" class="tab-pane active" id="tab-chats">
+                        <ul class="list-group latest-messages">
+                        </ul>
+                        <input id="input-message" type="text" class="form-control"/>
+                    </div>
+                    <!-- End tab chats -->
+
+                    <!-- Tab information -->
+                    <div role="tabpanel" class="tab-pane" id="tab-information">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Owner: [Owner name]
+                            </div>
+                            <div class="col-sm-4">
+                                <p>Date created: {{ chat.created | date:'d/m/Y H:i' }}</p>
+                                {% if chat.closed %}
+                                    <p>Date closed: {{ chat.closed | date:'d/m/Y H:i' }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-4">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End tab information -->
+
+                    <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
+                </div>
+                <!-- End tab panes -->
+
+
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        CHAT_ID = "{{ chat.id }}";
+    </script>
+
+{% endblock %}

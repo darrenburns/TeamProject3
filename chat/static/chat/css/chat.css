@@ -1,0 +1,8 @@
+.latest-messages {
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+#chat-title{
+    margin-top: 0;
+}
