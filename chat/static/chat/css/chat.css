@@ -6,3 +6,8 @@
 #chat-title{
     margin-top: 0;
 }
+
+/* information tab */
+.information-well {
+    margin: 5px;
+}
