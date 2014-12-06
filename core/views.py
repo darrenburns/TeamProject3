@@ -1,18 +1,15 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.forms import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
-from django.contrib.auth.models import User, Group
 from django.template import RequestContext
-from chat.models import Ticket
 from core.forms import ProjectCreationForm
-from core.models import UserProfile
+from django.contrib.auth.models import User
+from chat.models import Ticket, Chat
+from core.models import UserProfile, Project
 
 @login_required
 def home(request):
@@ -87,36 +84,13 @@ def dashboard(request):
 @login_required
 def user_profile(request, username):
     user = User.objects.get(username=username)
-    profile = UserProfile.objects.get(user = user)
+    profile = UserProfile.objects.get(user=user)
+    projects = Project.objects.all()
+    chats = Chat.objects.all()  # Todo: instead of getting them all, get only the tickets that this user is part of
     return render(request, 'user_profile.html', {'user': user,
-                                                 'userProfile': profile})
-
-
-# temporary until group layer   is properly sorted out.
-user_groups = [Group.objects.get(name="qa manager"), Group.objects.get(name="project manager"),Group.objects.get(name="developer")]
-
-@login_required
-@permission_required("is_superuser")
-def user_permission_change(request, username):
-    message = ''
-    user = User.objects.get(username=username)
-    current_group = ''
-
-    if request.method == "POST":
-        group_choice = request.POST['choice']
-        group = Group.objects.get(name=group_choice)
-        for user_group in user_groups:
-            user.groups.remove(user_group)
-        user.groups.add(group)
-        current_group = group.name
-        message = 'Submitted!'
-
-    return render(request, 'user_permissions.html', {'user': user,
-                                                     'userProfile': UserProfile.objects.get(user=user),
-                                                     'current_group': current_group,
-                                                     'message': message})
-
-
+                                                 'userProfile': profile,
+                                                 'chats': chats,
+                                                 'projects': projects})
 
 
 def sidebar_ticket_list(request, project_id):
