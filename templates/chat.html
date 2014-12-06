@@ -45,21 +45,29 @@
 
                     <!-- Tab information -->
                     <div role="tabpanel" class="tab-pane" id="tab-information">
-
                         <div class="row">
-                            <div class="col-sm-4">
-                                Owner: [Owner name]
-                            </div>
-                            <div class="col-sm-4">
-                                <p>Date created: {{ chat.created | date:'d/m/Y H:i' }}</p>
+                        <div class="col-sm-4">
+                            <div class="well information-well">
+                                <h3>General Information</h3>
+                                <p><strong>Status: </strong><span class="label label-success">Open</span></p>
+                                <p><strong>Priority: </strong><span class="label label-danger">High</span></p>
+
+                                <p><strong>Date created: </strong>{{ chat.created | date:'d/m/Y H:i' }}</p>
                                 {% if chat.closed %}
-                                    <p>Date closed: {{ chat.closed | date:'d/m/Y H:i' }}</p>
+                                    <p><strong><Date></Date> closed: </strong>{{ chat.closed | date:'d/m/Y H:i' }}</p>
                                 {% endif %}
                             </div>
-                            <div class="col-sm-4">
-
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="well information-well">
+                                <h3>Statistics</h3>
+                                <p></p>
                             </div>
                         </div>
+
+
+                        </div>
+
 
                     </div>
                     <!-- End tab information -->
@@ -73,8 +81,11 @@
         </div>
 
     </div>
+
+    </div>
     <script type="text/javascript">
         CHAT_ID = "{{ chat.id }}";
+        console.log(CHAT_ID);
     </script>
 
 

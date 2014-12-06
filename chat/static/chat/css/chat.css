@@ -14,4 +14,8 @@
 .message-container{
     padding: 0 0 0 5px;
     margin-top: 7px;
+
+/* information tab */
+.information-well {
+    margin: 5px;
 }
