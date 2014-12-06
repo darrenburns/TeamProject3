@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+
+                    <h1><strong> <u> {{ userProfile.user }} </u> </strong></h1> <HR>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-sm-6">
+                    <br>
+                    <ul>
+                        <li><strong>Role:</strong> {{ userProfile.role }}</li>
+                        <li><strong>linkedinURL:</strong> {{ userProfile.linkedinURL }}</li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <br><br>
+                    {{ "[[profile picture goes here]]" }}
+
+                </div>
+            </div>
+
+            <HR>
+            <div class="row">
+                <div class="col-sm-6">
+
+                    {% for project in projects %}
+                    <div class="list-group">
+                        {% for chat in project.chats.all %}
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{ chat.title }}</h4>
+                            <p class="list-group-item-text">{{ chat.project.name }}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                   </div>
+
+                <div class="col-sm-6">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">Sample text</h4>
+                            <p class="list-group-item-text">...</p>
+                        </a>
+                    </div>
+
+
+                </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

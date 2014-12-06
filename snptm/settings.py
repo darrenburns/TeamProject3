@@ -100,13 +100,11 @@ STATIC_ROOT = 'staticfiles'
 
 STATIC_URL = '/static/'
 
+# For static files that aren't tied to a particular app
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# For static files that aren't tied to a particular app
-
-STATICFILES_DIRS = ()  # Static files we've created ourselves
 
 # TastyPie settings
 TASTYPIE_DEFAULT_FORMATS = ['json']

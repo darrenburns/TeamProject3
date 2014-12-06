@@ -10,10 +10,20 @@
                 No projects
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="sidebar-dropdown-list" id="sidebar-dropdown-list"></ul>
+            <a href="{% url 'new_project' %}">
+                <button type="button" class="btn btn-success" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </a>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="sidebar-dropdown-list" id="sidebar-dropdown-list">
+                <!-- Ajax content injected here -->
+            </ul>
         </div>
 
-        <ul class="nav nav-pills nav-stacked" id="tickets-list"></ul>
+        <ul class="nav nav-pills nav-stacked" id="tickets-list">
+            <!-- Ajax -->
+        </ul>
 
     </div>
 

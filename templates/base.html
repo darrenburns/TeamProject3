@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     {% load staticfiles %}
     <title>Social Network for Project Task Management</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'chat/css/chat.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/snptm.css' %}" rel="stylesheet">
 
 </head>
 <body>
@@ -58,9 +60,18 @@
 
 </body>
 
+<script type="text/javascript">
+    CURRENT_USER = "{{ user }}";
+</script>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.0.3/firebase.js"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'chat/js/chat.js' %}"></script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
+
 <script src="{% static 'core/js/dashboard-sidebar.js' %}"></script>
 
 </html>

@@ -29,9 +29,6 @@ $(function () {
                     selected_project = this.getAttribute('id');
                     selectProject(selected_project);
                 });
-
-                //Bind the click event to the chat items
-                $()
             }
 
 

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load core_extras %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+
+            <h1>Create a new project:</h1>
+                {% if form.non_field_errors  %}
+                <div class="alert alert-warning">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+             {% if error %}
+                <div class="alert alert-warning">
+                    Something went wrong!
+                </div>
+            {% endif %}
+            <form action="{% url 'new_project' %}" method="post" role="form">
+                {% if form.non_field_errors %}
+                    <div class="alert alert-warning">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+                <label for="id_title">Project Title:</label>
+                {{ form.name  | add_attrs:"class:form-control,placeholder:Enter project title." }}<br/>
+                <label for="id_manager">Project Manager:</label>
+                {{ form.manager  | add_attrs:"class:form-control,placeholder:Enter the name of the manager." }}<br/>
+                <label for="id_description">Project Description:</label>
+                {{ form.desc  | add_attrs:"class:form-control,placeholder:Enter a brief description of your project." }}
+                <br/>
+
+                <input class="btn btn-default" type="submit" value="Create Project"/>
+                <input type='hidden' name='csrfmiddlewaretoken' value='{{csrf_token}}'>
+            </form>
+                <br/>
+
+                <a href="{% url 'dashboard' %}">
+                <button class="btn btn-danger">Cancel</button>
+
+            </a>
+            <br/>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

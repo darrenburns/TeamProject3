@@ -14,4 +14,5 @@ def populate():
     # Create some fake users.
     for i in xrange(15):
         user = User(username="User " + str(i), password='q')
+        user.save()
 

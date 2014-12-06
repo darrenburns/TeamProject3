@@ -3,13 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
+from django.template import RequestContext
+from core.forms import ProjectCreationForm
 from django.contrib.auth.models import User
-from chat.models import Ticket
-from core.models import UserProfile
+from chat.models import Ticket, Chat
+from core.models import UserProfile, Project
 
 @login_required
 def home(request):
@@ -81,6 +81,17 @@ def user_register(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+@login_required
+def user_profile(request, username):
+    user = User.objects.get(username=username)
+    profile = UserProfile.objects.get(user=user)
+    projects = Project.objects.all()
+    chats = Chat.objects.all()  # Todo: instead of getting them all, get only the tickets that this user is part of
+    return render(request, 'user_profile.html', {'user': user,
+                                                 'userProfile': profile,
+                                                 'chats': chats,
+                                                 'projects': projects})
+
 
 def sidebar_ticket_list(request, project_id):
     """
@@ -90,3 +101,22 @@ def sidebar_ticket_list(request, project_id):
     """
     tickets = Ticket.objects.query()
     return render(request, 'ajax/dashboard/sidebar_ticket_list.html', {'tickets': tickets})
+
+
+def new_project(request):
+    if request.method == 'POST':
+        form = ProjectCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return render_to_response('dashboard.html', context_instance=RequestContext(request))
+        else:
+            return render(request, 'new_project.html', {'form':form, 'error': True})
+
+    args = {}
+    args.update(csrf(request))
+
+    args['form'] = ProjectCreationForm()
+
+    return render(request, 'new_project.html', args)
+
