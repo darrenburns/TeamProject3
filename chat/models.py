@@ -49,7 +49,7 @@ class Progress(models.Model):
 class Ticket(models.Model):
     notes = models.CharField(max_length=500)
     created = models.DateTimeField()
-    closed = models.DateTimeField(null=True)
+    closed = models.DateTimeField(null=True, blank=True)
     priority = models.ForeignKey(Priority)    
     progress = models.ForeignKey(Progress)
     class Meta:
