@@ -44,7 +44,12 @@ $(function () {
             var messagesTemplate =
             '<div class="list-group-item message-container">'+
                 '<div class="row">' +
-                    '<div class="col-md-2 message-user">' +
+                '<div class="col-md-1 message-user message-picture">'+
+                    '<button type="button" class="btn btn-default btn-md ">'+
+                        '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
+                    '</button>'+
+                '</div>' +
+                    '<div class="col-md-1 message-user">' +
                         '<h5 class="list-group-item-heading"><strong>{{ user }} <br> {{ formattedDate }}</h5>'+
                     '</div>' +
                         '<div class="col-md-10">' +

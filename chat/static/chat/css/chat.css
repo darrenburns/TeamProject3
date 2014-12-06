@@ -19,3 +19,8 @@
 .information-well {
     margin: 5px;
 }
+
+.message-picture {
+    padding: 0;
+    width:50px;
+}
