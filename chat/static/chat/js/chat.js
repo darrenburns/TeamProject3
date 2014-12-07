@@ -50,11 +50,11 @@ $(function () {
                     '</button>'+
                 '</div>' +
                     '<div class="col-md-1 message-user">' +
-                        '<h5 class="list-group-item-heading"><strong>{{ user }} <br> {{ formattedDate }}</h5>'+
+                        '<h5 class="list-group-item-heading"> <strong>{{ user }}</strong> <br> <i class="date">{{ formattedDate }}</i> </h5>'+
                     '</div>' +
                         '<div class="col-md-10">' +
                 '<p class="list-group-item-text">'+
-                    '</strong> {{ desc }} '+
+                     ' <h5>{{ desc }}</h5> '+
                 '</p>'+
                         '</div>' +
                     '</div>' +

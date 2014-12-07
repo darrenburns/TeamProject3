@@ -9,11 +9,13 @@
 
 .message-user{
     background-color: #F8F8F8 ;
+    padding: 5px;
 }
 
 .message-container {
-    padding: 0 0 0 5px;
+    padding: 0 5px 0 5px;
     margin-top: 7px;
+
 }
 /* information tab */
 .information-well {
@@ -21,6 +23,12 @@
 }
 
 .message-picture {
-    padding: 0;
     width:50px;
+    background-color: #F8F8F8 ;
+    height: 46px;
+}
+
+.date{
+    font-size: 12px;
+    color: #999999;
 }
