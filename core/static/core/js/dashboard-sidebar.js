@@ -45,7 +45,7 @@ $(function () {
                 var renderedTemplate = Mustache.to_html(chatsListTemplate, {'chats': chatObjects});
 
                 // Update ticket list
-                $('#tickets-list').html(renderedTemplate);
+                $('#tickets-list').append(renderedTemplate);
 
                 // Update the project name in the button
                 var project = $('#' + id);

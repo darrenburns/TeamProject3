@@ -11,8 +11,6 @@
 
         var messagesRef = chatObj.child("messages");
 
-
-
         // Select the input box and the latest messages list
         var messages = $(".latest-messages");
         var messageInput = $("#input-message");
@@ -24,7 +22,7 @@
                     user: CURRENT_USER,
                     dt: Date.now()
                 });
-                chatParticipants.child("/"+CURRENT_USER);
+                chatParticipants.child("/" + CURRENT_USER);
                 messageInput.val("");
             }
         });
