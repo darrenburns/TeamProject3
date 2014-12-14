@@ -6,7 +6,10 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <h2 class="page-header" id="chat-title">{{ chat.title }}<br><a href="{% url 'project_description' chat.project.id %}"><small>{{  chat.project.name }}</small></a></h2>
+                <h2 class="page-header" id="chat-title">{{ chat.title }}
+                    {% if chat.closed %}<span class="label label-danger">Closed</span>{% endif %}
+                    <br/>
+                    <a href="{% url 'project_description' chat.project.id %}"><small>{{  chat.project.name }}</small></a></h2>
             </div>
         </div>
 
@@ -21,11 +24,19 @@
                                 <span class="glyphicon glyphicon-pencil"></span> Modify chat
                             </button>
                         </a>
+                        {% if chat.closed %}
+                        <a href="{% url 'reopen_chat' chat.id %}">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-repeat"></span> Reopen chat
+                            </button>
+                        </a>
+                        {% else %}
                         <a href="{% url 'close_chat' chat.id %}">
                             <button type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-lock"></span> Close chat
                             </button>
                         </a>
+                        {% endif %}
                         <a href="{% url 'delete_chat' chat.id %}">
                             <button type="button" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span> Delete chat
