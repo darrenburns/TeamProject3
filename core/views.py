@@ -86,7 +86,7 @@ def dashboard(request):
 def user_profile(request, username):
     user = User.objects.get(username=username)
     profile = UserProfile.objects.get(user=user)
-    projects = Project.objects.all();
+    projects = Project.objects.all()
     chats = Chat.objects.all()  # Todo: instead of getting them all, get only the tickets that this user is part of
     return render(request, 'user_profile.html', {'user': user,
                                                  'userProfile': profile,
