@@ -30,5 +30,5 @@ class Project(models.Model):
         permissions = (('canManageProjects', 'Is allowed to manage a project'),)
 
     def __unicode__(self):
-        return u'%s' % self.desc
+        return u'%s' % self.id
 
