@@ -130,7 +130,6 @@ def new_chat(request, project_id):
         form.data['created'] = datetime.datetime.now() #TODO: change to django timezone
 
         if form.is_valid():
-            print "POST Test"
             form.save()
             return render(request, 'dashboard.html', {}) # TODO: the url is wrong!
         else:
@@ -146,3 +145,8 @@ def new_chat(request, project_id):
     args['project_id'] = project_id
 
     return render(request, 'new_chat.html', args)
+
+
+def project_description(request, project_id):
+    project = Project.objects.get(id=project_id)
+    return render(request, 'project_description.html',{'project':project} )
