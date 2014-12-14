@@ -3,6 +3,7 @@ from tastypie.constants import ALL
 
 from tastypie.resources import ModelResource
 from core.models import Project
+from core.models import UserProfile
 
 
 class ProjectResource(ModelResource):
@@ -14,3 +15,9 @@ class ProjectResource(ModelResource):
         filtering = {
             'id': ALL,
         }
+
+class UserProfileResource(ModelResource):
+    class Meta:
+        resource_name = 'userProfile'
+        queryset = UserProfile.objects.all()
+        allowed_methods = ['get','post']

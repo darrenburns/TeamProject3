@@ -5,7 +5,7 @@ from tastypie.constants import ALL_WITH_RELATIONS
 from tastypie.resources import ModelResource
 from chat.models import Chat
 from core.api.resources import ProjectResource
-
+from chat.models import Ticket
 
 class ChatResource(ModelResource):
 
@@ -18,3 +18,9 @@ class ChatResource(ModelResource):
         filtering = {
             'project': ALL_WITH_RELATIONS,
         }
+
+class TicketResource(ModelResource):
+    class Meta:
+        resource_name = 'ticket'
+        queryset = Ticket.objects.all()
+        allowed_methods = ['get']
