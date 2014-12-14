@@ -5,7 +5,7 @@ User Stories
 * ~~As a **user** I want to **create an account** on the system so that I can **use the features it offers**.~~
 * ~~As a **user** I want to **create a conversation with another user** so that I can **discuss a proposed change**.~~
 * ~~As a **project manager** I want to **change other users priviliges** so that **I limit other users access**~~
-* ~~~~As a **developer** I want to **tag a conversation as a ticket** so that **it becomes managed**.~~~~
+* ~~As a **developer** I want to **tag a conversation as a ticket** so that **it becomes managed**.~~
 
 ####Winter Iteration
 * As a **developer** I want to **attach additional meta-data to a ticket** to allow me to keep track of priority, progress and other issues.
@@ -29,5 +29,5 @@ User Stories
 * As a **user** I want to **create labels** so that I can **cross reference other conversations**
 * As a **developer** I want to **view previous tickets** so that I can **view what has been changed previously**
 * As a **project manager** I want to **track the activity of other users** so that **I know what is happening in the project**
-
+* As a **user** I want to **search the website** so that **I can find things within the site quickly**
 
