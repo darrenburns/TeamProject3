@@ -2,10 +2,10 @@ User Stories
 =========
 
 ####Iteration 1:
-* As a **user** I want to **create an account** on the system so that I can **use the features it offers**.
-* As a **user** I want to **create a conversation with another user** so that I can **discuss a proposed change**.
-* As a **project manager** I want to **change other users priviliges** so that **I limit other users access**
-* As a **developer** I want to **tag a conversation as a ticket** so that **it becomes managed**.
+* ~~As a **user** I want to **create an account** on the system so that I can **use the features it offers**.~~
+* ~~As a **user** I want to **create a conversation with another user** so that I can **discuss a proposed change**.~~
+* ~~As a **project manager** I want to **change other users priviliges** so that **I limit other users access**~~
+* ~~~~As a **developer** I want to **tag a conversation as a ticket** so that **it becomes managed**.~~~~
 
 ####Winter Iteration
 * As a **developer** I want to **attach additional meta-data to a ticket** to allow me to keep track of priority, progress and other issues.
