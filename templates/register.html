@@ -15,13 +15,22 @@
             {% endif %}
             <form action="/accounts/register/" method="post" role="form">{% csrf_token %}
                 <div class="form-group">
-                    {% if form.username.errors %}
-                        <div class="alert alert-danger">
-                            {{ form.username.errors }}
-                        </div>
-                    {% endif %}
+
                     <label for="id_username">Username:</label>
                     {{ form.username | add_attrs:"class:form-control,placeholder:Enter a username." }}
+
+                </div>
+                {% if form.username.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.username.errors }}
+                    </div>
+                {% endif %}
+
+
+
+                <div class="form-group">
+                    <label for="id_password1">Password:</label>
+                    {{ form.password1 | add_attrs:"class:form-control,placeholder:Enter a secure password." }}
                 </div>
 
                 {% if form.password1.errors %}
@@ -30,21 +39,16 @@
                     </div>
                 {% endif %}
 
+                <div class="form-group">
+                    <label for="id_password2">Confirm Password:</label>
+                    {{ form.password2 | add_attrs:"class:form-control,placeholder:Retype your password." }}
+                </div>
+
                 {% if form.password2.errors %}
                     <div class="alert alert-danger">
                         {{ form.password2.errors }}
                     </div>
                 {% endif %}
-
-                <div class="form-group">
-                    <label for="id_password1">Password:</label>
-                    {{ form.password1 | add_attrs:"class:form-control,placeholder:Enter a secure password." }}
-                </div>
-
-                <div class="form-group">
-                    <label for="id_password2">Confirm Password:</label>
-                    {{ form.password2 | add_attrs:"class:form-control,placeholder:Retype your password." }}
-                </div>
 
                 <input class="btn btn-default" type="submit" value="Register"/>
             </form>
