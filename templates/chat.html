@@ -27,7 +27,7 @@
                             </button>
                         </a>
                         <a href="{% url 'delete_chat' chat.id %}">
-                            <button type="button" class="btn btn-default">
+                            <button type="button" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span> Delete chat
                             </button>
                         </a>
@@ -53,21 +53,29 @@
                     <div role="tabpanel" class="tab-pane" id="tab-information">
                         <div class="row">
                         <div class="col-sm-4">
-                            <div class="well information-well">
-                                <h3>General Information</h3>
-                                <p><strong>Status: </strong><span class="label label-success">Open</span></p>
-                                <p><strong>Priority: </strong><span class="label label-danger">High</span></p>
+                            <div class="panel panel-default information-panel">
+                                <div class="panel-heading">
+                                    <strong>General Information</strong>
+                                </div>
+                                <div class="panel-body">
+                                    <p><strong>Status: </strong><span class="label label-success">Open</span></p>
+                                    <p><strong>Priority: </strong><span class="label label-danger">High</span></p>
 
-                                <p><strong>Date created: </strong>{{ chat.created | date:'d/m/Y H:i' }}</p>
-                                {% if chat.closed %}
-                                    <p><strong><Date></Date> closed: </strong>{{ chat.closed | date:'d/m/Y H:i' }}</p>
-                                {% endif %}
+                                    <p><strong>Date created: </strong>{{ chat.created | date:'d/m/Y H:i' }}</p>
+                                    {% if chat.closed %}
+                                    <p><strong>Date closed: </strong>{{ chat.closed | date:'d/m/Y H:i' }}</p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            <div class="well information-well">
-                                <h3>Statistics</h3>
-                                <p></p>
+                            <div class="panel panel-default information-panel">
+                                <div class="panel-heading">
+                                    <strong>Statistics</strong>
+                                </div>
+                                <div class="panel-body">
+                                    <p>Statistics & maybe some D3 stuff here.</p>
+                                </div>
                             </div>
                         </div>
 
