@@ -11,7 +11,7 @@
             {% if form.non_field_errors  %}
                 <div class="alert alert-warning">
                     {{ form.non_field_errors }}
-                </div>
+                </div><!-- does this if-block do anything? -->
             {% endif %}
             <form action="/accounts/register/" method="post" role="form">{% csrf_token %}
                 <div class="form-group">
