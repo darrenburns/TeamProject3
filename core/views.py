@@ -121,20 +121,24 @@ def new_project(request):
 
     return render(request, 'new_project.html', args)
 
+
 def new_chat(request, project_id):
     if request.method == 'POST':
         form = ChatCreationForm(request.POST)
         #form.project = project_id
         form.data = form.data.copy()
         form.data['project'] = project_id
-        form.data['created'] = datetime.datetime.now() #TODO: change to django timezone
+        form.data['created'] = datetime.datetime.now()  # TODO: change to django timezone
 
         if form.is_valid():
-            print "POST Test"
-            form.save()
-            return render(request, 'dashboard.html', {}) # TODO: the url is wrong!
+            chat = form.save()
+            ticket = Ticket(notes="a", created=datetime.datetime.now())
+            ticket.save()
+            chat.ticket = ticket
+            chat.save()
+            return render(request, 'dashboard.html', {})  # TODO: the url is wrong!
         else:
-            return render(request, 'new_chat.html', {'form':form, 'project_id': project_id})
+            return render(request, 'new_chat.html', {'form': form, 'project_id': project_id})
 
     args = {}
     args.update(csrf(request))
