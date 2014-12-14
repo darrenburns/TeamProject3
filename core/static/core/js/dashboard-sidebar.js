@@ -54,7 +54,7 @@ $(function () {
 
                 // Create mustache template for rendering tickets list
                 var chatObjects = chats.objects;
-                var chatsListTemplate = '{{#chats}}<li role="presentation"><a href="/chats/{{ id }}">{{ title }}</a></li>{{/chats}}';
+                var chatsListTemplate = '{{#chats}}<li role="presentation"><a id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a></li>{{/chats}}'
                 var renderedTemplate = Mustache.to_html(chatsListTemplate, {'chats': chatObjects});
 
                 // Update ticket list
@@ -68,6 +68,10 @@ $(function () {
                 // Update the dashboard title to the project desc
                 $('#dashboard-title').text(projectTitle);
 
+                //Add li class active
+                if (typeof CHAT_ID != 'undefined') {
+                    $("#chat-" + CHAT_ID).parent().addClass("active");
+                }
 
             });
     }
