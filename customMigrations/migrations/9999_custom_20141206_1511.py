@@ -12,35 +12,37 @@ def populate_groups(apps, schema_editor):
     # In the User Stories, at the time of writing, devs and users are treated as the same group.
 
     # The project manager group.
-    projectManagerGroup = Group(name="project manager")
-    projectManagerGroup.save()
-    projectManagerGroup.permissions.add(Permission.objects.get(codename="canManageProjects"))
-    projectManagerGroup.permissions.add(Permission.objects.get(codename="canCreatePriorities"))  # Also in QA group?
-    projectManagerGroup.permissions.add(Permission.objects.get(codename="canEditAllTickets"))
-    projectManagerGroup.permissions.add(Permission.objects.get(codename="canPost"))
-    projectManagerGroup.permissions.add(Permission.objects.get(codename="canTagTickets"))
-    projectManagerGroup.permissions.add(Permission.objects.get(codename="canSplitChats"))
-
+    if len(Group.objects.filter(name="project manager")) == 0:
+        projectManagerGroup = Group(name="project manager")
+        projectManagerGroup.save()
+        projectManagerGroup.permissions.add(Permission.objects.get(codename="canManageProjects"))
+        projectManagerGroup.permissions.add(Permission.objects.get(codename="canCreatePriorities"))  # Also in QA group?
+        projectManagerGroup.permissions.add(Permission.objects.get(codename="canEditAllTickets"))
+        projectManagerGroup.permissions.add(Permission.objects.get(codename="canPost"))
+        projectManagerGroup.permissions.add(Permission.objects.get(codename="canTagTickets"))
+        projectManagerGroup.permissions.add(Permission.objects.get(codename="canSplitChats"))
 
     # The qa group.
-    qaManagerGroup = Group(name="qa manager")
-    qaManagerGroup.save()
-    qaManagerGroup.permissions.add(Permission.objects.get(codename="canEditAllTickets"))
-    qaManagerGroup.permissions.add(Permission.objects.get(codename="canPost"))
-    qaManagerGroup.permissions.add(Permission.objects.get(codename="canTagTickets"))
-    qaManagerGroup.permissions.add(Permission.objects.get(codename="canSplitChats"))
+    if len(Group.objects.filter(name="qa manager")) == 0:
+        qaManagerGroup = Group(name="qa manager")
+        qaManagerGroup.save()
+        qaManagerGroup.permissions.add(Permission.objects.get(codename="canEditAllTickets"))
+        qaManagerGroup.permissions.add(Permission.objects.get(codename="canPost"))
+        qaManagerGroup.permissions.add(Permission.objects.get(codename="canTagTickets"))
+        qaManagerGroup.permissions.add(Permission.objects.get(codename="canSplitChats"))
 
     # The lowly developer group.
-    developerGroup = Group(name="developer")
-    developerGroup.save()
-    developerGroup.permissions.add(Permission.objects.get(codename="canPost"))
-    developerGroup.permissions.add(Permission.objects.get(codename="canTagTickets"))
-    developerGroup.permissions.add(Permission.objects.get(codename="canSplitChats"))
+    if len(Group.objects.filter(name="developer")) == 0:
+        developerGroup = Group(name="developer")
+        developerGroup.save()
+        developerGroup.permissions.add(Permission.objects.get(codename="canPost"))
+        developerGroup.permissions.add(Permission.objects.get(codename="canTagTickets"))
+        developerGroup.permissions.add(Permission.objects.get(codename="canSplitChats"))
 
 
 class Migration(migrations.Migration):
     dependencies = [
-            ('auth', '__first__')
+        ('auth', '__first__')
     ]
     operations = [ migrations.RunPython(populate_groups) ]
 
