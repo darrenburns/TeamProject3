@@ -1,0 +1,172 @@
+\documentclass[a4paper]{l3proj}
+\usepackage{fullpage}
+\usepackage{indentfirst}
+\begin{document}
+\title{A Social Network for Project Task Management}
+\author{Gustavo Almansa\\
+        Darren Burns \\
+        Leonardo Linhares \\
+        Euan Parker \\
+        Joao Vitor Sousa \\
+	Tom Wallis \\
+}
+\date{13 October 2014}
+\maketitle
+\begin{abstract}
+
+The abstract goes here
+
+\end{abstract}
+\educationalconsent
+\tableofcontents
+%==============================================================================
+\chapter{Introduction}
+\label{intro}
+
+During the first week of the Team Project, each member researched about several
+task management applications available. The advantages and disadvantages of each
+one are described below.
+
+\section{Asana}
+\label{asana}
+
+Asana is a task management software to organise a team's project which main
+feature is the email independence. The software consists of a web-based app and
+a mobile app for Android and iOS. Asana is very powerful, with good integration
+to services such as Dropbox, GitHub, Chrome, Evernote and Wordpress, however, it
+is complex and it requires time to learn and understand all its features. The
+web app has a non-friendly interface and can be confusing. The main problem is
+the communication among project's members, because there is no chat, only a
+comment area inside each ticket or task. Despite its features, many of them in
+common to others task management softwares, Asana still has a dependence with
+Skype or email to be more useful.
+
+\section{Trello}
+\label{trello}\par
+Trello is a web-based task management platform which employs the Japanese 'Kanban'
+system, originally developed by Toyota. Kanban uses a hierarchical system of
+cards, contained within lists, which themselves are contained within boards, to
+manage how projects are managed. Interestingly, Kanban is often used for
+supermarket inventories and managing the flows of tasks in the physical world --
+it isn't just a method to abstract out a project, but is a way of managing any
+production system.\par
+Trello connects to IFTTT (an automation platform which ties together various APIs)
+and Zapier, which automates processes based on events on an array of online
+platforms. It has an API with several open-source wrappers in several languages.
+Trello is used to manage dataflow in law cases, lesson planning, and so on, as
+well as project management, due to Kanban's versatility.
+In some ways, Trello can be considered an implementation of Kanban (or 'eKanban')
+and secondarily a project management platform; nevertheless Trello claims to be
+used by organisations as large as Microsoft, Google, The New York Times and
+Adobe. 
+
+
+\section{Producteev}
+\label{producteev}
+
+Producteev is a task management platform. Its features include most of the features of ther products of the same category (e.g. network of people, tasks, subtasks).
+
+The use of shortcuts is a interesting feature of producteev. Instead of using the GUI to add followers, deadline, priority, it lets you use shortcut commands (e.g. @, !, *). Also, another interesting feature that is only avaiable in the premium plan is to transform e-mails into tasks (an outlook plug-in is necessary to use this feature).
+
+Producteev has an powerful API which its apps are built-in. The use of the API is free and it is a strong platform where our project could rely on.
+%==============================================================================
+
+
+\section{Bugzilla}
+\label{Bugzilla}
+
+Bugzilla is a bug tracker and testing tool created and used by Mozila.
+
+It integrates with SVN, Git, CVS and Bazaar.  Some interesting
+features include automated 'reminders', whereby when bugs are
+reported but left unresolved the system can be configured to send
+regular e-mails to specified people informing them of these bugs.
+This system is known as the 'whine' system.  
+
+When any change is made to a known bug, this change is added to an
+automated bug report, the format of which is:\\
+Bug ID || Description || Component\footnote{The part of software the
+  bug is in.} || Current Status
+
+Bugzilla integrates with e-mail, although this seems like it could be
+redundant when integrating with IM.  
+Although comparatively simple to use, criticisms of Bugzilla have been
+made that it is hard to manage errors and there exist many bugs in the
+program itself.  
+
+
+\section{Jira}
+\label{jira}
+
+As far as project management tools go, perhaps none is more widely known and used than Jira. With its capability of integrate a whole set of diverse version control software, such as Mercurial, Git and Subversion, it also offers integration with some of the most commonly used IDE(e.g. Eclipse, VI, EMACS). Jira also benefits from its popularity, developers are familiarized with this software interface as well as its syntax and functionalities. To sum up, Jira’s main attractiveness can be resumed in two simple points: familiarity and capacity for integration with other softwares.
+
+
+\chapter{Design}
+\label{design}
+
+The following diagrams (especially figure \ref{fig:alice}) illustrate the
+process...
+
+%==============================================================================
+\chapter{Implementation}
+\label{impl}
+
+In this chapter, we describe how the implemented the system.
+
+%------------------------------------------------------------------------------
+\section{User Interface}
+
+Blah blah blah
+Blah blah blah
+Blah blah blah
+Blah blah blah
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Foo}
+
+Blah blah blah
+Blah blah blah
+Blah blah blah
+Blah blah blah
+
+%------------------------------------------------------------------------------
+\section{Database Model}
+
+\begin{enumerate}
+\item Blah blah blah
+\item Blah blah blah
+\item Blah blah blah
+\item Blah blah blah
+\end{enumerate}
+
+
+
+%==============================================================================
+\chapter{Evaluation}
+
+<<This is a chunk out of evaluation, not necessarily the start>>
+
+An area of potential future development could be integration with the continuous integration system Jenkins.  This 
+could be implemented through treating Jenkins as a user who would automatically create a ticket based on a single build.  
+It could also automatically create a high priority ticket when a build fails, and tag the relevant developers.  This 
+expansion would be possible due to Jenkins plugin based structure, whereby it is designed to be extended as necessary.
+
+%==============================================================================
+\chapter{Conclusion}
+
+A great project!
+
+%==============================================================================
+\section{Contributions}
+
+Here we explain that Lewis Carroll wrote chapter \ref{intro}. John Wayne
+was out riding his horse every day and didn't do anything. Marilyn Monroe
+was great at getting the requirements specification and coordinating the
+writing of the report. Betty Davis did the coding of the kernel of the
+project, described in Chapter \ref{impl}.  James Dean handled the
+multimedia content of the project.
+
+%==============================================================================
+\bibliographystyle{plain}
+\bibliography{example}
+\end{document}
