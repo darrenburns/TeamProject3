@@ -81,26 +81,17 @@ def user_register(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+
 @login_required
 def user_profile(request, username):
     user = User.objects.get(username=username)
     profile = UserProfile.objects.get(user=user)
-    projects = Project.objects.all()
+    projects = Project.objects.all();
     chats = Chat.objects.all()  # Todo: instead of getting them all, get only the tickets that this user is part of
     return render(request, 'user_profile.html', {'user': user,
                                                  'userProfile': profile,
                                                  'chats': chats,
                                                  'projects': projects})
-
-
-def sidebar_ticket_list(request, project_id):
-    """
-    From the project_id and the logged in user we can generate the list of tickets
-    that the user can see. Returns a rendered template of a list of tickets which
-    is dynamically injected into the sidebar using Ajax.
-    """
-    tickets = Ticket.objects.query()
-    return render(request, 'ajax/dashboard/sidebar_ticket_list.html', {'tickets': tickets})
 
 
 def new_project(request):
