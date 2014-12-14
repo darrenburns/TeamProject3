@@ -54,7 +54,7 @@ $(function () {
 
                 // Create mustache template for rendering tickets list
                 var chatObjects = chats.objects;
-                var chatsListTemplate = '{{#chats}}<li role="presentation"><a id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a></li>{{/chats}}';
+                var chatsListTemplate = '{{#chats}}<li role="presentation"><a id="chat-{{ id }}" href="/chats/{{ id }}">{{#closed}}<span class="label label-danger">C</span>{{/closed}} {{ title }}</a></li>{{/chats}}';
                 var renderedTemplate = Mustache.to_html(chatsListTemplate, {'chats': chatObjects});
 
                 // Update ticket list
