@@ -42,7 +42,7 @@ $(function () {
     function selectProject(id) {
         // Make ajax request
 
-        $.getJSON("/api/v1/chat", {'project__id': id})
+        $.getJSON("/api/v1/chat/", {'project__id': id})
             .success(function (chats) {
 
                 //Add new chat button to the tickets list
