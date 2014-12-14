@@ -61,16 +61,6 @@ def user_logout(request):
     return render(request, 'home.html', {'just_logged_out': True})
 
 
-# Helper function to avoid list comprehensions.
-def usersInGroup(groupName):
-	group = Group.objects.filter(name=groupName)[0]
-	usersToReturn = []
-	for user in User.objects.all():
-		if group in user.groups.all():
-			usersToReturn.append(user)
-	return usersToReturn
-
-
 def user_register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
