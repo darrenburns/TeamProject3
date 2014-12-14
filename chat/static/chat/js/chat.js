@@ -36,7 +36,7 @@ $(function () {
         function addMessage(object) {
             var child = object.val();
             chatParticipants.push(CURRENT_USER);
-
+    
             //Create a new date field to use in Mustache
             child.formattedDate = getFormattedDate(child.dt);
 
@@ -73,6 +73,10 @@ $(function () {
             var date = new Date(dt);
             return ("0" + date.getDate()).slice(-2) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
         }
+
+
+
+
     }
 
 

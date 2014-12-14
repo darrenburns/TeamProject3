@@ -94,16 +94,6 @@ def user_profile(request, username):
                                                  'projects': projects})
 
 
-def sidebar_ticket_list(request, project_id):
-    """
-    From the project_id and the logged in user we can generate the list of tickets
-    that the user can see. Returns a rendered template of a list of tickets which
-    is dynamically injected into the sidebar using Ajax.
-    """
-    tickets = Ticket.objects.query()
-    return render(request, 'ajax/dashboard/sidebar_ticket_list.html', {'tickets': tickets})
-
-
 def new_project(request):
     if request.method == 'POST':
         form = ProjectCreationForm(request.POST)
@@ -121,19 +111,24 @@ def new_project(request):
 
     return render(request, 'new_project.html', args)
 
+
 def new_chat(request, project_id):
     if request.method == 'POST':
         form = ChatCreationForm(request.POST)
         #form.project = project_id
         form.data = form.data.copy()
         form.data['project'] = project_id
-        form.data['created'] = datetime.datetime.now() #TODO: change to django timezone
+        form.data['created'] = datetime.datetime.now()  # TODO: change to django timezone
 
         if form.is_valid():
-            form.save()
-            return render(request, 'dashboard.html', {}) # TODO: the url is wrong!
+            chat = form.save()
+            ticket = Ticket(notes="a", created=datetime.datetime.now())
+            ticket.save()
+            chat.ticket = ticket
+            chat.save()
+            return render(request, 'dashboard.html', {})  # TODO: the url is wrong!
         else:
-            return render(request, 'new_chat.html', {'form':form, 'project_id': project_id})
+            return render(request, 'new_chat.html', {'form': form, 'project_id': project_id})
 
     args = {}
     args.update(csrf(request))
@@ -149,4 +144,4 @@ def new_chat(request, project_id):
 
 def project_description(request, project_id):
     project = Project.objects.get(id=project_id)
-    return render(request, 'project_description.html',{'project':project} )
+    return render(request, 'project_description.html', {'project':project} )

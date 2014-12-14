@@ -16,15 +16,21 @@
                     <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats" >Chat</a></li>
                     <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-pencil"></span> Modify ticket
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-lock"></span> Close ticket
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove"></span> Delete ticket
-                        </button>
+                        <a href="#">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span> Modify chat
+                            </button>
+                        </a>
+                        <a href="{% url 'close_chat' chat.id %}">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-lock"></span> Close chat
+                            </button>
+                        </a>
+                        <a href="{% url 'delete_chat' chat.id %}">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-remove"></span> Delete chat
+                            </button>
+                        </a>
                     </div>
                 </ul>
         </div>

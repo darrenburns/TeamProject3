@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
+from django.views.generic import RedirectView
 from tastypie.api import Api
 from chat.api.resources import ChatResource
 from core.api.resources import ProjectResource
@@ -24,6 +25,8 @@ urlpatterns = patterns('',
     url(r'^projects/([0-9]+)/newchat/$', 'core.views.new_chat', name='new_chat'),
     url(r'^projects/([0-9]+)/info/$', 'core.views.project_description', name='project_description'),
     url(r'^chats/([0-9]+)$', 'chat.views.chat', name='chat'),
+    url(r'^chats/([0-9]+)/close/$', 'chat.views.close_chat', name='close_chat'),
+    url(r'^chats/([0-9]+)/delete/$', 'chat.views.delete_chat', name='delete_chat'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/$', 'core.views.user_profile', name="user_profile"),
 
     # Add the URLs for the API
