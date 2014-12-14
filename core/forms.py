@@ -18,10 +18,9 @@ class CustomUserCreationForm(UserCreationForm):
         user = super(UserCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         toBeProjectManager = len(usersInGroup("project manager")) == 0
-#        SHOULD PROJECT MANAGERS BE STAFF/SUPERUSERS?
-#        if toBeProjectManager:
-#            user.is_staff = True
-#            user.is_superuser = True
+        if toBeProjectManager:
+            user.is_staff = True
+            user.is_superuser = True
         if commit:
             user.save()
             if toBeProjectManager: 
