@@ -48,7 +48,7 @@ $(function () {
                 //Add new chat button to the tickets list
                 var newChatButton =
                     '<li role="presentation"><a href="/projects/'+id+'/newchat/">'+
-                        '<button type="button" class="btn btn-default">' +
+                        '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Creates a new chat">' +
                             '<span class="glyphicon glyphicon-plus"></span> New chat' +
                         '</button></a></li>';
 
