@@ -1,5 +1,6 @@
 .latest-messages {
     height: 350px;
+    padding: 5px;
     overflow-y: scroll;
 }
 
