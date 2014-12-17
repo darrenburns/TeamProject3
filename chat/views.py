@@ -13,7 +13,6 @@ def chat(request, chat_id):
         if chat.ticket is not None:  # TODO: if there is no ticket in existence then create it (get_or_create())
             if ticket_notes_form.is_valid():
                 ticket_notes_form.save(commit=True)
-                print "saving"
                 redirect('chat.views.chat', chat_id)
             else:
                 redirect('chat.views.chat', chat_id)  # TODO: create an error here

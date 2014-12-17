@@ -43,8 +43,9 @@ class Priority(models.Model):
 
 
 class Ticket(models.Model):
-    notes = models.CharField(max_length=500, blank=True, null=True)
+    notes = models.TextField(max_length=3000, blank=True, null=True)
     priority = models.ForeignKey(Priority, null=True, blank=True)
+    due_date = models.DateTimeField()
 
     class Meta:
             permissions = (('canEditAllTickets', 'Can edit all tickets'),)  # Intended for use with ticket priorities.

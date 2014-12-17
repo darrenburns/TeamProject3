@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% load core_extras %}
+{% load core_extras %} {% load humanize %}
 
 <div class="remodal-bg">
 
@@ -25,11 +25,6 @@
                     </li>
                     <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
                     <div class="btn-group" role="group">
-                        <a href="#">
-                            <button id="modify-chat-button" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-pencil"></span> Modify chat
-                            </button>
-                        </a>
                         {% if chat.closed %}
                         <a href="{% url 'reopen_chat' chat.id %}">
                             <button type="button" class="btn btn-default">
@@ -72,6 +67,11 @@
                                     <div class="panel panel-default information-panel">
                                         <div class="panel-heading">
                                             <strong>General Information</strong>
+                                            <a href="#chat-info">
+                                                <button id="modify-info-button" type="button" class="btn btn-default pull-right">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </button>
+                                            </a>
                                         </div>
                                         <div class="panel-body">
                                             {% if chat.closed %}
@@ -88,6 +88,9 @@
                                             {% if chat.closed %}
                                             <p><strong>Date closed: </strong>{{ chat.closed | date:'d/m/Y H:i' }}</p>
                                             {% endif %}
+                                            {% if chat.ticket.due_date %}
+                                            <p><strong>Deadline: </strong><span title="{{chat.ticket.due_date}}">{{ chat.ticket.due_date | naturaltime }}</span></p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -95,6 +98,11 @@
                                     <div class="panel panel-default information-panel">
                                         <div class="panel-heading">
                                             <strong>Notes</strong>
+                                            <a href="#chat-notes">
+                                                <button id="modify-chat-button" type="button" class="btn btn-default pull-right">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </button>
+                                            </a>
                                         </div>
                                         <div class="panel-body">
                                             {% if chat.ticket.notes %}
@@ -119,6 +127,7 @@
                                     <div class="panel panel-default information-panel">
                                         <div class="panel-heading">
                                             <strong>Statistics</strong>
+
                                         </div>
                                         <div class="panel-body">
                                             <p>Statistics & maybe some D3 stuff here.</p>
@@ -160,9 +169,36 @@
         <h1>Notes for '{{chat.title}}'</h1>
         <p>Enter any additional information relating to the conversation in the box below.</p>
             <form action="{% url 'chat' chat.id %}" method="post" role="form">{% csrf_token %}
-                {{ticket_notes_form.notes  | add_attrs:"class:form-control" }}
-                <input class="btn btn-default" type="submit" value="Add"/>
+
+                <div class="form-group">
+                    {{ticket_notes_form.notes  | add_attrs:"class:form-control" }}
+                </div>
+                <input class="btn btn-success" type="submit" value="Save"/>
+                <a href="#">
+                    <button type="button" class="btn btn-danger">
+                        Cancel
+                    </button>
+                </a>
+
             </form>
+    </div>
+
+    <div class="remodal" data-remodal-id="chat-info">
+        <h1>Modifying information for '{{chat.title}}'</h1>
+        <form action="{% url 'chat' chat.id %}" method="post" role="form">{% csrf_token %}
+
+            <div class="form-group">
+                <p>Information alteration stuff will go here - should just make a Django ModelForm for the ticket
+                model.</p>
+            </div>
+            <input class="btn btn-success" type="submit" value="Save"/>
+            <a href="#">
+                <button type="button" class="btn btn-danger">
+                    Cancel
+                </button>
+            </a>
+
+        </form>
     </div>
 
 </div>
