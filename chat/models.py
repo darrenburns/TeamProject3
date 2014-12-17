@@ -33,7 +33,7 @@ class Message(models.Model):
 
 class Priority(models.Model):
     name = models.CharField(max_length=20)  # e.g. High, Normal, Low
-    colour = models.CharField(max_length=20)
+    colour = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         permissions = (('canCreatePriorities','Can Create a Priority'),)
@@ -43,9 +43,7 @@ class Priority(models.Model):
 
 
 class Ticket(models.Model):
-    notes = models.CharField(max_length=500)
-    created = models.DateTimeField()
-    closed = models.DateTimeField(null=True, blank=True)
+    notes = models.CharField(max_length=500, blank=True, null=True)
     priority = models.ForeignKey(Priority, null=True, blank=True)
 
     class Meta:

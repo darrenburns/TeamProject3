@@ -122,7 +122,7 @@ def new_chat(request, project_id):
 
         if form.is_valid():
             chat = form.save()
-            ticket = Ticket(notes="a", created=datetime.datetime.now())
+            ticket = Ticket(created=datetime.datetime.now())
             ticket.save()
             chat.ticket = ticket
             chat.save()

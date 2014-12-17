@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load core_extras %}
+
 <div class="remodal-bg">
 
     <div class="col-xs-8 col-md-10 main">
@@ -41,7 +43,7 @@
                             </button>
                         </a>
                         {% endif %}
-                        <a href="#modal-delete">
+                        <a href="#delete-chat">
                             <button type="button" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span> Delete chat
                             </button>
@@ -89,7 +91,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-4">
+                                    <div class="panel panel-default information-panel">
+                                        <div class="panel-heading">
+                                            <strong>Notes</strong>
+                                        </div>
+                                        <div class="panel-body">
+                                            {% if chat.ticket.notes %}
+                                            <p>{{chat.ticket.notes}}</p>
+                                            <a href="#chat-notes">
+                                                <button type="button" class="btn btn-primary">
+                                                    Edit notes
+                                                </button>
+                                            </a>
+                                            {% else %}
+                                            <p>This conversation has no notes.</p>
+                                            <a href="#chat-notes">
+                                                <button type="button" class="btn btn-primary">
+                                                    Attach notes
+                                                </button>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <div class="panel panel-default information-panel">
                                         <div class="panel-heading">
                                             <strong>Statistics</strong>
@@ -107,7 +133,6 @@
                         </div>
                         <!-- End tab information -->
 
-                        <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
                     </div>
                     <!-- End tab panes -->
 
@@ -119,7 +144,7 @@
 
     </div>
 
-    <div class="remodal" data-remodal-id="modal-delete">
+    <div class="remodal" data-remodal-id="delete-chat">
         <h1>Are you sure?</h1>
         <p>Do you really want to delete this conversation?</p>
         <p><em>This cannot be undone.</em></p>
@@ -129,6 +154,15 @@
         <a href="#">
             <button type="button" class="btn btn-danger">No</button>
         </a>
+    </div>
+
+    <div class="remodal" data-remodal-id="chat-notes">
+        <h1>Notes for '{{chat.title}}'</h1>
+        <p>Enter any additional information relating to the conversation in the box below.</p>
+            <form action="{% url 'chat' chat.id %}" method="post" role="form">{% csrf_token %}
+                {{ticket_notes_form.notes  | add_attrs:"class:form-control" }}
+                <input class="btn btn-default" type="submit" value="Add"/>
+            </form>
     </div>
 
 </div>
