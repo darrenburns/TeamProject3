@@ -4,17 +4,6 @@
 
 <div class="remodal-bg">
 
-    <div class="remodal" data-remodal-id="modal-delete">
-        <h1>Are you sure?</h1>
-        <p>Do you really want to delete this conversation? There is no way to undo this action.</p>
-        <a href="{% url 'delete_chat' chat.id %}">
-            <button type="button" class="btn btn-success">Yes</button>
-        </a>
-        <a href="#">
-            <button type="button" class="btn btn-danger">No</button>
-        </a>
-    </div>
-
     <div class="col-xs-8 col-md-10 main">
         <div class="row">
             <div class="col-sm-12">
@@ -128,6 +117,18 @@
 
         </div>
 
+    </div>
+
+    <div class="remodal" data-remodal-id="modal-delete">
+        <h1>Are you sure?</h1>
+        <p>Do you really want to delete this conversation?</p>
+        <p><em>This cannot be undone.</em></p>
+        <a href="{% url 'delete_chat' chat.id %}">
+            <button type="button" class="btn btn-success">Yes</button>
+        </a>
+        <a href="#">
+            <button type="button" class="btn btn-danger">No</button>
+        </a>
     </div>
 
 </div>
