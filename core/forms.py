@@ -9,7 +9,7 @@ def usersInGroup(groupName):
     for user in User.objects.all():
         if group in user.groups.all():
             usersToReturn.append(user)
-	return usersToReturn
+    return usersToReturn
 
 
 # We need to set groups and permissions in a custom form, so create one here. 
