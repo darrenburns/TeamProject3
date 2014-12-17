@@ -10,7 +10,7 @@ def chat(request, chat_id):
 
     if request.method == 'POST':
         ticket_notes_form = TicketNotesForm(request.POST, instance=chat.ticket)
-        if chat.ticket is not None:
+        if chat.ticket is not None:  # TODO: if there is no ticket in existence then create it (get_or_create())
             if ticket_notes_form.is_valid():
                 ticket_notes_form.save(commit=True)
                 print "saving"
