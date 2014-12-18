@@ -9,6 +9,7 @@ from chat.models import Chat
 def chat(request, chat_id):
 
     chat = Chat.objects.get(id=chat_id)
+    ticket_notes_form = TicketNotesForm(instance=chat.ticket)
 
     if request.method == 'POST':
         if chat.ticket is not None:  # TODO: if there is no ticket in existence then create it (get_or_create())
@@ -19,8 +20,6 @@ def chat(request, chat_id):
                 redirect('chat.views.chat', chat_id)
             else:
                 redirect('chat.views.chat', chat_id)  # TODO: create an error here
-    else:
-        ticket_notes_form = TicketNotesForm(instance=chat.ticket)
 
     now = timezone.now()
 

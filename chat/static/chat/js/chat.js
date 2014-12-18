@@ -74,8 +74,20 @@ $(function () {
             return ("0" + date.getDate()).slice(-2) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
         }
 
+        $('#alter-chat-notes-button').on('click', function() {
 
+            var priority = $('#id_priority').val();
+            var dueDate = $('#id_due_date').val();
 
+            $.ajax({
+                type: "POST",
+                url: "/api/v1/ticket/",
+                data: { priority: priority, due_date: dueDate }
+            }).done(function( msg ) {
+                alert( "Data Saved: " + msg );
+            });
+
+        });
 
     }
 

@@ -187,14 +187,19 @@
         <form action="{% url 'chat' chat.id %}" method="post" role="form">{% csrf_token %}
 
             <div class="form-group">
-                <label for="id_priority">Priority:</label>
-                {{ ticket_pred_form.priority | add_attrs:'class:form-control'}}
+                <label for="priority-dropdown">Priority:</label>
+                <select name="priority" id="priority-dropdown" class="form-control">
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="id_due_date">Deadline:</label>
-                {{ ticket_pred_form.due_date | add_attrs:'class:form-control'}}
+                <label for="due-date">Deadline:</label>
+                <!-- TODO: Change to a bootstrap date picker-->
+                <input type="datetime-local"/>
             </div>
-            <input class="btn btn-success" type="submit" value="Save"/>
+            <input id="alter-chat-notes-button" class="btn btn-success" type="submit" value="Save"/>
             <a href="#">
                 <button type="button" class="btn btn-danger">
                     Cancel

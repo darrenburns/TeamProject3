@@ -7,6 +7,7 @@ from chat.models import Chat
 from core.api.resources import ProjectResource
 from chat.models import Ticket
 
+
 class ChatResource(ModelResource):
 
     project = fields.ForeignKey(ProjectResource, 'project')
@@ -19,8 +20,9 @@ class ChatResource(ModelResource):
             'project': ALL_WITH_RELATIONS,
         }
 
+
 class TicketResource(ModelResource):
     class Meta:
         resource_name = 'ticket'
         queryset = Ticket.objects.all()
-        allowed_methods = ['get']
+        allowed_methods = ['get', 'post']
