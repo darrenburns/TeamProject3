@@ -1,16 +1,19 @@
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from chat.forms import TicketNotesForm
 from chat.models import Chat
 
 @login_required()
 def chat(request, chat_id):
+
     chat = Chat.objects.get(id=chat_id)
 
     if request.method == 'POST':
-        ticket_notes_form = TicketNotesForm(request.POST, instance=chat.ticket)
         if chat.ticket is not None:  # TODO: if there is no ticket in existence then create it (get_or_create())
+
+            ticket_notes_form = TicketNotesForm(request.POST, instance=chat.ticket)
             if ticket_notes_form.is_valid():
                 ticket_notes_form.save(commit=True)
                 redirect('chat.views.chat', chat_id)
@@ -19,7 +22,10 @@ def chat(request, chat_id):
     else:
         ticket_notes_form = TicketNotesForm(instance=chat.ticket)
 
+    now = timezone.now()
+
     return render(request, 'chat.html', {'chat': chat,
+                                         'now': now,
                                          'ticket_notes_form': ticket_notes_form})
 
 

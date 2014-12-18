@@ -1,25 +1,3 @@
-a {
-    text-decoration: none !important;
-}
-
-#search-bar {
-    background-color: #32a2d6;
-}
-
-#search-bar-button {
-    background-color: #32a2d6;
-}
-
-#search-bar-button span {
-    color: #ffffff;
-}
-
-.navbar .form-control::-webkit-input-placeholder { color: #ffffff; }
-
-.remodal, .remodal * {
-    font-family: inherit;
-}
-
 .latest-messages {
     height: 350px;
     padding: 5px;

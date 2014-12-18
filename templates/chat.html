@@ -89,7 +89,11 @@
                                             <p><strong>Date closed: </strong>{{ chat.closed | date:'d/m/Y H:i' }}</p>
                                             {% endif %}
                                             {% if chat.ticket.due_date %}
-                                            <p><strong>Deadline: </strong><span title="{{chat.ticket.due_date}}">{{ chat.ticket.due_date | naturaltime }}</span></p>
+                                                {% if now < chat.ticket.due_date or chat.closed%}
+                                                    <p><strong>Deadline: </strong><span title="{{chat.ticket.due_date}}">{{ chat.ticket.due_date | naturaltime }}</span></p>
+                                                {% else %}
+                                                    <p class="bg-danger text-danger"><strong>Deadline: </strong><span title="{{chat.ticket.due_date}}">{{ chat.ticket.due_date | naturaltime }}</span></p>
+                                                {% endif %}
                                             {% endif %}
                                         </div>
                                     </div>
@@ -107,11 +111,6 @@
                                         <div class="panel-body">
                                             {% if chat.ticket.notes %}
                                             <p>{{chat.ticket.notes}}</p>
-                                            <a href="#chat-notes">
-                                                <button type="button" class="btn btn-primary">
-                                                    Edit notes
-                                                </button>
-                                            </a>
                                             {% else %}
                                             <p>This conversation has no notes.</p>
                                             <a href="#chat-notes">
@@ -184,12 +183,16 @@
     </div>
 
     <div class="remodal" data-remodal-id="chat-info">
-        <h1>Modifying information for '{{chat.title}}'</h1>
+        <h1>Edit Information <br/><small>{{ chat.title }}</small></h1>
         <form action="{% url 'chat' chat.id %}" method="post" role="form">{% csrf_token %}
 
             <div class="form-group">
-                <p>Information alteration stuff will go here - should just make a Django ModelForm for the ticket
-                model.</p>
+                <label for="id_priority">Priority:</label>
+                {{ ticket_pred_form.priority | add_attrs:'class:form-control'}}
+            </div>
+            <div class="form-group">
+                <label for="id_due_date">Deadline:</label>
+                {{ ticket_pred_form.due_date | add_attrs:'class:form-control'}}
             </div>
             <input class="btn btn-success" type="submit" value="Save"/>
             <a href="#">
