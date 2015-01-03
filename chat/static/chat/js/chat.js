@@ -1,4 +1,23 @@
 $(function () {
+
+    var messages = $(".latest-messages");
+    var messageInput = $("#input-message");
+
+    function setContainerHeight() {
+        var windowHeight = $( window ).outerHeight();
+        var navbarHeight = $(".navbar-inverse").outerHeight();
+        var chatTitleHeight = $("#chat-title").outerHeight();
+        var navTabsHeight = $(".nav-tabs").outerHeight();
+        var messageInputHeight = messageInput.outerHeight();
+
+        var maxHeight = windowHeight - (navbarHeight + chatTitleHeight + navTabsHeight + messageInputHeight + 50);
+        messages.css("max-height", maxHeight+"px");
+    }
+
+    $(window).on('resize', function() { setContainerHeight(); });
+
+    setContainerHeight();
+
     if (typeof CHAT_ID != 'undefined') {
         // Initialise the Firebase
         var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
@@ -10,11 +29,6 @@ $(function () {
         var chatParticipants = chatObj.child("participants");
 
         var messagesRef = chatObj.child("messages");
-
-
-        // Select the input box and the latest messages list
-        var messages = $(".latest-messages");
-        var messageInput = $("#input-message");
 
         messageInput.keypress(function (e) {
             if (e.keyCode == 13) {
