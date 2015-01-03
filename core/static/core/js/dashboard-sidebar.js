@@ -22,8 +22,15 @@ $(function () {
 
     var selected_project = null;  // Global variable so that we can access it for FireBase purposes later
 
+
+    //Disable the list button and the new chat button
+    //to avoid errors when there are no projects created
     var sidebarDropdownButton = $('#sidebar-dropdown-button');
     sidebarDropdownButton.prop('disabled', true);
+
+    var newChatButton = $('#new-project-button');
+    newChatButton.prop('disabled', true);
+
 
     $.getJSON("/api/v1/project/")
         .success(function (projects) {
@@ -65,6 +72,11 @@ $(function () {
         $.getJSON("/api/v1/chat/", {'project__id': id})
             .success(function (chats) {
 
+                //Update the reference to the correct
+                //project id when creating a new chat
+                //and enable the button again
+                newChatButton.parent().attr('href', '/projects/' + id + '/newchat/');
+                newChatButton.prop('disabled', false);
 
                 // Create mustache template for rendering tickets list
                 var chatObjects = chats.objects;

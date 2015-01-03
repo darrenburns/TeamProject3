@@ -22,7 +22,7 @@ a {
 
 .latest-messages {
     padding: 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #chat-title{
