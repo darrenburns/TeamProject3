@@ -1,5 +1,25 @@
 $(function () {
 
+    var ticketsList = $('#tickets-list');
+
+    //This function will update the max-height of the list to adapt to different screens
+    //It is done by calculating the difference between the height of the window and the HTML elements
+    //outerHeight is the height of element with its margins
+    function setListHeight() {
+        var windowHeight = $( window ).outerHeight();
+        var navbarHeight = $(".navbar-inverse").outerHeight();
+        var DropdownHeight = $("#dropdown-row").outerHeight();
+
+        var maxHeight = windowHeight - (navbarHeight + DropdownHeight + 50);
+        ticketsList.css("max-height", maxHeight+"px");
+    }
+
+    //Call the function once
+    setListHeight();
+
+    //If the user resizes the screen the height is updated
+    $(window).on('resize', function() { setListHeight(); });
+
     var selected_project = null;  // Global variable so that we can access it for FireBase purposes later
 
     var sidebarDropdownButton = $('#sidebar-dropdown-button');
@@ -45,12 +65,6 @@ $(function () {
         $.getJSON("/api/v1/chat/", {'project__id': id})
             .success(function (chats) {
 
-                //Add new chat button to the tickets list
-                var newChatButton =
-                    '<li role="presentation"><a href="/projects/'+id+'/newchat/">'+
-                        '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Creates a new chat">' +
-                            '<span class="glyphicon glyphicon-plus"></span> New chat' +
-                        '</button></a></li>';
 
                 // Create mustache template for rendering tickets list
                 var chatObjects = chats.objects;
@@ -58,7 +72,7 @@ $(function () {
                 var renderedTemplate = Mustache.to_html(chatsListTemplate, {'chats': chatObjects});
 
                 // Update ticket list
-                $('#tickets-list').html(newChatButton + renderedTemplate);
+                ticketsList.html(renderedTemplate);
 
                 // Update the project name in the button
                 var project = $('#' + id);
