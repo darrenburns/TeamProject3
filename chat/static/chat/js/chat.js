@@ -1,8 +1,13 @@
 $(function () {
 
+    //Cache the container and the input for later use
     var messages = $(".latest-messages");
     var messageInput = $("#input-message");
 
+
+    //This function will update the max-height of the container to adapt to different screens
+    //It is done by calculating the difference between the height of the window and the HTML elements
+    //outerHeight is the height of element with its margins
     function setContainerHeight() {
         var windowHeight = $( window ).outerHeight();
         var navbarHeight = $(".navbar-inverse").outerHeight();
@@ -14,8 +19,12 @@ $(function () {
         messages.css("max-height", maxHeight+"px");
     }
 
+
+    //If the user resizes the screen the height is updated
     $(window).on('resize', function() { setContainerHeight(); });
 
+
+    //Call the function once
     setContainerHeight();
 
     if (typeof CHAT_ID != 'undefined') {
@@ -30,6 +39,7 @@ $(function () {
 
         var messagesRef = chatObj.child("messages");
 
+        //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
             if (e.keyCode == 13) {
                 messagesRef.push({
@@ -41,10 +51,9 @@ $(function () {
             }
         });
 
+
         messagesRef.on("child_added", function (object) {
-
             addMessage(object)
-
         });
 
         function addMessage(object) {
