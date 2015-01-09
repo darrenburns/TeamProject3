@@ -1,6 +1,8 @@
 $(function () {
 
-    var ticketsList = $('#tickets-list');
+    var ticketsPanel = $('#tickets-panel');
+    var openTicketsList = ticketsPanel.find('#open-tickets-list')
+    var closedTicketsList = ticketsPanel.find('#closed-tickets-list')
 
     //This function will update the max-height of the list to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
@@ -8,10 +10,10 @@ $(function () {
     function setListHeight() {
         var windowHeight = $( window ).outerHeight();
         var navbarHeight = $(".navbar-inverse").outerHeight();
-        var DropdownHeight = $("#dropdown-row").outerHeight();
+        var dropdownHeight = $("#dropdown-row").outerHeight();
 
-        var maxHeight = windowHeight - (navbarHeight + DropdownHeight + 50);
-        ticketsList.css("max-height", maxHeight+"px");
+        var maxHeight = windowHeight - (navbarHeight + dropdownHeight + 50);
+        ticketsPanel.css("max-height", maxHeight+"px");
     }
 
     //Call the function once
@@ -80,11 +82,11 @@ $(function () {
 
                 // Create mustache template for rendering tickets list
                 var chatObjects = chats.objects;
-                var chatsListTemplate = '{{#chats}}<li role="presentation"><a id="chat-{{ id }}" href="/chats/{{ id }}">{{#closed}}<span class="label label-danger">C</span>{{/closed}} {{ title }}</a></li>{{/chats}}';
+                var chatsListTemplate = '{{#chats}}<li class="list-group-item"><a id="chat-{{ id }}" href="/chats/{{ id }}">{{#closed}}<span class="label label-danger">C</span>{{/closed}} {{ title }}</a></li>{{/chats}}';
                 var renderedTemplate = Mustache.to_html(chatsListTemplate, {'chats': chatObjects});
 
                 // Update ticket list
-                ticketsList.html(renderedTemplate);
+                ticketsPanel.find("#open-tickets-list").html(renderedTemplate);
 
                 // Update the project name in the button
                 var project = $('#' + id);

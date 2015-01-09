@@ -50,9 +50,26 @@
 
             <div class="col-sm-12">
 
-                <ul class="nav nav-pills nav-stacked" id="tickets-list">
-                    <!-- Ajax -->
-                </ul>
+                <div class="panel-group" id="tickets-panel" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#tickets-list" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Open
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <ul class="list-group" id="open-tickets-list" style="margin-bottom: 0px;">
+                                <li class="list-group-item">Cras justo odio</li>
+                                <li class="list-group-item">Dapibus ac facilisis in</li>
+                                <li class="list-group-item">Morbi leo risus</li>
+                                <li class="list-group-item">Porta ac consectetur ac</li>
+                                <li class="list-group-item">Vestibulum at eros</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
