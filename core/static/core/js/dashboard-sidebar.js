@@ -1,12 +1,17 @@
 $(function () {
 
-    var ticketsPanel = $('#tickets-panel');
-    var openTicketsList = ticketsPanel.find('#open-tickets-list')
-    var closedTicketsList = ticketsPanel.find('#closed-tickets-list')
 
-    //This function will update the max-height of the list to adapt to different screens
-    //It is done by calculating the difference between the height of the window and the HTML elements
-    //outerHeight is the height of element with its margins
+    //This function render the template using Mustache and substitute the element content
+    function renderTemplate(element, template, object){
+        var renderedTemplate = Mustache.to_html(template, object);
+        element.html(renderedTemplate);
+    }
+
+    /*
+    This function will update the max-height of the list to adapt to different screens
+    It is done by calculating the difference between the height of the window and the HTML elements
+    outerHeight is the height of element with its margins
+     */
     function setListHeight() {
         var windowHeight = $( window ).outerHeight();
         var navbarHeight = $(".navbar-inverse").outerHeight();
@@ -16,6 +21,10 @@ $(function () {
         ticketsPanel.css("max-height", maxHeight+"px");
     }
 
+    var ticketsPanel = $('#tickets-panel');
+    var openTicketsList = ticketsPanel.find('#open-tickets-list')
+    var closedTicketsList = ticketsPanel.find('#closed-tickets-list')
+
     //Call the function once
     setListHeight();
 
@@ -23,10 +32,9 @@ $(function () {
     $(window).on('resize', function() { setListHeight(); });
 
     var selected_project = null;  // Global variable so that we can access it for FireBase purposes later
+    var accordionOpeningControl = true;
 
-
-    //Disable the list button and the new chat button
-    //to avoid errors when there are no projects created
+    //Disable the list button and the new chat button to avoid errors when there are no projects created
     var sidebarDropdownButton = $('#sidebar-dropdown-button');
     sidebarDropdownButton.prop('disabled', true);
 
@@ -54,9 +62,7 @@ $(function () {
 
                 //Render template. Update display
                 projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{name}}</a></li>{{/projects}}';
-
-                var renderedTemplate = Mustache.to_html(projectsListTemplate, {'projects': projectObjects});
-                $('#sidebar-dropdown-list').html(renderedTemplate);
+                renderTemplate($('#sidebar-dropdown-list'), projectsListTemplate, {'projects': projectObjects})
 
                 //Bind the click event into projects items
                 $('.dropdown-menu li a').bind('click', function () {
@@ -74,19 +80,28 @@ $(function () {
         $.getJSON("/api/v1/chat/", {'project__id': id})
             .success(function (chats) {
 
-                //Update the reference to the correct
-                //project id when creating a new chat
-                //and enable the button again
+                //Update the reference to the correct project id when creating a new chat and enable the button again
                 newChatButton.parent().attr('href', '/projects/' + id + '/newchat/');
                 newChatButton.prop('disabled', false);
 
-                // Create mustache template for rendering tickets list
+                //Separate open tickets from closed tickets and add them to the correct array
                 var chatObjects = chats.objects;
-                var chatsListTemplate = '{{#chats}}<li class="list-group-item"><a id="chat-{{ id }}" href="/chats/{{ id }}">{{#closed}}<span class="label label-danger">C</span>{{/closed}} {{ title }}</a></li>{{/chats}}';
-                var renderedTemplate = Mustache.to_html(chatsListTemplate, {'chats': chatObjects});
+                var openChatsObject = [];
+                var closedChatsObject = [];
+                for(var i in chatObjects){
+                    var project = chatObjects[i];
+                    if(project.closed == null){
+                        openChatsObject.push(project);
+                    } else {
+                        closedChatsObject.push(project);
+                    }
+                }
 
-                // Update ticket list
-                ticketsPanel.find("#open-tickets-list").html(renderedTemplate);
+                // Create mustache template for rendering tickets list
+                var openChatsListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a>{{/chats}}';
+                renderTemplate(openTicketsList, openChatsListTemplate, {'chats': openChatsObject});
+                var closedChatsListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{#closed}}<span class="label label-danger">C</span>{{/closed}} {{ title }}</a>{{/chats}}';
+                renderTemplate(closedTicketsList, closedChatsListTemplate, {'chats': closedChatsObject});
 
                 // Update the project name in the button
                 var project = $('#' + id);
@@ -96,9 +111,9 @@ $(function () {
                 // Update the dashboard title to the project desc
                 $('#dashboard-title').text(projectTitle);
 
-                //Add li class active
+                //Add a class active and make the accordion open
                 if (typeof CHAT_ID != 'undefined') {
-                    $("#chat-" + CHAT_ID).parent().addClass("active");
+                    $("#chat-" + CHAT_ID).addClass('active').parent().parent().collapse('show');
                 }
 
             });
