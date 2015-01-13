@@ -53,3 +53,13 @@ class Ticket(models.Model):
 
     def __unicode__(self):
         return u'Ticket %d' % self.id
+
+
+class MetadataName(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+
+class Metadata(models.Model):
+    chat = models.ForeignKey('chat.Chat', blank=True, null=True)
+    value = models.CharField(max_length=2000, blank=True, null=True)
+    metadata_name = models.ManyToManyField(MetadataName)
