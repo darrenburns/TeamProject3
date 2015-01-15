@@ -21,35 +21,36 @@
 
                     <div class="row">
                         <div class="col-sm-12" align="right">
-
                             <ul class="nav nav-tabs">
                                 <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
                                 </li>
                                 <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
+                                <!-- Add metadata button -->
                                 <div class="btn-group" role="group">
-                                    <a href="#">
-                                        <button id="modify-chat-button" type="button" class="btn btn-default">
-                                            <span class="glyphicon glyphicon-pencil"></span> Modify chat
-                                        </button>
-                                    </a>
-                                    {% if chat.closed %}
-                                        <a href="{% url 'reopen_chat' chat.id %}">
-                                            <button type="button" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-repeat"></span> Reopen chat
-                                            </button>
-                                        </a>
-                                    {% else %}
-                                        <a href="{% url 'close_chat' chat.id %}">
-                                            <button type="button" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-lock"></span> Close chat
-                                            </button>
-                                        </a>
-                                    {% endif %}
-                                    <a href="#modal-delete">
-                                        <button type="button" class="btn btn-danger">
-                                            <span class="glyphicon glyphicon-remove"></span> Delete chat
-                                        </button>
-                                    </a>
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Add Metadata <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Options button -->
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Options <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Modify chat</a></li>
+                                        {% if chat.closed %}
+                                            <li><a href="{% url 'reopen_chat' chat.id %}"><span class="glyphicon glyphicon-repeat"></span> Reopen chat</a></li>
+                                        {% else %}
+                                            <li><a href="{% url 'close_chat' chat.id %}"><span class="glyphicon glyphicon-lock"></span> Close chat</a></li>
+                                        {% endif %}
+                                        <li class="divider"></li>
+                                        <li><a href="#modal-delete"><span class="glyphicon glyphicon-remove"></span> Delete chat</a></li>
+                                    </ul>
                                 </div>
                             </ul>
                         </div>
@@ -105,11 +106,73 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="panel panel-default information-panel">
+                                                <div class="panel-heading">
+                                                    <strong>Something</strong>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>Something's content</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="panel panel-default information-panel">
+                                                <div class="panel-heading">
+                                                    <strong>Something</strong>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>Something's content</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="panel panel-default information-panel">
+                                                <div class="panel-heading">
+                                                    <strong>Something</strong>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>Something's content</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="panel panel-default information-panel">
+                                                <div class="panel-heading">
+                                                    <strong>Something</strong>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>Something's content</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="panel panel-default information-panel">
+                                                <div class="panel-heading">
+                                                    <strong>Something</strong>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>Something's content</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="panel panel-default information-panel">
+                                                <div class="panel-heading">
+                                                    <strong>Something</strong>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>Something's content</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-
+                                    </div>
                                 </div>
                                 <!-- End tab information -->
 
