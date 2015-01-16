@@ -1,0 +1,141 @@
+{% extends 'sidebar_base.html' %}
+
+{% block content %}
+
+<div class="remodal-bg">
+
+    <div class="col-xs-8 col-md-10 main">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="page-header" id="chat-title">{{ chat.title }}
+                    {% if chat.closed %}<span class="label label-danger">Closed</span>{% endif %}
+                    <br/>
+                    <a href="{% url 'project_description' chat.project.id %}">
+                        <small>{{ chat.project.name }}</small>
+                    </a></h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12" align="right">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
+                    </li>
+                    <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
+                    <div class="btn-group" role="group">
+                        <a href="#">
+                            <button id="modify-chat-button" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span> Modify chat
+                            </button>
+                        </a>
+                        {% if chat.closed %}
+                        <a href="{% url 'reopen_chat' chat.id %}">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-repeat"></span> Reopen chat
+                            </button>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'close_chat' chat.id %}">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-lock"></span> Close chat
+                            </button>
+                        </a>
+                        {% endif %}
+                        <a href="#modal-delete">
+                            <button type="button" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span> Delete chat
+                            </button>
+                        </a>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+
+                        <!-- Tab chats -->
+                        <div role="tabpanel" class="tab-pane active" id="tab-chats">
+                            <div class="list-group latest-messages">
+                            </div>
+                        </div>
+                        <!-- End tab chats -->
+
+                        <!-- Tab information -->
+                        <div role="tabpanel" class="tab-pane" id="tab-information">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="panel panel-default information-panel">
+                                        <div class="panel-heading">
+                                            <strong>General Information</strong>
+                                        </div>
+                                        <div class="panel-body">
+                                            {% if chat.closed %}
+                                            <p><strong>Status: </strong><span class="label label-danger">Closed</span>
+                                            </p>
+                                            {% else %}
+                                            <p><strong>Status: </strong><span class="label label-success">Open</span>
+                                            </p>
+                                            {% endif %}
+                                            <p><strong>Priority: </strong><span class="label label-danger">High</span>
+                                            </p>
+
+                                            <p><strong>Date created: </strong>{{ chat.created | date:'d/m/Y H:i' }}</p>
+                                            {% if chat.closed %}
+                                            <p><strong>Date closed: </strong>{{ chat.closed | date:'d/m/Y H:i' }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="panel panel-default information-panel">
+                                        <div class="panel-heading">
+                                            <strong>Statistics</strong>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p>Statistics & maybe some D3 stuff here.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <!-- End tab information -->
+
+                        <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
+                    </div>
+                    <!-- End tab panes -->
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="remodal" data-remodal-id="modal-delete">
+        <h1>Are you sure?</h1>
+        <p>Do you really want to delete this conversation?</p>
+        <p><em>This cannot be undone.</em></p>
+        <a href="{% url 'delete_chat' chat.id %}">
+            <button type="button" class="btn btn-success">Yes</button>
+        </a>
+        <a href="#">
+            <button type="button" class="btn btn-danger">No</button>
+        </a>
+    </div>
+
+</div>
+<script type="text/javascript">
+    CHAT_ID = "{{ chat.id }}";
+    PROJECT_ID = "{{ chat.project }}";
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load core_extras %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+
+                <h1>Create a new chat:</h1>
+                {% if form.non_field_errors  %}
+                    <div class="alert alert-warning">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+                {% if error %}
+                    <div class="alert alert-warning">
+                        Something went wrong!
+                    </div>
+                {% endif %}
+                <form action="{% url 'new_chat' project_id %}" method="post" role="form">
+
+                    <label for="id_title">Chat Title:</label>
+                    {{ form.title  | add_attrs:"class:form-control,placeholder:Enter chat title." }}<br/>
+
+                    {% if form.title.errors %}
+                        <div class="alert alert-danger">
+                            {{ form.title.errors}}
+                        </div>
+                    {% endif %}
+                    {#                    <label for="id_project">Project:</label>#}
+                    {#                    {{ form.project  | add_attrs:"class:form-control,placeholder:Select the project." }}<br/>#}
+
+                    <input class="btn btn-default" type="submit" value="Create Chat"/>
+                    <input type='hidden' name='csrfmiddlewaretoken' value='{{csrf_token}}'>
+                </form>
+                <br/>
+
+                <a href="{% url 'dashboard' %}">
+                    <button class="btn btn-danger">Cancel</button>
+
+                </a>
+                <br/>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

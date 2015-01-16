@@ -23,8 +23,8 @@ def is_production():
 SECRET_KEY = 'c20m%-55-pu+m+_@3)4=l#d^t611n%9o2xsfo4iuz=ru2(ht-r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not is_production()
-
+# DEBUG = not is_production()
+DEBUG=True
 TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (
@@ -101,13 +101,11 @@ STATIC_ROOT = 'staticfiles'
 
 STATIC_URL = '/static/'
 
+# For static files that aren't tied to a particular app
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# For static files that aren't tied to a particular app
-
-STATICFILES_DIRS = ()  # Static files we've created ourselves
 
 # TastyPie settings
 TASTYPIE_DEFAULT_FORMATS = ['json']

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     {% load staticfiles %}
     <title>Social Network for Project Task Management</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'remodal/dist/jquery.remodal.css' %}" rel="stylesheet">
+    <link href="{% static 'chat/css/chat.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/snptm.css' %}" rel="stylesheet">
 </head>
 <body>
 
@@ -26,7 +28,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 {% if user.is_authenticated %}
-                <li><a href="#" >Logged in as {{ user }}.</a></li>
+                <li><a href="{% url 'user_profile' user.username %}" >{{ user }}</a></li>
                 <li><a href="{% url 'user_logout' %}">Logout</a> </li>
                 {% else %}
                 <li><a href="{% url 'user_login' %}">Login</a></li>
@@ -36,9 +38,9 @@
             <form class="navbar-form navbar-right" role="search">
                 <div class="col-md-12">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input id="search-bar" type="text" class="form-control" placeholder="Search">
                         <span class="input-group-btn">
-                            <button type="submit" class="btn btn-default">
+                            <button id="search-bar-button" type="submit" class="btn btn-default">
                                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                             </button>
                          </span>
@@ -49,15 +51,28 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container-fluid">
-    {% block content %}{% endblock %}
+<div class="container-fluid page-container">
+    <div class="row page-row">
+        {% block sidebar %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
 </div>
 
 </body>
 
+<script type="text/javascript">
+    CURRENT_USER = "{{ user }}";
+</script>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.0.3/firebase.js"></script>
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'remodal/dist/jquery.remodal.js' %}"></script>
+
+<script src="{% static 'chat/js/chat.js' %}"></script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
+
 <script src="{% static 'core/js/dashboard-sidebar.js' %}"></script>
 
 </html>

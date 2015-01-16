@@ -1,5 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group, User
+from django.forms import ModelForm
+from chat.models import Chat
+from core.models import Project
 
 
 # Helper function to avoid list comprehensions.
@@ -28,4 +31,15 @@ class CustomUserCreationForm(UserCreationForm):
             else:
                 user.groups.add(Group.objects.filter(name="developer")[0])
         return user
+
+
+class ProjectCreationForm(ModelForm):
+
+    class Meta:
+        model = Project
+
+class ChatCreationForm(ModelForm):
+
+    class Meta:
+        model = Chat
 

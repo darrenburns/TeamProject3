@@ -15,11 +15,16 @@ $(function () {
 
                 sidebarDropdownButton.prop('disabled', false);
 
-                selected_project = projectObjects[0].id;
-                selectProject(selected_project);
+                if(typeof PROJECT_ID != 'undefined'){
+                    selectProject(PROJECT_ID);
+                }else{
+                    selected_project = projectObjects[0].id;
+                    selectProject(selected_project);
+                }
+
 
                 //Render template. Update display
-                projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{desc}}</a></li>{{/projects}}';
+                projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{name}}</a></li>{{/projects}}';
 
                 var renderedTemplate = Mustache.to_html(projectsListTemplate, {'projects': projectObjects});
                 $('#sidebar-dropdown-list').html(renderedTemplate);
@@ -29,9 +34,6 @@ $(function () {
                     selected_project = this.getAttribute('id');
                     selectProject(selected_project);
                 });
-
-                //Bind the click event to the chat items
-                $()
             }
 
 
@@ -40,15 +42,23 @@ $(function () {
     function selectProject(id) {
         // Make ajax request
 
-        $.getJSON("/api/v1/chat", {'project__id': id})
+        $.getJSON("/api/v1/chat/", {'project__id': id})
             .success(function (chats) {
+
+                //Add new chat button to the tickets list
+                var newChatButton =
+                    '<li role="presentation"><a href="/projects/'+id+'/newchat/">'+
+                        '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Creates a new chat">' +
+                            '<span class="glyphicon glyphicon-plus"></span> New chat' +
+                        '</button></a></li>';
+
                 // Create mustache template for rendering tickets list
                 var chatObjects = chats.objects;
-                var chatsListTemplate = '{{#chats}}<li role="presentation"><a href="#">{{ title }}</a></li>{{/chats}}';
+                var chatsListTemplate = '{{#chats}}<li role="presentation"><a id="chat-{{ id }}" href="/chats/{{ id }}">{{#closed}}<span class="label label-danger">C</span>{{/closed}} {{ title }}</a></li>{{/chats}}';
                 var renderedTemplate = Mustache.to_html(chatsListTemplate, {'chats': chatObjects});
 
                 // Update ticket list
-                $('#tickets-list').html(renderedTemplate);
+                $('#tickets-list').html(newChatButton + renderedTemplate);
 
                 // Update the project name in the button
                 var project = $('#' + id);
@@ -58,6 +68,10 @@ $(function () {
                 // Update the dashboard title to the project desc
                 $('#dashboard-title').text(projectTitle);
 
+                //Add li class active
+                if (typeof CHAT_ID != 'undefined') {
+                    $("#chat-" + CHAT_ID).parent().addClass("active");
+                }
 
             });
     }

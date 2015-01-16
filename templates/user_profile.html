@@ -3,7 +3,7 @@
 
 
 {% block content %}
-
+<div class="container">
     <div class="row">
 
         <div class="col-sm-12">
@@ -12,7 +12,7 @@
 
                 <div class="col-sm-12">
 
-                    <h1><strong> <u> {{ userProfile.user }} </u> </strong></h1>
+                    <h1><strong> <u> {{ userProfile.user }} </u> </strong></h1> <HR>
 
                 </div>
 
@@ -20,8 +20,9 @@
 
             <div class="row">
 
+
                 <div class="col-sm-6">
-                    <br><br>
+                    <br>
                     <ul>
                         <li><strong>Role:</strong> {{ userProfile.role }}</li>
                         <li><strong>linkedinURL:</strong> {{ userProfile.linkedinURL }}</li>
@@ -30,52 +31,45 @@
 
                 <div class="col-sm-6">
                     <br><br>
-                    {{ "[[profile picture to go here here]]" }}
+                    {{ "[[profile picture goes here]]" }}
 
                 </div>
-
             </div>
 
-        </div>
+            <HR>
+            <div class="row">
+                <div class="col-sm-6">
 
+                    {% for project in projects %}
+                    <div class="list-group">
+                        {% for chat in project.chats.all %}
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{ chat.title }}</h4>
+                            <p class="list-group-item-text">{{ chat.project.name }}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                   </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <br><br>
+                <div class="col-sm-6">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">Sample text</h4>
+                            <p class="list-group-item-text">...</p>
+                        </a>
+                    </div>
 
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                            data-toggle="dropdown"
-                            aria-expanded="true">
-                        Tickets
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket1</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket2</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket3</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sample Ticket4</a></li>
-                    </ul>
-
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                            data-toggle="dropdown"
-                            aria-expanded="true">
-                        Projects
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Social network for project
-                            task management</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Password Cracking</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                    </ul>
 
                 </div>
 
+
+                </div>
             </div>
         </div>
     </div>
+
+</div>
+
 
 {% endblock %}

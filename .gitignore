@@ -19,7 +19,6 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 lib/
@@ -64,8 +63,6 @@ target/
 
 # IDE related files
 .idea/
-
-bower_components/
 
 # SQLite (used in dev)
 *.sqlite3

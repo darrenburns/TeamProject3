@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load core_extras %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="page-header" id="chat-title">{{ project.name }}</h2>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group pull-right" role="group">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span> Delete project
+                    </button>
+                    <br/>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12" align="left">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Project Manager: </strong>{{ project.manager }}</li>
+                    <li class="list-group-item"><strong>Project Description: </strong>{{ project.desc }}</li>
+                    <li class="list-group-item"><strong>Project Homepage: </strong>{{ project.homepage }}</li>
+                    <li class="list-group-item"><strong>Project Repository:</strong> {{ project.repo }}</li>
+                </ul>
+                <a href="{% url 'dashboard' %}">
+                    <button class="btn btn-default">Back</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
