@@ -30,7 +30,7 @@ class MetadataNameResource(ModelResource):
 
 class MetadataResource(ModelResource):
 
-    metadata_name = fields.ForeignKey(MetadataNameResource, 'name')
+    metadata_name = fields.ForeignKey(MetadataNameResource, 'meta_name')
 
     class Meta:
         resource_name = 'metadata'

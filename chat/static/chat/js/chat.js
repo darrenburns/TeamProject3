@@ -111,6 +111,52 @@ $(function () {
                 .on("click", function(){
                     $("#dropdown-metadata-name").html(this.text + ' <span class="caret"></span>');
                 });
+        });
+    /*
+    $("#confirm-add-metadata").on("click", function(){
+        var passar = {
+            "name" : "Teste"
+        };
+        $.ajax({
+            url: "/api/v1/metadata_name/",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: passar // TODO: Finish add new metadata
+        }).fail(function(data){
+            console.log(data);
+            console.log(passar);
+        });
+    });
+    */
+
+    $.getJSON("/api/v1/metadata/")
+        .success(function(data){
+            var metadataObjects = data.objects;
+            var tabInfomation = $("#tab-information");
+            for(var i in metadataObjects) {
+
+                if(i % 3 === 0){
+                    var divRow = $("<div>", {class: "row"})
+                }
+
+                var divColumn = $("<div>", {class: "col-sm-4"});
+                var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
+                var panelHeading = $("<div>", {class: "panel-heading"});
+                var panelBody = $("<div>", {class: "panel-body"});
+
+                panelHeading.html(metadataObjects[i].metadata_name);
+                panelBody.html("<p>" + metadataObjects[i].value + "</p>")
+                panelInformation.append(panelHeading);
+                panelInformation.append(panelBody);
+                divColumn.append(panelInformation)
+                divRow.append(divColumn);
+                tabInfomation.append(divRow);
+
+
+            }
 
         });
+
+
 });
