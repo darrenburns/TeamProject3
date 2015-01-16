@@ -1,6 +1,5 @@
 $(function () {
 
-
     //This function render the template using Mustache and substitute the element content
     function renderTemplate(element, template, object){
         var renderedTemplate = Mustache.to_html(template, object);
@@ -22,8 +21,8 @@ $(function () {
     }
 
     var ticketsPanel = $('#tickets-panel');
-    var openTicketsList = ticketsPanel.find('#open-tickets-list')
-    var closedTicketsList = ticketsPanel.find('#closed-tickets-list')
+    var openTicketsList = ticketsPanel.find('#open-tickets-list');
+    var closedTicketsList = ticketsPanel.find('#closed-tickets-list');
 
     //Call the function once
     setListHeight();
@@ -32,7 +31,6 @@ $(function () {
     $(window).on('resize', function() { setListHeight(); });
 
     var selected_project = null;  // Global variable so that we can access it for FireBase purposes later
-    var accordionOpeningControl = true;
 
     //Disable the list button and the new chat button to avoid errors when there are no projects created
     var sidebarDropdownButton = $('#sidebar-dropdown-button');
@@ -61,7 +59,7 @@ $(function () {
 
 
                 //Render template. Update display
-                projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{name}}</a></li>{{/projects}}';
+                var projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{name}}</a></li>{{/projects}}';
                 renderTemplate($('#sidebar-dropdown-list'), projectsListTemplate, {'projects': projectObjects})
 
                 //Bind the click event into projects items

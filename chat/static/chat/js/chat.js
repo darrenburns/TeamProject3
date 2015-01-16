@@ -4,6 +4,45 @@ $(function () {
     var messages = $(".latest-messages");
     var messageInput = $("#input-message");
 
+    function addMessage(object) {
+        var child = object.val();
+        chatParticipants.push(CURRENT_USER);
+
+        //Create a new date field to use in Mustache
+        child.formattedDate = getFormattedDate(child.dt);
+
+        var messagesTemplate =
+            '<div class="list-group-item message-container">'+
+                '<div class="row">' +
+                    '<div class="col-md-1 message-user message-picture">'+
+                        '<button type="button" class="btn btn-default btn-md ">'+
+                            '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
+                        '</button>'+
+                    '</div>' +
+                    '<div class="col-md-1 message-user">' +
+                        '<h5 class="list-group-item-heading"> <strong>{{ user }}</strong> <br> <i class="date">{{ formattedDate }}</i> </h5>'+
+                    '</div>' +
+                    '<div class="col-md-10">' +
+                        '<p class="list-group-item-text">'+
+                            ' <h5>{{ desc }}</h5> '+
+                        '</p>'+
+                    '</div>' +
+                '</div>' +
+            '</div>';
+
+        var renderedTemplate = Mustache.to_html(messagesTemplate, child);
+        messages.append(renderedTemplate);
+
+
+        // On new message load, scroll to the top.
+        messages[0].scrollTop = messages[0].scrollHeight;
+    }
+
+    //Format the date into day/month/year format
+    function getFormattedDate(dt) {
+        var date = new Date(dt);
+        return ("0" + date.getDate()).slice(-2) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    }
 
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
@@ -26,6 +65,9 @@ $(function () {
 
     //Call the function once
     setContainerHeight();
+
+    //Add category of metadata
+
 
     if (typeof CHAT_ID != 'undefined') {
         // Initialise the Firebase
@@ -56,51 +98,19 @@ $(function () {
             addMessage(object)
         });
 
-        function addMessage(object) {
-            var child = object.val();
-            chatParticipants.push(CURRENT_USER);
-    
-            //Create a new date field to use in Mustache
-            child.formattedDate = getFormattedDate(child.dt);
-
-            var messagesTemplate =
-            '<div class="list-group-item message-container">'+
-                '<div class="row">' +
-                '<div class="col-md-1 message-user message-picture">'+
-                    '<button type="button" class="btn btn-default btn-md ">'+
-                        '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
-                    '</button>'+
-                '</div>' +
-                    '<div class="col-md-1 message-user">' +
-                        '<h5 class="list-group-item-heading"> <strong>{{ user }}</strong> <br> <i class="date">{{ formattedDate }}</i> </h5>'+
-                    '</div>' +
-                        '<div class="col-md-10">' +
-                '<p class="list-group-item-text">'+
-                     ' <h5>{{ desc }}</h5> '+
-                '</p>'+
-                        '</div>' +
-                    '</div>' +
-
-            '</div>';
-
-            var renderedTemplate = Mustache.to_html(messagesTemplate, child);
-            messages.append(renderedTemplate);
-
-
-            // On new message load, scroll to the top.
-            messages[0].scrollTop = messages[0].scrollHeight;
-        }
-
-        //Format the date into day/month/year format
-        function getFormattedDate(dt) {
-            var date = new Date(dt);
-            return ("0" + date.getDate()).slice(-2) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-        }
-
-
-
-
     }
 
+    $.getJSON("/api/v1/metadata_name/")
+        .success(function(metadataName){
+            var metadataObjects = metadataName.objects;
+            var metadataNameListTemplate = "{{#metadataName}}<li><a id='metadata-name-{{ id }}'>{{ name }}</a></li>{{/metadataName}}";
+            var renderedTemplate = Mustache.to_html(metadataNameListTemplate, {'metadataName' : metadataObjects});
+            $("#list-metadata-name")
+                .html(renderedTemplate)
+                .find("a")
+                .on("click", function(){
+                    $("#dropdown-metadata-name").html(this.text + ' <span class="caret"></span>');
+                });
 
+        });
 });
