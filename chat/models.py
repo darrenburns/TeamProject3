@@ -64,8 +64,21 @@ class MetadataName(models.Model):
 
 class Metadata(models.Model):
     chat = models.ForeignKey('chat.Chat', blank=True, null=True)
-    value = models.CharField(max_length=2000, blank=True, null=True)
     metadata_name = models.ForeignKey(MetadataName)
 
     def __unicode__(self):
         return u'Metadata id %d' % self.id
+
+
+class MetadataString(Metadata):
+    value = models.CharField(max_length=2000)
+
+    def __unicode__(self):
+        return u'%s' % self.value
+
+
+class MetadataDate(Metadata):
+    value = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'%s' % self.value
