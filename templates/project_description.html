@@ -11,6 +11,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-group pull-right" role="group">
+                    <a href="#modal-delete">
                     <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-remove"></span> Delete project
                     </button>
@@ -34,6 +35,18 @@
             </div>
         </div>
 
+
+        <div class="remodal" data-remodal-id="modal-delete">
+            <h1>Are you sure?</h1>
+            <p>Do you really want to delete this project?</p>
+            <p><em>This cannot be undone.</em></p>
+            <a href="{% url 'delete_project' project.id%}">
+                <button type="button" class="btn btn-success">Yes</button>
+            </a>
+            <a href="#">
+                <button type="button" class="btn btn-danger">No</button>
+            </a>
+        </div>
     </div>
 
 

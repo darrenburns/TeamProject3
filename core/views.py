@@ -188,6 +188,11 @@ def new_chat(request, project_id):
 
     return render(request, 'new_chat.html', args)
 
+def delete_project(request, project_id):
+    Project.objects.get(id=project_id).delete()
+
+    return HttpResponseRedirect(reverse('core.views.home'))
+
 
 def project_description(request, project_id):
     project = Project.objects.get(id=project_id)
