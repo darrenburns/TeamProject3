@@ -44,5 +44,5 @@ class Migration(migrations.Migration):
     dependencies = [
         ('auth', '__first__')
     ]
-    operations = [ migrations.RunPython(populate_groups) ]
+    operations = [migrations.RunPython(populate_groups)]
 
