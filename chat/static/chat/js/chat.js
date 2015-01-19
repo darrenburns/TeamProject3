@@ -3,6 +3,7 @@ $(function () {
     //Cache the container and the input for later use
     var messages = $(".latest-messages");
     var messageInput = $("#input-message");
+    var metadataNameSelected;
 
     function addMessage(object) {
         var child = object.val();
@@ -98,6 +99,34 @@ $(function () {
             addMessage(object)
         });
 
+        $.getJSON("/api/v1/metadata/", { chat__id: CHAT_ID })
+            .success(function(data){
+                var metadataObjects = data.objects;
+                var tabInfomation = $("#tab-information");
+                for(var i in metadataObjects) {
+
+                    if(i % 3 === 0){
+                        var divRow = $("<div>", {class: "row"})
+                    }
+
+                    var divColumn = $("<div>", {class: "col-sm-4"});
+                    var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
+                    var panelHeading = $("<div>", {class: "panel-heading"});
+                    var panelBody = $("<div>", {class: "panel-body"});
+
+                    panelHeading.html(metadataObjects[i].metadata_name.name);
+                    panelBody.html("<p>" + metadataObjects[i].value + "</p>")
+                    panelInformation.append(panelHeading);
+                    panelInformation.append(panelBody);
+                    divColumn.append(panelInformation)
+                    divRow.append(divColumn);
+                    tabInfomation.append(divRow);
+
+
+                }
+
+            });
+
     }
 
     $.getJSON("/api/v1/metadata_name/")
@@ -110,53 +139,37 @@ $(function () {
                 .find("a")
                 .on("click", function(){
                     $("#dropdown-metadata-name").html(this.text + ' <span class="caret"></span>');
+                    metadataNameSelected = this.id.split("-")[2];
                 });
         });
-    /*
+
     $("#confirm-add-metadata").on("click", function(){
-        var passar = {
-            "name" : "Teste"
+
+        var divForm = $(this).parent().parent();
+
+        var passData = {
+            "value" : divForm.find("#metadata-value").val(),
+            "chat" : "/api/v1/chat/" + CHAT_ID + "/",
+            "metadata_name" : "/api/v1/metadata_name/" + metadataNameSelected + "/"
         };
+
+
         $.ajax({
-            url: "/api/v1/metadata_name/",
+            url: "/api/v1/metadata/",
             type: "POST",
             contentType: "application/json",
             dataType: "json",
-            data: passar // TODO: Finish add new metadata
-        }).fail(function(data){
-            console.log(data);
-            console.log(passar);
-        });
+            data: JSON.stringify(passData) // TODO: Finish add new metadata
+        })
+            .done(function (data) {
+                console.log(data);
+                console.log(passData);
+            })
+            .fail(function(data){
+                console.log(data);
+                console.log(passData);
+            });
+
     });
-    */
-
-    $.getJSON("/api/v1/metadata/")
-        .success(function(data){
-            var metadataObjects = data.objects;
-            var tabInfomation = $("#tab-information");
-            for(var i in metadataObjects) {
-
-                if(i % 3 === 0){
-                    var divRow = $("<div>", {class: "row"})
-                }
-
-                var divColumn = $("<div>", {class: "col-sm-4"});
-                var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
-                var panelHeading = $("<div>", {class: "panel-heading"});
-                var panelBody = $("<div>", {class: "panel-body"});
-
-                panelHeading.html(metadataObjects[i].metadata_name);
-                panelBody.html("<p>" + metadataObjects[i].value + "</p>")
-                panelInformation.append(panelHeading);
-                panelInformation.append(panelBody);
-                divColumn.append(panelInformation)
-                divRow.append(divColumn);
-                tabInfomation.append(divRow);
-
-
-            }
-
-        });
-
 
 });

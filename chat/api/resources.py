@@ -1,5 +1,6 @@
 # REST API for the chat models are defined here
 from tastypie import fields
+from tastypie.authorization import Authorization
 from tastypie.constants import ALL_WITH_RELATIONS
 
 from tastypie.resources import ModelResource
@@ -17,6 +18,7 @@ class ChatResource(ModelResource):
         allowed_methods = ['get']
         filtering = {
             'project': ALL_WITH_RELATIONS,
+            'id': ALL_WITH_RELATIONS,
         }
 
 
@@ -26,16 +28,20 @@ class MetadataNameResource(ModelResource):
         resource_name = 'metadata_name'
         queryset = MetadataName.objects.all()
         allowed_methods = ['get', 'delete', 'put', 'post']
+        authorization = Authorization()
 
 
 class MetadataResource(ModelResource):
 
-    metadata_name = fields.ForeignKey(MetadataNameResource, 'meta_name')
+    metadata_name = fields.ForeignKey(MetadataNameResource, 'metadata_name', full=True)
+    chat = fields.ForeignKey(ChatResource, 'chat', full=True)
 
     class Meta:
         resource_name = 'metadata'
         queryset = Metadata.objects.all()
         allowed_methods = ['get', 'delete', 'put', 'post']
+        authorization = Authorization()
         filtering = {
-            'name': ALL_WITH_RELATIONS,
+            'chat': ALL_WITH_RELATIONS,
+            'metadata_name': ALL_WITH_RELATIONS,
         }
