@@ -24,7 +24,7 @@
                             <ul class="nav nav-tabs">
                                 <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
                                 </li>
-                                <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
+                                <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information</a></li>
                                 <!-- Add metadata button -->
                                 <div class="btn-group" role="group">
                                     <a href="#modal-add-metadata"><button type="button" class="btn btn-info">Add Metadata</button></a>
@@ -64,13 +64,7 @@
 
                                 <!-- Tab information -->
                                 <div role="tabpanel" class="tab-pane" id="tab-information">
-                                    <div class="row">
-                                        <div class="col-sm-4" id="metadata-items">
-                                        <!-- TODO: Add metadata items here -->
-
-                                        </div>
-                                    </div>
-
+                                    <!-- TODO: Add metadata items here -->
                                 </div>
                                 <!-- End tab information -->
 
@@ -115,7 +109,7 @@
                                 <!-- Ajax content inserted here -->
                             </ul>
                         </div>
-                        <button type="button" class="btn btn-default" id="confirm-add-metadata">Confirm</button>
+                        <a href="#"><button type="button" class="btn btn-default" id="confirm-add-metadata">Confirm</button></a>
                     </div>
                 </div>
             </form>

@@ -3,7 +3,7 @@ $(function () {
     //Cache the container and the input for later use
     var messages = $(".latest-messages");
     var messageInput = $("#input-message");
-    var metadataNameSelected;
+    var selectMetadataName;
 
     function addMessage(object) {
         var child = object.val();
@@ -59,6 +59,60 @@ $(function () {
         messages.css("max-height", maxHeight+"px");
     }
 
+    function displayMetadataInformation(value, title, targetElement){
+
+
+
+        panelHeading.html("<strong>Date created</strong>");
+        panelBody.html(getFormattedDate(metadataObjects[0].chat.created));
+    }
+
+    function getMetadataInformation(chatId){
+        $.getJSON("/api/v1/metadata/", { chat__id: chatId })
+            .success(function(data){
+
+                var metadataObjects = data.objects;
+                var tabInformation = $("#tab-information");
+                tabInformation.html("");
+
+                var defaultInfoDivRow = $("<div>", {class: "row"})
+                var divColumn = $("<div>", {class: "col-sm-4"});
+                var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
+                var panelHeading = $("<div>", {class: "panel-heading"});
+                var panelBody = $("<div>", {class: "panel-body"});
+
+                panelHeading.html("<strong>Date created</strong>");
+                panelBody.html(getFormattedDate(metadataObjects[0].chat.created));
+                panelInformation.append(panelHeading);
+                panelInformation.append(panelBody);
+                divColumn.append(panelInformation)
+                defaultInfoDivRow.append(divColumn);
+                tabInformation.append(defaultInfoDivRow);
+
+                for(var i in metadataObjects) {
+
+                    if(i % 3 === 0){
+                        var divRow = $("<div>", {class: "row"})
+                    }
+
+                    var divColumn = $("<div>", {class: "col-sm-4"});
+                    var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
+                    var panelHeading = $("<div>", {class: "panel-heading"});
+                    var panelBody = $("<div>", {class: "panel-body"});
+
+                    panelHeading.html("<strong>" + metadataObjects[i].metadata_name.name + "</strong>");
+                    panelBody.html("<p>" + metadataObjects[i].value + "</p>")
+                    panelInformation.append(panelHeading);
+                    panelInformation.append(panelBody);
+                    divColumn.append(panelInformation)
+                    divRow.append(divColumn);
+                    tabInformation.append(divRow);
+
+                }
+
+            });
+    }
+
 
     //If the user resizes the screen the height is updated
     $(window).on('resize', function() { setContainerHeight(); });
@@ -99,33 +153,7 @@ $(function () {
             addMessage(object)
         });
 
-        $.getJSON("/api/v1/metadata/", { chat__id: CHAT_ID })
-            .success(function(data){
-                var metadataObjects = data.objects;
-                var tabInfomation = $("#tab-information");
-                for(var i in metadataObjects) {
-
-                    if(i % 3 === 0){
-                        var divRow = $("<div>", {class: "row"})
-                    }
-
-                    var divColumn = $("<div>", {class: "col-sm-4"});
-                    var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
-                    var panelHeading = $("<div>", {class: "panel-heading"});
-                    var panelBody = $("<div>", {class: "panel-body"});
-
-                    panelHeading.html(metadataObjects[i].metadata_name.name);
-                    panelBody.html("<p>" + metadataObjects[i].value + "</p>")
-                    panelInformation.append(panelHeading);
-                    panelInformation.append(panelBody);
-                    divColumn.append(panelInformation)
-                    divRow.append(divColumn);
-                    tabInfomation.append(divRow);
-
-
-                }
-
-            });
+        getMetadataInformation(CHAT_ID);
 
     }
 
@@ -139,18 +167,16 @@ $(function () {
                 .find("a")
                 .on("click", function(){
                     $("#dropdown-metadata-name").html(this.text + ' <span class="caret"></span>');
-                    metadataNameSelected = this.id.split("-")[2];
+                    selectMetadataName = this.id.split("-")[2];
                 });
         });
 
     $("#confirm-add-metadata").on("click", function(){
 
-        var divForm = $(this).parent().parent();
-
         var passData = {
-            "value" : divForm.find("#metadata-value").val(),
+            "value" : $("#metadata-value").val(),
             "chat" : "/api/v1/chat/" + CHAT_ID + "/",
-            "metadata_name" : "/api/v1/metadata_name/" + metadataNameSelected + "/"
+            "metadata_name" : "/api/v1/metadata_name/" + selectMetadataName + "/"
         };
 
 
@@ -159,16 +185,12 @@ $(function () {
             type: "POST",
             contentType: "application/json",
             dataType: "json",
-            data: JSON.stringify(passData) // TODO: Finish add new metadata
-        })
-            .done(function (data) {
-                console.log(data);
-                console.log(passData);
-            })
-            .fail(function(data){
-                console.log(data);
-                console.log(passData);
-            });
+            data: JSON.stringify(passData),
+            complete: function(){
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
 
     });
 
