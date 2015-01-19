@@ -40,6 +40,7 @@ class MetadataResource(ModelResource):
         resource_name = 'metadata'
         queryset = Metadata.objects.all()
         allowed_methods = ['get', 'delete', 'put', 'post']
+        authorization = Authorization()
         filtering = {
             'chat': ALL_WITH_RELATIONS,
             'metadata_name': ALL_WITH_RELATIONS,

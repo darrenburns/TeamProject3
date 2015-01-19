@@ -3,6 +3,7 @@ $(function () {
     //Cache the container and the input for later use
     var messages = $(".latest-messages");
     var messageInput = $("#input-message");
+    var metadataNameSelected;
 
     function addMessage(object) {
         var child = object.val();
@@ -138,25 +139,37 @@ $(function () {
                 .find("a")
                 .on("click", function(){
                     $("#dropdown-metadata-name").html(this.text + ' <span class="caret"></span>');
+                    metadataNameSelected = this.id.split("-")[2];
                 });
         });
 
     $("#confirm-add-metadata").on("click", function(){
 
+        var divForm = $(this).parent().parent();
+
         var passData = {
-            "name" : "Teste"
+            "value" : divForm.find("#metadata-value").val(),
+            "chat" : "/api/v1/chat/" + CHAT_ID + "/",
+            "metadata_name" : "/api/v1/metadata_name/" + metadataNameSelected + "/"
         };
 
+
         $.ajax({
-            url: "/api/v1/metadata_name/",
+            url: "/api/v1/metadata/",
             type: "POST",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData) // TODO: Finish add new metadata
-        }).fail(function(data){
-            console.log(data);
-            console.log(passData);
-        });
+        })
+            .done(function (data) {
+                console.log(data);
+                console.log(passData);
+            })
+            .fail(function(data){
+                console.log(data);
+                console.log(passData);
+            });
+
     });
 
 });
