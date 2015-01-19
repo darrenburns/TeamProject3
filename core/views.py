@@ -146,6 +146,10 @@ def project_description(request, project_id):
     project = Project.objects.get(id=project_id)
 
     if request.method == 'GET':
-        next = request.GET.get('next')
+        chat_id = request.GET.get('next')
+        if chat_id:
+            next = "/chats/" + chat_id
+        else:
+            next = "/"
 
     return render(request, 'project_description.html', {'project': project, 'next': next})

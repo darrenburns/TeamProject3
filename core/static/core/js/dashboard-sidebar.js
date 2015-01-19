@@ -104,7 +104,17 @@ $(function () {
                 // Update the project name in the button
                 var project = $('#' + id);
                 var projectTitle = project.text();
-                project.parents('.dropdown').find('.dropdown-toggle').html(projectTitle + ' <span class="caret"></span>');
+                project.parents('#project-list')
+                    .find('#project-button')
+                    .html(projectTitle)
+                    .on("click", function(){
+                        var url = "/projects/"+id+"/info/";
+                        if(typeof CHAT_ID != 'undefined'){
+                            url = url + "?next="+CHAT_ID;
+                        }
+                        location.href=url;
+                    })
+                    ;
 
                 // Update the dashboard title to the project desc
                 $('#dashboard-title').text(projectTitle);
@@ -113,7 +123,6 @@ $(function () {
                 if (typeof CHAT_ID != 'undefined') {
                     $("#chat-" + CHAT_ID).addClass('active').parent().parent().collapse('show');
                 }
-
             });
     }
 
