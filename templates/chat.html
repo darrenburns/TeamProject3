@@ -65,38 +65,9 @@
                                 <!-- Tab information -->
                                 <div role="tabpanel" class="tab-pane" id="tab-information">
                                     <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="panel panel-default information-panel">
-                                                <div class="panel-heading">
-                                                    <strong>General Information</strong>
-                                                </div>
-                                                <div class="panel-body">
-                                                    {% if chat.closed %}
-                                                        <p><strong>Status: </strong><span class="label label-danger">Closed</span>
-                                                        </p>
-                                                    {% else %}
-                                                        <p><strong>Status: </strong><span class="label label-success">Open</span>
-                                                        </p>
-                                                    {% endif %}
-                                                    <p><strong>Priority: </strong><span class="label label-danger">High</span>
-                                                    </p>
+                                        <div class="col-sm-4" id="metadata-items">
+                                        <!-- TODO: Add metadata items here -->
 
-                                                    <p><strong>Date created: </strong>{{ chat.created | date:'d/m/Y H:i' }}</p>
-                                                    {% if chat.closed %}
-                                                        <p><strong>Date closed: </strong>{{ chat.closed | date:'d/m/Y H:i' }}</p>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="panel panel-default information-panel">
-                                                <div class="panel-heading">
-                                                    <strong>Statistics</strong>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <p>Statistics & maybe some D3 stuff here.</p>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
 
