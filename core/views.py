@@ -141,7 +141,11 @@ def new_chat(request, project_id):
 
     return render(request, 'new_chat.html', args)
 
-
+@login_required
 def project_description(request, project_id):
     project = Project.objects.get(id=project_id)
-    return render(request, 'project_description.html', {'project':project} )
+
+    if request.method == 'GET':
+        next = request.GET.get('next')
+
+    return render(request, 'project_description.html', {'project': project, 'next': next})
