@@ -41,12 +41,17 @@ class Priority(models.Model):
     def __unicode__(self):
         return u'Priority: %s, Colour: %s' % (self.name, self.colour)
 
+class Progress(models.Model):
+    maximum = models.IntegerField()
+    current = models.IntegerField()
+    status = models.CharField(max_length=500) # e.g. not building, everything but <feature/> working, etc
 
 class Ticket(models.Model):
     notes = models.CharField(max_length=500)
     created = models.DateTimeField()
     closed = models.DateTimeField(null=True, blank=True)
-    priority = models.ForeignKey(Priority, null=True, blank=True)
+    priority = models.ForeignKey(Priority, null=True, blank=True)    
+    progress = models.ForeignKey(Progress, null=True)
 
     class Meta:
             permissions = (('canEditAllTickets', 'Can edit all tickets'),)  # Intended for use with ticket priorities.
