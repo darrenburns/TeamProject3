@@ -3,6 +3,7 @@ $(function () {
     //Cache the container and the input for later use
     var messages = $(".latest-messages");
     var messageInput = $("#input-message");
+    var tabInformation = $("#tab-information");
     var selectMetadataName;
 
     function addMessage(object) {
@@ -59,55 +60,58 @@ $(function () {
         messages.css("max-height", maxHeight+"px");
     }
 
-    function displayMetadataInformation(value, title, targetElement){
+    //This function receives the title and value of a metadata,
+    //creates a new panel and attaches it to the information tab
+    function displayMetadataInformation(title, value){
 
+        var divRow;
+        var lastRow = tabInformation.children(".row").last(); //Get the last row of information tab
+        var childrenNumber = lastRow.children().length; //Get the number of columns of that row
 
+        if (childrenNumber === 0 || childrenNumber === 3) { //If the row does not exist or it has 3 children
+            divRow = $("<div>", {class: "row"}); //Create a new row
+        } else {
+            divRow = lastRow; //or use the last row
+        }
 
-        panelHeading.html("<strong>Date created</strong>");
-        panelBody.html(getFormattedDate(metadataObjects[0].chat.created));
+        //Elements to append the metadata information
+        var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
+        var panelHeading = $("<div>", {class: "panel-heading"});
+        var panelBody = $("<div>", {class: "panel-body"});
+        var divColumn = $("<div>", {class: "col-sm-4"});
+
+        //Fill the content into the panel and add it to the row
+        panelHeading.html("<strong>" + title + "</strong>");
+        panelBody.html(value);
+        panelInformation.append(panelHeading);
+        panelInformation.append(panelBody);
+        divColumn.append(panelInformation);
+        divRow.append(divColumn);
+        tabInformation.append(divRow);
+
     }
 
     function getMetadataInformation(chatId){
         $.getJSON("/api/v1/metadata/", { chat__id: chatId })
             .success(function(data){
 
-                var metadataObjects = data.objects;
-                var tabInformation = $("#tab-information");
                 tabInformation.html("");
 
-                var defaultInfoDivRow = $("<div>", {class: "row"})
-                var divColumn = $("<div>", {class: "col-sm-4"});
-                var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
-                var panelHeading = $("<div>", {class: "panel-heading"});
-                var panelBody = $("<div>", {class: "panel-body"});
+                var metadataObjects = data.objects;
+                var dateCreated = metadataObjects[0].chat.created;
+                var dateClosed = metadataObjects[0].chat.closed;
 
-                panelHeading.html("<strong>Date created</strong>");
-                panelBody.html(getFormattedDate(metadataObjects[0].chat.created));
-                panelInformation.append(panelHeading);
-                panelInformation.append(panelBody);
-                divColumn.append(panelInformation)
-                defaultInfoDivRow.append(divColumn);
-                tabInformation.append(defaultInfoDivRow);
+                displayMetadataInformation("Date created", getFormattedDate(dateCreated));
+
+                if (dateClosed !== null) {
+                    displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
+                }
 
                 for(var i in metadataObjects) {
-
-                    if(i % 3 === 0){
-                        var divRow = $("<div>", {class: "row"})
-                    }
-
-                    var divColumn = $("<div>", {class: "col-sm-4"});
-                    var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
-                    var panelHeading = $("<div>", {class: "panel-heading"});
-                    var panelBody = $("<div>", {class: "panel-body"});
-
-                    panelHeading.html("<strong>" + metadataObjects[i].metadata_name.name + "</strong>");
-                    panelBody.html("<p>" + metadataObjects[i].value + "</p>")
-                    panelInformation.append(panelHeading);
-                    panelInformation.append(panelBody);
-                    divColumn.append(panelInformation)
-                    divRow.append(divColumn);
-                    tabInformation.append(divRow);
-
+                    displayMetadataInformation(
+                        metadataObjects[i].metadata_name.name,
+                        metadataObjects[i].value //TODO: Substitute for the correct value according to metadata type
+                    );
                 }
 
             });
@@ -120,8 +124,6 @@ $(function () {
 
     //Call the function once
     setContainerHeight();
-
-    //Add category of metadata
 
 
     if (typeof CHAT_ID != 'undefined') {
@@ -178,7 +180,6 @@ $(function () {
             "chat" : "/api/v1/chat/" + CHAT_ID + "/",
             "metadata_name" : "/api/v1/metadata_name/" + selectMetadataName + "/"
         };
-
 
         $.ajax({
             url: "/api/v1/metadata/",
