@@ -47,6 +47,9 @@ class Ticket(models.Model):
     created = models.DateTimeField()
     closed = models.DateTimeField(null=True, blank=True)
     priority = models.ForeignKey(Priority, null=True, blank=True)
+    due_date = models.DateTimeField(null=True)
+    assignee = models.ForeignKey(User, null=True)
+    cost = models.IntegerField(null=True)
 
     class Meta:
             permissions = (('canEditAllTickets', 'Can edit all tickets'),)  # Intended for use with ticket priorities.
