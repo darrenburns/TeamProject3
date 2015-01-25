@@ -58,7 +58,9 @@
                                 <div role="tabpanel" class="tab-pane active" id="tab-chats">
                                     <div class="list-group latest-messages">
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Message" id="input-message">
+                                    {% if not chat.closed %}
+                                        <input type="text" class="form-control" placeholder="Message" id="input-message">
+                                    {% endif %}
                                 </div>
                                 <!-- End tab chats -->
 
