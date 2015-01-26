@@ -114,8 +114,8 @@
         <h3>Attach Note</h3>
 
         <form role="form">
-            <div class="form-group" id="form-add-metadata">
-                <textarea class="form-control" rows="3" placeholder="Enter notes here" id="metadata-value"></textarea>
+            <div class="form-group" id="form-add-note">
+                <textarea class="form-control" rows="3" placeholder="Enter notes here" id="note-value"></textarea>
                 <br/>
                 <div class="btn-group" role="group">
                     <a href="#"><button type="button" class="btn btn-default" id="confirm-add-note">Save Note</button></a>
@@ -123,12 +123,14 @@
             </div>
         </form>
     </div>
-   <div class="remodal" data-remodal-id="modal-add-due-date">
+
+    <!-- Modal window for adding due date -->
+    <div class="remodal" data-remodal-id="modal-add-due-date">
         <h3>Attach Due Date</h3>
 
         <form role="form">
-            <div class="form-group" id="form-add-metadata">
-                <input class="form-control" type="datetime-local"/>
+            <div class="form-group" id="form-add-due-date">
+                <input class="form-control" type="datetime-local" id="due-date-value"/>
                 <br/>
                 <div class="btn-group" role="group">
                     <a href="#"><button type="button" class="btn btn-default" id="confirm-add-due-date">Save Due Date</button></a>
@@ -136,14 +138,16 @@
             </div>
         </form>
     </div>
-   <div class="remodal" data-remodal-id="modal-add-cost">
+
+    <!-- Modal window for adding cost -->
+    <div class="remodal" data-remodal-id="modal-add-cost">
         <h3>Attach Cost</h3>
         <p class="lead">Enter a numerical value to represent the cost of this task.</p>
         <form role="form">
-            <div class="form-group" id="form-add-metadata">
+            <div class="form-group" id="form-add-cost">
                 <div class="row">
                     <div class="col-xs-offset-2 col-xs-6">
-                        <input class="form-control" type="number"/>
+                        <input class="form-control" type="number" id="cost-value"/>
                     </div>
                     <div class="col-xs-4">
                         <div class="btn-group pull-left" role="group">
@@ -154,12 +158,22 @@
             </div>
         </form>
     </div>
+
+    <!-- Modal window for adding cost -->
     <div class="remodal" data-remodal-id="modal-add-assignee">
         <h3>Set Assignee</h3>
 
         <form role="form">
-            <div class="form-group" id="form-add-metadata">
+            <div class="form-group" id="form-add-assignee">
                 Dropdown to select assignee for ticket here
+
+                <button class="btn btn-default dropdown-toggle" type="button" id="user-dropdown-button" data-toggle="dropdown" aria-expanded="true">
+                    Select
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="list-user" id="list-user">
+                </ul>
             </div>
         </form>
     </div>

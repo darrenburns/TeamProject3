@@ -4,8 +4,20 @@ from tastypie.authorization import Authorization
 from tastypie.constants import ALL_WITH_RELATIONS
 
 from tastypie.resources import ModelResource
-from chat.models import Chat, Metadata, MetadataName
+from chat.models import Chat, Metadata, MetadataName, Ticket
 from core.api.resources import ProjectResource
+
+
+class TicketResource(ModelResource):
+
+    class Meta:
+        resource_name = 'ticket'
+        queryset = Ticket.objects.all()
+        allowed_methods = ['get', 'delete', 'put', 'post']
+        authorization = Authorization()
+        filtering = {
+            'id': ALL_WITH_RELATIONS,
+        }
 
 
 class ChatResource(ModelResource):

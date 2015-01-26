@@ -5,6 +5,7 @@ $(function () {
     var messageInput = $("#input-message");
     var tabInformation = $("#tab-information");
     var selectMetadataName;
+    var apiCall = "/api/v1/";
 
     function addMessage(object) {
         var child = object.val();
@@ -15,21 +16,21 @@ $(function () {
 
         var messagesTemplate =
             '<div class="list-group-item message-container">'+
-                '<div class="row">' +
-                    '<div class="col-md-1 message-user message-picture">'+
-                        '<button type="button" class="btn btn-default btn-md ">'+
-                            '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
-                        '</button>'+
-                    '</div>' +
-                    '<div class="col-md-1 message-user">' +
-                        '<h5 class="list-group-item-heading"> <strong>{{ user }}</strong> <br> <i class="date">{{ formattedDate }}</i> </h5>'+
-                    '</div>' +
-                    '<div class="col-md-10">' +
-                        '<p class="list-group-item-text">'+
-                            ' <h5>{{ desc }}</h5> '+
-                        '</p>'+
-                    '</div>' +
-                '</div>' +
+            '<div class="row">' +
+            '<div class="col-md-1 message-user message-picture">'+
+            '<button type="button" class="btn btn-default btn-md ">'+
+            '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
+            '</button>'+
+            '</div>' +
+            '<div class="col-md-1 message-user">' +
+            '<h5 class="list-group-item-heading"> <strong>{{ user }}</strong> <br> <i class="date">{{ formattedDate }}</i> </h5>'+
+            '</div>' +
+            '<div class="col-md-10">' +
+            '<p class="list-group-item-text">'+
+            ' <h5>{{ desc }}</h5> '+
+            '</p>'+
+            '</div>' +
+            '</div>' +
             '</div>';
 
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
@@ -43,7 +44,7 @@ $(function () {
     //Format the date into day/month/year format
     function getFormattedDate(dt) {
         var date = new Date(dt);
-        return ("0" + date.getDate()).slice(-2) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+        return ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
     }
 
     //This function will update the max-height of the container to adapt to different screens
@@ -92,14 +93,17 @@ $(function () {
     }
 
     function getMetadataInformation(chatId){
-        $.getJSON("/api/v1/metadata/", { chat__id: chatId })
+        $.getJSON("/api/v1/ticket/" + CHAT_ID + "/")
             .success(function(data){
 
                 tabInformation.html("");
 
-                var metadataObjects = data.objects;
-                var dateCreated = metadataObjects[0].chat.created;
-                var dateClosed = metadataObjects[0].chat.closed;
+                var metadataObject = data;
+                var dateCreated = metadataObject.created;
+                var dateClosed = metadataObject.closed;
+                var cost = metadataObject.cost;
+                var dueDate = metadataObject.due_date;
+                var notes = metadataObject.notes;
 
                 displayMetadataInformation("Date created", getFormattedDate(dateCreated));
 
@@ -107,12 +111,19 @@ $(function () {
                     displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
                 }
 
-                for(var i in metadataObjects) {
-                    displayMetadataInformation(
-                        metadataObjects[i].metadata_name.name,
-                        metadataObjects[i].value //TODO: Substitute for the correct value according to metadata type
-                    );
+                if(cost != null){
+                    displayMetadataInformation("Cost", cost);
                 }
+
+                if (dueDate != null){
+                    displayMetadataInformation("Due Date", getFormattedDate(dueDate));
+                }
+
+                if(notes != null){
+                    displayMetadataInformation("Notes", notes);
+                }
+
+
 
             });
     }
@@ -169,21 +180,60 @@ $(function () {
                 .find("a")
                 .on("click", function(){
                     $("#dropdown-metadata-name").html(this.text + ' <span class="caret"></span>');
-                    selectMetadataName = this.id.split("-")[2];
+                    selectMetadataName = this.id.split("-")[2]; //Get the id of the selected metadata name
                 });
         });
 
-    $("#confirm-add-metadata").on("click", function(){
+    $("#confirm-add-note").on("click", function(){
 
         var passData = {
-            "value" : $("#metadata-value").val(),
-            "chat" : "/api/v1/chat/" + CHAT_ID + "/",
-            "metadata_name" : "/api/v1/metadata_name/" + selectMetadataName + "/"
+            "notes" : $("#note-value").val()
         };
 
         $.ajax({
-            url: "/api/v1/metadata/",
-            type: "POST",
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function(){
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+    });
+
+    //Add due date
+    $("#confirm-add-due-date").on("click", function(){
+
+        var passData = {
+            "due_date" : $("#due-date-value").val()
+        };
+
+        $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function(){
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+    });
+
+    $("#confirm-add-cost").on("click", function(){
+
+        var passData = {
+            "cost" : parseInt($("#cost-value").val())
+        };
+
+        $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
