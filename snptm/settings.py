@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'core',
     'chat',
     'tastypie',
+    'customMigrations',
 )
 
 MIDDLEWARE_CLASSES = (

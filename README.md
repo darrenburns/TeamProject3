@@ -31,9 +31,10 @@ Then the most common workflow looks something like:
 ###Database Instructions
 
 When testing the database models, or running/hosting the project, we'll need to update Django's databases with our own additions. 
-This is straightforward. Steps as follows:
+This is straightforward. Note that steps have been added to account for potential custom migrations. Steps as follows:
 
 1. `$ python manage.py makemigrations`
-2. `$ python manage.py migrate`
-3. `$ python manage.py syncdb`
-4. `$ python manage.py runserver` if/when you then want to launch the project with the new database models.
+2. `$ python manage.py migrate core`
+3. `$ python manage.py migrate chat`
+4. `$ python manage.py migrate`
+5. `$ python manage.py runserver` if/when you then want to launch the project with the new database models.

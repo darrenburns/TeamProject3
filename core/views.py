@@ -1,16 +1,31 @@
 import datetime
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
+from django.contrib.auth.models import User, Group
 from django.template import RequestContext
-from core.forms import ProjectCreationForm, ChatCreationForm
-from django.contrib.auth.models import User
+from core.forms import ProjectCreationForm, ChatCreationForm, CustomUserCreationForm
 from chat.models import Ticket, Chat
 from core.models import UserProfile, Project
+
+
+# From https://djangosnippets.org/snippets/1703/:
+
+def group_required(*group_names):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated():
+            if u.is_superuser | bool(u.groups.filter(name__in=group_names)):
+                return True
+        return False
+    return user_passes_test(in_groups)
+
+# End credit to https://djangosnippets.org/snippets/1703/
+
 
 @login_required
 def home(request):
@@ -31,7 +46,6 @@ def user_login(request):
     if request.method == 'GET':
         next = request.GET.get('next')
 
-
     # If the user has just submitted the login form
     if request.method == 'POST':
         username = request.POST['username']
@@ -51,6 +65,7 @@ def user_login(request):
     else:  # If the user is just looking to view the login page (hasn't submitted form)
         return render(request, 'login.html', {'next': next})
 
+
 @login_required
 def user_logout(request):
     """
@@ -63,7 +78,7 @@ def user_logout(request):
 
 def user_register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return render(request, 'login.html', {'register_success': True})
@@ -81,6 +96,7 @@ def user_register(request):
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
+
 
 @login_required
 def user_profile(request, username):
@@ -102,7 +118,7 @@ def new_project(request):
 
             return render_to_response('dashboard.html', context_instance=RequestContext(request))
         else:
-            return render(request, 'new_project.html', {'form':form, 'error': True})
+            return render(request, 'new_project.html', {'form': form, 'error': True})
 
     args = {}
     args.update(csrf(request))
@@ -110,6 +126,37 @@ def new_project(request):
     args['form'] = ProjectCreationForm()
 
     return render(request, 'new_project.html', args)
+
+
+# temporary until group layer is properly migrated via customMigrations.
+user_groups = [Group.objects.get(name="qa manager"), Group.objects.get(name="project manager"), Group.objects.get(name="developer")]
+
+
+
+@group_required("qa manager", "project manager")
+def user_permission_change(request, username):
+    message = ''
+    user = User.objects.get(username=username)
+    current_group = ''
+
+    if request.method == "POST":
+        group_choice = request.POST['choice']
+        group = Group.objects.get(name=group_choice)
+        for user_group in user_groups:
+            user.groups.remove(user_group)
+        user.groups.add(group)
+        current_group = group.name
+        message = 'Submitted!'
+    else:
+        # Note that this will match for at most one group, as we will only ever have one group set.
+        for potentialGroup in user_groups:
+            if potentialGroup in user.groups.all():
+                current_group = potentialGroup.name
+
+    return render(request, 'user_permissions.html', {'user': user,
+                                                     'userProfile': UserProfile.objects.get(user=user),
+                                                     'current_group': current_group,
+                                                     'message': message})
 
 
 def new_chat(request, project_id):
@@ -144,7 +191,6 @@ def new_chat(request, project_id):
 @login_required
 def project_description(request, project_id):
     project = Project.objects.get(id=project_id)
-
     if request.method == 'GET':
         chat_id = request.GET.get('next')
         if chat_id:
@@ -153,3 +199,4 @@ def project_description(request, project_id):
             next = "/"
 
     return render(request, 'project_description.html', {'project': project, 'next': next})
+
