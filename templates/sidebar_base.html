@@ -9,14 +9,14 @@
 
             <div class="col-sm-12">
                 <div class="btn-group" id="project-list">
-                    <button type="button" class="btn btn-default" id="project-button" data-toggle="tooltip" data-placement="right"
-                            title="Click to see the project description">No projects</button>
+                    <button type="button" class="btn btn-default" id="project-button" data-toggle="tooltip" data-placement="bottom"
+                            title="View Project">No projects</button>
                     <button type="button" class="btn btn-default dropdown-toggle"
                             data-toggle="dropdown" data-toggle="tooltip" title="Click to see the list of projects">
                         <span class="caret"></span>
                     </button>
                     <a href="{% url 'new_project' %}">
-                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Click to create a new project">
+                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="New Project">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </a>
@@ -41,7 +41,7 @@
                                 </a>
 
                                 <a href="/projects/id/newchat/">
-                                    <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="left" title="Creates a new chat" id="new-project-button">
+                                    <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="right" title="New Conversation" id="new-project-button">
                                         <span class="glyphicon glyphicon-plus"></span> New
                                     </button>
                                 </a>
