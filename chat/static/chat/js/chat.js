@@ -15,22 +15,22 @@ $(function () {
         child.formattedDate = getFormattedDate(child.dt);
 
         var messagesTemplate =
-            '<div class="list-group-item message-container">'+
             '<div class="row">' +
-            '<div class="col-md-1 message-user message-picture">'+
-            '<button type="button" class="btn btn-default btn-md ">'+
-            '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
-            '</button>'+
-            '</div>' +
-            '<div class="col-md-1 message-user">' +
-            '<h5 class="list-group-item-heading"> <strong>{{ user }}</strong> <br> <i class="date">{{ formattedDate }}</i> </h5>'+
-            '</div>' +
-            '<div class="col-md-10">' +
-            '<p class="list-group-item-text">'+
-            ' <h5>{{ desc }}</h5> '+
-            '</p>'+
-            '</div>' +
-            '</div>' +
+                '<div class="col-xs-1">' +
+                '<div class="user-box pull-right">' +
+                    '<span class="text-muted">' +
+                        '<em>' +
+                        '{{ user }}' +
+                        '</em>' +
+                    '</span>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-xs-11">' +
+                    '<div class="message-container triangle-right left">'+
+                    '<p class="lead message-text">{{ desc }}</p> '+
+                    '<p class="message-date">{{ formattedDate }}</p>' +
+                    '</div>' +
+                '</div>' +
             '</div>';
 
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
@@ -41,10 +41,11 @@ $(function () {
         messages[0].scrollTop = messages[0].scrollHeight;
     }
 
-    //Format the date into day/month/year format
+    // Returns a readable string representing a Date object (includes time of day).
     function getFormattedDate(dt) {
-        var date = new Date(dt);
-        return ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
+        var d = new Date(dt);
+        return d.toLocaleTimeString() + " on " + d.toLocaleDateString();
+
     }
 
     //This function will update the max-height of the container to adapt to different screens
