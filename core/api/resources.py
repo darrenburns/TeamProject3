@@ -1,6 +1,6 @@
 # REST API for the core models are defined here
-from tastypie.constants import ALL
 
+from tastypie.constants import ALL
 from tastypie.resources import ModelResource
 from core.models import Project
 

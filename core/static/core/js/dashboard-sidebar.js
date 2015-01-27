@@ -63,7 +63,7 @@ $(function () {
                 renderTemplate($('#sidebar-dropdown-list'), projectsListTemplate, {'projects': projectObjects})
 
                 //Bind the click event into projects items
-                $('.dropdown-menu li a').bind('click', function () {
+                $('#sidebar-dropdown-list li a').bind('click', function () {
                     selected_project = this.getAttribute('id');
                     selectProject(selected_project);
                 });

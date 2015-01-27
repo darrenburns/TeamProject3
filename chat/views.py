@@ -1,7 +1,9 @@
 import datetime
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from chat.models import Chat
+from django.shortcuts import render, redirect, get_object_or_404
+from chat.models import Chat, Ticket
+from core.forms import TicketDataForm
+
 
 @login_required()
 def chat(request, chat_id):

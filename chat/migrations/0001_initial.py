@@ -45,12 +45,20 @@ class Migration(migrations.Migration):
             name='Metadata',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('value', models.CharField(max_length=2000, null=True, blank=True)),
-                ('chat', models.ForeignKey(blank=True, to='chat.Chat', null=True)),
             ],
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='MetadataDate',
+            fields=[
+                ('metadata_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='chat.Metadata')),
+                ('value', models.DateTimeField()),
+            ],
+            options={
+            },
+            bases=('chat.metadata',),
         ),
         migrations.CreateModel(
             name='MetadataName',
@@ -61,6 +69,16 @@ class Migration(migrations.Migration):
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='MetadataString',
+            fields=[
+                ('metadata_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='chat.Metadata')),
+                ('value', models.CharField(max_length=2000)),
+            ],
+            options={
+            },
+            bases=('chat.metadata',),
         ),
         migrations.CreateModel(
             name='Priority',
@@ -81,6 +99,9 @@ class Migration(migrations.Migration):
                 ('notes', models.CharField(max_length=500)),
                 ('created', models.DateTimeField()),
                 ('closed', models.DateTimeField(null=True, blank=True)),
+                ('due_date', models.DateTimeField(null=True)),
+                ('cost', models.IntegerField(null=True)),
+                ('assignee', models.ForeignKey(to=settings.AUTH_USER_MODEL, null=True)),
                 ('priority', models.ForeignKey(blank=True, to='chat.Priority', null=True)),
             ],
             options={
@@ -90,7 +111,13 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='metadata',
-            name='meta_name',
+            name='chat',
+            field=models.ForeignKey(blank=True, to='chat.Chat', null=True),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='metadata',
+            name='metadata_name',
             field=models.ForeignKey(to='chat.MetadataName'),
             preserve_default=True,
         ),

@@ -3,6 +3,9 @@ $(function () {
     //Cache the container and the input for later use
     var messages = $(".latest-messages");
     var messageInput = $("#input-message");
+    var tabInformation = $("#tab-information");
+    var selectMetadataName;
+    var apiCall = "/api/v1/";
 
     function addMessage(object) {
         var child = object.val();
@@ -13,21 +16,21 @@ $(function () {
 
         var messagesTemplate =
             '<div class="list-group-item message-container">'+
-                '<div class="row">' +
-                    '<div class="col-md-1 message-user message-picture">'+
-                        '<button type="button" class="btn btn-default btn-md ">'+
-                            '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
-                        '</button>'+
-                    '</div>' +
-                    '<div class="col-md-1 message-user">' +
-                        '<h5 class="list-group-item-heading"> <strong>{{ user }}</strong> <br> <i class="date">{{ formattedDate }}</i> </h5>'+
-                    '</div>' +
-                    '<div class="col-md-10">' +
-                        '<p class="list-group-item-text">'+
-                            ' <h5>{{ desc }}</h5> '+
-                        '</p>'+
-                    '</div>' +
-                '</div>' +
+            '<div class="row">' +
+            '<div class="col-md-1 message-user message-picture">'+
+            '<button type="button" class="btn btn-default btn-md ">'+
+            '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
+            '</button>'+
+            '</div>' +
+            '<div class="col-md-1 message-user">' +
+            '<h5 class="list-group-item-heading"> <strong>{{ user }}</strong> <br> <i class="date">{{ formattedDate }}</i> </h5>'+
+            '</div>' +
+            '<div class="col-md-10">' +
+            '<p class="list-group-item-text">'+
+            ' <h5>{{ desc }}</h5> '+
+            '</p>'+
+            '</div>' +
+            '</div>' +
             '</div>';
 
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
@@ -41,7 +44,7 @@ $(function () {
     //Format the date into day/month/year format
     function getFormattedDate(dt) {
         var date = new Date(dt);
-        return ("0" + date.getDate()).slice(-2) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+        return ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
     }
 
     //This function will update the max-height of the container to adapt to different screens
@@ -58,6 +61,73 @@ $(function () {
         messages.css("max-height", maxHeight+"px");
     }
 
+    //This function receives the title and value of a metadata,
+    //creates a new panel and attaches it to the information tab
+    function displayMetadataInformation(title, value){
+
+        var divRow;
+        var lastRow = tabInformation.children(".row").last(); //Get the last row of information tab
+        var childrenNumber = lastRow.children().length; //Get the number of columns of that row
+
+        if (childrenNumber === 0 || childrenNumber === 3) { //If the row does not exist or it has 3 children
+            divRow = $("<div>", {class: "row"}); //Create a new row
+        } else {
+            divRow = lastRow; //or use the last row
+        }
+
+        //Elements to append the metadata information
+        var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
+        var panelHeading = $("<div>", {class: "panel-heading"});
+        var panelBody = $("<div>", {class: "panel-body"});
+        var divColumn = $("<div>", {class: "col-sm-4"});
+
+        //Fill the content into the panel and add it to the row
+        panelHeading.html("<strong>" + title + "</strong>");
+        panelBody.html(value);
+        panelInformation.append(panelHeading);
+        panelInformation.append(panelBody);
+        divColumn.append(panelInformation);
+        divRow.append(divColumn);
+        tabInformation.append(divRow);
+
+    }
+
+    function getMetadataInformation(chatId){
+        $.getJSON("/api/v1/ticket/" + CHAT_ID + "/")
+            .success(function(data){
+
+                tabInformation.html("");
+
+                var metadataObject = data;
+                var dateCreated = metadataObject.created;
+                var dateClosed = metadataObject.closed;
+                var cost = metadataObject.cost;
+                var dueDate = metadataObject.due_date;
+                var notes = metadataObject.notes;
+
+                displayMetadataInformation("Date created", getFormattedDate(dateCreated));
+
+                if (dateClosed !== null) {
+                    displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
+                }
+
+                if(cost != null){
+                    displayMetadataInformation("Cost", cost);
+                }
+
+                if (dueDate != null){
+                    displayMetadataInformation("Due Date", getFormattedDate(dueDate));
+                }
+
+                if(notes != null){
+                    displayMetadataInformation("Notes", notes);
+                }
+
+
+
+            });
+    }
+
 
     //If the user resizes the screen the height is updated
     $(window).on('resize', function() { setContainerHeight(); });
@@ -65,8 +135,6 @@ $(function () {
 
     //Call the function once
     setContainerHeight();
-
-    //Add category of metadata
 
 
     if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined') {
@@ -99,6 +167,8 @@ $(function () {
             addMessage(object)
         });
 
+        getMetadataInformation(CHAT_ID);
+
     }
 
     $.getJSON("/api/v1/metadata_name/")
@@ -111,53 +181,69 @@ $(function () {
                 .find("a")
                 .on("click", function(){
                     $("#dropdown-metadata-name").html(this.text + ' <span class="caret"></span>');
+                    selectMetadataName = this.id.split("-")[2]; //Get the id of the selected metadata name
                 });
         });
-    /*
-    $("#confirm-add-metadata").on("click", function(){
-        var passar = {
-            "name" : "Teste"
+
+    $("#confirm-add-note").on("click", function(){
+
+        var passData = {
+            "notes" : $("#note-value").val()
         };
+
         $.ajax({
-            url: "/api/v1/metadata_name/",
-            type: "POST",
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
             contentType: "application/json",
             dataType: "json",
-            data: passar // TODO: Finish add new metadata
-        }).fail(function(data){
-            console.log(data);
-            console.log(passar);
-        });
-    });
-    */
-
-    $.getJSON("/api/v1/metadata/")
-        .success(function(data){
-            var metadataObjects = data.objects;
-            var tabInfomation = $("#tab-information");
-            for(var i in metadataObjects) {
-
-                if(i % 3 === 0){
-                    var divRow = $("<div>", {class: "row"})
-                }
-
-                var divColumn = $("<div>", {class: "col-sm-4"});
-                var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
-                var panelHeading = $("<div>", {class: "panel-heading"});
-                var panelBody = $("<div>", {class: "panel-body"});
-
-                panelHeading.html(metadataObjects[i].metadata_name);
-                panelBody.html("<p>" + metadataObjects[i].value + "</p>")
-                panelInformation.append(panelHeading);
-                panelInformation.append(panelBody);
-                divColumn.append(panelInformation)
-                divRow.append(divColumn);
-                tabInfomation.append(divRow);
-
-
+            data: JSON.stringify(passData),
+            complete: function(){
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
             }
-
         });
 
+    });
+
+    //Add due date
+    $("#confirm-add-due-date").on("click", function(){
+
+        var passData = {
+            "due_date" : $("#due-date-value").val()
+        };
+
+        $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function(){
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+    });
+
+    $("#confirm-add-cost").on("click", function(){
+
+        var passData = {
+            "cost" : parseInt($("#cost-value").val())
+        };
+
+        $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function(){
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+    });
 
 });

@@ -20,172 +20,162 @@
                 <div class="col-sm-12">
 
                     <div class="row">
-                        <div class="col-sm-12" align="right">
+                        <div class="col-sm-6">
                             <ul class="nav nav-tabs">
                                 <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
                                 </li>
-                                <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information">Information</a></li>
-                                <!-- Add metadata button -->
-                                <div class="btn-group" role="group">
-                                    <a href="#modal-add-metadata"><button type="button" class="btn btn-info">Add Metadata</button></a>
-                                </div>
-                                <!-- Options button -->
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Options <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Modify chat</a></li>
-                                        {% if chat.closed %}
-                                            <li><a href="{% url 'reopen_chat' chat.id %}"><span class="glyphicon glyphicon-repeat"></span> Reopen chat</a></li>
-                                        {% else %}
-                                            <li><a href="{% url 'close_chat' chat.id %}"><span class="glyphicon glyphicon-lock"></span> Close chat</a></li>
-                                        {% endif %}
-                                        <li class="divider"></li>
-                                        <li><a href="#modal-delete"><span class="glyphicon glyphicon-remove"></span> Delete chat</a></li>
-                                    </ul>
-                                </div>
+                                <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information</a></li>
                             </ul>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12">
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-
-                                <!-- Tab chats -->
-                                <div role="tabpanel" class="tab-pane active" id="tab-chats">
-                                    <div class="list-group latest-messages">
+                        <div class="col-sm-6">
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="metaDropdown" data-toggle="dropdown">
+                                        Attach Data
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="metaDropdown">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-note">Note</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-due-date">Due Date</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-cost">Cost</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-assignee">Assignee</a></li>
+                                    </ul>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Options <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Modify chat</a></li>
+                                            {% if chat.closed %}
+                                                <li><a href="{% url 'reopen_chat' chat.id %}"><span class="glyphicon glyphicon-repeat"></span> Reopen chat</a></li>
+                                            {% else %}
+                                                <li><a href="{% url 'close_chat' chat.id %}"><span class="glyphicon glyphicon-lock"></span> Close chat</a></li>
+                                            {% endif %}
+                                            <li class="divider"></li>
+                                            <li><a href="#modal-delete"><span class="glyphicon glyphicon-remove"></span> Delete chat</a></li>
+                                        </ul>
                                     </div>
-                                    {% if not chat.closed %}
-                                        <input type="text" class="form-control" placeholder="Message" id="input-message">
-                                    {% endif %}
                                 </div>
-                                <!-- End tab chats -->
-
-                                <!-- Tab information -->
-                                <div role="tabpanel" class="tab-pane" id="tab-information">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="panel panel-default information-panel">
-                                                <div class="panel-heading">
-                                                    <strong>General Information</strong>
-                                                </div>
-                                                <div class="panel-body">
-                                                    {% if chat.closed %}
-                                                        <p><strong>Status: </strong><span class="label label-danger">Closed</span>
-                                                        </p>
-                                                    {% else %}
-                                                        <p><strong>Status: </strong><span class="label label-success">Open</span>
-                                                        </p>
-                                                    {% endif %}
-                                                    <p><strong>Priority: </strong><span class="label label-danger">High</span>
-                                                    </p>
-
-                                                    <p><strong>Date created: </strong>{{ chat.created | date:'d/m/Y H:i' }}</p>
-                                                    {% if chat.closed %}
-                                                        <p><strong>Date closed: </strong>{{ chat.closed | date:'d/m/Y H:i' }}</p>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="panel panel-default information-panel">
-                                                <div class="panel-heading">
-                                                    <strong>Statistics</strong>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <p>Statistics & maybe some D3 stuff here.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                <!--<div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="panel panel-default information-panel">
-                                                <div class="panel-heading">
-                                                    <strong>Something</strong>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <p>Something's content</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="panel panel-default information-panel">
-                                                <div class="panel-heading">
-                                                    <strong>Something</strong>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <p>Something's content</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="panel panel-default information-panel">
-                                                <div class="panel-heading">
-                                                    <strong>Something</strong>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <p>Something's content</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>-->
-                                </div>
-                                <!-- End tab information -->
-
-                                <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
                             </div>
-                            <!-- End tab panes -->
-
-
+                            <!-- Options button -->
                         </div>
                     </div>
 
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+
+                            <!-- Tab chats -->
+                            <div role="tabpanel" class="tab-pane active" id="tab-chats">
+                                <div class="list-group latest-messages">
+                                </div>
+                                <input type="text" class="form-control" placeholder="Message" id="input-message">
+                            </div>
+                            <!-- End tab chats -->
+
+                            <!-- Tab information -->
+                            <div role="tabpanel" class="tab-pane" id="tab-information">
+                                <!-- TODO: Add metadata items here -->
+                            </div>
+                            <!-- End tab information -->
+
+                            <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
+                        </div>
+                        <!-- End tab panes -->
+
+
+                    </div>
                 </div>
 
             </div>
 
         </div>
 
-        <!-- Modal window for conversation delete confirmation -->
-        <div class="remodal" data-remodal-id="modal-delete">
-            <h1>Are you sure?</h1>
-            <p>Do you really want to delete this conversation?</p>
-            <p><em>This cannot be undone.</em></p>
-            <a href="{% url 'delete_chat' chat.id %}">
-                <button type="button" class="btn btn-success">Yes</button>
-            </a>
-            <a href="#">
-                <button type="button" class="btn btn-danger">No</button>
-            </a>
-        </div>
+    </div>
 
-        <!-- Modal window for adding metadata -->
-        <div class="remodal" data-remodal-id="modal-add-metadata">
-            <h3>Attach metadata</h3>
+    <!-- Modal window for conversation delete confirmation -->
+    <div class="remodal" data-remodal-id="modal-delete">
+        <h1>Are you sure?</h1>
+        <p>Do you really want to delete this conversation?</p>
+        <p><em>This cannot be undone.</em></p>
+        <a href="{% url 'delete_chat' chat.id %}">
+            <button type="button" class="btn btn-success">Yes</button>
+        </a>
+        <a href="#">
+            <button type="button" class="btn btn-danger">No</button>
+        </a>
+    </div>
 
-            <form role="form">
-                <div class="form-group" id="form-add-metadata">
-                    <textarea class="form-control" rows="3" placeholder="Value of the metadata"></textarea>
-                    <div class="btn-group" role="group">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="dropdown-metadata-name"> Select <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu" id="list-metadata-name">
-                                <!-- Ajax content inserted here -->
-                            </ul>
+    <!-- Modal window for adding note -->
+    <div class="remodal" data-remodal-id="modal-add-note">
+        <h3>Attach Note</h3>
+
+        <form role="form">
+            <div class="form-group" id="form-add-note">
+                <textarea class="form-control" rows="3" placeholder="Enter notes here" id="note-value"></textarea>
+                <br/>
+                <div class="btn-group" role="group">
+                    <a href="#"><button type="button" class="btn btn-default" id="confirm-add-note">Save Note</button></a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal window for adding due date -->
+    <div class="remodal" data-remodal-id="modal-add-due-date">
+        <h3>Attach Due Date</h3>
+
+        <form role="form">
+            <div class="form-group" id="form-add-due-date">
+                <input class="form-control" type="datetime-local" id="due-date-value"/>
+                <br/>
+                <div class="btn-group" role="group">
+                    <a href="#"><button type="button" class="btn btn-default" id="confirm-add-due-date">Save Due Date</button></a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal window for adding cost -->
+    <div class="remodal" data-remodal-id="modal-add-cost">
+        <h3>Attach Cost</h3>
+        <p class="lead">Enter a numerical value to represent the cost of this task.</p>
+        <form role="form">
+            <div class="form-group" id="form-add-cost">
+                <div class="row">
+                    <div class="col-xs-offset-2 col-xs-6">
+                        <input class="form-control" type="number" id="cost-value"/>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="btn-group pull-left" role="group">
+                            <a href="#"><button type="button" class="btn btn-default" id="confirm-add-cost">Save Cost</button></a>
                         </div>
-                        <button type="button" class="btn btn-default" id="confirm-add-metadata">Confirm</button>
                     </div>
                 </div>
-            </form>
+            </div>
+        </form>
+    </div>
 
-        </div>
+    <!-- Modal window for adding cost -->
+    <div class="remodal" data-remodal-id="modal-add-assignee">
+        <h3>Set Assignee</h3>
+
+        <form role="form">
+            <div class="form-group" id="form-add-assignee">
+                Dropdown to select assignee for ticket here
+
+                <button class="btn btn-default dropdown-toggle" type="button" id="user-dropdown-button" data-toggle="dropdown" aria-expanded="true">
+                    Select
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="list-user" id="list-user">
+                </ul>
+            </div>
+        </form>
+    </div>
 
     </div>
     <script type="text/javascript">

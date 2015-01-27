@@ -46,7 +46,10 @@ class Ticket(models.Model):
     notes = models.CharField(max_length=500)
     created = models.DateTimeField()
     closed = models.DateTimeField(null=True, blank=True)
-    priority = models.ForeignKey(Priority, null=True, blank=True)    
+    priority = models.ForeignKey(Priority, null=True, blank=True)
+    due_date = models.DateTimeField(null=True)
+    assignee = models.ForeignKey(User, null=True)
+    cost = models.IntegerField(null=True)
 
     class Meta:
             permissions = (('canEditAllTickets', 'Can edit all tickets'),)  # Intended for use with ticket priorities.
@@ -64,8 +67,21 @@ class MetadataName(models.Model):
 
 class Metadata(models.Model):
     chat = models.ForeignKey('chat.Chat', blank=True, null=True)
-    value = models.CharField(max_length=2000, blank=True, null=True)
-    meta_name = models.ForeignKey(MetadataName)
+    metadata_name = models.ForeignKey(MetadataName)
 
     def __unicode__(self):
         return u'Metadata id %d' % self.id
+
+
+class MetadataString(Metadata):
+    value = models.CharField(max_length=2000)
+
+    def __unicode__(self):
+        return u'%s' % self.value
+
+
+class MetadataDate(Metadata):
+    value = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'%s' % self.value
