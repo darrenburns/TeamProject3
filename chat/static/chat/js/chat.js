@@ -19,10 +19,12 @@ $(function () {
                 '<div class="col-xs-1">' +
                 '<div class="user-box pull-right">' +
                     '<span class="text-muted">' +
+                '<a href="/profiles/{{user}}">' +
                         '<em>' +
                         '{{ user }}' +
                         '</em>' +
                     '</span>' +
+                '</a>' +
                 '</div>' +
                 '</div>' +
                 '<div class="col-xs-11">' +
@@ -138,7 +140,8 @@ $(function () {
     setContainerHeight();
 
 
-    if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined') {
+    if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined' &&
+            typeof CURRENT_USER_ID != 'undefined') {
         // Initialise the Firebase
         var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
 
@@ -157,6 +160,7 @@ $(function () {
                 messagesRef.push({
                     desc: messageInput.val(),
                     user: CURRENT_USER,
+                    user_id: CURRENT_USER_ID,
                     dt: Date.now()
                 });
                 messageInput.val("");
