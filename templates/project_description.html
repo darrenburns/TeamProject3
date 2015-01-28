@@ -3,8 +3,11 @@
 
 {% block content %}
 
-    <div class="container">
+    <script type="text/javascript">
+        PROJECT_ID="{{ project.id }}";
+    </script>
 
+    <div class="container">
         <div class="row">
             <div class="col-sm-6">
                 <h2 class="page-header" id="chat-title">{{ project.name }}</h2>
@@ -21,6 +24,7 @@
 
         <div class="row">
             <div class="col-md-6" id="d3-graph-one">
+                <p>Number of messages in each conversation:</p>
             </div>
             <div class="col-md-6" id="d3-graph-two">
             </div>

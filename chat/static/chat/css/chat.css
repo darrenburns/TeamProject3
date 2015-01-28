@@ -96,3 +96,7 @@ a {
     border-width: 15px 40px 0 0; /* vary these values to change the angle of the vertex */
     border-color: transparent #267dba;
 }
+
+#tab-information {
+    padding: 10px;
+}
