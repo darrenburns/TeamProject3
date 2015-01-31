@@ -104,7 +104,7 @@ $(function () {
                 // Update the project name in the button
                 var project = $('#' + id);
                 var projectTitle = project.text();
-                project.parents('.dropdown').find('.dropdown-toggle').html(projectTitle + ' <span class="caret"></span>');
+                project.parents("#dropdown-row").find("#sidebar-dropdown-button").html(projectTitle + ' <span class="caret"></span>');
 
                 // Update the dashboard title to the project desc
                 $('#dashboard-title').text(projectTitle);
