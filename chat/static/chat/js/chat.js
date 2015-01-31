@@ -163,7 +163,7 @@ $(function () {
 
 
         messagesRef.on("child_added", function (object) {
-            addMessage(object)
+            addMessage(object);
         });
 
         getMetadataInformation(CHAT_ID);
