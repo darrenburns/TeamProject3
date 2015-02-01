@@ -30,14 +30,16 @@ $(function() {
             svg.attr("height", BASE_CHART_HEIGHT);
 
             // Create the scale - this defines a function which modifies the y values to the appropriate scale.
-            var scale = d3.scale.linear();
-            scale.domain([0, d3.max(chatLengths)]);  // specify the range of our input values
-            scale.range([BASE_CHART_HEIGHT, 0]);  // we want the output values to the no more than the height of the chart
+            var scale = d3.scale.linear()
+            	.domain([0, d3.max(chatLengths)])  // specify our domain (possible input values)
+            	.range([BASE_CHART_HEIGHT, 0])     // specify our range (possible output values)
+				.clamp(true);                      // we want the output values to the no more than the height of the chart
 
             // Create an axis - literally creates the svg for an axis
             var chatLengthsYAxis = d3.svg.axis()
                 .scale(scale)  // let the axis know what scale we're using (for drawing ticks etc.)
-                .orient("left");
+                .orient("left")
+				.ticks(5);
 
             svg.selectAll("rect")
                 .data(chatLengths)
