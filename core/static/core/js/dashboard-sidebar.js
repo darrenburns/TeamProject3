@@ -96,10 +96,10 @@ $(function () {
                 }
 
                 // Create mustache template for rendering tickets list
-                var openChatsListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a>{{/chats}}';
-                renderTemplate(openTicketsList, openChatsListTemplate, {'chats': openChatsObject});
-                var closedChatsListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{#closed}}<span class="label label-danger">C</span>{{/closed}} {{ title }}</a>{{/chats}}';
-                renderTemplate(closedTicketsList, closedChatsListTemplate, {'chats': closedChatsObject});
+				var chatListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a>{{/chats}}';
+                renderTemplate(openTicketsList, chatListTemplate, {'chats': openChatsObject});
+                renderTemplate(closedTicketsList, chatListTemplate, {'chats': closedChatsObject});
+
 
                 // Update the project name in the button
                 var project = $('#' + id);
