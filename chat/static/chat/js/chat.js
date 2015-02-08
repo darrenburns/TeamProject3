@@ -7,47 +7,6 @@ $(function () {
     var selectMetadataName;
     var apiCall = "/api/v1/";
 
-    function addMessage(object) {
-        var child = object.val();
-        chatParticipants.push(CURRENT_USER);
-
-        //Create a new date field to use in Mustache
-        child.formattedDate = getFormattedDate(child.dt);
-
-        var messagesTemplate =
-            '<div class="row">' +
-                '<div class="col-xs-1">' +
-                '<div class="user-box pull-right">' +
-                    '<span class="text-muted">' +
-                        '<em>' +
-                        '{{ user }}' +
-                        '</em>' +
-                    '</span>' +
-                '</div>' +
-                '</div>' +
-                '<div class="col-xs-11">' +
-                    '<div class="message-container triangle-right left">'+
-                    '<p class="lead message-text">{{ desc }}</p> '+
-                    '<p class="message-date">{{ formattedDate }}</p>' +
-                    '</div>' +
-                '</div>' +
-            '</div>';
-
-        var renderedTemplate = Mustache.to_html(messagesTemplate, child);
-        messages.append(renderedTemplate);
-
-
-        // On new message load, scroll to the top.
-        messages[0].scrollTop = messages[0].scrollHeight;
-    }
-
-    // Returns a readable string representing a Date object (includes time of day).
-    function getFormattedDate(dt) {
-        var d = new Date(dt);
-        return d.toLocaleTimeString() + " on " + d.toLocaleDateString();
-
-    }
-
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
     //outerHeight is the height of element with its margins
@@ -60,6 +19,19 @@ $(function () {
 
         var maxHeight = windowHeight - (navbarHeight + chatTitleHeight + navTabsHeight + messageInputHeight + 50);
         messages.css("max-height", maxHeight+"px");
+    }
+
+    //If the user resizes the screen the height is updated
+    $(window).on('resize', function() { setContainerHeight(); });
+
+    //Call the function once
+    setContainerHeight();
+
+    // Returns a readable string representing a Date object (includes time of day).
+    function getFormattedDate(dt) {
+        var d = new Date(dt);
+        return d.toLocaleTimeString() + " on " + d.toLocaleDateString();
+
     }
 
     //This function receives the title and value of a metadata,
@@ -124,18 +96,61 @@ $(function () {
                     displayMetadataInformation("Notes", notes);
                 }
 
-
-
             });
     }
 
+    function addMessage(object) {
+        var child = object.val();
+        chatParticipants.startAt().endAt().on("value", function(snapshot) {
+            var participants = snapshot.val();
+            var found = false;
+            for (var key in participants) {
+                if (participants.hasOwnProperty(key)) {
+                    var user = participants[key];
+                    if (CURRENT_USER == user) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
 
-    //If the user resizes the screen the height is updated
-    $(window).on('resize', function() { setContainerHeight(); });
+            if (!found) {
+                chatParticipants.push(CURRENT_USER);
+            }
+
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
+
+        //Create a new date field to use in Mustache
+        child.formattedDate = getFormattedDate(child.dt);
+
+        var messagesTemplate =
+            '<div class="row">' +
+                '<div class="col-xs-1">' +
+                '<div class="user-box pull-right">' +
+                    '<span class="text-muted">' +
+                        '<em>' +
+                        '{{ user }}' +
+                        '</em>' +
+                    '</span>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-xs-11">' +
+                    '<div class="message-container triangle-right left">'+
+                    '<p class="lead message-text">{{ desc }}</p> '+
+                    '<p class="message-date">{{ formattedDate }}</p>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+
+        var renderedTemplate = Mustache.to_html(messagesTemplate, child);
+        messages.append(renderedTemplate);
 
 
-    //Call the function once
-    setContainerHeight();
+        // On new message load, scroll to the top.
+        messages[0].scrollTop = messages[0].scrollHeight;
+    }
 
 
     if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined') {
@@ -146,8 +161,8 @@ $(function () {
         var projectObj = ref.child('project/' + PROJECT_ID);
         var chatObj = projectObj.child('chats/' + CHAT_ID);
 
-        //creating the child note participants to the chat
         var chatParticipants = chatObj.child("participants");
+
 
         var messagesRef = chatObj.child("messages");
 
@@ -162,7 +177,6 @@ $(function () {
                 messageInput.val("");
             }
         });
-
 
         messagesRef.on("child_added", function (object) {
             addMessage(object)
