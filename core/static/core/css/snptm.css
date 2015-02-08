@@ -12,3 +12,7 @@
     stroke: black;
     shape-rendering: crispEdges;
 }
+.xaxis path,
+.xaxis line{
+    fill: none;
+}
