@@ -104,7 +104,11 @@ $(function () {
                 var cost = metadataObject.cost;
                 var dueDate = metadataObject.due_date;
                 var notes = metadataObject.notes;
-                var user = metadataObject.user.username;
+                var user = null;
+
+                if(metadataObject.user != null){
+                    user = metadataObject.user.username;
+                }
 
                 displayMetadataInformation("Date created", getFormattedDate(dateCreated));
 
