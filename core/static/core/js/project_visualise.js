@@ -26,6 +26,7 @@ $(function() {
             }
         });
 
+
         projectChats.once('value', function (snap) {
             var counter = 0; // Use this ti make sure we don't retreive chats that exist on firebase but not in django!
             var filteredChats = snap.val().chats.filter(function (elem) {

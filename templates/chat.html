@@ -22,9 +22,15 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <ul class="nav nav-tabs">
-                                <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
+                                <li role="presentation" class="active">
+                                    <a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
                                 </li>
-                                <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information</a></li>
+                                <li role="presentation">
+                                    <a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information</a>
+                                </li>
+                                <li>
+                                    <a role="tab" data-toggle="tab" href="#tab-visualisations" id="open-tab-visualisations">Visualisation</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-sm-6">
@@ -80,6 +86,12 @@
                                 <!-- TODO: Add metadata items here -->
                             </div>
                             <!-- End tab information -->
+
+                            <!-- Tab visualisations -->
+                            <div role="tabpanel" class="tab-pane" id="tab-visualisations">
+                                <div class="chat-visualisations"></div>
+                            </div>
+                            <!-- End tab visualisation -->
 
                             <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
                         </div>
@@ -181,6 +193,7 @@
         CHAT_ID = "{{ chat.id }}";
         PROJECT_ID = "{{ chat.project }}";
     </script>
+
 
 
 {% endblock %}
