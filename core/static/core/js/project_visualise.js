@@ -18,13 +18,14 @@ $(function() {
         $.ajax({
             url: "/api/v1/chat/",
             data: {
-                project: 1
+                project: PROJECT_ID
             }
         }).done( function (data) {
             for (i = 0; i < data.objects.length; i++) {
                 chatTitles.push(data.objects[i].title);
             }
         });
+
 
         projectChats.once('value', function (snap) {
             var counter = 0; // Use this ti make sure we don't retreive chats that exist on firebase but not in django!
@@ -42,7 +43,7 @@ $(function() {
 
             var svg = d3.select("#d3-graph-one").append("svg");
             svg.attr("width", BASE_CHART_WIDTH);
-            svg.attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM);
+            svg.attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM + BASE_PADDING_TOP);
 
             // Create the scale - this defines a function which modifies the y values to the appropriate scale.
             var scale = d3.scale.linear()
