@@ -96,3 +96,15 @@ a {
     border-width: 15px 40px 0 0; /* vary these values to change the angle of the vertex */
     border-color: transparent #267dba;
 }
+#project-title{
+    margin-top: 13px;
+}
+
+#project-title a{
+    color: #000;
+}
+
+#project-title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
