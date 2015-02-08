@@ -76,6 +76,19 @@ a {
     background: #267dba;
 }
 
+.triangle-right.right {
+    margin-left:40px;
+    background: #5eba54;
+}
+
+.triangle-right.right:after {
+    top: 16px;
+    left: -40px; /* value = - border-left-width - border-right-width */
+    bottom: auto;
+    border-width: 15px 40px 0 0; /* vary these values to change the angle of the vertex */
+    border-color: transparent #5eba54;
+}
+
 .triangle-right:after {
     content:"";
     position:absolute;

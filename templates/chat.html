@@ -8,9 +8,9 @@
                 <div class="col-sm-12">
                     <h1 id="chat-title"><small>{{ chat.title }}</small>
                         {% if chat.closed %}<span class="label label-danger">Closed</span>{% endif %}
-{#                        <a href="{% url 'project_description' chat.project.id %}?next={{ chat.id }}">#}
-{#                            <small>{{ chat.project.name }}</small>#}
-{#                        </a>#}
+                        {#                        <a href="{% url 'project_description' chat.project.id %}?next={{ chat.id }}">#}
+                        {#                            <small>{{ chat.project.name }}</small>#}
+                        {#                        </a>#}
                     </h1>
                 </div>
             </div>
@@ -59,33 +59,36 @@
                     </div>
 
                 </div>
+                <form>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <!-- Tab panes -->
-                        <div class="tab-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
 
-                            <!-- Tab chats -->
-                            <div role="tabpanel" class="tab-pane active" id="tab-chats">
-                                <div class="list-group latest-messages">
+                                <!-- Tab chats -->
+                                <div role="tabpanel" class="tab-pane active" id="tab-chats">
+                                    <div class="list-group latest-messages">
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Message" id="input-message">
                                 </div>
-                                <input type="text" class="form-control" placeholder="Message" id="input-message">
-                            </div>
-                            <!-- End tab chats -->
+                                <!-- End tab chats -->
 
-                            <!-- Tab information -->
-                            <div role="tabpanel" class="tab-pane" id="tab-information">
-                                <!-- TODO: Add metadata items here -->
-                            </div>
-                            <!-- End tab information -->
+                                <!-- Tab information -->
+                                <div role="tabpanel" class="tab-pane" id="tab-information">
+                                    <!-- TODO: Add metadata items here -->
+                                </div>
+                                <!-- End tab information -->
 
-                            <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
+                                <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
+                            </div>
+                            <!-- End tab panes -->
+
+
                         </div>
-                        <!-- End tab panes -->
-
-
                     </div>
-                </div>
+                </form>
+
 
             </div>
 

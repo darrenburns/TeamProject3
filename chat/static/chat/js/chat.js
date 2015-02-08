@@ -101,6 +101,7 @@ $(function () {
 
     function addMessage(object) {
         var child = object.val();
+
         chatParticipants.startAt().endAt().on("value", function(snapshot) {
             var participants = snapshot.val();
             var found = false;
@@ -136,8 +137,14 @@ $(function () {
                     '</span>' +
                 '</div>' +
                 '</div>' +
-                '<div class="col-xs-11">' +
-                    '<div class="message-container triangle-right left">'+
+                '<div class="col-xs-11">';
+
+        if(CURRENT_USER == child.user){
+            messagesTemplate += '<div class="message-container triangle-right right">';
+        }else{
+            messagesTemplate += '<div class="message-container triangle-right left">';
+        }
+        messagesTemplate +=
                     '<p class="lead message-text">{{ desc }}</p> '+
                     '<p class="message-date">{{ formattedDate }}</p>' +
                     '</div>' +
