@@ -184,6 +184,21 @@ $(function () {
                 });
         });
 
+    $.getJSON("/api/v1/user_profile/")
+        .success(function(userProfile){
+            console.log(userProfile);
+            var userProfileObjects = userProfile.objects;
+            var userProfileListTemplate = "{{#userProfile}}<li><a id='user-profile-{{ id }}'>{{ user.username }}</a></li>{{/userProfile}}";
+            var renderedTemplate = Mustache.to_html(userProfileListTemplate, {'userProfile' : userProfileObjects});
+            $("#list-user")
+                .html(renderedTemplate)
+                .find("a")
+                .on("click", function(){
+                    $("#user-dropdown-button").html(this.text + ' <span class="caret"></span>');
+                    selectUserProfile = this.id.split("-")[2]; //Get the id of the selected user profile
+                });
+        });
+
     $("#confirm-add-note").on("click", function(){
 
         var passData = {
@@ -226,6 +241,26 @@ $(function () {
     });
 
     $("#confirm-add-cost").on("click", function(){
+
+        var passData = {
+            "cost" : parseInt($("#cost-value").val())
+        };
+
+        $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function(){
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+    });
+
+    $("#confirm-add-assignee").on("click", function(){
 
         var passData = {
             "cost" : parseInt($("#cost-value").val())
