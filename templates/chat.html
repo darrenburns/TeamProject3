@@ -3,22 +3,20 @@
 {% block content %}
 
     <div class="remodal-bg">
-
         <div class="col-xs-9 main">
             <div class="row">
                 <div class="col-sm-12">
-                    <h2 class="page-header" id="chat-title">{{ chat.title }}
+                    <h1 id="chat-title"><small>{{ chat.title }}</small>
                         {% if chat.closed %}<span class="label label-danger">Closed</span>{% endif %}
-                        <br/>
-                        <a href="{% url 'project_description' chat.project.id %}?next={{ chat.id }}">
-                            <small>{{ chat.project.name }}</small>
-                        </a></h2>
+{#                        <a href="{% url 'project_description' chat.project.id %}?next={{ chat.id }}">#}
+{#                            <small>{{ chat.project.name }}</small>#}
+{#                        </a>#}
+                    </h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12">
-
                     <div class="row">
                         <div class="col-sm-6">
                             <ul class="nav nav-tabs">
