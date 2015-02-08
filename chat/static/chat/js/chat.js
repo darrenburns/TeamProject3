@@ -6,7 +6,7 @@ $(function () {
     var tabInformation = $("#tab-information");
     var selectMetadataName;
     var apiCall = "/api/v1/";
-
+    
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
     //outerHeight is the height of element with its margins
@@ -153,7 +153,8 @@ $(function () {
     }
 
 
-    if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined') {
+    if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined' &&
+            typeof CURRENT_USER_ID != 'undefined') {
         // Initialise the Firebase
         var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
 
@@ -172,6 +173,7 @@ $(function () {
                 messagesRef.push({
                     desc: messageInput.val(),
                     user: CURRENT_USER,
+                    user_id: CURRENT_USER_ID,
                     dt: Date.now()
                 });
                 messageInput.val("");

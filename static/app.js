@@ -1,3 +1,1 @@
-/**
- * Created by Darren on 23/11/2014.
- */
+$(function () { $("[data-toggle='tooltip']").tooltip(); });
