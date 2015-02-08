@@ -12,9 +12,24 @@ $(function() {
 
         var projectChats = ref.child('project/' + PROJECT_ID);
 
+        // Get the titles of the chats we know about in our django database.
+        var chatTitles = [];
+        $.ajax({
+            url: "/api/v1/chat/",
+            data: {
+                project: 1
+            }
+        }).done( function (data) {
+            for (i = 0; i < data.objects.length; i++) {
+                chatTitles.push(data.objects[i].title);
+            }
+            console.log(chatTitles);
+        });
+
         projectChats.once('value', function (snap) {
+            var counter = 0; // Use this ti make sure we don't retreive chats that exist on firebase but not in django!
             var filteredChats = snap.val().chats.filter(function (elem) {
-                if (elem.closed) {
+                if (elem.closed | counter++ >= chatTitles.length) {
                     return elem.closed == false;
                 }
                 return true;
