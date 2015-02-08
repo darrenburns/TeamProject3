@@ -104,6 +104,7 @@ $(function () {
                 var cost = metadataObject.cost;
                 var dueDate = metadataObject.due_date;
                 var notes = metadataObject.notes;
+                var user = metadataObject.user.username;
 
                 displayMetadataInformation("Date created", getFormattedDate(dateCreated));
 
@@ -123,7 +124,9 @@ $(function () {
                     displayMetadataInformation("Notes", notes);
                 }
 
-
+                if(user != null){
+                    displayMetadataInformation("Assignee", user);
+                }
 
             });
     }
@@ -273,13 +276,10 @@ $(function () {
             dataType: "json",
             data: JSON.stringify(passData),
             complete: function(data){
-                console.log(data);
                 getMetadataInformation(CHAT_ID);
                 $("#open-tab-information").tab("show");
             }
         });
-
-        console.log(passData);
 
     });
 
