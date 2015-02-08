@@ -100,3 +100,16 @@ a {
 #tab-information {
     padding: 10px;
 }
+
+#project-title{
+    margin-top: 13px;
+}
+
+#project-title a{
+    color: #000;
+}
+
+#project-title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -21,18 +21,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'home' %}">Team Project</a>
+            <a class="navbar-brand" href="{% url 'home' %}"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="navbar-dropdown-list" id="navbar-dropdown-list">
+                        <!-- Ajax content injected here -->
+                        <li class='divider'></li><li><a href='/newproject'><span class='glyphicon glyphicon-plus'></span> New Project </a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'user_profile' user.username %}" >{{ user }}</a></li>
-                <li><a href="{% url 'user_logout' %}">Logout</a> </li>
+                    <li><a href="{% url 'user_profile' user.username %}" >{{ user }}</a></li>
+                    <li><a href="{% url 'user_logout' %}">Logout</a> </li>
                 {% else %}
-                <li><a href="{% url 'user_login' %}">Login</a></li>
-                <li><a href="{% url 'user_register' %}">Register</a></li>
+                    <li><a href="{% url 'user_login' %}">Login</a></li>
+                    <li><a href="{% url 'user_register' %}">Register</a></li>
                 {% endif %}
             </ul>
             <form class="navbar-form navbar-right" role="search">
