@@ -5,10 +5,12 @@ from tastypie.constants import ALL_WITH_RELATIONS
 
 from tastypie.resources import ModelResource
 from chat.models import Chat, Metadata, MetadataName, Ticket
-from core.api.resources import ProjectResource
+from core.api.resources import ProjectResource, UserResource
 
 
 class TicketResource(ModelResource):
+
+    user = fields.ForeignKey(UserResource, 'assignee', full=True, null=True)
 
     class Meta:
         resource_name = 'ticket'

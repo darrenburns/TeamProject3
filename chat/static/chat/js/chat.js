@@ -128,6 +128,7 @@ $(function () {
             });
     }
 
+    var selectUserProfile;
 
     //If the user resizes the screen the height is updated
     $(window).on('resize', function() { setContainerHeight(); });
@@ -186,7 +187,6 @@ $(function () {
 
     $.getJSON("/api/v1/user_profile/")
         .success(function(userProfile){
-            console.log(userProfile);
             var userProfileObjects = userProfile.objects;
             var userProfileListTemplate = "{{#userProfile}}<li><a id='user-profile-{{ id }}'>{{ user.username }}</a></li>{{/userProfile}}";
             var renderedTemplate = Mustache.to_html(userProfileListTemplate, {'userProfile' : userProfileObjects});
@@ -263,7 +263,7 @@ $(function () {
     $("#confirm-add-assignee").on("click", function(){
 
         var passData = {
-            "cost" : parseInt($("#cost-value").val())
+            "assignee" : apiCall + "user/" + selectUserProfile + "/"
         };
 
         $.ajax({
@@ -272,11 +272,14 @@ $(function () {
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
-            complete: function(){
+            complete: function(data){
+                console.log(data);
                 getMetadataInformation(CHAT_ID);
                 $("#open-tab-information").tab("show");
             }
         });
+
+        console.log(passData);
 
     });
 

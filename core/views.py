@@ -102,7 +102,7 @@ def new_project(request):
 
             return render_to_response('dashboard.html', context_instance=RequestContext(request))
         else:
-            return render(request, 'new_project.html', {'form':form, 'error': True})
+            return render(request, 'new_project.html', {'form': form, 'error': True})
 
     args = {}
     args.update(csrf(request))
@@ -122,7 +122,7 @@ def new_chat(request, project_id):
 
         if form.is_valid():
             chat = form.save()
-            ticket = Ticket(notes="a", created=datetime.datetime.now())
+            ticket = Ticket(created=datetime.datetime.now())
             ticket.save()
             chat.ticket = ticket
             chat.save()

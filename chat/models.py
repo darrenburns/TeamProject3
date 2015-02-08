@@ -43,7 +43,7 @@ class Priority(models.Model):
 
 
 class Ticket(models.Model):
-    notes = models.CharField(max_length=500)
+    notes = models.CharField(max_length=500, null=True, blank=True)
     created = models.DateTimeField()
     closed = models.DateTimeField(null=True, blank=True)
     priority = models.ForeignKey(Priority, null=True, blank=True)
