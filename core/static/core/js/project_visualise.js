@@ -82,7 +82,7 @@ $(function() {
 
             svg.append("g")
                 .attr("class", "axis")
-                .attr("transform", "translate(" + BASE_PADDING_LEFT + "," + (BASE_PADDING_TOP*-1) +")")
+                .attr("transform", "translate(" + BASE_PADDING_LEFT + "," + -BASE_PADDING_TOP +")")
                 .call(chatLengthsYAxis);
 
             svg.append("g")
