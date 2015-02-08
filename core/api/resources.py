@@ -24,7 +24,6 @@ class UserResource(ModelResource):
         resource_name = 'user'
         queryset = User.objects.all()
         allowed_methods = ['get']
-        detail_uri_name = 'username'
 
     def dehydrate(self, bundle):
         del bundle.data['password']

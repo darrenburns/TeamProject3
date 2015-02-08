@@ -263,7 +263,7 @@ $(function () {
     $("#confirm-add-assignee").on("click", function(){
 
         var passData = {
-            "assignee" : apiCall + "user/" + selectUserProfile + "/"
+            "user" : apiCall + "user/" + selectUserProfile + "/"
         };
 
         $.ajax({
