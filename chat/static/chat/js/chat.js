@@ -31,14 +31,14 @@ $(function () {
             '</div>' +
             '<div class="col-md-10">' +
             '<p class="list-group-item-text">'+
-            ' <h5>{{ desc }}</h5> '+
+            ' <h5></h5> '+
             '</p>'+
             '</div>' +
             '</div>' +
             '</div>';
 
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
-        renderedTemplate = renderedTemplate.replace(/<h5>(.*?)<\/h5>/, formatedMessage);
+        renderedTemplate = renderedTemplate.replace(/<h5><\/h5>/, "<h5>" + formatedMessage + "</h5>");
         messages.append(renderedTemplate);
 
 
@@ -164,14 +164,17 @@ $(function () {
 
         var messagesRef = chatObj.child("messages");
 
+
         //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
-            if (e.keyCode == 13) {
+
+            if (e.keyCode == 13 && !e.shiftKey) {
                 messagesRef.push({
                     desc: messageInput.val(),
                     user: CURRENT_USER,
                     dt: Date.now()
                 });
+
                 messageInput.val("");
             }
         });
