@@ -3,11 +3,10 @@ $(function() {
     if (typeof PROJECT_ID != 'undefined') {
 
         var BASE_CHART_WIDTH = 400;
-        var BASE_CHART_HEIGHT = 200;
-        var BASE_BAR_PADDING = 1;
+        var BASE_CHART_HEIGHT = 250;
         var BASE_PADDING_LEFT = 30;
         var BASE_PADDING_TOP = 8;
-        var BASE_PADDING_BOTTOM = 30;
+        var BASE_PADDING_BOTTOM = 120;
 
         var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
 
@@ -47,15 +46,15 @@ $(function() {
 
             // Create the scale - this defines a function which modifies the y values to the appropriate scale.
             var scale = d3.scale.linear()
-            	.domain([0, d3.max(chatLengths)])  // specify our domain (possible input values)
-            	.range([BASE_CHART_HEIGHT, 0])     // specify our range (possible output values)
-				.clamp(true);                      // we want the output values to the no more than the height of the chart
+                .domain([0, d3.max(chatLengths)+1])  // specify our domain (possible input values)
+                .range([BASE_CHART_HEIGHT, 0])     // specify our range (possible output values)
+                .clamp(true);                      // we want the output values to the no more than the height of the chart
 
             // Create an axis - literally creates the svg for an axis
             var chatLengthsYAxis = d3.svg.axis()
                 .scale(scale)  // let the axis know what scale we're using (for drawing ticks etc.)
                 .orient("left")
-				.ticks(5);
+                .ticks(4);
 
             var titleScale = d3.scale.ordinal()
                 .domain(chatTitles)
@@ -87,9 +86,16 @@ $(function() {
                 .call(chatLengthsYAxis);
 
             svg.append("g")
-                .attr("class", "xaxis")
+                .attr("class", "x axis")
                 .attr("transform", "translate(" + BASE_PADDING_LEFT + "," + (BASE_CHART_HEIGHT - BASE_PADDING_TOP) + ")")
-                .call(chatTitlesXAxis);
+                .call(chatTitlesXAxis)
+                .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", "-.4em")
+                    .attr("transform", function(d){
+                       return "rotate(-65)"
+                    });
 
         });
 
