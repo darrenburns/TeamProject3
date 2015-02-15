@@ -3,28 +3,32 @@
 {% block content %}
 
     <div class="remodal-bg">
-
         <div class="col-xs-9 main">
             <div class="row">
                 <div class="col-sm-12">
-                    <h2 class="page-header" id="chat-title">{{ chat.title }}
+                    <h1 id="chat-title"><small>{{ chat.title }}</small>
                         {% if chat.closed %}<span class="label label-danger">Closed</span>{% endif %}
-                        <br/>
-                        <a href="{% url 'project_description' chat.project.id %}?next={{ chat.id }}">
-                            <small>{{ chat.project.name }}</small>
-                        </a></h2>
+                        {#                        <a href="{% url 'project_description' chat.project.id %}?next={{ chat.id }}">#}
+                        {#                            <small>{{ chat.project.name }}</small>#}
+                        {#                        </a>#}
+                    </h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12">
-
                     <div class="row">
                         <div class="col-sm-6">
                             <ul class="nav nav-tabs">
-                                <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
+                                <li role="presentation" class="active">
+                                    <a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
                                 </li>
-                                <li role="presentation"><a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information</a></li>
+                                <li role="presentation">
+                                    <a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information</a>
+                                </li>
+                                <li>
+                                    <a role="tab" data-toggle="tab" href="#tab-visualisations" id="open-tab-visualisations">Visualisation</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-sm-6">
@@ -61,33 +65,37 @@
                     </div>
 
                 </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-
-                            <!-- Tab chats -->
-                            <div role="tabpanel" class="tab-pane active" id="tab-chats">
-                                <div class="list-group latest-messages">
+                                <!-- Tab chats -->
+                                <div role="tabpanel" class="tab-pane active" id="tab-chats">
+                                    <div class="list-group latest-messages">
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Message" id="input-message">
                                 </div>
-                                <input type="text" class="form-control" placeholder="Message" id="input-message">
-                            </div>
-                            <!-- End tab chats -->
+                                <!-- End tab chats -->
 
-                            <!-- Tab information -->
-                            <div role="tabpanel" class="tab-pane" id="tab-information">
-                                <!-- TODO: Add metadata items here -->
+                                <!-- Tab information -->
+                                <div role="tabpanel" class="tab-pane" id="tab-information">
+                                    <!-- TODO: Add metadata items here -->
+                                </div>
+                                <!-- End tab information -->
+
+
+                            <!-- Tab visualisations -->
+                            <div role="tabpanel" class="tab-pane" id="tab-visualisations">
+                                <div class="chat-visualisations"></div>
                             </div>
-                            <!-- End tab information -->
+                            <!-- End tab visualisation -->
 
                             <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
                         </div>
                         <!-- End tab panes -->
-
-
+                        </div>
                     </div>
-                </div>
 
             </div>
 
@@ -181,6 +189,7 @@
         CHAT_ID = "{{ chat.id }}";
         PROJECT_ID = "{{ chat.project }}";
     </script>
+
 
 
 {% endblock %}

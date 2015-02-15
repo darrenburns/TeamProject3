@@ -8,22 +8,7 @@
         <div class="row">
 
             <div class="col-sm-12">
-                <div class="btn-group" id="project-list">
-                    <button type="button" class="btn btn-default" id="project-button" data-toggle="tooltip" data-placement="bottom"
-                            title="View Project">No projects</button>
-                    <button type="button" class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown" data-toggle="tooltip" title="Click to see the list of projects">
-                        <span class="caret"></span>
-                    </button>
-                    <a href="{% url 'new_project' %}">
-                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="New Project">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="sidebar-dropdown-list" id="sidebar-dropdown-list">
-                        <!-- Ajax content injected here -->
-                    </ul>
-                </div>
+               <h3 id="project-title"><a  href="">No projects</a></h3>
             </div>
 
         </div>
@@ -37,7 +22,7 @@
                         <div class="panel-heading" role="tab" id="heading-open">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#tickets-panel" href="#collapse-open" aria-expanded="false" aria-controls="collapse-open">
-                                    Open tickets
+                                    Conversations
                                 </a>
 
                                 <a href="/projects/id/newchat/">
@@ -56,7 +41,7 @@
                         <div class="panel-heading" role="tab" id="heading-closed">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#tickets-panel" href="#collapse-closed" aria-expanded="false" aria-controls="collapse-closed">
-                                    Closed tickets
+                                    Closed conversations
                                 </a>
                             </h4>
                         </div>

@@ -23,7 +23,7 @@ $(function () {
     var ticketsPanel = $('#tickets-panel');
     var openTicketsList = ticketsPanel.find('#open-tickets-list');
     var closedTicketsList = ticketsPanel.find('#closed-tickets-list');
-
+    var navbarDropdownProjectList = $('#navbar-dropdown-list');
     //Call the function once
     setListHeight();
 
@@ -60,10 +60,12 @@ $(function () {
 
                 //Render template. Update display
                 var projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{name}}</a></li>{{/projects}}';
-                renderTemplate($('#sidebar-dropdown-list'), projectsListTemplate, {'projects': projectObjects})
+                renderTemplate(navbarDropdownProjectList, projectsListTemplate, {'projects': projectObjects});
 
+                var newProjectLink = $("<li class='divider'></li><li><a href='/newproject'><span class='glyphicon glyphicon-plus'></span> New Project </a></li>");
+                navbarDropdownProjectList.append(newProjectLink);
                 //Bind the click event into projects items
-                $('#sidebar-dropdown-list li a').bind('click', function () {
+                navbarDropdownProjectList.find('li a').bind('click', function () {
                     selected_project = this.getAttribute('id');
                     selectProject(selected_project);
                 });
@@ -104,20 +106,13 @@ $(function () {
                 // Update the project name in the button
                 var project = $('#' + id);
                 var projectTitle = project.text();
-                project.parents('#project-list')
-                    .find('#project-button')
-                    .html(projectTitle)
-                    .on("click", function(){
-                        var url = "/projects/"+id+"/info/";
-                        if(typeof CHAT_ID != 'undefined'){
-                            url = url + "?next="+CHAT_ID;
-                        }
-                        location.href=url;
-                    })
-                    ;
+                var url = "/projects/"+id+"/info/";
 
-                // Update the dashboard title to the project desc
-                $('#dashboard-title').text(projectTitle);
+                if(typeof CHAT_ID != 'undefined'){
+                    url = url + "?next="+CHAT_ID;
+                }
+
+                $("#project-title").find("a").html(projectTitle).attr("href", url);
 
                 //Add a class active and make the accordion open
                 if (typeof CHAT_ID != 'undefined') {
