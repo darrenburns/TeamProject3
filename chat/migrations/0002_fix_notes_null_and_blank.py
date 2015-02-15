@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('chat', '0004_auto_20150125_1351'),
+        ('chat', '0001_initial'),
     ]
 
     operations = [
