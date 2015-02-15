@@ -14,7 +14,6 @@ v1_api.register(ChatResource())
 v1_api.register(MetadataResource())
 v1_api.register(MetadataNameResource())
 v1_api.register(TicketResource())
-v1_api.register(TicketResource())
 v1_api.register(UserProfileResource())
 v1_api.register(UserResource())
 
