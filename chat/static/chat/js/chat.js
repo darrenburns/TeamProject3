@@ -8,6 +8,7 @@ $(function () {
     var apiCall = "/api/v1/";
     var initialNoteValue;
     var noteTextArea = $("#note-value");
+    var converter = new Showdown.converter();
 
     function addMessage(object) {
         var child = object.val();
@@ -15,6 +16,7 @@ $(function () {
 
         //Create a new date field to use in Mustache
         child.formattedDate = getFormattedDate(child.dt);
+        var formatedMessage = converter.makeHtml(child.desc);
 
         var messagesTemplate =
             '<div class="list-group-item message-container">'+
@@ -36,6 +38,7 @@ $(function () {
             '</div>';
 
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
+        renderedTemplate = renderedTemplate.replace(/<h5>(.*?)<\/h5>/, formatedMessage);
         messages.append(renderedTemplate);
 
 
