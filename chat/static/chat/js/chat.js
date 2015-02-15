@@ -6,6 +6,8 @@ $(function () {
     var tabInformation = $("#tab-information");
     var selectMetadataName;
     var apiCall = "/api/v1/";
+    var initialNoteValue;
+    var noteTextArea = $("#note-value");
 
     function addMessage(object) {
         var child = object.val();
@@ -126,8 +128,8 @@ $(function () {
 
                 if(notes != null){
                     displayMetadataInformation("Notes", notes);
-                    $("#note-value").html(notes);
-                    console.log(notes);
+                    noteTextArea.val(notes);
+                    initialNoteValue = notes;
                 }
 
                 if(user != null){
@@ -211,7 +213,7 @@ $(function () {
     $("#confirm-add-note").on("click", function(){
 
         var passData = {
-            "notes" : $("#note-value").val()
+            "notes" : noteTextArea.val()
         };
 
         $.ajax({
@@ -287,6 +289,12 @@ $(function () {
             }
         });
 
+    });
+
+    $("a[href='#modal-add-note']").on("click", function(){
+       if(initialNoteValue != null){
+            noteTextArea.val(initialNoteValue);
+       }
     });
 
 });
