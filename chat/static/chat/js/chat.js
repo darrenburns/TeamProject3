@@ -126,6 +126,8 @@ $(function () {
 
                 if(notes != null){
                     displayMetadataInformation("Notes", notes);
+                    $("#note-value").html(notes);
+                    console.log(notes);
                 }
 
                 if(user != null){
