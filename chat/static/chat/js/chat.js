@@ -10,9 +10,6 @@ $(function () {
     var noteTextArea = $("#note-value");
     var converter = new Showdown.converter();
 
-    /*renderedTemplate = renderedTemplate.replace(/<h5><\/h5>/, "<h5>" + formatedMessage + "</h5>");*/
-
-
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
     //outerHeight is the height of element with its margins
@@ -145,14 +142,16 @@ $(function () {
             messagesTemplate += '<div class="message-container triangle-right left">';
         }
         messagesTemplate +=
-            '<p class="lead message-text">--message--</p> ' +
+            '--message--' +
             '<p class="message-date">{{ formattedDate }}</p>' +
             '</div>' +
             '</div>' +
             '</div>';
 
+        var regularExpression = new RegExp("<p>", 'g');
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
         renderedTemplate = renderedTemplate.replace("--message--", formattedMessage);
+        renderedTemplate = renderedTemplate.replace(regularExpression, "<p class='lead message-text'>");
         messages.append(renderedTemplate);
 
         // On new message load, scroll to the top.
@@ -199,13 +198,13 @@ $(function () {
         //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
             if (e.keyCode == 13 && !e.shiftKey) {
+                e.preventDefault();
                 messagesRef.push({
                     desc: messageInput.val(),
                     user: CURRENT_USER,
                     user_id: CURRENT_USER_ID,
                     dt: Date.now()
                 });
-                messageInput.html("");
                 messageInput.val("");
             }
         });
