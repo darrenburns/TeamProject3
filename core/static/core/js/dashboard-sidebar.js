@@ -69,6 +69,8 @@ $(function () {
                     selected_project = this.getAttribute('id');
                     selectProject(selected_project);
                 });
+            }else{
+                $("#project-title").html("No projects");
             }
 
 
@@ -114,6 +116,7 @@ $(function () {
                     url = url + "?next="+CHAT_ID;
                 }
 
+                //Adding the project title to the H1 heading on sidebar_base and changing the url
                 $("#project-title").find("a").html(projectTitle).attr("href", url);
 
                 //Add a class active and make the accordion open
