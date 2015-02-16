@@ -113,6 +113,9 @@ $(function () {
                     }
                 }
 
+                $('#number-of-conversations').append(openChatsObject.length);
+                $('#number-of-closed-conversations').append(closedChatsObject.length);
+
                 // Create mustache template for rendering tickets list
 				var chatListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a>{{/chats}}';
                 renderTemplate(openTicketsList, chatListTemplate, {'chats': openChatsObject});
