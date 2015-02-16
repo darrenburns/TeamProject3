@@ -40,9 +40,17 @@ $(function() {
                 chatLengths[i] = Object.keys(filteredChats[i].messages).length;
             }
 
+            // Tooltips
+            tip = d3.tip()
+                .attr("class", "d3-tip")
+                .offset([-10, 0])
+                .html(function(d) { return "Messages: " + d; });
+
+            // Create the SVG for the project
             var svg = d3.select("#d3-graph-one").append("svg");
             svg.attr("width", BASE_CHART_WIDTH);
-            svg.attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM + BASE_PADDING_TOP);
+            svg.attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM + BASE_PADDING_TOP)
+                .call(tip);
 
             // Create the scale - this defines a function which modifies the y values to the appropriate scale.
             var scale = d3.scale.linear()
@@ -78,7 +86,9 @@ $(function() {
                 .attr("height", function (val) {
                     return BASE_CHART_HEIGHT - scale(val);
                 })
-                .attr("fill", "lightblue");
+                .attr("fill", "lightblue")
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
 
             svg.append("g")
                 .attr("class", "axis")
