@@ -75,11 +75,11 @@ $(function() {
                     return BASE_PADDING_LEFT + idx * ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / messageCountPerUser.length);  // ensure that the bars scale to fit the svg
                 })
                 .attr("y", function(val) {
-                    return BASE_CHART_HEIGHT - scale(val) + BASE_PADDING_TOP;
+                    return scale(val) + BASE_PADDING_TOP;
                 })
                 .attr("width", (BASE_CHART_WIDTH - BASE_PADDING_LEFT) / messageCountPerUser.length)
                 .attr("height", function(val) {
-                    return scale(val);
+                    return BASE_CHART_HEIGHT - scale(val);
                 })
                 .attr("fill", "lightblue");
 
