@@ -188,6 +188,7 @@ $(function () {
         });
 
         messagesRef.on("child_added", function (object) {
+            $("#spin").hide();
             addMessage(object)
         });
 
