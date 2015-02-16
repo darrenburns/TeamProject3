@@ -6,6 +6,12 @@ $(function () {
     var tabInformation = $("#tab-information");
     var selectMetadataName;
     var apiCall = "/api/v1/";
+    var initialNoteValue;
+    var noteTextArea = $("#note-value");
+    var converter = new Showdown.converter();
+
+    /*renderedTemplate = renderedTemplate.replace(/<h5><\/h5>/, "<h5>" + formatedMessage + "</h5>");*/
+
 
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
@@ -101,6 +107,8 @@ $(function () {
 
                 if (notes != null) {
                     displayMetadataInformation("Notes", notes);
+                    noteTextArea.val(notes);
+                    initialNoteValue = notes;
                 }
 
                 if (user != null) {
@@ -116,6 +124,7 @@ $(function () {
 
         //Create a new date field to use in Mustache
         child.formattedDate = getFormattedDate(child.dt);
+        var formattedMessage = converter.makeHtml(child.desc);
 
         var messagesTemplate =
             '<div class="row">' +
@@ -136,13 +145,14 @@ $(function () {
             messagesTemplate += '<div class="message-container triangle-right left">';
         }
         messagesTemplate +=
-            '<p class="lead message-text">{{ desc }}</p> ' +
+            '<p class="lead message-text">--message--</p> ' +
             '<p class="message-date">{{ formattedDate }}</p>' +
             '</div>' +
             '</div>' +
             '</div>';
 
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
+        renderedTemplate = renderedTemplate.replace("--message--", formattedMessage);
         messages.append(renderedTemplate);
 
         // On new message load, scroll to the top.
@@ -152,7 +162,7 @@ $(function () {
     if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined' &&
         typeof CURRENT_USER_ID != 'undefined') {
         // Initialise the Firebase
-        var ref = new Firebase("https://teamproject3.firebaseio.com/");
+        var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
 
         // Creating a chat object
         var projectObj = ref.child('project/' + PROJECT_ID);
@@ -185,15 +195,17 @@ $(function () {
 
         var messagesRef = chatObj.child("messages");
 
+
         //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode == 13 && !e.shiftKey) {
                 messagesRef.push({
                     desc: messageInput.val(),
                     user: CURRENT_USER,
                     user_id: CURRENT_USER_ID,
                     dt: Date.now()
                 });
+                messageInput.html("");
                 messageInput.val("");
             }
         });
@@ -237,7 +249,9 @@ $(function () {
     $("#confirm-add-note").on("click", function () {
 
         var passData = {
-            "notes": $("#note-value").val()
+
+            "notes" : noteTextArea.val()
+
         };
 
         $.ajax({
@@ -314,4 +328,11 @@ $(function () {
         });
 
     });
+
+    $("a[href='#modal-add-note']").on("click", function(){
+       if(initialNoteValue != null){
+            noteTextArea.val(initialNoteValue);
+       }
+    });
+
 });
