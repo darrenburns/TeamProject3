@@ -40,10 +40,17 @@ $(function() {
                     return userCount[key];
                 });
 
+            // Tooltips
+            var tip = d3.tip()
+                .attr("class", "d3-tip")
+                .offset([-10, 0])
+                .html(function(d) { return "User has sent " + d + " messages"; });
+
             // The svg to contain the graph!
-            var svg = d3.select('.chat-visualisations').append('svg')
+            var svg = d3.select('#bacon').append('svg')
                 .attr("width", BASE_CHART_WIDTH)
-                .attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM + BASE_PADDING_TOP);
+                .attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM + BASE_PADDING_TOP)
+                .call(tip);
 
             // Create the scale
             var scale = d3.scale.linear()
@@ -55,7 +62,6 @@ $(function() {
                 .scale(scale)
                 .orient("left")
                 .ticks(4);
-
 
             // Create the scale and axis for the xAxis.
             var xScale = d3.scale.ordinal()
@@ -81,7 +87,9 @@ $(function() {
                 .attr("height", function(val) {
                     return BASE_CHART_HEIGHT - scale(val);
                 })
-                .attr("fill", "lightblue");
+                .attr("fill", "lightblue")
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
 
             svg.append("g")
                 .attr("class", "axis")
