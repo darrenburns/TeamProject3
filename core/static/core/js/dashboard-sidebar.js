@@ -81,7 +81,7 @@ $(function () {
             </button>\
             </a>\
         </div>'
-                $("#no-project-message").append(noProjectsMessage);
+                $("#no-project-message").html(noProjectsMessage);
             }
 
 
@@ -113,8 +113,8 @@ $(function () {
                     }
                 }
 
-                $('#number-of-conversations').append(openChatsObject.length);
-                $('#number-of-closed-conversations').append(closedChatsObject.length);
+                $('#number-of-conversations').html(openChatsObject.length);
+                $('#number-of-closed-conversations').html(closedChatsObject.length);
 
                 // Create mustache template for rendering tickets list
 				var chatListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a>{{/chats}}';
