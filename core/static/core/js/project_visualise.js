@@ -29,7 +29,7 @@ $(function() {
         projectChats.once('value', function (snap) {
             var counter = 0; // Use this ti make sure we don't retreive chats that exist on firebase but not in django!
             var filteredChats = snap.val().chats.filter(function (elem) {
-                if (elem.closed | counter++ >= chatTitles.length) { // If the chat is closed or we have too many chats, abort...
+                if (elem.closed || counter++ >= chatTitles.length) { // If the chat is closed or we have too many chats, abort...
                     return elem.closed == false;
                 }
                 return true;
@@ -41,15 +41,15 @@ $(function() {
             }
 
             // Tooltips
-            tip = d3.tip()
+            var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
                 .html(function(d) { return "Messages: " + d; });
 
             // Create the SVG for the project
-            var svg = d3.select("#d3-graph-one").append("svg");
-            svg.attr("width", BASE_CHART_WIDTH);
-            svg.attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM + BASE_PADDING_TOP)
+            var svg = d3.select("#d3-graph-one").append("svg")
+                .attr("width", BASE_CHART_WIDTH)
+                .attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM + BASE_PADDING_TOP)
                 .call(tip);
 
             // Create the scale - this defines a function which modifies the y values to the appropriate scale.
