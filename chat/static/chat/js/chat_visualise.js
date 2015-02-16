@@ -56,6 +56,17 @@ $(function() {
                 .orient("left")
                 .ticks(4);
 
+
+            // Create the scale and axis for the xAxis.
+            var xScale = d3.scale.ordinal()
+                .domain(users)
+                .rangePoints([((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / (2*messageCountPerUser.length)), (BASE_CHART_WIDTH - BASE_PADDING_LEFT) - ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / (2*messageCountPerUser.length))]);
+
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient("bottom");
+
+
             svg.selectAll("rect")
                 .data(messageCountPerUser)
                 .enter()
@@ -76,6 +87,19 @@ $(function() {
                 .attr("class", "axis")
                 .attr("transform", "translate(" + BASE_PADDING_LEFT + "," + BASE_PADDING_TOP +")")
                 .call(yAxis);
+
+            svg.append("g")
+                .attr("class", "xAxis")
+                .attr("transform", "translate(" + BASE_PADDING_LEFT + "," + (BASE_CHART_HEIGHT + BASE_PADDING_TOP) + ")")
+                .call(xAxis)
+                .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", "-.4em")
+                    .attr("transform", function(d){
+                       return "rotate(-65)"
+                    });
+
             })
 
     }

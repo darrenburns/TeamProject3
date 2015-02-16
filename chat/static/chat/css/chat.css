@@ -126,3 +126,12 @@ a {
     text-decoration: underline;
     cursor: pointer;
 }
+
+
+/* Visualisations Tab */
+.xAxis path,
+.xAxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
