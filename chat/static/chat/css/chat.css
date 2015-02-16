@@ -126,3 +126,10 @@ a {
     text-decoration: underline;
     cursor: pointer;
 }
+
+#input-message {
+    position: fixed;
+    bottom: 1%;
+    right: 9.5%;
+    max-width: 61%;
+}

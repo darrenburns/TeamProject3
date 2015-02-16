@@ -9,7 +9,7 @@ $(function() {
         var BASE_PADDING_TOP = 8;
         var BASE_PADDING_BOTTOM = 30;
 
-        var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
+        var ref = new Firebase("https://teamproject3.firebaseio.com/");
 
         var projectChats = ref.child('project/' + PROJECT_ID);
 

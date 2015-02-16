@@ -6,23 +6,25 @@ $(function () {
     var tabInformation = $("#tab-information");
     var selectMetadataName;
     var apiCall = "/api/v1/";
-    
+
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
     //outerHeight is the height of element with its margins
     function setContainerHeight() {
-        var windowHeight = $( window ).outerHeight();
+        var windowHeight = $(window).outerHeight();
         var navbarHeight = $(".navbar-inverse").outerHeight();
         var chatTitleHeight = $("#chat-title").outerHeight();
         var navTabsHeight = $(".nav-tabs").outerHeight();
         var messageInputHeight = messageInput.outerHeight();
 
         var maxHeight = windowHeight - (navbarHeight + chatTitleHeight + navTabsHeight + messageInputHeight + 50);
-        messages.css("max-height", maxHeight+"px");
+        messages.css("max-height", maxHeight + "px");
     }
 
     //If the user resizes the screen the height is updated
-    $(window).on('resize', function() { setContainerHeight(); });
+    $(window).on('resize', function () {
+        setContainerHeight();
+    });
 
     //Call the function once
     setContainerHeight();
@@ -36,7 +38,7 @@ $(function () {
 
     //This function receives the title and value of a metadata,
     //creates a new panel and attaches it to the information tab
-    function displayMetadataInformation(title, value){
+    function displayMetadataInformation(title, value) {
 
         var divRow;
         var lastRow = tabInformation.children(".row").last(); //Get the last row of information tab
@@ -65,9 +67,9 @@ $(function () {
 
     }
 
-    function getMetadataInformation(chatId){
+    function getMetadataInformation(chatId) {
         $.getJSON("/api/v1/ticket/" + CHAT_ID + "/")
-            .success(function(data){
+            .success(function (data) {
 
                 tabInformation.html("");
 
@@ -77,6 +79,11 @@ $(function () {
                 var cost = metadataObject.cost;
                 var dueDate = metadataObject.due_date;
                 var notes = metadataObject.notes;
+                var user = null;
+
+                if (metadataObject.user != null) {
+                    user = metadataObject.user.username;
+                }
 
                 displayMetadataInformation("Date created", getFormattedDate(dateCreated));
 
@@ -84,25 +91,78 @@ $(function () {
                     displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
                 }
 
-                if(cost != null){
+                if (cost != null) {
                     displayMetadataInformation("Cost", cost);
                 }
 
-                if (dueDate != null){
+                if (dueDate != null) {
                     displayMetadataInformation("Due Date", getFormattedDate(dueDate));
                 }
 
-                if(notes != null){
+                if (notes != null) {
                     displayMetadataInformation("Notes", notes);
+                }
+
+                if (user != null) {
+                    displayMetadataInformation("Assignee", user);
                 }
 
             });
     }
 
     function addMessage(object) {
+
         var child = object.val();
 
-        chatParticipants.startAt().endAt().on("value", function(snapshot) {
+        //Create a new date field to use in Mustache
+        child.formattedDate = getFormattedDate(child.dt);
+
+        var messagesTemplate =
+            '<div class="row">' +
+            '<div class="col-xs-1">' +
+            '<div class="user-box pull-right">' +
+            '<span class="text-muted">' +
+            '<em>' +
+            '{{ user }}' +
+            '</em>' +
+            '</span>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-xs-11">';
+
+        if (CURRENT_USER == child.user) {
+            messagesTemplate += '<div class="message-container triangle-right right">';
+        } else {
+            messagesTemplate += '<div class="message-container triangle-right left">';
+        }
+        messagesTemplate +=
+            '<p class="lead message-text">{{ desc }}</p> ' +
+            '<p class="message-date">{{ formattedDate }}</p>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        var renderedTemplate = Mustache.to_html(messagesTemplate, child);
+        messages.append(renderedTemplate);
+
+        // On new message load, scroll to the top.
+        messages[0].scrollTop = messages[0].scrollHeight;
+    }
+
+    if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined' &&
+        typeof CURRENT_USER_ID != 'undefined') {
+        // Initialise the Firebase
+        var ref = new Firebase("https://teamproject3.firebaseio.com/");
+
+        // Creating a chat object
+        var projectObj = ref.child('project/' + PROJECT_ID);
+        var chatObj = projectObj.child('chats/' + CHAT_ID);
+
+        var chatParticipants = chatObj.child("participants");
+
+        var selectUserProfile;
+
+        chatParticipants.startAt().endAt().on("value", function (snapshot) {
             var participants = snapshot.val();
             var found = false;
             for (var key in participants) {
@@ -123,55 +183,6 @@ $(function () {
             console.log("The read failed: " + errorObject.code);
         });
 
-        //Create a new date field to use in Mustache
-        child.formattedDate = getFormattedDate(child.dt);
-
-        var messagesTemplate =
-            '<div class="row">' +
-                '<div class="col-xs-1">' +
-                '<div class="user-box pull-right">' +
-                    '<span class="text-muted">' +
-                        '<em>' +
-                        '{{ user }}' +
-                        '</em>' +
-                    '</span>' +
-                '</div>' +
-                '</div>' +
-                '<div class="col-xs-11">';
-
-        if(CURRENT_USER == child.user){
-            messagesTemplate += '<div class="message-container triangle-right right">';
-        }else{
-            messagesTemplate += '<div class="message-container triangle-right left">';
-        }
-        messagesTemplate +=
-                    '<p class="lead message-text">{{ desc }}</p> '+
-                    '<p class="message-date">{{ formattedDate }}</p>' +
-                    '</div>' +
-                '</div>' +
-            '</div>';
-
-        var renderedTemplate = Mustache.to_html(messagesTemplate, child);
-        messages.append(renderedTemplate);
-
-
-        // On new message load, scroll to the top.
-        messages[0].scrollTop = messages[0].scrollHeight;
-    }
-
-
-    if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined' &&
-            typeof CURRENT_USER_ID != 'undefined') {
-        // Initialise the Firebase
-        var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
-
-        // Creating a chat object
-        var projectObj = ref.child('project/' + PROJECT_ID);
-        var chatObj = projectObj.child('chats/' + CHAT_ID);
-
-        var chatParticipants = chatObj.child("participants");
-
-
         var messagesRef = chatObj.child("messages");
 
         //Listen for ENTER press and update Firebase
@@ -188,7 +199,7 @@ $(function () {
         });
 
         messagesRef.on("child_added", function (object) {
-            addMessage(object)
+            addMessage(object);
         });
 
         getMetadataInformation(CHAT_ID);
@@ -196,23 +207,37 @@ $(function () {
     }
 
     $.getJSON("/api/v1/metadata_name/")
-        .success(function(metadataName){
+        .success(function (metadataName) {
             var metadataObjects = metadataName.objects;
             var metadataNameListTemplate = "{{#metadataName}}<li><a id='metadata-name-{{ id }}'>{{ name }}</a></li>{{/metadataName}}";
-            var renderedTemplate = Mustache.to_html(metadataNameListTemplate, {'metadataName' : metadataObjects});
+            var renderedTemplate = Mustache.to_html(metadataNameListTemplate, {'metadataName': metadataObjects});
             $("#list-metadata-name")
                 .html(renderedTemplate)
                 .find("a")
-                .on("click", function(){
+                .on("click", function () {
                     $("#dropdown-metadata-name").html(this.text + ' <span class="caret"></span>');
                     selectMetadataName = this.id.split("-")[2]; //Get the id of the selected metadata name
                 });
         });
 
-    $("#confirm-add-note").on("click", function(){
+    $.getJSON("/api/v1/user_profile/")
+        .success(function (userProfile) {
+            var userProfileObjects = userProfile.objects;
+            var userProfileListTemplate = "{{#userProfile}}<li><a id='user-profile-{{ id }}'>{{ user.username }}</a></li>{{/userProfile}}";
+            var renderedTemplate = Mustache.to_html(userProfileListTemplate, {'userProfile': userProfileObjects});
+            $("#list-user")
+                .html(renderedTemplate)
+                .find("a")
+                .on("click", function () {
+                    $("#user-dropdown-button").html(this.text + ' <span class="caret"></span>');
+                    selectUserProfile = this.id.split("-")[2]; //Get the id of the selected user profile
+                });
+        });
+
+    $("#confirm-add-note").on("click", function () {
 
         var passData = {
-            "notes" : $("#note-value").val()
+            "notes": $("#note-value").val()
         };
 
         $.ajax({
@@ -221,7 +246,7 @@ $(function () {
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
-            complete: function(){
+            complete: function () {
                 getMetadataInformation(CHAT_ID);
                 $("#open-tab-information").tab("show");
             }
@@ -229,11 +254,11 @@ $(function () {
 
     });
 
-    //Add due date
-    $("#confirm-add-due-date").on("click", function(){
+//Add due date
+    $("#confirm-add-due-date").on("click", function () {
 
         var passData = {
-            "due_date" : $("#due-date-value").val()
+            "due_date": $("#due-date-value").val()
         };
 
         $.ajax({
@@ -242,7 +267,7 @@ $(function () {
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
-            complete: function(){
+            complete: function () {
                 getMetadataInformation(CHAT_ID);
                 $("#open-tab-information").tab("show");
             }
@@ -250,10 +275,10 @@ $(function () {
 
     });
 
-    $("#confirm-add-cost").on("click", function(){
+    $("#confirm-add-cost").on("click", function () {
 
         var passData = {
-            "cost" : parseInt($("#cost-value").val())
+            "cost": parseInt($("#cost-value").val())
         };
 
         $.ajax({
@@ -262,7 +287,7 @@ $(function () {
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
-            complete: function(){
+            complete: function () {
                 getMetadataInformation(CHAT_ID);
                 $("#open-tab-information").tab("show");
             }
@@ -270,4 +295,23 @@ $(function () {
 
     });
 
+    $("#confirm-add-assignee").on("click", function () {
+
+        var passData = {
+            "user": apiCall + "user/" + selectUserProfile + "/"
+        };
+
+        $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function (data) {
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+    });
 });

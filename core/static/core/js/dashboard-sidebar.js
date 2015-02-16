@@ -108,6 +108,8 @@ $(function () {
                 var projectTitle = project.text();
                 var url = "/projects/"+id+"/info/";
 
+                project.parents("#dropdown-row").find("#sidebar-dropdown-button").html(projectTitle + ' <span class="caret"></span>');
+
                 if(typeof CHAT_ID != 'undefined'){
                     url = url + "?next="+CHAT_ID;
                 }
