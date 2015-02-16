@@ -71,6 +71,17 @@ $(function () {
                 });
             }else{
                 $("#project-title").html("No projects");
+                var noProjectsMessage = ' <div class="text-center" id="no-project-div">\
+            <i class="fa fa-frown-o fa-fw" style="font-size: 300px; color: #f0f0f0;"></i>\
+            <h1><small>You don\'t have any projects</small></h1>\
+            <br>\
+            <a href="/newproject/">\
+            <button type="button" class="btn btn-default" id="new-project-dashboard">\
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New project\
+            </button>\
+            </a>\
+        </div>'
+                $("#no-project-message").append(noProjectsMessage);
             }
 
 
@@ -78,6 +89,9 @@ $(function () {
 
     function selectProject(id) {
         // Make ajax request
+
+        //Removing the div with the no project text
+        $("#no-project-div").remove();
 
         $.getJSON("/api/v1/chat/", {'project__id': id})
             .success(function (chats) {
