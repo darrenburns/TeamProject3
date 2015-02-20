@@ -9,6 +9,12 @@ $(function () {
     var initialNoteValue;
     var noteTextArea = $("#note-value");
     var converter = new Showdown.converter();
+    var showNotifications = false;
+
+
+    setTimeout(function(){
+        showNotifications = true;
+    }, 2000);
 
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
@@ -24,9 +30,29 @@ $(function () {
         messages.css("max-height", maxHeight + "px");
     }
 
+    function allowNotifications(){
+        if ("Notification" in window) {
+            if(Notification.permission !== "denied" && Notification.permission !== "granted") {
+                Notification.requestPermission(function (status) {
+                    // This allows to use Notification.permission with Chrome/Safari
+                    if (Notification.permission !== status) {
+                        Notification.permission = status;
+                    }
+                });
+            }
+            return Notification.permission === "granted";
+        }
+        return false;
+    }
+
+
     //If the user resizes the screen the height is updated
     $(window).on('resize', function () {
         setContainerHeight();
+    });
+
+    $(window).on('load', function () {
+        allowNotifications();
     });
 
     //Call the function once
@@ -154,6 +180,18 @@ $(function () {
         renderedTemplate = renderedTemplate.replace(regularExpression, "<p class='lead message-text'>");
         messages.append(renderedTemplate);
 
+        console.log("---------Tests----------");
+        console.log("child.user_id = " + child.user_id);
+        console.log("CURRENT_USER_ID = " + CURRENT_USER_ID);
+        console.log("showNotifications = " + showNotifications);
+        console.log("allowNotifications() = " + allowNotifications());
+
+        if(child.user_id !== CURRENT_USER_ID && showNotifications) {
+            if(allowNotifications()){
+                var notification = new Notification("Chat #"+CHAT_ID, {body: child.desc, tag: String.toString(CHAT_ID)});
+            }
+        }
+
         // On new message load, scroll to the top.
         messages[0].scrollTop = messages[0].scrollHeight;
     }
@@ -193,7 +231,6 @@ $(function () {
         });
 
         var messagesRef = chatObj.child("messages");
-
 
         //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
@@ -248,9 +285,7 @@ $(function () {
     $("#confirm-add-note").on("click", function () {
 
         var passData = {
-
             "notes" : noteTextArea.val()
-
         };
 
         $.ajax({
