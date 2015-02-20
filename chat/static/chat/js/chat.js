@@ -10,11 +10,7 @@ $(function () {
     var noteTextArea = $("#note-value");
     var converter = new Showdown.converter();
     var showNotifications = false;
-
-
-    setTimeout(function(){
-        showNotifications = true;
-    }, 2000);
+    var lastMessage;
 
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
@@ -43,6 +39,18 @@ $(function () {
             return Notification.permission === "granted";
         }
         return false;
+    }
+
+    function closeNotification(n){
+        n.onshow = function () {
+            setTimeout(n.close.bind(n), 10000);
+        }
+    }
+
+    function clickNotification(n){
+        n.onclick = function () {
+            console.log("clicked");
+        }
     }
 
 
@@ -180,16 +188,16 @@ $(function () {
         renderedTemplate = renderedTemplate.replace(regularExpression, "<p class='lead message-text'>");
         messages.append(renderedTemplate);
 
-        console.log("---------Tests----------");
-        console.log("child.user_id = " + child.user_id);
-        console.log("CURRENT_USER_ID = " + CURRENT_USER_ID);
-        console.log("showNotifications = " + showNotifications);
-        console.log("allowNotifications() = " + allowNotifications());
-
         if(child.user_id !== CURRENT_USER_ID && showNotifications) {
             if(allowNotifications()){
                 var notification = new Notification("Chat #"+CHAT_ID, {body: child.desc, tag: String.toString(CHAT_ID)});
+                closeNotification(notification); //After 10 seconds
+                clickNotification(notification);
             }
+        }
+
+        if(child.dt === lastMessage.dt){
+            showNotifications = true;
         }
 
         // On new message load, scroll to the top.
@@ -234,10 +242,14 @@ $(function () {
 
         //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
-            if (e.keyCode == 13 && !e.shiftKey) {
+            var messageInputValue = messageInput.val();
+            if (e.keyCode == 13 && messageInputValue === ""){
+                e.preventDefault();
+            }
+            else if (e.keyCode == 13 && messageInputValue !== "" && !e.shiftKey) {
                 e.preventDefault();
                 messagesRef.push({
-                    desc: messageInput.val(),
+                    desc: messageInputValue,
                     user: CURRENT_USER,
                     user_id: CURRENT_USER_ID,
                     dt: Date.now()
@@ -246,9 +258,14 @@ $(function () {
             }
         });
 
-        messagesRef.on("child_added", function (object) {
-            addMessage(object);
+        messagesRef.limitToLast(1).once("child_added", function(snap){
+            lastMessage = snap.val();
+            messagesRef.on("child_added", function (object) {
+                addMessage(object);
+            });
         });
+
+
 
         getMetadataInformation(CHAT_ID);
 
@@ -368,5 +385,7 @@ $(function () {
             noteTextArea.val(initialNoteValue);
        }
     });
+
+
 
 });
