@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Chat(models.Model):
     title = models.CharField(max_length=255)
+    description = models.CharField(max_length=1000, blank=True, default="")
     project = models.ForeignKey('core.Project', blank=True)
     created = models.DateTimeField(blank=True)
     closed = models.DateTimeField(null=True, blank=True)

@@ -73,44 +73,54 @@ $(function () {
     function getMetadataInformation(chatId) {
         $.getJSON("/api/v1/ticket/" + CHAT_ID + "/")
             .success(function (data) {
+                var description = "";
+                $.getJSON("/api/v1/chat/" + CHAT_ID + "/")
+                    .success(function (chatData){
+                        description = chatData.description;
+                        tabInformation.html("");
 
-                tabInformation.html("");
+                        var metadataObject = data;
+                        var dateCreated = metadataObject.created;
+                        var dateClosed = metadataObject.closed;
+                        var cost = metadataObject.cost;
+                        var dueDate = metadataObject.due_date;
+                        var notes = metadataObject.notes;
+                        var user = null;
 
-                var metadataObject = data;
-                var dateCreated = metadataObject.created;
-                var dateClosed = metadataObject.closed;
-                var cost = metadataObject.cost;
-                var dueDate = metadataObject.due_date;
-                var notes = metadataObject.notes;
-                var user = null;
+                        if (metadataObject.user != null) {
+                            user = metadataObject.user.username;
+                        }
 
-                if (metadataObject.user != null) {
-                    user = metadataObject.user.username;
-                }
+                        if(description != ""){
+                            displayMetadataInformation("Description", description);
+                        }
 
-                displayMetadataInformation("Date created", getFormattedDate(dateCreated));
+                        displayMetadataInformation("Date created", getFormattedDate(dateCreated));
 
-                if (dateClosed !== null) {
-                    displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
-                }
 
-                if (cost != null) {
-                    displayMetadataInformation("Cost", cost);
-                }
+                        if (dateClosed !== null) {
+                            displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
+                        }
 
-                if (dueDate != null) {
-                    displayMetadataInformation("Due Date", getFormattedDate(dueDate));
-                }
+                        if (cost != null) {
+                            displayMetadataInformation("Cost", cost);
+                        }
 
-                if (notes != null) {
-                    displayMetadataInformation("Notes", notes);
-                    noteTextArea.val(notes);
-                    initialNoteValue = notes;
-                }
+                        if (dueDate != null) {
+                            displayMetadataInformation("Due Date", getFormattedDate(dueDate));
+                        }
 
-                if (user != null) {
-                    displayMetadataInformation("Assignee", user);
-                }
+                        if (notes != null) {
+                            displayMetadataInformation("Notes", notes);
+                            noteTextArea.val(notes);
+                            initialNoteValue = notes;
+                        }
+
+                        if (user != null) {
+                            displayMetadataInformation("Assignee", user);
+                        }
+
+                    });
 
             });
     }
@@ -329,9 +339,9 @@ $(function () {
     });
 
     $("a[href='#modal-add-note']").on("click", function(){
-       if(initialNoteValue != null){
+        if(initialNoteValue != null){
             noteTextArea.val(initialNoteValue);
-       }
+        }
     });
 
 });
