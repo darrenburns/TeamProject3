@@ -133,3 +133,9 @@ a {
     right: 9.5%;
     max-width: 61%;
 }
+
+.tag-list-item{
+    background-color: #444444;
+    color: #ffffff;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}

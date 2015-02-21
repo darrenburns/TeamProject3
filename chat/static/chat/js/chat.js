@@ -10,6 +10,19 @@ $(function () {
     var noteTextArea = $("#note-value");
     var converter = new Showdown.converter();
 
+    function listToHtml(arrayTag){
+        if(arrayTag.length > 0){
+            var htmlOutput = "<ul  class='list-group'>";
+            for (var i in arrayTag){
+                htmlOutput += "<li  class='list-group-item tag-list-item' style='background-color: " + arrayTag[i].colour + "'>" + arrayTag[i].title + "</li>";
+            }
+            htmlOutput += "</ul>";
+            return htmlOutput;
+        }else{
+            return "";
+        }
+    }
+
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
     //outerHeight is the height of element with its margins
@@ -85,19 +98,18 @@ $(function () {
                         var cost = metadataObject.cost;
                         var dueDate = metadataObject.due_date;
                         var notes = metadataObject.notes;
-                        //var tags = metadataObject.tag;
+                        var tags = metadataObject.tag;
                         var user = null;
 
                         if (metadataObject.user != null) {
                             user = metadataObject.user.username;
                         }
 
-                        if(description != ""){
-                            displayMetadataInformation("Description", description);
+                        if (user != null) {
+                            displayMetadataInformation("Assignee", user);
                         }
 
                         displayMetadataInformation("Date created", getFormattedDate(dateCreated));
-
 
                         if (dateClosed !== null) {
                             displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
@@ -111,15 +123,21 @@ $(function () {
                             displayMetadataInformation("Due Date", getFormattedDate(dueDate));
                         }
 
+                        if(description != ""){
+                            displayMetadataInformation("Description", description);
+                        }
+
+                        if(tags.length > 0){
+                            displayMetadataInformation("Tags", listToHtml(tags));
+                        }
+
                         if (notes != null) {
                             displayMetadataInformation("Notes", notes);
                             noteTextArea.val(notes);
                             initialNoteValue = notes;
                         }
 
-                        if (user != null) {
-                            displayMetadataInformation("Assignee", user);
-                        }
+
 
                     });
 
