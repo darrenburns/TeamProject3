@@ -9,8 +9,6 @@ $(function () {
     var initialNoteValue;
     var noteTextArea = $("#note-value");
     var converter = new Showdown.converter();
-    var showNotifications = false;
-    var lastMessage;
 
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
@@ -26,41 +24,9 @@ $(function () {
         messages.css("max-height", maxHeight + "px");
     }
 
-    function allowNotifications(){
-        if ("Notification" in window) {
-            if(Notification.permission !== "denied" && Notification.permission !== "granted") {
-                Notification.requestPermission(function (status) {
-                    // This allows to use Notification.permission with Chrome/Safari
-                    if (Notification.permission !== status) {
-                        Notification.permission = status;
-                    }
-                });
-            }
-            return Notification.permission === "granted";
-        }
-        return false;
-    }
-
-    function closeNotification(n){
-        n.onshow = function () {
-            setTimeout(n.close.bind(n), 10000);
-        }
-    }
-
-    function clickNotification(n){
-        n.onclick = function () {
-            console.log("clicked");
-        }
-    }
-
-
     //If the user resizes the screen the height is updated
     $(window).on('resize', function () {
         setContainerHeight();
-    });
-
-    $(window).on('load', function () {
-        allowNotifications();
     });
 
     //Call the function once
@@ -188,18 +154,6 @@ $(function () {
         renderedTemplate = renderedTemplate.replace(regularExpression, "<p class='lead message-text'>");
         messages.append(renderedTemplate);
 
-        if(child.user_id !== CURRENT_USER_ID && showNotifications) {
-            if(allowNotifications()){
-                var notification = new Notification("Chat #"+CHAT_ID, {body: child.desc, tag: String.toString(CHAT_ID)});
-                closeNotification(notification); //After 10 seconds
-                clickNotification(notification);
-            }
-        }
-
-        if(child.dt === lastMessage.dt){
-            showNotifications = true;
-        }
-
         // On new message load, scroll to the top.
         messages[0].scrollTop = messages[0].scrollHeight;
     }
@@ -258,14 +212,9 @@ $(function () {
             }
         });
 
-        messagesRef.limitToLast(1).once("child_added", function(snap){
-            lastMessage = snap.val();
             messagesRef.on("child_added", function (object) {
                 addMessage(object);
             });
-        });
-
-
 
         getMetadataInformation(CHAT_ID);
 
@@ -385,7 +334,5 @@ $(function () {
             noteTextArea.val(initialNoteValue);
        }
     });
-
-
 
 });
