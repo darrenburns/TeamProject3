@@ -43,6 +43,14 @@ class Priority(models.Model):
         return u'Priority: %s, Colour: %s' % (self.name, self.colour)
 
 
+class Tag(models.Model):
+    title = models.CharField(max_length=100, null=True, unique=True)  # e.g. Bug, Enhancement, Blocking, Feature
+    colour = models.CharField(max_length=7)
+
+    def __unicode__(self):
+        return u'Tag %s' % self.title
+
+
 class Ticket(models.Model):
     notes = models.CharField(max_length=500, null=True, blank=True)
     created = models.DateTimeField()
@@ -51,6 +59,7 @@ class Ticket(models.Model):
     due_date = models.DateTimeField(null=True)
     assignee = models.ForeignKey(User, null=True)
     cost = models.IntegerField(null=True)
+    tag = models.ManyToManyField(Tag, null=True, blank=True)
 
     class Meta:
             permissions = (('canEditAllTickets', 'Can edit all tickets'),)  # Intended for use with ticket priorities.

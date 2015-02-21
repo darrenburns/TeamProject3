@@ -85,6 +85,7 @@ $(function () {
                         var cost = metadataObject.cost;
                         var dueDate = metadataObject.due_date;
                         var notes = metadataObject.notes;
+                        //var tags = metadataObject.tag;
                         var user = null;
 
                         if (metadataObject.user != null) {
