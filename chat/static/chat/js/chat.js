@@ -13,6 +13,7 @@ $(function () {
 
     function listToHtml(arrayTag){
         if(arrayTag.length > 0){
+            initialTags = [];
             var htmlOutput = "<ul  class='list-group'>";
             for (var i in arrayTag){
                 initialTags.push(apiCall + "tag/" + arrayTag[i].id + "/");
@@ -381,6 +382,7 @@ $(function () {
 
         $("#confirm-add-tags").on("click", function () {
             initialTags.push(apiCall + "tag/" + selectTag + "/");
+            //console.log(initialTags);
             var passData = {
                 "tag": initialTags
             };
@@ -391,7 +393,7 @@ $(function () {
             dataType: "json",
             data: JSON.stringify(passData),
             complete: function (data) {
-                console.log(data);
+                //console.log(data);
                 getMetadataInformation(CHAT_ID);
                 $("#open-tab-information").tab("show");
             }
