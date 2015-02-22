@@ -10,6 +10,7 @@ $(function () {
     var noteTextArea = $("#note-value");
     var converter = new Showdown.converter();
 
+    // Function to go through the list of tags and adding the tag.title and tag.colour to a coloured box
     function listToHtml(arrayTag){
         if(arrayTag.length > 0){
             var htmlOutput = "<ul  class='list-group'>";
@@ -21,6 +22,12 @@ $(function () {
         }else{
             return "";
         }
+    }
+
+    //function to add a box with the priority colour
+    function priorityBox(priority){
+        var htmlOutput = "<ul class='list-group'><li class='list-group-item tag-list-item' style='background-color: " + priority.colour + "'>"+ priority.name + "</li>" + "</ul>"
+        return htmlOutput;
     }
 
     //This function will update the max-height of the container to adapt to different screens
@@ -99,6 +106,7 @@ $(function () {
                         var dueDate = metadataObject.due_date;
                         var notes = metadataObject.notes;
                         var tags = metadataObject.tag;
+                        var priority = metadataObject.priority;
                         var user = null;
 
                         if (metadataObject.user != null) {
@@ -121,6 +129,10 @@ $(function () {
 
                         if (dueDate != null) {
                             displayMetadataInformation("Due Date", getFormattedDate(dueDate));
+                        }
+
+                        if (priority != null){
+                            displayMetadataInformation("Priority", priorityBox(priority));
                         }
 
                         if(description != ""){
@@ -288,6 +300,20 @@ $(function () {
                 });
         });
 
+    $.getJSON("/api/v1/priority/")
+        .success(function (priorityObjects) {
+            var priorityObjects = priorityObjects.objects;
+            var priorityListTemplate = "{{#priority}}<li><a id='{{ id }}'>{{ name }}</a></li>{{/priority}}";
+            var renderedTemplate = Mustache.to_html(priorityListTemplate, {'priority': priorityObjects});
+            $("#list-priority")
+                .html(renderedTemplate)
+                .find("a")
+                .on("click", function () {
+                    $("#priority-dropdown-button").html(this.text + ' <span class="caret"></span>');
+                    selectPriority = this.id; //Get the id of the selected tag
+                });
+        });
+
     $("#confirm-add-note").on("click", function () {
 
         var passData = {
@@ -385,6 +411,25 @@ $(function () {
             $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
             type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function (data) {
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+            });
+
+            $("#confirm-add-priority").on("click", function () {
+
+        var passData = {
+            "priority": apiCall + "priority/" + selectPriority + "/"
+        };
+            $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PUT",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),

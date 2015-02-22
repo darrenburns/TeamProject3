@@ -44,7 +44,7 @@
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-cost">Cost</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-assignee">Assignee</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-tags">Tag</a></li>
-
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-priority">Priority</a></li>
                                     </ul>
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Options <span class="caret"></span>
@@ -216,6 +216,29 @@
         </form>
     </div>
 
+    <!-- Modal window for adding priority -->
+    <div class="remodal" data-remodal-id="modal-add-priority">
+        <h3>Set Priority</h3>
+
+        <form role="form">
+            <div class="form-group btn-group" id="form-add-priority">
+                <div>
+                    Dropdown to select priority for ticket here
+                </div>
+
+                <button class="btn btn-default dropdown-toggle" type="button" id="priority-dropdown-button" data-toggle="dropdown" aria-expanded="true">
+                    Select
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="list-priority" id="list-priority">
+                </ul>
+
+                <a href="#"><button type="button" class="btn btn-default" id="confirm-add-priority">Save Priority</button></a>
+
+            </div>
+        </form>
+    </div>
     <script type="text/javascript">
         CHAT_ID = "{{ chat.id }}";
         PROJECT_ID = "{{ chat.project }}";
