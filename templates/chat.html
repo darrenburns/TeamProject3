@@ -43,6 +43,8 @@
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-due-date">Due Date</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-cost">Cost</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-assignee">Assignee</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-tags">Tag</a></li>
+
                                     </ul>
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Options <span class="caret"></span>
@@ -166,7 +168,7 @@
         </form>
     </div>
 
-    <!-- Modal window for adding cost -->
+    <!-- Modal window for adding assignee -->
     <div class="remodal" data-remodal-id="modal-add-assignee">
         <h3>Set Assignee</h3>
 
@@ -185,6 +187,30 @@
                     </ul>
 
                     <a href="#"><button type="button" class="btn btn-default" id="confirm-add-assignee">Save Assignee</button></a>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal window for adding tags -->
+    <div class="remodal" data-remodal-id="modal-add-tags">
+        <h3>Set Tags</h3>
+
+        <form role="form">
+            <div class="form-group btn-group" id="form-add-tags">
+                <div>
+                    Dropdown to select tags for ticket here
+                </div>
+
+                <button class="btn btn-default dropdown-toggle" type="button" id="tags-dropdown-button" data-toggle="dropdown" aria-expanded="true">
+                    Select
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="list-tags" id="list-tags">
+                </ul>
+
+                <a href="#"><button type="button" class="btn btn-default" id="confirm-add-tags">Save Tags</button></a>
 
             </div>
         </form>

@@ -274,6 +274,20 @@ $(function () {
                 });
         });
 
+    $.getJSON("/api/v1/tag/")
+        .success(function (tagObjects) {
+            var tagObjects = tagObjects.objects;
+            var tagsListTemplate = "{{#tags}}<li><a id='{{ id }}'>{{ title }}</a></li>{{/tags}}";
+            var renderedTemplate = Mustache.to_html(tagsListTemplate, {'tags': tagObjects});
+            $("#list-tags")
+                .html(renderedTemplate)
+                .find("a")
+                .on("click", function () {
+                    $("#tags-dropdown-button").html(this.text + ' <span class="caret"></span>');
+                    selectTag = this.id; //Get the id of the selected tag
+                });
+        });
+
     $("#confirm-add-note").on("click", function () {
 
         var passData = {
@@ -361,6 +375,25 @@ $(function () {
         if(initialNoteValue != null){
             noteTextArea.val(initialNoteValue);
         }
+    });
+
+        $("#confirm-add-tags").on("click", function () {
+
+        var passData = {
+            "tag": apiCall + "tag/" + selectTag + "/"
+        };
+            $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function (data) {
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
     });
 
 });
