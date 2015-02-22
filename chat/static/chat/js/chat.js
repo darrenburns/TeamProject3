@@ -7,6 +7,7 @@ $(function () {
     var selectMetadataName;
     var apiCall = "/api/v1/";
     var initialNoteValue;
+    var initialTags = [];
     var noteTextArea = $("#note-value");
     var converter = new Showdown.converter();
 
@@ -14,6 +15,7 @@ $(function () {
         if(arrayTag.length > 0){
             var htmlOutput = "<ul  class='list-group'>";
             for (var i in arrayTag){
+                initialTags.push(apiCall + "tag/" + arrayTag[i].id + "/");
                 htmlOutput += "<li  class='list-group-item tag-list-item' style='background-color: " + arrayTag[i].colour + "'>" + arrayTag[i].title + "</li>";
             }
             htmlOutput += "</ul>";
@@ -378,17 +380,18 @@ $(function () {
     });
 
         $("#confirm-add-tags").on("click", function () {
-
-        var passData = {
-            "tag": apiCall + "tag/" + selectTag + "/"
-        };
+            initialTags.push(apiCall + "tag/" + selectTag + "/");
+            var passData = {
+                "tag": initialTags
+            };
             $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "POST",
+            type: "PUT",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
             complete: function (data) {
+                console.log(data);
                 getMetadataInformation(CHAT_ID);
                 $("#open-tab-information").tab("show");
             }
