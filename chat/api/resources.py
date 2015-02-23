@@ -45,6 +45,7 @@ class TicketResource(ModelResource):
 class ChatResource(ModelResource):
 
     project = fields.ForeignKey(ProjectResource, 'project')
+    ticket = fields.ForeignKey(TicketResource, 'ticket', full=True)
 
     class Meta:
         resource_name = 'chat'

@@ -432,7 +432,7 @@ $(function () {
         };
             $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
