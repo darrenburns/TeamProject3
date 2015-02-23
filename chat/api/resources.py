@@ -25,7 +25,7 @@ class TicketResource(ModelResource):
     class Meta:
         resource_name = 'ticket'
         queryset = Ticket.objects.all()
-        allowed_methods = ['get', 'delete', 'put', 'post']
+        allowed_methods = ['get', 'delete', 'put', 'post', 'patch']
         authorization = Authorization()
         filtering = {
             'id': ALL_WITH_RELATIONS,

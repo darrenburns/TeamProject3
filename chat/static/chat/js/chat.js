@@ -294,13 +294,12 @@ $(function () {
     $("#confirm-add-note").on("click", function () {
 
         var passData = {
-            "tag": initialTags,
             "notes" : noteTextArea.val()
         };
 
         $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
@@ -316,13 +315,12 @@ $(function () {
     $("#confirm-add-due-date").on("click", function () {
 
         var passData = {
-            "due_date": $("#due-date-value").val(),
-            "tag": initialTags
+            "due_date": $("#due-date-value").val()
         };
 
         $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
@@ -337,13 +335,12 @@ $(function () {
     $("#confirm-add-cost").on("click", function () {
 
         var passData = {
-            "cost": parseInt($("#cost-value").val()),
-            "tag": initialTags
+            "cost": parseInt($("#cost-value").val())
         };
 
         $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
@@ -358,13 +355,12 @@ $(function () {
     $("#confirm-add-assignee").on("click", function () {
 
         var passData = {
-            "user": apiCall + "user/" + selectUserProfile + "/",
-            "tag": initialTags
+            "user": apiCall + "user/" + selectUserProfile + "/"
         };
 
         $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
@@ -390,7 +386,7 @@ $(function () {
             };
             $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
