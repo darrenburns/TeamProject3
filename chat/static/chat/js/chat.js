@@ -294,9 +294,8 @@ $(function () {
     $("#confirm-add-note").on("click", function () {
 
         var passData = {
-
+            "tag": initialTags,
             "notes" : noteTextArea.val()
-
         };
 
         $.ajax({
@@ -317,7 +316,8 @@ $(function () {
     $("#confirm-add-due-date").on("click", function () {
 
         var passData = {
-            "due_date": $("#due-date-value").val()
+            "due_date": $("#due-date-value").val(),
+            "tag": initialTags
         };
 
         $.ajax({
@@ -337,7 +337,8 @@ $(function () {
     $("#confirm-add-cost").on("click", function () {
 
         var passData = {
-            "cost": parseInt($("#cost-value").val())
+            "cost": parseInt($("#cost-value").val()),
+            "tag": initialTags
         };
 
         $.ajax({
@@ -357,7 +358,8 @@ $(function () {
     $("#confirm-add-assignee").on("click", function () {
 
         var passData = {
-            "user": apiCall + "user/" + selectUserProfile + "/"
+            "user": apiCall + "user/" + selectUserProfile + "/",
+            "tag": initialTags
         };
 
         $.ajax({
