@@ -15,12 +15,11 @@ $(function () {
     function listToHtml(arrayTag){
         if(arrayTag.length > 0){
             initialTags = [];
-            var htmlOutput = "<ul  class='list-group'>";
+            var htmlOutput = "";
             for (var i in arrayTag){
                 initialTags.push(apiCall + "tag/" + arrayTag[i].id + "/");
-                htmlOutput += "<li  class='list-group-item tag-list-item' style='background-color: " + arrayTag[i].colour + "'>" + arrayTag[i].title + "</li>";
+                htmlOutput += "<span class='label label-default test' style='background-color:"+ arrayTag[i].colour +"'>" + arrayTag[i].title + "</span>    ";
             }
-            htmlOutput += "</ul>";
             return htmlOutput;
         }else{
             return "";
@@ -29,7 +28,7 @@ $(function () {
 
     //function to add a box with the priority colour
     function priorityBox(priority){
-        var htmlOutput = "<ul class='list-group'><li class='list-group-item tag-list-item' style='background-color: " + priority.colour + "'>"+ priority.name + "</li>" + "</ul>"
+        var htmlOutput = "<span class='label label-default' style='background-color: " + priority.colour + "'>"+ priority.name + "</span>";
         return htmlOutput;
     }
 
