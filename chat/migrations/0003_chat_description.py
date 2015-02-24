@@ -17,4 +17,21 @@ class Migration(migrations.Migration):
             field=models.CharField(default=b'', max_length=1000, blank=True),
             preserve_default=True,
         ),
+        migrations.CreateModel(
+            name='Tag',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(max_length=100, unique=True, null=True)),
+                ('colour', models.CharField(max_length=7)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='ticket',
+            name='tag',
+            field=models.ManyToManyField(to='chat.Tag', null=True, blank=True),
+            preserve_default=True,
+        ),
     ]
