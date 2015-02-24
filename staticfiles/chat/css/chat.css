@@ -1,0 +1,167 @@
+a {
+    text-decoration: none !important;
+}
+
+#search-bar {
+    background-color: #32a2d6;
+}
+
+#search-bar-button {
+    background-color: #32a2d6;
+}
+
+#search-bar-button span {
+    color: #ffffff;
+}
+
+.navbar .form-control::-webkit-input-placeholder { color: #ffffff; }
+
+.remodal, .remodal * {
+    font-family: inherit;
+}
+
+.latest-messages {
+    padding: 5px;
+    overflow-y: auto;
+}
+
+#chat-title{
+    margin-top: 0;
+}
+
+
+/* information tab */
+.information-panel {
+    margin: 5px;
+}
+
+#input-message{
+    position: fixed;
+    bottom: 1%;
+}
+
+.message-text {
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+}
+
+.message-date {
+    font-size: 0.7em;
+    color: #bae0e8;
+}
+
+.user-box {
+    margin: 22px 0 0 ;
+}
+
+.triangle-right {
+    position:relative;
+    padding: 5px 5px 5px 8px;
+    margin: 3px;
+    color:#fff;
+    background: #267dba; /* default background for browsers without gradient support */
+    /* css3 */
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
+    background:-moz-linear-gradient(#2e88c4, #075698);
+    background:-o-linear-gradient(#2e88c4, #075698);
+    background:linear-gradient(#2e88c4, #075698);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.triangle-right.left {
+    margin-left:40px;
+    background: #267dba;
+}
+
+.triangle-right.right {
+    margin-left:40px;
+    background: #5eba54;
+}
+
+.triangle-right.right:after {
+    top: 16px;
+    left: -40px; /* value = - border-left-width - border-right-width */
+    bottom: auto;
+    border-width: 15px 40px 0 0; /* vary these values to change the angle of the vertex */
+    border-color: transparent #5eba54;
+}
+
+.triangle-right:after {
+    content:"";
+    position:absolute;
+    bottom:-20px; /* value = - border-top-width - border-bottom-width */
+    left:50px; /* controls horizontal position */
+    border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+    border-style:solid;
+    border-color:#267dba transparent;
+    /* reduce the damage in FF3.0 */
+    display:block;
+    width:0;
+}
+
+.triangle-right.left:after {
+    top: 16px;
+    left: -40px; /* value = - border-left-width - border-right-width */
+    bottom: auto;
+    border-width: 15px 40px 0 0; /* vary these values to change the angle of the vertex */
+    border-color: transparent #267dba;
+}
+
+#tab-information {
+    padding: 10px;
+}
+
+#project-title{
+    margin-top: 13px;
+}
+
+#project-title a{
+    color: #000;
+}
+
+#project-title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+/* Visualisations Tab */
+.xAxis path,
+.xAxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}

@@ -1,0 +1,18 @@
+#tickets-panel {
+    overflow-y: auto;
+}
+
+#tickets-panel .list-group {
+    margin-bottom: 0;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+.xaxis path,
+.xaxis line{
+    fill: none;
+}
