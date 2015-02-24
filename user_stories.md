@@ -22,7 +22,7 @@ User Stories
 * As a **developer** I want to **link to a version control repository** so that I can **quickly access the technical side of the ticket**.
 
 * As a **user** I want to **attach multimedia to a conversation or ticket** so that I can explain problems or ideas more easily.
-*~~ As a **developer** I want to **assign resolution to an owner** so that it will get done~~
+* ~~As a **developer** I want to **assign resolution to an owner** so that it will get done~~
 * As a **user** I want to **add other people** to **help resolve the issue**
 * ~~As a **user** I want to **have what I write checked for spelling** so that I can **be sure what I write is correct.**~~
 * As a **user** I want to **be able to autocomplete names of other users** so that **I can tag other users correctly and quickly**
