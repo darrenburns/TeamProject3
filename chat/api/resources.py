@@ -4,18 +4,38 @@ from tastypie.authorization import Authorization
 from tastypie.constants import ALL_WITH_RELATIONS
 
 from tastypie.resources import ModelResource
-from chat.models import Chat, Metadata, MetadataName, Ticket
+from chat.models import Chat, Metadata, MetadataName, Ticket, Tag, Priority
 from core.api.resources import ProjectResource, UserResource
+
+
+class TagResource(ModelResource):
+
+    class Meta:
+        resource_name = 'tag'
+        queryset = Tag.objects.all()
+        allowed_methods = ['get', 'delete', 'put', 'post']
+        authorization = Authorization()
+
+
+class PriorityResource(ModelResource):
+
+    class Meta:
+        resource_name = 'priority'
+        queryset = Priority.objects.all()
+        allowed_methods = ['get', 'delete', 'put', 'post']
+        authorization = Authorization()
 
 
 class TicketResource(ModelResource):
 
     user = fields.ForeignKey(UserResource, 'assignee', full=True, null=True)
+    tag = fields.ManyToManyField(TagResource, 'tag', full=True, null=True)
+    priority = fields.ForeignKey(PriorityResource, 'priority', full=True, null=True)
 
     class Meta:
         resource_name = 'ticket'
         queryset = Ticket.objects.all()
-        allowed_methods = ['get', 'delete', 'put', 'post']
+        allowed_methods = ['get', 'delete', 'put', 'post', 'patch']
         authorization = Authorization()
         filtering = {
             'id': ALL_WITH_RELATIONS,
@@ -25,6 +45,7 @@ class TicketResource(ModelResource):
 class ChatResource(ModelResource):
 
     project = fields.ForeignKey(ProjectResource, 'project')
+    ticket = fields.ForeignKey(TicketResource, 'ticket', full=True)
 
     class Meta:
         resource_name = 'chat'

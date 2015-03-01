@@ -8,6 +8,7 @@
     <link href="{% static 'remodal/dist/jquery.remodal.css' %}" rel="stylesheet">
     <link href="{% static 'chat/css/chat.css' %}" rel="stylesheet">
     <link href="{% static 'core/css/snptm.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -28,12 +29,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
+                {% if user.is_authenticated %}
+                    <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="navbar-dropdown-list" id="navbar-dropdown-list">
                         <!-- Ajax content injected here -->
-                        <li class='divider'></li><li><a href='/newproject'><span class='glyphicon glyphicon-plus'></span> New Project </a></li>
                     </ul>
+                {% endif %}
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -86,5 +88,6 @@
 <script src="{% static 'app.js' %}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
 <script src="{% static 'core/js/dashboard-sidebar.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
 
 </html>

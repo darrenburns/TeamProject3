@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models, migrations
 from django.contrib.auth.models import Group, Permission
+from chat.models import Tag, Priority
 
 
 def populate_groups(apps, schema_editor):

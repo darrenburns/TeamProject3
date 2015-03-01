@@ -69,6 +69,19 @@ $(function () {
                     selected_project = this.getAttribute('id');
                     selectProject(selected_project);
                 });
+            }else{
+                $("#project-title").html("No projects");
+                var noProjectsMessage = ' <div class="text-center" id="no-project-div">\
+            <i class="fa fa-frown-o fa-fw" style="font-size: 300px; color: #f0f0f0;"></i>\
+            <h1><small>You don\'t have any projects</small></h1>\
+            <br>\
+            <a href="/newproject/">\
+            <button type="button" class="btn btn-default" id="new-project-dashboard">\
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New project\
+            </button>\
+            </a>\
+        </div>'
+                $("#no-project-message").html(noProjectsMessage);
             }
 
 
@@ -76,6 +89,9 @@ $(function () {
 
     function selectProject(id) {
         // Make ajax request
+
+        //Removing the div with the no project text
+        $("#no-project-div").remove();
 
         $.getJSON("/api/v1/chat/", {'project__id': id})
             .success(function (chats) {
@@ -97,8 +113,22 @@ $(function () {
                     }
                 }
 
+                $('#number-of-conversations').html(openChatsObject.length);
+                $('#number-of-closed-conversations').html(closedChatsObject.length);
+
+                for(var i in chatObjects){
+                    if(chatObjects[i].ticket.priority != null){
+                      if(chatObjects[i].ticket.priority.name == "High") {
+                        chatObjects[i].isHighPriority = true;
+                    }
+                    }
+                }
+
+
                 // Create mustache template for rendering tickets list
-				var chatListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a>{{/chats}}';
+				var chatListTemplate = '{{#chats}}<a class="list-group-item {{#isHighPriority}}list-group-item-danger{{/isHighPriority}}" id="chat-{{ id }}" href="/chats/{{ id }}">' +
+                    '{{#isHighPriority}} <i class="fa fa-exclamation" style="color:#D10F0F"></i>{{/isHighPriority}}    {{ title }} ' +
+                    '{{#ticket}}{{#tag}}<span class="label label-default" style="background-color:{{colour}}">{{title}}</span> {{/tag}}{{/ticket}}</a>{{/chats}}';
                 renderTemplate(openTicketsList, chatListTemplate, {'chats': openChatsObject});
                 renderTemplate(closedTicketsList, chatListTemplate, {'chats': closedChatsObject});
 
@@ -114,6 +144,7 @@ $(function () {
                     url = url + "?next="+CHAT_ID;
                 }
 
+                //Adding the project title to the H1 heading on sidebar_base and changing the url
                 $("#project-title").find("a").html(projectTitle).attr("href", url);
 
                 //Add a class active and make the accordion open

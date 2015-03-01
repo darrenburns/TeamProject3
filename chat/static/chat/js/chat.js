@@ -6,6 +6,31 @@ $(function () {
     var tabInformation = $("#tab-information");
     var selectMetadataName;
     var apiCall = "/api/v1/";
+    var initialNoteValue;
+    var initialTags = [];
+    var noteTextArea = $("#note-value");
+    var converter = new Showdown.converter();
+
+    // Function to go through the list of tags and adding the tag.title and tag.colour to a coloured box
+    function listToHtml(arrayTag){
+        if(arrayTag.length > 0){
+            initialTags = [];
+            var htmlOutput = "";
+            for (var i in arrayTag){
+                initialTags.push(apiCall + "tag/" + arrayTag[i].id + "/");
+                htmlOutput += "<span class='label label-default test' style='background-color:"+ arrayTag[i].colour +"'>" + arrayTag[i].title + "</span>    ";
+            }
+            return htmlOutput;
+        }else{
+            return "";
+        }
+    }
+
+    //function to add a box with the priority colour
+    function priorityBox(priority){
+        var htmlOutput = "<span class='label label-default' style='background-color: " + priority.colour + "'>"+ priority.name + "</span>";
+        return htmlOutput;
+    }
 
     //This function will update the max-height of the container to adapt to different screens
     //It is done by calculating the difference between the height of the window and the HTML elements
@@ -70,42 +95,65 @@ $(function () {
     function getMetadataInformation(chatId) {
         $.getJSON("/api/v1/ticket/" + CHAT_ID + "/")
             .success(function (data) {
+                var description = "";
+                $.getJSON("/api/v1/chat/" + CHAT_ID + "/")
+                    .success(function (chatData){
+                        description = chatData.description;
+                        tabInformation.html("");
 
-                tabInformation.html("");
+                        var metadataObject = data;
+                        var dateCreated = metadataObject.created;
+                        var dateClosed = metadataObject.closed;
+                        var cost = metadataObject.cost;
+                        var dueDate = metadataObject.due_date;
+                        var notes = metadataObject.notes;
+                        var tags = metadataObject.tag;
+                        var priority = metadataObject.priority;
+                        var user = null;
 
-                var metadataObject = data;
-                var dateCreated = metadataObject.created;
-                var dateClosed = metadataObject.closed;
-                var cost = metadataObject.cost;
-                var dueDate = metadataObject.due_date;
-                var notes = metadataObject.notes;
-                var user = null;
+                        if (metadataObject.user != null) {
+                            user = metadataObject.user.username;
+                        }
 
-                if (metadataObject.user != null) {
-                    user = metadataObject.user.username;
-                }
+                        if (user != null) {
+                            displayMetadataInformation("Assignee", user);
+                        }
 
-                displayMetadataInformation("Date created", getFormattedDate(dateCreated));
+                        displayMetadataInformation("Date created", getFormattedDate(dateCreated));
 
-                if (dateClosed !== null) {
-                    displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
-                }
+                        if (dateClosed !== null) {
+                            displayMetadataInformation("Date closed", getFormattedDate(dateClosed));
+                        }
 
-                if (cost != null) {
-                    displayMetadataInformation("Cost", cost);
-                }
+                        if (cost != null) {
+                            displayMetadataInformation("Cost", cost);
+                        }
 
-                if (dueDate != null) {
-                    displayMetadataInformation("Due Date", getFormattedDate(dueDate));
-                }
+                        if (dueDate != null) {
+                            displayMetadataInformation("Due Date", getFormattedDate(dueDate));
+                        }
 
-                if (notes != null) {
-                    displayMetadataInformation("Notes", notes);
-                }
+                        if (priority != null){
+                            displayMetadataInformation("Priority", priorityBox(priority));
+                        }
 
-                if (user != null) {
-                    displayMetadataInformation("Assignee", user);
-                }
+                        if(description != ""){
+                            displayMetadataInformation("Description", description);
+                        }
+
+                        if(tags.length > 0){
+                            displayMetadataInformation("Tags", listToHtml(tags));
+                        }
+
+                        if (notes != null) {
+                            displayMetadataInformation("Notes", notes);
+                            noteTextArea.val(notes);
+                            initialNoteValue = notes;
+                        }
+
+
+
+                    });
 
             });
     }
@@ -116,6 +164,7 @@ $(function () {
 
         //Create a new date field to use in Mustache
         child.formattedDate = getFormattedDate(child.dt);
+        var formattedMessage = converter.makeHtml(child.desc);
 
         var messagesTemplate =
             '<div class="row">' +
@@ -136,13 +185,16 @@ $(function () {
             messagesTemplate += '<div class="message-container triangle-right left">';
         }
         messagesTemplate +=
-            '<p class="lead message-text">{{ desc }}</p> ' +
+            '--message--' +
             '<p class="message-date">{{ formattedDate }}</p>' +
             '</div>' +
             '</div>' +
             '</div>';
 
+        var regularExpression = new RegExp("<p>", 'g');
         var renderedTemplate = Mustache.to_html(messagesTemplate, child);
+        renderedTemplate = renderedTemplate.replace("--message--", formattedMessage);
+        renderedTemplate = renderedTemplate.replace(regularExpression, "<p class='lead message-text'>");
         messages.append(renderedTemplate);
 
         // On new message load, scroll to the top.
@@ -152,7 +204,7 @@ $(function () {
     if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined' &&
         typeof CURRENT_USER_ID != 'undefined') {
         // Initialise the Firebase
-        var ref = new Firebase("https://teamproject3.firebaseio.com/");
+        var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
 
         // Creating a chat object
         var projectObj = ref.child('project/' + PROJECT_ID);
@@ -185,9 +237,11 @@ $(function () {
 
         var messagesRef = chatObj.child("messages");
 
+
         //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode == 13 && !e.shiftKey) {
+                e.preventDefault();
                 messagesRef.push({
                     desc: messageInput.val(),
                     user: CURRENT_USER,
@@ -199,7 +253,8 @@ $(function () {
         });
 
         messagesRef.on("child_added", function (object) {
-            addMessage(object);
+            $("#spin").hide();
+            addMessage(object)
         });
 
         getMetadataInformation(CHAT_ID);
@@ -234,15 +289,43 @@ $(function () {
                 });
         });
 
+    $.getJSON("/api/v1/tag/")
+        .success(function (tagObjects) {
+            var tagObjects = tagObjects.objects;
+            var tagsListTemplate = "{{#tags}}<li><a id='{{ id }}'>{{ title }}</a></li>{{/tags}}";
+            var renderedTemplate = Mustache.to_html(tagsListTemplate, {'tags': tagObjects});
+            $("#list-tags")
+                .html(renderedTemplate)
+                .find("a")
+                .on("click", function () {
+                    $("#tags-dropdown-button").html(this.text + ' <span class="caret"></span>');
+                    selectTag = this.id; //Get the id of the selected tag
+                });
+        });
+
+    $.getJSON("/api/v1/priority/")
+        .success(function (priorityObjects) {
+            var priorityObjects = priorityObjects.objects;
+            var priorityListTemplate = "{{#priority}}<li><a id='{{ id }}'>{{ name }}</a></li>{{/priority}}";
+            var renderedTemplate = Mustache.to_html(priorityListTemplate, {'priority': priorityObjects});
+            $("#list-priority")
+                .html(renderedTemplate)
+                .find("a")
+                .on("click", function () {
+                    $("#priority-dropdown-button").html(this.text + ' <span class="caret"></span>');
+                    selectPriority = this.id; //Get the id of the selected tag
+                });
+        });
+
     $("#confirm-add-note").on("click", function () {
 
         var passData = {
-            "notes": $("#note-value").val()
+            "notes" : noteTextArea.val()
         };
 
         $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
@@ -263,7 +346,7 @@ $(function () {
 
         $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
@@ -283,7 +366,7 @@ $(function () {
 
         $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
@@ -303,7 +386,7 @@ $(function () {
 
         $.ajax({
             url: apiCall + "ticket/" + CHAT_ID + "/",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(passData),
@@ -314,4 +397,51 @@ $(function () {
         });
 
     });
+
+    $("a[href='#modal-add-note']").on("click", function(){
+        if(initialNoteValue != null){
+            noteTextArea.val(initialNoteValue);
+        }
+    });
+
+        $("#confirm-add-tags").on("click", function () {
+            initialTags.push(apiCall + "tag/" + selectTag + "/");
+            //console.log(initialTags);
+            var passData = {
+                "tag": initialTags
+            };
+            $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PATCH",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function (data) {
+                //console.log(data);
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+            });
+
+            $("#confirm-add-priority").on("click", function () {
+
+        var passData = {
+            "priority": apiCall + "priority/" + selectPriority + "/"
+        };
+            $.ajax({
+            url: apiCall + "ticket/" + CHAT_ID + "/",
+            type: "PATCH",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function (data) {
+                getMetadataInformation(CHAT_ID);
+                $("#open-tab-information").tab("show");
+            }
+        });
+
+    });
+
 });

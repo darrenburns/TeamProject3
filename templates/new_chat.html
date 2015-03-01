@@ -24,6 +24,9 @@
                     <label for="id_title">Chat Title:</label>
                     {{ form.title  | add_attrs:"class:form-control,placeholder:Enter chat title." }}<br/>
 
+                    <label for="id_title">Chat Description:</label>
+                    {{ form.description  | add_attrs:"class:form-control,placeholder:Enter chat description." }}<br/>
+
                     {% if form.title.errors %}
                         <div class="alert alert-danger">
                             {{ form.title.errors}}
