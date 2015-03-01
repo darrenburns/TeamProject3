@@ -133,3 +133,13 @@ a {
     right: 9.5%;
     max-width: 61%;
 }
+
+#spin-container {
+    padding-top: 15%;
+    color: #32a2d6;
+}
+
+#spin {
+    vertical-align: middle;
+    display: inline-block;
+}
