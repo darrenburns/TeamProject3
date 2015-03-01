@@ -116,8 +116,19 @@ $(function () {
                 $('#number-of-conversations').html(openChatsObject.length);
                 $('#number-of-closed-conversations').html(closedChatsObject.length);
 
+                for(var i in chatObjects){
+                    if(chatObjects[i].ticket.priority != null){
+                      if(chatObjects[i].ticket.priority.name == "High") {
+                        chatObjects[i].isHighPriority = true;
+                    }
+                    }
+                }
+
+
                 // Create mustache template for rendering tickets list
-				var chatListTemplate = '{{#chats}}<a class="list-group-item" id="chat-{{ id }}" href="/chats/{{ id }}">{{ title }}</a>{{/chats}}';
+				var chatListTemplate = '{{#chats}}<a class="list-group-item {{#isHighPriority}}list-group-item-danger{{/isHighPriority}}" id="chat-{{ id }}" href="/chats/{{ id }}">' +
+                    '{{#isHighPriority}} <i class="fa fa-exclamation" style="color:#D10F0F"></i>{{/isHighPriority}}    {{ title }} ' +
+                    '{{#ticket}}{{#tag}}<span class="label label-default" style="background-color:{{colour}}">{{title}}</span> {{/tag}}{{/ticket}}</a>{{/chats}}';
                 renderTemplate(openTicketsList, chatListTemplate, {'chats': openChatsObject});
                 renderTemplate(closedTicketsList, chatListTemplate, {'chats': closedChatsObject});
 

@@ -6,7 +6,8 @@
         <div class="col-xs-9 main">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 id="chat-title"><small>{{ chat.title }}</small>
+                    <h1 id="chat-title"><small>{{ chat.title }} <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom"
+                          title="{{ chat.description }}"></i></small>
                         {% if chat.closed %}<span class="label label-danger">Closed</span>{% endif %}
                         {#                        <a href="{% url 'project_description' chat.project.id %}?next={{ chat.id }}">#}
                         {#                            <small>{{ chat.project.name }}</small>#}
@@ -21,13 +22,15 @@
                         <div class="col-sm-6">
                             <ul class="nav nav-tabs">
                                 <li role="presentation" class="active">
-                                    <a role="tab" data-toggle="tab" href="#tab-chats">Chat</a>
+                                    <a role="tab" data-toggle="tab" href="#tab-chats">Chat <i class="fa fa-comments-o"></i>
+</a>
                                 </li>
                                 <li role="presentation">
-                                    <a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information</a>
+                                    <a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information <i class="fa fa-question-circle"></i>
+</a>
                                 </li>
                                 <li>
-                                    <a role="tab" data-toggle="tab" href="#tab-visualisations" id="open-tab-visualisations">Visualisation</a>
+                                    <a role="tab" data-toggle="tab" href="#tab-visualisations" id="open-tab-visualisations">Visualisation <i class="fa fa-bar-chart"></i></a>
                                 </li>
 
                             </ul>
@@ -36,17 +39,25 @@
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="metaDropdown" data-toggle="dropdown">
-                                        Attach Data
+                                        Attach data
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="metaDropdown">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-note">Note</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-due-date">Due Date</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-cost">Cost</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-assignee">Assignee</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-note"><i class="fa fa-pencil-square-o"></i>
+ Note</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-due-date"><i class="fa fa-clock-o"></i>
+ Due Date</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-cost"><i class="fa fa-usd"></i>
+ Cost</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-assignee"><i class="fa fa-user"></i>
+ Assignee</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-tags"><i class="fa fa-tags"></i>
+ Tags</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-priority"><i class="fa fa-exclamation"></i>
+ Priority</a></li>
                                     </ul>
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Options <span class="caret"></span>
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Options <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu pull-right" role="menu">
                                             {% if chat.closed %}
@@ -126,14 +137,14 @@
 
     <!-- Modal window for adding note -->
     <div class="remodal" data-remodal-id="modal-add-note">
-        <h3>Attach Note</h3>
+        <h3>Attach note</h3>
 
         <form role="form">
             <div class="form-group" id="form-add-note">
                 <textarea class="form-control" rows="3" placeholder="Enter notes here" id="note-value"></textarea>
                 <br/>
                 <div class="btn-group" role="group">
-                    <a href="#"><button type="button" class="btn btn-default" id="confirm-add-note">Save Note</button></a>
+                    <a href="#"><button type="button" class="btn btn-default" id="confirm-add-note">Save note</button></a>
                 </div>
             </div>
         </form>
@@ -141,14 +152,14 @@
 
     <!-- Modal window for adding due date -->
     <div class="remodal" data-remodal-id="modal-add-due-date">
-        <h3>Attach Due Date</h3>
+        <h3>Attach due date</h3>
 
         <form role="form">
             <div class="form-group" id="form-add-due-date">
                 <input class="form-control" type="datetime-local" id="due-date-value"/>
                 <br/>
                 <div class="btn-group" role="group">
-                    <a href="#"><button type="button" class="btn btn-default" id="confirm-add-due-date">Save Due Date</button></a>
+                    <a href="#"><button type="button" class="btn btn-default" id="confirm-add-due-date">Save due date</button></a>
                 </div>
             </div>
         </form>
@@ -156,7 +167,7 @@
 
     <!-- Modal window for adding cost -->
     <div class="remodal" data-remodal-id="modal-add-cost">
-        <h3>Attach Cost</h3>
+        <h3>Attach cost</h3>
         <p class="lead">Enter a numerical value to represent the cost of this task.</p>
         <form role="form">
             <div class="form-group" id="form-add-cost">
@@ -166,7 +177,7 @@
                     </div>
                     <div class="col-xs-4">
                         <div class="btn-group pull-left" role="group">
-                            <a href="#"><button type="button" class="btn btn-default" id="confirm-add-cost">Save Cost</button></a>
+                            <a href="#"><button type="button" class="btn btn-default" id="confirm-add-cost">Save cost</button></a>
                         </div>
                     </div>
                 </div>
@@ -174,16 +185,12 @@
         </form>
     </div>
 
-    <!-- Modal window for adding cost -->
+    <!-- Modal window for adding assignee -->
     <div class="remodal" data-remodal-id="modal-add-assignee">
-        <h3>Set Assignee</h3>
+        <h3>Set assignee</h3>
 
         <form role="form">
             <div class="form-group btn-group" id="form-add-assignee">
-                <div>
-                    Dropdown to select assignee for ticket here
-                </div>
-
                     <button class="btn btn-default dropdown-toggle" type="button" id="user-dropdown-button" data-toggle="dropdown" aria-expanded="true">
                         Select
                         <span class="caret"></span>
@@ -192,12 +199,51 @@
                     <ul class="dropdown-menu" role="menu" aria-labelledby="list-user" id="list-user">
                     </ul>
 
-                    <a href="#"><button type="button" class="btn btn-default" id="confirm-add-assignee">Save Assignee</button></a>
+                    <a href="#"><button type="button" class="btn btn-default" id="confirm-add-assignee">Save assignee</button></a>
 
             </div>
         </form>
     </div>
 
+    <!-- Modal window for adding tags -->
+    <div class="remodal" data-remodal-id="modal-add-tags">
+        <h3>Set tag</h3>
+
+        <form role="form">
+            <div class="form-group btn-group" id="form-add-tags">
+                <button class="btn btn-default dropdown-toggle" type="button" id="tags-dropdown-button" data-toggle="dropdown" aria-expanded="true">
+                    Select
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="list-tags" id="list-tags">
+                </ul>
+
+                <a href="#"><button type="button" class="btn btn-default" id="confirm-add-tags">Save tag</button></a>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal window for adding priority -->
+    <div class="remodal" data-remodal-id="modal-add-priority">
+        <h3>Set priority</h3>
+
+        <form role="form">
+            <div class="form-group btn-group" id="form-add-priority">
+                <button class="btn btn-default dropdown-toggle" type="button" id="priority-dropdown-button" data-toggle="dropdown" aria-expanded="true">
+                    Select
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="list-priority" id="list-priority">
+                </ul>
+
+                <a href="#"><button type="button" class="btn btn-default" id="confirm-add-priority">Save priority</button></a>
+
+            </div>
+        </form>
+    </div>
     <script type="text/javascript">
         CHAT_ID = "{{ chat.id }}";
         PROJECT_ID = "{{ chat.project }}";
