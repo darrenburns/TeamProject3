@@ -6,7 +6,7 @@ $(function() {
         var BASE_CHART_WIDTH = 400;
         var BASE_CHART_HEIGHT = 250;
         var BASE_PADDING_LEFT = 30;
-        var BASE_PADDING_TOP = 8;
+        var BASE_PADDING_TOP = -8;
         var BASE_PADDING_BOTTOM = 120;
 
         var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
