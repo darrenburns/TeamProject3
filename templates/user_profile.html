@@ -18,59 +18,28 @@
 
             </div>
 
-            <div class="row">
+            <h2>Overview</h2>
 
-
-                <div class="col-sm-6">
-                    <br>
-                    <ul>
-                        <li><strong>Role:</strong> {{ userProfile.role }}</li>
-                        <li><strong>linkedinURL:</strong> {{ userProfile.linkedinURL }}</li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-6">
-                    <br><br>
-                    {{ "[[profile picture goes here]]" }}
-
-                </div>
-            </div>
-
-            <HR>
             <div class="row">
                 <div class="col-sm-6">
-
                     {% for project in projects %}
+                    <h3>{{ project.name }}</h3>
                     <div class="list-group">
-                        {% for chat in project.chats.all %}
-                        <a href="#" class="list-group-item">
+                        {% for chat in project.chat_set.all %}
+                        <a href="/chats/{{ chat.id }}" class="list-group-item">
                             <h4 class="list-group-item-heading">{{ chat.title }}</h4>
                             <p class="list-group-item-text">{{ chat.project.name }}</p>
                         </a>
+                            {% empty %}
+                            <p>This project has no conversations.</p>
                         {% endfor %}
                     </div>
                     {% endfor %}
                    </div>
 
-                <div class="col-sm-6">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <h4 class="list-group-item-heading">Sample text</h4>
-                            <p class="list-group-item-text">...</p>
-                        </a>
-                    </div>
-
 
                 </div>
 
-
-                </div>
-            <HR>
-            <div class="row">
-                <div class="col-sm-6">
-                    <a class="btn btn-default" href="permissions">Change Permissions</a>
-                </div>
-            </div>
             </div>
 
         </div>
