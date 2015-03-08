@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 id="chat-title"><small>{{ chat.title }} <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom"
-                          title="{{ chat.description }}"></i></small>
+                                                                   title="{{ chat.description }}"></i></small>
                         {% if chat.closed %}<span class="label label-danger">Closed</span>{% endif %}
                         {#                        <a href="{% url 'project_description' chat.project.id %}?next={{ chat.id }}">#}
                         {#                            <small>{{ chat.project.name }}</small>#}
@@ -23,11 +23,11 @@
                             <ul class="nav nav-tabs">
                                 <li role="presentation" class="active">
                                     <a role="tab" data-toggle="tab" href="#tab-chats">Chat <i class="fa fa-comments-o"></i>
-</a>
+                                    </a>
                                 </li>
                                 <li role="presentation">
                                     <a role="tab" data-toggle="tab" href="#tab-information" id="open-tab-information">Information <i class="fa fa-question-circle"></i>
-</a>
+                                    </a>
                                 </li>
                                 <li>
                                     <a role="tab" data-toggle="tab" href="#tab-visualisations" id="open-tab-visualisations">Visualisation <i class="fa fa-bar-chart"></i></a>
@@ -44,17 +44,17 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="metaDropdown">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-note"><i class="fa fa-pencil-square-o"></i>
- Note</a></li>
+                                            Note</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-due-date"><i class="fa fa-clock-o"></i>
- Due Date</a></li>
+                                            Due Date</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-cost"><i class="fa fa-usd"></i>
- Cost</a></li>
+                                            Cost</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-assignee"><i class="fa fa-user"></i>
- Assignee</a></li>
+                                            Assignee</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-tags"><i class="fa fa-tags"></i>
- Tags</a></li>
+                                            Tags</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#modal-add-priority"><i class="fa fa-exclamation"></i>
- Priority</a></li>
+                                            Priority</a></li>
                                     </ul>
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Options <span class="caret"></span>
@@ -76,30 +76,48 @@
                     </div>
 
                 </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <!-- Tab panes -->
-                            <div class="tab-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
 
-                                <!-- Tab chats -->
-                                <div role="tabpanel" class="tab-pane active" id="tab-chats">
-                                    <div class="list-group latest-messages">
-                                        <div id="spin-container" class="text-center">
+                            <!-- Tab chats -->
+                            <div role="tabpanel" class="tab-pane active" id="tab-chats">
+                                <div class="list-group latest-messages">
+                                    <div id="spin-container" class="text-center">
 
-                                            <i id="spin" class="fa fa-cog fa-spin fa-5x"></i>
+                                        <i id="spin" class="fa fa-cog fa-spin fa-5x"></i>
 
-                                        </div>
+                                    </div>
+                                </div>
+
+                                <textarea class="form-control" rows="3" placeholder="Message" id="input-message"></textarea>
+
+                            </div>
+                            <!-- End tab chats -->
+
+                            <!-- Tab information -->
+                            <div role="tabpanel" class="tab-pane" id="tab-information">
+                                <div class="row">
+                                    <div class="col-sm-8" id="metadata-column">
+
+                                        <!-- TODO: Add metadata items here -->
                                     </div>
 
-                                    <textarea class="form-control" rows="3" placeholder="Message" id="input-message"></textarea>
+                                    <div class="col-sm-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                Saved messages
+                                            </div>
+                                            <div class="panel-body">
+                                                <ul class="list-group" id="saved-messages">
 
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- End tab chats -->
-
-                                <!-- Tab information -->
-                                <div role="tabpanel" class="tab-pane" id="tab-information">
-                                    <!-- TODO: Add metadata items here -->
-                                </div>
+                            </div>
 
                             <!-- End tab chats -->
 
@@ -115,8 +133,8 @@
                             <div role="tabpanel" class="tab-pane" id="tab-users">Users content</div>
                         </div>
                         <!-- End tab panes -->
-                        </div>
                     </div>
+                </div>
 
             </div>
 
@@ -207,7 +225,7 @@
 
                     <a href="#"><button type="button" class="btn btn-default" id="confirm-add-assignee">Save Assignee</button></a>
 
-            </div>
+                </div>
         </form>
     </div>
 

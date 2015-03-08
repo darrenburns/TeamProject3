@@ -4,7 +4,7 @@ from tastypie.authorization import Authorization
 from tastypie.constants import ALL_WITH_RELATIONS
 
 from tastypie.resources import ModelResource
-from chat.models import Chat, Metadata, MetadataName, Ticket, Tag, Priority
+from chat.models import Chat, Metadata, MetadataName, Ticket, Tag, Priority, Message
 from core.api.resources import ProjectResource, UserResource
 
 
@@ -13,7 +13,7 @@ class TagResource(ModelResource):
     class Meta:
         resource_name = 'tag'
         queryset = Tag.objects.all()
-        allowed_methods = ['get', 'delete', 'put', 'post']
+        allowed_methods = ['get', 'put', 'post']
         authorization = Authorization()
 
 
@@ -22,7 +22,7 @@ class PriorityResource(ModelResource):
     class Meta:
         resource_name = 'priority'
         queryset = Priority.objects.all()
-        allowed_methods = ['get', 'delete', 'put', 'post']
+        allowed_methods = ['get', 'put', 'post']
         authorization = Authorization()
 
 
@@ -35,7 +35,7 @@ class TicketResource(ModelResource):
     class Meta:
         resource_name = 'ticket'
         queryset = Ticket.objects.all()
-        allowed_methods = ['get', 'delete', 'put', 'post', 'patch']
+        allowed_methods = ['get', 'put', 'post', 'patch']
         authorization = Authorization()
         filtering = {
             'id': ALL_WITH_RELATIONS,
@@ -68,7 +68,7 @@ class MetadataNameResource(ModelResource):
     class Meta:
         resource_name = 'metadata_name'
         queryset = MetadataName.objects.all()
-        allowed_methods = ['get', 'delete', 'put', 'post']
+        allowed_methods = ['get', 'put', 'post']
         authorization = Authorization()
 
 
@@ -80,9 +80,24 @@ class MetadataResource(ModelResource):
     class Meta:
         resource_name = 'metadata'
         queryset = Metadata.objects.all()
-        allowed_methods = ['get', 'delete', 'put', 'post']
+        allowed_methods = ['get', 'put', 'post']
         authorization = Authorization()
         filtering = {
             'chat': ALL_WITH_RELATIONS,
             'metadata_name': ALL_WITH_RELATIONS,
+        }
+
+
+class MessageResource(ModelResource):
+
+    chat = fields.ForeignKey(ChatResource, 'chat')
+    user = fields.ForeignKey(UserResource, 'user', null=True)
+
+    class Meta:
+        resource_name = 'message'
+        queryset = Message.objects.all()
+        allowed_methods = ['get', 'put', 'post', 'patch']
+        authorization = Authorization()
+        filtering = {
+            'chat': ALL_WITH_RELATIONS,
         }
