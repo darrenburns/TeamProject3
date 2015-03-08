@@ -40,6 +40,10 @@ class TicketResource(ModelResource):
         filtering = {
             'id': ALL_WITH_RELATIONS,
         }
+        ordering = [
+            'due_date',
+            'priority'
+        ]
 
 
 class ChatResource(ModelResource):
@@ -53,8 +57,10 @@ class ChatResource(ModelResource):
         allowed_methods = ['get']
         filtering = {
             'project': ALL_WITH_RELATIONS,
+            'ticket': ALL_WITH_RELATIONS,
             'id': ALL_WITH_RELATIONS,
         }
+        ordering = ['ticket']
 
 
 class MetadataNameResource(ModelResource):

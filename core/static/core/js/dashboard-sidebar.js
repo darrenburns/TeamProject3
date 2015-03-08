@@ -80,7 +80,7 @@ $(function () {
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New project\
             </button>\
             </a>\
-        </div>'
+        </div>';
                 $("#no-project-message").html(noProjectsMessage);
             }
 
@@ -90,10 +90,26 @@ $(function () {
     function selectProject(id) {
         // Make ajax request
 
+        var field = null;
+        var ascending = true;
+        var orderBy = "ticket"; //Default order is ticket id
+
+        if(!ascending) {
+            orderBy = "-" + orderBy; //attach - at the beginning to order descending
+        }
+
+        if(field != null) {
+            orderBy += "__" + field; //ticket__<name_of_the_field>
+        }
+
         //Removing the div with the no project text
         $("#no-project-div").remove();
 
-        $.getJSON("/api/v1/chat/", {'project__id': id})
+        $.getJSON("/api/v1/chat/",
+            {
+                'project__id': id,
+                'order_by' : orderBy
+            })
             .success(function (chats) {
 
                 //Update the reference to the correct project id when creating a new chat and enable the button again
@@ -118,15 +134,15 @@ $(function () {
 
                 for(var i in chatObjects){
                     if(chatObjects[i].ticket.priority != null){
-                      if(chatObjects[i].ticket.priority.name == "High") {
-                        chatObjects[i].isHighPriority = true;
-                    }
+                        if(chatObjects[i].ticket.priority.name == "High") {
+                            chatObjects[i].isHighPriority = true;
+                        }
                     }
                 }
 
 
                 // Create mustache template for rendering tickets list
-				var chatListTemplate = '{{#chats}}<a class="list-group-item {{#isHighPriority}}list-group-item-danger{{/isHighPriority}}" id="chat-{{ id }}" href="/chats/{{ id }}">' +
+                var chatListTemplate = '{{#chats}}<a class="list-group-item {{#isHighPriority}}list-group-item-danger{{/isHighPriority}}" id="chat-{{ id }}" href="/chats/{{ id }}">' +
                     '{{#isHighPriority}} <i class="fa fa-exclamation" style="color:#D10F0F"></i>{{/isHighPriority}}    {{ title }} ' +
                     '{{#ticket}}{{#tag}}<span class="label label-default" style="background-color:{{colour}}">{{title}}</span> {{/tag}}{{/ticket}}</a>{{/chats}}';
                 renderTemplate(openTicketsList, chatListTemplate, {'chats': openChatsObject});
@@ -153,6 +169,5 @@ $(function () {
                 }
             });
     }
-
 
 });
