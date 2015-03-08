@@ -97,7 +97,7 @@ $(function() {
                 .call(yAxis);
 
             svg.append("g")
-                .attr("class", "xAxis")
+                .attr("class", "x axis")
                 .attr("transform", "translate(" + BASE_PADDING_LEFT + "," + (BASE_CHART_HEIGHT + BASE_PADDING_TOP) + ")")
                 .call(xAxis)
                 .selectAll("text")
