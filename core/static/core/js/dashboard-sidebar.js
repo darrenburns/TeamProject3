@@ -6,10 +6,23 @@ $(function () {
         element.html(renderedTemplate);
     }
 
+    function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++)
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam)
+            {
+                return sParameterName[1];
+            }
+        }
+    }
+
     /*
-    This function will update the max-height of the list to adapt to different screens
-    It is done by calculating the difference between the height of the window and the HTML elements
-    outerHeight is the height of element with its margins
+     This function will update the max-height of the list to adapt to different screens
+     It is done by calculating the difference between the height of the window and the HTML elements
+     outerHeight is the height of element with its margins
      */
     function setListHeight() {
         var windowHeight = $( window ).outerHeight();
@@ -24,6 +37,7 @@ $(function () {
     var openTicketsList = ticketsPanel.find('#open-tickets-list');
     var closedTicketsList = ticketsPanel.find('#closed-tickets-list');
     var navbarDropdownProjectList = $('#navbar-dropdown-list');
+    var sortingOptionList = $("#dropdown-sorting-options").find("li");
     //Call the function once
     setListHeight();
 
@@ -51,10 +65,10 @@ $(function () {
                 sidebarDropdownButton.prop('disabled', false);
 
                 if(typeof PROJECT_ID != 'undefined'){
-                    selectProject(PROJECT_ID);
+                    selectProject(PROJECT_ID, null, true);
                 }else{
                     selected_project = projectObjects[0].id;
-                    selectProject(selected_project);
+                    selectProject(selected_project, null, true);
                 }
 
 
@@ -67,7 +81,7 @@ $(function () {
                 //Bind the click event into projects items
                 navbarDropdownProjectList.find('li a').bind('click', function () {
                     selected_project = this.getAttribute('id');
-                    selectProject(selected_project);
+                    selectProject(selected_project, null, true);
                 });
             }else{
                 $("#project-title").html("No projects");
@@ -87,18 +101,16 @@ $(function () {
 
         });
 
-    function selectProject(id) {
+    function selectProject(id, field, ascending) {
         // Make ajax request
 
-        var field = null;
-        var ascending = true;
         var orderBy = "ticket"; //Default order is ticket id
 
         if(!ascending) {
             orderBy = "-" + orderBy; //attach - at the beginning to order descending
         }
 
-        if(field != null) {
+        if(field != null && field != "open_date") {
             orderBy += "__" + field; //ticket__<name_of_the_field>
         }
 
@@ -120,12 +132,28 @@ $(function () {
                 var chatObjects = chats.objects;
                 var openChatsObject = [];
                 var closedChatsObject = [];
+                var nullDueDateChatObjects = [];
+
                 for(var i in chatObjects){
-                    var project = chatObjects[i];
-                    if(project.closed == null){
-                        openChatsObject.push(project);
+                    var project1 = chatObjects[i];
+                    if(project1.closed == null){
+
+                        if(field == "due_date" && project1.ticket.due_date == null){
+                            nullDueDateChatObjects.push(project1);
+                        } else {
+                            openChatsObject.push(project1);
+                        }
+
+
                     } else {
-                        closedChatsObject.push(project);
+                        closedChatsObject.push(project1);
+                    }
+                }
+
+                if(nullDueDateChatObjects.length > 0){
+                    for(var j in nullDueDateChatObjects){
+                        var project2 = nullDueDateChatObjects[j];
+                        openChatsObject.push(project2);
                     }
                 }
 
@@ -169,5 +197,26 @@ $(function () {
                 }
             });
     }
+
+    sortingOptionList
+        .on("click", function(){
+            var ascending;
+            var field;
+            var sortingID = this.id;
+            var options = sortingID.split("-");
+
+            field = options[0];
+
+            if(options[1] == "asc"){
+                ascending = true;
+            } else {
+                ascending = false;
+            }
+
+            selectProject(PROJECT_ID, field, ascending)
+            sortingOptionList.removeClass("active");
+            $(this).addClass("active");
+
+        });
 
 });

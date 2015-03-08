@@ -27,16 +27,21 @@
 
                                 <div class="btn-group" style="margin-top: 10px;">
                                     <div class="dropdown pull-left">
-                                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" style="margin-right: 5px;">
+
+                                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" style="margin-right: 5px;">
                                             <span class="fa fa-sort"> Sorting</span>
                                             <span class="caret"></span>
                                         </button>
 
-                                        <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="dropdownMenu1">
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                                        <ul class="dropdown-menu pull-left" role="menu" id="dropdown-sorting-options">
+                                            <li id="open_date-asc" class="active"><a role="menuitem" href="#">Oldest open date</a></li>
+                                            <li id="open_date-desc"><a role="menuitem" href="#">Newest open date</a></li>
+                                            <li class="divider"></li>
+                                            <li id="due_date-asc"><a role="menuitem" href="#">Soonest due date</a></li>
+                                            <li id="due_date-desc"><a role="menuitem" href="#">Farthest due date</a></li>
+                                            <li class="divider"></li>
+                                            <li id="priority-desc"><a role="menuitem" href="#">Highest priority</a></li>
+                                            <li id="priority-asc"><a role="menuitem" href="#">Lowest priority</a></li>
                                         </ul>
 
                                     </div>
