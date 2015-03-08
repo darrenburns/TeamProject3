@@ -146,7 +146,8 @@ $(function () {
                         }
 
                         if (notes != null) {
-                            displayMetadataInformation("Notes", notes);
+                            var formattedNote = converter.makeHtml(notes);
+                            displayMetadataInformation("Notes", formattedNote);
                             noteTextArea.val(notes);
                             initialNoteValue = notes;
                         }

@@ -62,7 +62,7 @@ $(function () {
                 var projectsListTemplate = '{{#projects}}<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="{{id}}">{{name}}</a></li>{{/projects}}';
                 renderTemplate(navbarDropdownProjectList, projectsListTemplate, {'projects': projectObjects});
 
-                var newProjectLink = $("<li class='divider'></li><li><a href='/newproject'><span class='glyphicon glyphicon-plus'></span> New Project </a></li>");
+                var newProjectLink = $("<li class='divider'></li><li><a href='/newproject'><i class='fa fa-plus'></i> New Project </a></li>");
                 navbarDropdownProjectList.append(newProjectLink);
                 //Bind the click event into projects items
                 navbarDropdownProjectList.find('li a').bind('click', function () {
@@ -77,7 +77,7 @@ $(function () {
             <br>\
             <a href="/newproject/">\
             <button type="button" class="btn btn-default" id="new-project-dashboard">\
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New project\
+                <i class="fa fa-plus"></i> New project\
             </button>\
             </a>\
         </div>';

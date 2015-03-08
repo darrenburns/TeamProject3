@@ -61,12 +61,12 @@
                                         </button>
                                         <ul class="dropdown-menu pull-right" role="menu">
                                             {% if chat.closed %}
-                                                <li><a href="{% url 'reopen_chat' chat.id %}"><span class="glyphicon glyphicon-repeat"></span> Reopen chat</a></li>
+                                                <li><a href="{% url 'reopen_chat' chat.id %}"><i class="fa fa-repeat"></i> Reopen chat</a></li>
                                             {% else %}
-                                                <li><a href="{% url 'close_chat' chat.id %}"><span class="glyphicon glyphicon-lock"></span> Close chat</a></li>
+                                                <li><a href="{% url 'close_chat' chat.id %}"><i class="fa fa-lock"></i> Close chat</a></li>
                                             {% endif %}
                                             <li class="divider"></li>
-                                            <li><a href="#modal-delete"><span class="glyphicon glyphicon-remove"></span> Delete chat</a></li>
+                                            <li><a href="#modal-delete"><i class="fa fa-trash-o"></i> Delete chat</a></li>
                                         </ul>
                                     </div>
                                 </div>
