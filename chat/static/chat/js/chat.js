@@ -486,9 +486,10 @@ $(function () {
             var messages = response.objects;
 
             messages.forEach(function(message) {
-                console.log("message: " + message.text);
+                var d = new Date(message.sent);
                 savedMessages.append(
-                    '<li class="list-group-item">' + converter.makeHtml(message.text) + '</li>'
+                    '<li class="list-group-item" id="saved-message-item">' + converter.makeHtml(message.text) +
+                    '<p class="message-date-2">'+ message.user.username + " - " +  d.toLocaleDateString() + '</p></li>'
                 );
             })
         });

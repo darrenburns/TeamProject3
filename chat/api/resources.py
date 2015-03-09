@@ -91,7 +91,7 @@ class MetadataResource(ModelResource):
 class MessageResource(ModelResource):
 
     chat = fields.ForeignKey(ChatResource, 'chat')
-    user = fields.ForeignKey(UserResource, 'user', null=True)
+    user = fields.ForeignKey(UserResource, 'user', full=True, null=True)
 
     class Meta:
         resource_name = 'message'
