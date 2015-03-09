@@ -478,23 +478,22 @@ $(function () {
 
     function getSavedMessages(){
 
-        $.getJSON("/api/v1/message/", {
-            chat__id: CHAT_ID
-        }).success(function(response) {
-            savedMessages.text("");
-            var messages = response.objects;
-            if(messages.length == 0){
-                savedMessages.append('<li class="list-group-item">You have no saved messages</li>');
-            }else{
+        if (typeof CHAT_ID != 'undefined') {
+            $.getJSON("/api/v1/message/", {
+                chat__id: CHAT_ID
+            }).success(function(response) {
+                savedMessages.text("");
+                var messages = response.objects;
                 messages.forEach(function(message) {
                     var d = new Date(message.sent);
                     savedMessages.append(
                         '<li class="list-group-item" id="saved-message-item">' + converter.makeHtml(message.text) +
                         '<p class="message-date-2">'+ message.user.username + " - " +  d.toLocaleDateString() + '</p></li>'
                     );
-                });
-            }
-        });
+
+                })
+            });
+        }
     }
 
     getSavedMessages();
