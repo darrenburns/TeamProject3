@@ -212,9 +212,8 @@ $(function () {
         messagesTemplate +=
             '--message--' +
             '<p class="message-date">{{ formattedDate }}' +
-            '<button type="button" class="btn btn-default btn-xs pull-right message-to-note" id="message-{{ messageId }}">' +
-            '<i class="fa fa-pencil-square-o"></i>' +
-            '</button>' +
+            '<i class="fa fa-plus-square fa-lg pull-right message-to-note" id="message-{{ messageId }}">' +
+            ' <small>Save</small></i>' +
             '</p>' +
             '</div>' +
             '</div>' +
