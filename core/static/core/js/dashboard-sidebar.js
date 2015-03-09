@@ -160,7 +160,6 @@ $(function () {
                     }
                 }
 
-
                 // Create mustache template for rendering tickets list
                 var chatListTemplate = '{{#chats}}<a class="list-group-item {{#isHighPriority}}list-group-item-danger{{/isHighPriority}}" id="chat-{{ id }}" href="/chats/{{ id }}">' +
                     '{{#isHighPriority}} <i class="fa fa-exclamation" style="color:#D10F0F"></i>{{/isHighPriority}}    {{ title }} ' +
@@ -219,12 +218,7 @@ $(function () {
 
     $('#search-box').on('keyup', function (event) {
         searchTerm = $(this).val();
-        if (searchTerm && searchTerm.length > 1) {
-            loadChats(currentProjectId);
-        } else {
-            loadChats(currentProjectId);
-        }
-
+        loadChats(currentProjectId);
     });
 
 
