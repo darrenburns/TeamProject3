@@ -1,7 +1,7 @@
 # REST API for the chat models are defined here
 from tastypie import fields
 from tastypie.authorization import Authorization
-from tastypie.constants import ALL_WITH_RELATIONS
+from tastypie.constants import ALL_WITH_RELATIONS, ALL
 
 from tastypie.resources import ModelResource
 from chat.models import Chat, Metadata, MetadataName, Ticket, Tag, Priority
@@ -39,6 +39,7 @@ class TicketResource(ModelResource):
         authorization = Authorization()
         filtering = {
             'id': ALL_WITH_RELATIONS,
+            'name': ALL
         }
         ordering = [
             'due_date',
@@ -59,6 +60,7 @@ class ChatResource(ModelResource):
             'project': ALL_WITH_RELATIONS,
             'ticket': ALL_WITH_RELATIONS,
             'id': ALL_WITH_RELATIONS,
+            'title': ALL
         }
         ordering = ['ticket']
 
