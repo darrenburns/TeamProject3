@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
 from tastypie.api import Api
-from chat.api.resources import ChatResource, MetadataResource, MetadataNameResource, TicketResource, TagResource, PriorityResource
+from chat.api.resources import ChatResource, MetadataResource, MetadataNameResource, TicketResource, TagResource, PriorityResource, MessageResource
 from core.api.resources import ProjectResource, UserProfileResource, UserResource
 
 # Enable the admin interface
@@ -18,6 +18,7 @@ v1_api.register(MetadataNameResource())
 v1_api.register(TicketResource())
 v1_api.register(UserProfileResource())
 v1_api.register(UserResource())
+v1_api.register(MessageResource())
 
 
 urlpatterns = patterns('',

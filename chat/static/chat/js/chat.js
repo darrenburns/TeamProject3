@@ -4,6 +4,7 @@ $(function () {
     var messages = $(".latest-messages");
     var messageInput = $("#input-message");
     var tabInformation = $("#tab-information");
+    var metadataColumn = $("#metadata-column");
     var selectMetadataName;
     var apiCall = "/api/v1/";
     var initialNoteValue;
@@ -11,6 +12,28 @@ $(function () {
     var noteTextArea = $("#note-value");
     var converter = new Showdown.converter();
 
+    function attachMessageToNotes(message, user_id, date){
+        var d = new Date(date);
+        var passData = {
+            "chat": apiCall + "chat/" + CHAT_ID + "/",
+            "sent" : d.toISOString(),
+            "user" : apiCall+ "user/" + user_id + "/",
+            "text": message
+        };
+        console.log(passData);
+        $.ajax({
+            url: apiCall + "message/",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData),
+            complete: function (data) {
+                getMetadataInformation(CHAT_ID);
+                getSavedMessages();
+                $("#open-tab-information").tab("show");
+            }
+        });
+    }
     // Function to go through the list of tags and adding the tag.title and tag.colour to a coloured box
     function listToHtml(arrayTag){
         if(arrayTag.length > 0){
@@ -66,10 +89,10 @@ $(function () {
     function displayMetadataInformation(title, value) {
 
         var divRow;
-        var lastRow = tabInformation.children(".row").last(); //Get the last row of information tab
+        var lastRow = metadataColumn.children(".row").last(); //Get the last row of information tab
         var childrenNumber = lastRow.children().length; //Get the number of columns of that row
 
-        if (childrenNumber === 0 || childrenNumber === 3) { //If the row does not exist or it has 3 children
+        if (childrenNumber === 0 || childrenNumber === 2) { //If the row does not exist or it has 2 children
             divRow = $("<div>", {class: "row"}); //Create a new row
         } else {
             divRow = lastRow; //or use the last row
@@ -79,7 +102,7 @@ $(function () {
         var panelInformation = $("<div>", {class: "panel panel-default panel-information"});
         var panelHeading = $("<div>", {class: "panel-heading"});
         var panelBody = $("<div>", {class: "panel-body"});
-        var divColumn = $("<div>", {class: "col-sm-4"});
+        var divColumn = $("<div>", {class: "col-sm-6"});
 
         //Fill the content into the panel and add it to the row
         panelHeading.html("<strong>" + title + "</strong>");
@@ -88,7 +111,7 @@ $(function () {
         panelInformation.append(panelBody);
         divColumn.append(panelInformation);
         divRow.append(divColumn);
-        tabInformation.append(divRow);
+        metadataColumn.append(divRow);
 
     }
 
@@ -99,7 +122,7 @@ $(function () {
                 $.getJSON("/api/v1/chat/" + CHAT_ID + "/")
                     .success(function (chatData){
                         description = chatData.description;
-                        tabInformation.html("");
+                        metadataColumn.html("");
 
                         var metadataObject = data;
                         var dateCreated = metadataObject.created;
@@ -146,7 +169,8 @@ $(function () {
                         }
 
                         if (notes != null) {
-                            displayMetadataInformation("Notes", notes);
+                            var formattedNote = converter.makeHtml(notes);
+                            displayMetadataInformation("Notes", formattedNote);
                             noteTextArea.val(notes);
                             initialNoteValue = notes;
                         }
@@ -161,11 +185,12 @@ $(function () {
     function addMessage(object) {
 
         var child = object.val();
-
+        var unformattedMessage = [];
+        unformattedMessage.push(child.desc);
         //Create a new date field to use in Mustache
         child.formattedDate = getFormattedDate(child.dt);
         var formattedMessage = converter.makeHtml(child.desc);
-
+        child.messageId = unformattedMessage.length - 1;
         var messagesTemplate =
             '<div class="row">' +
             '<div class="col-xs-1">' +
@@ -186,7 +211,10 @@ $(function () {
         }
         messagesTemplate +=
             '--message--' +
-            '<p class="message-date">{{ formattedDate }}</p>' +
+            '<p class="message-date">{{ formattedDate }}' +
+            '<i class="fa fa-plus-square fa-lg pull-right message-to-note" id="message-{{ messageId }}">' +
+            ' <small>Save</small></i>' +
+            '</p>' +
             '</div>' +
             '</div>' +
             '</div>';
@@ -196,7 +224,10 @@ $(function () {
         renderedTemplate = renderedTemplate.replace("--message--", formattedMessage);
         renderedTemplate = renderedTemplate.replace(regularExpression, "<p class='lead message-text'>");
         messages.append(renderedTemplate);
-
+        $(".message-container").find(".message-to-note").last().on("click", function(){
+            var message = unformattedMessage[this.id.split("-")[1]];
+            attachMessageToNotes(message, child.user_id, child.dt);
+        });
         // On new message load, scroll to the top.
         messages[0].scrollTop = messages[0].scrollHeight;
     }
@@ -254,7 +285,7 @@ $(function () {
 
         messagesRef.on("child_added", function (object) {
             $("#spin").hide();
-            addMessage(object)
+            addMessage(object);
         });
 
         getMetadataInformation(CHAT_ID);
@@ -337,7 +368,6 @@ $(function () {
 
     });
 
-//Add due date
     $("#confirm-add-due-date").on("click", function () {
 
         var passData = {
@@ -404,7 +434,7 @@ $(function () {
         }
     });
 
-        $("#confirm-add-tags").on("click", function () {
+    $("#confirm-add-tags").on("click", function () {
             initialTags.push(apiCall + "tag/" + selectTag + "/");
             //console.log(initialTags);
             var passData = {
@@ -425,7 +455,7 @@ $(function () {
 
             });
 
-            $("#confirm-add-priority").on("click", function () {
+    $("#confirm-add-priority").on("click", function () {
 
         var passData = {
             "priority": apiCall + "priority/" + selectPriority + "/"
@@ -443,5 +473,27 @@ $(function () {
         });
 
     });
+
+    var savedMessages = $("#saved-messages");
+
+    function getSavedMessages(){
+
+        $.getJSON("/api/v1/message/", {
+            chat__id: CHAT_ID
+        }).success(function(response) {
+            savedMessages.text("");
+            var messages = response.objects;
+
+            messages.forEach(function(message) {
+                var d = new Date(message.sent);
+                savedMessages.append(
+                    '<li class="list-group-item" id="saved-message-item">' + converter.makeHtml(message.text) +
+                    '<p class="message-date-2">'+ message.user.username + " - " +  d.toLocaleDateString() + '</p></li>'
+                );
+            })
+        });
+    }
+
+    getSavedMessages();
 
 });
