@@ -113,7 +113,7 @@ $(function () {
             {
                 'project__id': id,
                 'order_by': orderByString,
-                'title__contains': searchTerm
+                'title__icontains': searchTerm
             })
             .success(function (chats) {
 
