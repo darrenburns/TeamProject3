@@ -6,10 +6,10 @@ $(function() {
         var BASE_CHART_HEIGHT = 250;
         var BASE_PADDING_LEFT = 30;
         var BASE_PADDING_TOP = 30;
-        var BASE_PADDING_BOTTOM = 30;
+        var BASE_PADDING_BOTTOM = 80;
 
         // Initialise the Firebase
-        var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
+        var ref = new Firebase("https://teamproject3.firebaseio.com/");
 
         // Creating a chat object
         var projectObj = ref.child('project/' + PROJECT_ID);
