@@ -290,6 +290,8 @@ $(function () {
 
         getMetadataInformation(CHAT_ID);
 
+        getSavedMessages();
+
     }
 
     $.getJSON("/api/v1/metadata_name/")
@@ -496,7 +498,5 @@ $(function () {
             }
         });
     }
-
-    getSavedMessages();
 
 });
