@@ -40,11 +40,16 @@ $(function() {
                     return userCount[key];
                 });
 
+            var messagesPerUserArray = [];
+            for (var index = 0; index < users.length; index++) {
+                messagesPerUserArray[index] = [users[index], messageCountPerUser[index]];
+            }
+
             // Tooltips
             var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
-                .html(function(d) { return "User has sent " + d + " messages"; });
+                .html(function(d) { return d[0] + " has sent " + d[1] + " messages"; });
 
             // The svg to contain the graph!
             var svg = d3.select('#bacon').append('svg')
@@ -74,18 +79,30 @@ $(function() {
 
 
             svg.selectAll("rect")
-                .data(messageCountPerUser)
+                .data(messagesPerUserArray)
                 .enter()
                 .append("rect")
-                .attr("x", function(val, idx) {
-                    return BASE_PADDING_LEFT + idx * ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / messageCountPerUser.length);  // ensure that the bars scale to fit the svg
+                .attr("x", function(valItem, idx) {
+                    if (typeof valItem != 'undefined') {
+                        return BASE_PADDING_LEFT + idx * ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / messageCountPerUser.length);  // ensure that the bars scale to fit the svg
+                    } else {
+                        return 0;
+                    }
                 })
-                .attr("y", function(val) {
-                    return scale(val) + BASE_PADDING_TOP;
+                .attr("y", function(valItem) {
+                    if (typeof valItem != 'undefined') {
+                        return scale(valItem[1]) + BASE_PADDING_TOP;
+                    } else {
+                        return 0;
+                    }
                 })
                 .attr("width", (BASE_CHART_WIDTH - BASE_PADDING_LEFT) / messageCountPerUser.length)
-                .attr("height", function(val) {
-                    return BASE_CHART_HEIGHT - scale(val);
+                .attr("height", function(valItem) {
+                    if (typeof valItem != 'undefined') {
+                        return BASE_CHART_HEIGHT - scale(valItem[1]);
+                    } else {
+                        return 0;
+                    }
                 })
                 .attr("fill", "lightblue")
                 .on('mouseover', tip.show)
