@@ -36,6 +36,11 @@ $(function() {
             }
 
             var users = Object.keys(userCount);
+            var truncatedUsers = [];
+            for (var index = 0; index < users.length; index++) {
+                truncatedUsers.push( (users[index].length > 12)  ?  users[index].substring(0, 10) + '..'  : users[index] );
+            }
+
             var messageCountPerUser = Object.keys(userCount).map(function (key) {
                     return userCount[key];
                 });
@@ -70,7 +75,7 @@ $(function() {
 
             // Create the scale and axis for the xAxis.
             var xScale = d3.scale.ordinal()
-                .domain(users)
+                .domain(truncatedUsers)
                 .rangePoints([((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / (2*messageCountPerUser.length)), (BASE_CHART_WIDTH - BASE_PADDING_LEFT) - ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / (2*messageCountPerUser.length))]);
 
             var xAxis = d3.svg.axis()
