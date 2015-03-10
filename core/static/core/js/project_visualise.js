@@ -39,9 +39,11 @@ $(function() {
             });
 
             var chatLengths = [];  // maps chat ids to the length of the chat
+						var actualChatLengths = [];
             for (var i in filteredChats) {
 								if (typeof(filteredChats[i].messages) != 'undefined') {
-                	chatLengths[i] = Object.keys(filteredChats[i].messages).length;
+                	chatLengths[i] = [Object.keys(filteredChats[i].messages).length, chatTitles[i]];
+									actualChatLengths[i] = Object.keys(filteredChats[i].messages).length;
 								}
             }
 
@@ -49,7 +51,7 @@ $(function() {
             var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
-                .html(function(d) { return "Messages: " + d; });
+                .html(function(d, e) { return d[1] + ' contains ' + d[0] + ' messages.'; });
 
             // Create the SVG for the project
             var svg = d3.select("#d3-graph-one").append("svg")
@@ -59,7 +61,7 @@ $(function() {
 
             // Create the scale - this defines a function which modifies the y values to the appropriate scale.
             var scale = d3.scale.linear()
-                .domain([0, d3.max(chatLengths)+1])  // specify our domain (possible input values)
+                .domain([0, d3.max(actualChatLengths)+1])  // specify our domain (possible input values)
                 .range([BASE_CHART_HEIGHT, 0])     // specify our range (possible output values)
                 .clamp(true);                      // we want the output values to the no more than the height of the chart
 
@@ -81,15 +83,28 @@ $(function() {
                 .data(chatLengths)
                 .enter()
                 .append("rect")
-                .attr("x", function (val, idx) {  // val is the value at the current idx in the array chatLengths
-                    return BASE_PADDING_LEFT + idx * ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / chatLengths.length);  // ensure that the bars scale to fit the svg
+                .attr("x", function (valArray, idx) {  // valArray is the value at the current idx in the array chatLengths
+										if (typeof valArray != 'undefined') {
+												var val = valArray[0];  // val is the chat length in valArray
+                    		return BASE_PADDING_LEFT + idx * ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / chatLengths.length);  // ensure that the bars scale to fit the svg
+										} else {
+												return 0;
+										}
                 })
-                .attr("y", function (val) {
-                    return scale(val) - BASE_PADDING_TOP;  // select the correct y position (upside down coords remember)
+                .attr("y", function (valArray) {
+										if (typeof(valArray) != 'undefined') {
+                    		return scale(valArray[0]) - BASE_PADDING_TOP;  // select the correct y position (upside down coords remember)
+										} else {
+												return 0;
+										}
                 })
                 .attr("width", (BASE_CHART_WIDTH - BASE_PADDING_LEFT) / chatLengths.length)
-                .attr("height", function (val) {
-                    return BASE_CHART_HEIGHT - scale(val);
+                .attr("height", function (valArray) {
+										if (typeof valArray != 'undefined') {
+                    		return BASE_CHART_HEIGHT - scale(valArray[0]);
+										} else {
+												return 0;
+										}
                 })
                 .attr("fill", "lightblue")
                 .on('mouseover', tip.show)
@@ -150,11 +165,19 @@ $(function() {
                 }
             }
 
+            // To fix tooltips:
+            var userMessageCountArray = []
+            for (var index = 0; index < users.length; index++) {
+                userMessageCountArray[index] = [users[index], userMessageCount[users[index]]];
+            }
+
+            console.log(userMessageCountArray);
+
             // Tooltips
             var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
-                .html(function(d) { return "This user has sent "+ d + " messages"; });
+                .html(function(d) { return d[0] + " has sent "+ d[1] + " messages"; });
 
             // Create the SVG for the project
             var svg = d3.select("#d3-graph-two").append("svg")
@@ -183,18 +206,31 @@ $(function() {
                 .orient("bottom");
 
             svg.selectAll("rect")
-                .data(messageCount)
+                .data(userMessageCountArray)
                 .enter()
                 .append("rect")
-                .attr("x", function (val, idx) {  // val is the value at the current idx in the array messageCount
-                    return BASE_PADDING_LEFT + idx * ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / messageCount.length);  // ensure that the bars scale to fit the svg
+                .attr("x", function (valItem, idx) {  // val is the value at the current idx in the array messageCount
+                    if (typeof(valItem) != 'undefined') {
+                        return BASE_PADDING_LEFT + idx * ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / messageCount.length);  // ensure that the bars scale to fit the svg
+                    } else {
+                        return 0;
+                    }
                 })
-                .attr("y", function (val) {
-                    return scale(val) - BASE_PADDING_TOP;  // select the correct y position (upside down coords remember)
+                .attr("y", function (valItem) {
+                    if (typeof valItem != 'undefined') {
+                        return scale(valItem[1]) - BASE_PADDING_TOP;  // select the correct y position (upside down coords remember)
+                    } else {
+                        return 0;
+                    }
                 })
                 .attr("width", (BASE_CHART_WIDTH - BASE_PADDING_LEFT) / messageCount.length)
-                .attr("height", function (val) {
-                    return BASE_CHART_HEIGHT - scale(val);
+                .attr("height", function (valItem) {
+                    if (typeof valItem != 'undefined') {
+                        var val = valItem[1];
+                        return BASE_CHART_HEIGHT - scale(val);
+                    } else {
+                        return 0;
+                    }
                 })
                 .attr("fill", "lightblue")
                 .on('mouseover', tip.show)
