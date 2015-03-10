@@ -15,6 +15,7 @@ $(function() {
 
         // Get the titles of the chats we know about in our django database.
         var chatTitles = [];
+        var chatTitlesTruncated = [];
         $.ajax({
             url: "/api/v1/chat/",
             data: {
@@ -23,9 +24,9 @@ $(function() {
         }).done( function (data) {
             for (i = 0; i < data.objects.length; i++) {
                 chatTitles.push(data.objects[i].title);
+                chatTitlesTruncated.push( (chatTitles[i].length>12)  ?  chatTitles[i].substring(0,10) + '..'  : chatTitles[i] );
             }
         });
-
         // Graph of messages per user BEGIN
 
 
@@ -51,7 +52,7 @@ $(function() {
             var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
-                .html(function(d, e) { return d[1] + ' contains ' + d[0] + ' messages.'; });
+                .html(function(d, e) { return d[1] + ' contains ' + d[0] + ( (d[0] == 1) ? ' message.' : ' messages.'); });
 
             // Create the SVG for the project
             var svg = d3.select("#d3-graph-one").append("svg")
@@ -72,11 +73,12 @@ $(function() {
                 .ticks(4);
 
             var titleScale = d3.scale.ordinal()
-                .domain(chatTitles)
+                .domain(chatTitlesTruncated)
                 .rangePoints([((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / (2*chatLengths.length)), (BASE_CHART_WIDTH - BASE_PADDING_LEFT) - ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / (2*chatLengths.length))]);
 
             var chatTitlesXAxis = d3.svg.axis()
                 .scale(titleScale)
+                .tickValues(chatTitlesTruncated)
                 .orient("bottom");
 
             svg.selectAll("rect")
@@ -157,6 +159,11 @@ $(function() {
             }
 
             var users = Object.keys(userMessageCount);
+            var truncatedUsers = [];
+            for (var index = 0; index < users.length; index++) {
+                truncatedUsers.push( (users[index].length > 12)  ?  users[index].substring(0, 10) + '..'  : users[index] );
+            }
+
             var messageCount = [];
             for (var index in Object.keys(users)) {
                 key = users[Object.keys(users)[index]];
@@ -171,13 +178,11 @@ $(function() {
                 userMessageCountArray[index] = [users[index], userMessageCount[users[index]]];
             }
 
-            console.log(userMessageCountArray);
-
             // Tooltips
             var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
-                .html(function(d) { return d[0] + " has sent "+ d[1] + " messages"; });
+                .html(function(d) { return d[0] + " has sent "+ d[1] + ( (d[1] == 1) ? ' message.' : ' messages.'); });
 
             // Create the SVG for the project
             var svg = d3.select("#d3-graph-two").append("svg")
@@ -198,7 +203,7 @@ $(function() {
                 .ticks(4);
 
             var titleScale = d3.scale.ordinal()
-                .domain(users)
+                .domain(truncatedUsers)
                 .rangePoints([((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / (2*messageCount.length)), (BASE_CHART_WIDTH - BASE_PADDING_LEFT) - ((BASE_CHART_WIDTH - BASE_PADDING_LEFT) / (2*messageCount.length))]);
 
             var usersXAxis = d3.svg.axis()
