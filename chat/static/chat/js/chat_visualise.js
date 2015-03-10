@@ -54,7 +54,7 @@ $(function() {
             var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
-                .html(function(d) { return d[0] + " has sent " + d[1] + " messages"; });
+                .html(function(d) { return d[0] + " has sent " + d[1] + ( (d[1] == 1) ? ' message.' : ' messages.'); });
 
             // The svg to contain the graph!
             var svg = d3.select('#bacon').append('svg')

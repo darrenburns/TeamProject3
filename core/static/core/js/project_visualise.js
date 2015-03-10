@@ -52,7 +52,7 @@ $(function() {
             var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
-                .html(function(d, e) { return d[1] + ' contains ' + d[0] + ' messages.'; });
+                .html(function(d, e) { return d[1] + ' contains ' + d[0] + ( (d[0] == 1) ? ' message.' : ' messages.'); });
 
             // Create the SVG for the project
             var svg = d3.select("#d3-graph-one").append("svg")
@@ -182,7 +182,7 @@ $(function() {
             var tip = d3.tip()
                 .attr("class", "d3-tip")
                 .offset([-10, 0])
-                .html(function(d) { return d[0] + " has sent "+ d[1] + " messages"; });
+                .html(function(d) { return d[0] + " has sent "+ d[1] + ( (d[1] == 1) ? ' message.' : ' messages.'); });
 
             // Create the SVG for the project
             var svg = d3.select("#d3-graph-two").append("svg")
