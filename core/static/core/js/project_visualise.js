@@ -1,6 +1,6 @@
 $(function() {
 
-    if (typeof PROJECT_ID != 'undefined') {
+    if (typeof(PROJECT_ID) != 'undefined') {
 
 
         var BASE_CHART_WIDTH = 400;
@@ -40,7 +40,9 @@ $(function() {
 
             var chatLengths = [];  // maps chat ids to the length of the chat
             for (var i in filteredChats) {
-                chatLengths[i] = Object.keys(filteredChats[i].messages).length;
+								if (typeof(filteredChats[i].messages) != 'undefined') {
+                	chatLengths[i] = Object.keys(filteredChats[i].messages).length;
+								}
             }
 
             // Tooltips
@@ -127,14 +129,16 @@ $(function() {
 
             var userMessageCount = {};  // build up a count of messages users have sent.
             for (var chatIndex = 0; chatIndex < filteredChats.length; chatIndex++) {
-                for (var messageIndex = 0; messageIndex < Object.keys(filteredChats[chatIndex].messages).length; messageIndex++) {
-                    var message = filteredChats[chatIndex].messages[Object.keys(filteredChats[chatIndex].messages)[messageIndex]];
-                    if (userMessageCount[message.user] != null) {
-                        userMessageCount[message.user]++;
-                    } else {
-                        userMessageCount[message.user] = 1;
-                    }
-                }
+								if (typeof(filteredChats[chatIndex].messages) != "undefined") {
+                		for (var messageIndex = 0; messageIndex < Object.keys(filteredChats[chatIndex].messages).length; messageIndex++) {
+                		    var message = filteredChats[chatIndex].messages[Object.keys(filteredChats[chatIndex].messages)[messageIndex]];
+                		    if (userMessageCount[message.user] != null) {
+                		        userMessageCount[message.user]++;
+                		    } else {
+                		        userMessageCount[message.user] = 1;
+                		    }
+                		}
+								}
             }
 
             var users = Object.keys(userMessageCount);
