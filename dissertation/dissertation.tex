@@ -1,5 +1,6 @@
-
-\documentclass{l3proj}
+\documentclass[a4paper]{l3proj}
+\usepackage{fullpage}
+\usepackage{indentfirst}
 \begin{document}
 \title{A Social Network for Project Task Management}
 \author{Gustavo Almansa\\
@@ -26,6 +27,11 @@ During the first week of the Team Project, each member researched about several
 task management applications available. The advantages and disadvantages of each
 one are described below.
 
+TODO
+//TALK ABOUT CODEBOOK AND SLACK.  maybe split this up so there's an 'introduction' then a 'research' section
+
+
+
 \section{Asana}
 \label{asana}
 
@@ -35,21 +41,20 @@ a mobile app for Android and iOS. Asana is very powerful, with good integration
 to services such as Dropbox, GitHub, Chrome, Evernote and Wordpress, however, it
 is complex and it requires time to learn and understand all its features. The
 web app has a non-friendly interface and can be confusing. The main problem is
-the communication among project’s members, because there is no chat, only a
+the communication among project's members, because there is no chat, only a
 comment area inside each ticket or task. Despite its features, many of them in
 common to others task management softwares, Asana still has a dependence with
 Skype or email to be more useful.
 
 \section{Trello}
-\label{trello}
-
+\label{trello}\par
 Trello is a web-based task management platform which employs the Japanese 'Kanban'
 system, originally developed by Toyota. Kanban uses a hierarchical system of
 cards, contained within lists, which themselves are contained within boards, to
 manage how projects are managed. Interestingly, Kanban is often used for
 supermarket inventories and managing the flows of tasks in the physical world --
 it isn't just a method to abstract out a project, but is a way of managing any
-production system.
+production system.\par
 Trello connects to IFTTT (an automation platform which ties together various APIs)
 and Zapier, which automates processes based on events on an array of online
 platforms. It has an API with several open-source wrappers in several languages.
@@ -64,11 +69,16 @@ Adobe.
 \section{Producteev}
 \label{producteev}
 
-Producteev is a task management platform. Its features include most of the features of ther products of the same category (e.g. network of people, tasks, subtasks).
+Producteev is a task management platform. Its features include most of the features of ther products of the same
+category (e.g. network of people, tasks, subtasks).
 
-The use of shortcuts is a interesting feature of producteev. Instead of using the GUI to add followers, deadline, priority, it lets you use shortcut commands (e.g. @, !, *). Also, another interesting feature that is only avaiable in the premium plan is to transform e-mails into tasks (an outlook plug-in is necessary to use this feature).
+The use of shortcuts is a interesting feature of producteev. Instead of using the GUI to add followers, 
+deadline, priority, it lets you use shortcut commands (e.g. @, !, *). Also, another interesting feature 
+that is only avaiable in the premium plan is to transform e-mails into tasks (an outlook plug-in is necessary
+to use this feature).
 
-Producteev has an powerful API which its apps are built-in. The use of the API is free and it is a strong platform where our project could rely on.
+Producteev has an powerful API which its apps are built-in. The use of the API is free and it is a strong
+platform where our project could rely on.
 %==============================================================================
 
 
@@ -97,41 +107,46 @@ program itself.
 
 \section{Jira}
 \label{jira}
-
-As far as project management tools go, perhaps none is more widely known and used than Jira. With its capability of integrate a whole set of diverse version control software, such as Mercurial, Git and Subversion, it also offers integration with some of the most commonly used IDE(e.g. Eclipse, VI, EMACS). Jira also benefits from its popularity, developers are familiarized with this software interface as well as its syntax and functionalities. To sum up, Jira’s main attractiveness can be resumed in two simple points: familiarity and capacity for integration with other softwares.
+**will need rewritten**
+As far as project management tools go, perhaps none is more widely known and used than Jira. 
+With its capability of integrate a whole set of diverse version control software, such as Mercurial, 
+Git and Subversion, it also offers integration with some of the most commonly used IDE(e.g. Eclipse, VI, EMACS). 
+Jira also benefits from its popularity, developers are familiarized with this software interface as well as its 
+syntax and functionalities. To sum up, Jira’s main attractiveness can be resumed in two simple points: familiarity
+and capacity for integration with other softwares.
 
 
 \chapter{Design}
 \label{design}
 
-The following diagrams (especially figure \ref{fig:alice}) illustrate the
-process...
+This section should detail how we designed the project, including ER diagram (including screenshot),
+user stories, designing the user interface (screenshots)
+
+\section{initial requirements}
+
+This section should talk about the user stories.  Maybe talk about how we originally managed our project and 
+how that influenced our design?
 
 %==============================================================================
 \chapter{Implementation}
 \label{impl}
 
-In this chapter, we describe how the implemented the system.
+In this chapter, we describe how the implemented the system.  Should include the technologies used 
+(JQuery, Ajax, Bootstrap, all those thangs)
 
 %------------------------------------------------------------------------------
 \section{User Interface}
 
-Blah blah blah
-Blah blah blah
-Blah blah blah
-Blah blah blah
+This should detail the early prototype of the user interface, what motivated the decisions made, 
+and then discuss how the interface evolved over time, and what prompted these changes.
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsection{Foo}
 
-Blah blah blah
-Blah blah blah
-Blah blah blah
-Blah blah blah
 
 %------------------------------------------------------------------------------
-\section{Database Model}
+\section{Visualisations}
 
+Discuss what visualisations we have, what purpose they serve (how they enhance the system)	
+	
 \begin{enumerate}
 \item Blah blah blah
 \item Blah blah blah
@@ -144,7 +159,10 @@ Blah blah blah
 %==============================================================================
 \chapter{Evaluation}
 
-<<This is a chunk out of evaluation, not necessarily the start>>
+In this section we should discuss what we did, did it achieve the intended objective, what could be done better, 
+future developments and things that were unable to achieve.
+
+<<This is a chunk of text that I thought could be used in evaluation, I know it doesn't fit in by itself at the moment.>>
 
 An area of potential future development could be integration with the continuous integration system Jenkins.  This 
 could be implemented through treating Jenkins as a user who would automatically create a ticket based on a single build.  
