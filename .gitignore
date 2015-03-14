@@ -5,7 +5,9 @@ example.blg
 example.out
 example.pdf
 example.toc
-
+dissertation/*
+!dissertation/*.tex
+!dissertation/images/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -7,8 +7,7 @@
         Darren Burns \\
         Leonardo Linhares \\
         Euan Parker \\
-        Joao Vitor Sousa \\
-	Tom Wallis \\
+		Tom Wallis \\
 }
 \date{13 October 2014}
 \maketitle
@@ -30,9 +29,17 @@ one are described below.
 TODO
 //TALK ABOUT CODEBOOK AND SLACK.  maybe split this up so there's an 'introduction' then a 'research' section
 
+\section{Preliminaries}
+\section{Aims}
+\section{Existing Systems}
 
+\subsection{Slack}
+\label{slack}
 
-\section{Asana}
+\subsection{Codebook}
+\label{codebook}
+
+\subsection{Asana}
 \label{asana}
 
 Asana is a task management software to organise a team's project which main
@@ -46,7 +53,7 @@ comment area inside each ticket or task. Despite its features, many of them in
 common to others task management softwares, Asana still has a dependence with
 Skype or email to be more useful.
 
-\section{Trello}
+\subsection{Trello}
 \label{trello}\par
 Trello is a web-based task management platform which employs the Japanese 'Kanban'
 system, originally developed by Toyota. Kanban uses a hierarchical system of
@@ -66,7 +73,7 @@ used by organisations as large as Microsoft, Google, The New York Times and
 Adobe. 
 
 
-\section{Producteev}
+\subsection{Producteev}
 \label{producteev}
 
 Producteev is a task management platform. Its features include most of the features of ther products of the same
@@ -82,7 +89,7 @@ platform where our project could rely on.
 %==============================================================================
 
 
-\section{Bugzilla}
+\subsection{Bugzilla}
 \label{Bugzilla}
 
 Bugzilla is a bug tracker and testing tool created and used by Mozila.
@@ -105,7 +112,7 @@ made that it is hard to manage errors and there exist many bugs in the
 program itself.  
 
 
-\section{Jira}
+\subsection{Jira}
 \label{jira}
 **will need rewritten**
 As far as project management tools go, perhaps none is more widely known and used than Jira. 
@@ -115,24 +122,40 @@ Jira also benefits from its popularity, developers are familiarized with this so
 syntax and functionalities. To sum up, Jira’s main attractiveness can be resumed in two simple points: familiarity
 and capacity for integration with other softwares.
 
+\section{Motivation}
+\section{Team Organisation}
+\section{Outline}
 
-\chapter{Design}
-\label{design}
+
+\chapter{Initial Planning}
+\label{initial planning}
 
 This section should detail how we designed the project, including ER diagram (including screenshot),
-user stories, designing the user interface (screenshots)
+user stories, designing the user interface (screenshots). This section should talk about the user stories.
+Maybe talk about how we originally managed our project and how that influenced our design?
 
-\section{initial requirements}
+\section{Requirements}
 
-This section should talk about the user stories.  Maybe talk about how we originally managed our project and 
-how that influenced our design?
+\section{User Stories}
+
+\section{Design}
+
+Mockups
+
+\section{ER Diagrams}
+
 
 %==============================================================================
 \chapter{Implementation}
 \label{impl}
 
 In this chapter, we describe how the implemented the system.  Should include the technologies used 
-(JQuery, Ajax, Bootstrap, all those thangs)
+(JQuery, Ajax, Bootstrap, all those things)
+
+%------------------------------------------------------------------------------
+\section{Model Implementation}
+
+Framework
 
 %------------------------------------------------------------------------------
 \section{User Interface}
@@ -140,12 +163,30 @@ In this chapter, we describe how the implemented the system.  Should include the
 This should detail the early prototype of the user interface, what motivated the decisions made, 
 and then discuss how the interface evolved over time, and what prompted these changes.
 
+%------------------------------------------------------------------------------
+\section{Messaging System}
+
+Firebase
+
+%------------------------------------------------------------------------------
+\section{API}
 
 
 %------------------------------------------------------------------------------
-\section{Visualisations}
+\section{Prototype}
 
-Discuss what visualisations we have, what purpose they serve (how they enhance the system)	
+Demo
+
+%------------------------------------------------------------------------------
+\section{Metadata}
+
+Notes, due date, cost, assignee, tag, priority.
+
+%------------------------------------------------------------------------------
+\section{Statistics}
+
+Discuss what visualisations we have, what purpose they serve (how they enhance the system).
+D3.
 	
 \begin{enumerate}
 \item Blah blah blah
@@ -154,7 +195,14 @@ Discuss what visualisations we have, what purpose they serve (how they enhance t
 \item Blah blah blah
 \end{enumerate}
 
+%------------------------------------------------------------------------------
+\section{Notifications}
 
+
+%------------------------------------------------------------------------------
+\section{Saved Messages}
+
+Make sure we mention dogfeeding at some point here.
 
 %==============================================================================
 \chapter{Evaluation}
@@ -169,10 +217,26 @@ could be implemented through treating Jenkins as a user who would automatically 
 It could also automatically create a high priority ticket when a build fails, and tag the relevant developers.  This 
 expansion would be possible due to Jenkins plugin based structure, whereby it is designed to be extended as necessary.
 
+%------------------------------------------------------------------------------
+\section{Dogfooding}
+
+
+%------------------------------------------------------------------------------
+\section{External Evaluation}
+
+
+%------------------------------------------------------------------------------
+\section{Retrospective}
+
+
 %==============================================================================
 \chapter{Conclusion}
 
-A great project!
+
+%------------------------------------------------------------------------------
+\section{Future Goals}
+
+Make sure we mention dogfeeding at some point here.
 
 %==============================================================================
 \section{Contributions}
