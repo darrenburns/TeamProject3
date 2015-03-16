@@ -1,356 +1,400 @@
-  \documentclass[a4paper]{l3proj}
-  \usepackage{fullpage}
-  \usepackage{indentfirst}
-  \usepackage{graphicx}
-  \usepackage[usenames,dvipsnames]{xcolor}
-  \definecolor{customURL}{HTML}{08096E}
-  \usepackage{hyperref}
-  \hypersetup{linkcolor=MidnightBlue, urlcolor=customURL, colorlinks}
-
-  \graphicspath{ {images/} }
-  \begin{document}
-  \title{A Social Network for Project Task Management}
-  \author{Gustavo Almansa\\
-          Darren Burns \\
-          Leonardo Linhares \\
-          Euan Parker \\
-  		    Tom Wallis \\
-  }
-  \date{13 October 2014}
-  \maketitle
-  \begin{abstract}
+\documentclass[a4paper]{l3proj}
+\usepackage{fullpage}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{customURL}{HTML}{08096E}
+\usepackage{hyperref}
+\hypersetup{linkcolor=MidnightBlue, urlcolor=customURL, colorlinks}
 
-  The abstract goes here
+\graphicspath{ {images/} }
+\begin{document}
+\title{A Social Network for Project Task Management}
+\author{Gustavo Almansa\\
+      Darren Burns \\
+      Leonardo Linhares \\
+      Euan Parker \\
+		    Tom Wallis \\
+}
+\date{13 October 2014}
+\maketitle
+\begin{abstract}
 
-  \end{abstract}
-  \educationalconsent
-  \tableofcontents
-  %============================================================================
-  \chapter{Introduction}
-  \label{intro}
+The abstract goes here
 
-  %----------------------------------------------------------------------------
-  \section{Preliminaries}
-  \label{preliminaries}
-  In the context of project development, a project task management tool is a system where tasks, issues and improvements relating to a specific project can be documented and listed for members of the project team to review, discuss and modify.  
+\end{abstract}
+\educationalconsent
+\tableofcontents
+%============================================================================
+\chapter{Introduction}
+\label{intro}
 
-  A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby…
+%----------------------------------------------------------------------------
+\section{Preliminaries}
+\label{preliminaries}
+In the context of project development, a project task management tool is a system where tasks, issues and improvements relating to a specific project can be documented and listed for members of the project team to review, discuss and modify.  
 
-  %----------------------------------------------------------------------------
-  \section{Aims}
-  \label{aims}
+A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby…
 
-  The primary objective of the project was to eliminate this redundancy.  The proposition was to create a system whereby an instant messaging tool would be integrated into a ticket management tool, and the contents of the ticket are to be extracted from the conversation.  By pooling the two different aspects there is less time wasted in copying information from the conversation to a ticket, making the process as a whole faster and more intuitive.  This can result in improved productivity and more thorough documentation of tickets.
+%----------------------------------------------------------------------------
+\section{Aims}
+\label{aims}
 
-  %----------------------------------------------------------------------------
-  \section{Existing Systems}
-  \label{existingSystems}
+The primary objective of the project was to eliminate this redundancy.  The proposition was to create a system whereby an instant messaging tool would be integrated into a ticket management tool, and the contents of the ticket are to be extracted from the conversation.  By pooling the two different aspects there is less time wasted in copying information from the conversation to a ticket, making the process as a whole faster and more intuitive.  This can result in improved productivity and more thorough documentation of tickets.
 
-  Numerous systems have been created or theorised about which aim to ease or even reinvent the way which software projects are managed.
 
-  %----------------------------------------------------------------------------
-  \subsection{Codebook}
-  \label{codebook}
-  Codebook was a project management system theorised by Microsoft to visualise the connections between people and their software projects. The project failed to become a public product, but should be noted due to its high degree of social networking and understanding of metadata.
 
-  Codebooks most significant lacking in reference to this project’s goals was ticket management. It was not possible to manage a project entirely through Codebook, because it had no ticket management or communication between groups of people; instead, Codebook mapped out projects so workflows could be better understood.
+%----------------------------------------------------------------------------
+\section{Motivation}
+\label{motivation}
 
-  %----------------------------------------------------------------------------
-  \subsection{Slack}
-  \label{slack}
-  Slack is an instant messaging system focussed around project management. It can be used in any team-based project, but excels at the management of software projects due to the large number of integrations with external services such as GitHub. Despite Slack not providing a mechanism for directly attaching project related issues to conversations, it was decided that the excellent messaging functionality it provides is something that the project should aim to emulate.
+A recurring complaint regarding current task management software is that there exists a duplication of effort whereby teams will discuss a project in depth using an informal medium such as Facebook chat or Skype, and then will be forced to then rewrite these discussions in the form of tickets on their project management software of choice.  This leads to a less disciplined use of the management software as users may forget to create tickets or may not be willing to spend time doing so.
 
-  %----------------------------------------------------------------------------
-  \subsection{Asana}
-  \label{asana}
+%----------------------------------------------------------------------------
+\section{Team Organisation}
+\label{teamOrganisation}
 
-  The unique selling proposition offered by Asana is effective task management without reliance on email. However, the web interface it offers is difficult to understand, and thus results in a large learning curve. Asana also lacks a real-time communication system, relying on comments on tasks for users to communicate. Whilst analysing this product it was found that relying on commenting rather than instant messaging resulted in a lack of urgency, and users were not as inclined to immediately respond. Consequently, users may choose to rely on an external messaging system for communication.
+The team elected to use git as a version control system for which to manage the software.  This was done due to a number of team members familiarity with the system as well as the ability to use Github made the workflow easy to learn.  Trello was chosen as a task management software initially, with the intent to swap to the tool being developed when the project had advanced sufficiently.  Facebook chat was used to communicate and arrange meetings.  This split of organisation between Facebook and Trello frustrated some team members which further reinforced the aim of the project - bypassing the repetition of certain tasks over different tools.
 
-  %----------------------------------------------------------------------------
-  \subsection{Trello}
-  \label{trello}
-  
-  Trello is a web-based task management platform which employs the Japanese ``Kanban''
-  system, originally developed by Toyota. Kanban uses a hierarchical system of
-  cards, contained within lists, which themselves are contained within boards, to
-  manage how projects are managed. Kanban is often used to understand the flow of data within the real world, such as in supermarket production lines or in law cases, but also in project management using Trello.
+%----------------------------------------------------------------------------
+\section{Outline}
+\label{outline}
 
-  The team used Trello in the early stages of the project before eventually migrating to use the project itself.
+The dissertation will discuss what was done during the process of developing the system.
 
-  %----------------------------------------------------------------------------
-  \subsection{Producteev}
-  \label{producteev}
+\textbf{Initial Planning} \autoref{initialPlanning}
 
-  Producteev provides a feature set similar to the aforementioned products, but allows skilled users to quickly navigate the system using numerous shortcuts. A critical feature of Producteev is the ability to convert an email into a task using a Microsoft Outlook extension, thus allowing users to create tasks without have to repeat themselves. This feature is of particular interest to the team, since it... 
+How the requirements of the system were developed, and through which we developed user stories, a user interface mockup and an ER diagram for our system.
 
-  %----------------------------------------------------------------------------
-  \subsection{Bugzilla}
-  \label{bugzilla}
+\textbf{Implementation} \autoref{impl}
 
-  Bugzilla is a bug tracker and testing tool created and used by Mozilla. It integrates with several version control systems such as Git and SVN.  Some interesting features include automated reminders, whereby when bugs are reported but left unresolved the system can be configured to send regular emails to specific people informing them of these bugs. This system is known as the ``whine'' system.  When any change is made to a known bug, this change is added to an automated bug report.  Bugzilla integrates with e-mail, whereby these reports can be e-mailed to the user. Although comparatively simple to use, criticisms of Bugzilla have been made that it is hard to manage errors and there exist many bugs in the program itself.
+An overview of the process of implementing the system, detailing the creation of different components of the system such as interface, chat system and model layer, as well as how the project progressed over time.
 
-  %----------------------------------------------------------------------------
-  \subsection{Jira}
-  \label{jira}
-  JIRA is a well-used tool for project management, made by Atlassian. Atlassian have a history of working with various aspects of project management, and JIRA integrates with many of these to produce a coherent management environment. However, this makes JIRA less useful on its own, and so there is an identifiable need for a standalone solution, too. Many users of JIRA complain of its difficulty to use, and say that it can be a burdensome way to manage their projects.
+\textbf{Evaluation} \autoref{evaluation}
 
-  %----------------------------------------------------------------------------
-  \section{Motivation}
-  \label{motivation}
-
-  A recurring complaint regarding current task management software is that there exists a duplication of effort whereby teams will discuss a project in depth using an informal medium such as Facebook chat or Skype, and then will be forced to then rewrite these discussions in the form of tickets on their project management software of choice.  This leads to a less disciplined use of the management software as users may forget to create tickets or may not be willing to spend time doing so.
+How the project was evaluated.  This will detail the results of the dogfooding as well as peer evaluation from another team using the system.
 
-  %----------------------------------------------------------------------------
-  \section{Team Organisation}
-  \label{teamOrganisation}
-
-  %----------------------------------------------------------------------------
-  \section{Outline}
-  \label{outline}
-
-  The dissertation will discuss what was done during the process of developing the system.
-
-  \textbf{Initial Planning} \autoref{initialPlanning}
-
-  How the requirements of the system were developed, and through which we developed user stories, a user interface mockup and an ER diagram for our system.
-
-  \textbf{Implementation} \autoref{impl}
-
-  An overview of the process of implementing the system, detailing the creation of different components of the system such as interface, chat system and model layer, as well as how the project progressed over time.
-
-  \textbf{Evaluation} \autoref{evaluation}
-
-  How the project was evaluated.  This will detail the results of the dogfooding as well as peer evaluation from another team using the system.
+\textbf{Conclusion} \autoref{conclusion}
 
-  \textbf{Conclusion} \autoref{conclusion}
+This will detail the current state of the system, whether the aims of the project were achieved, and potential future work that could be done on the system.
 
-  This will detail the current state of the system, whether the aims of the project were achieved, and potential future work that could be done on the system.
+%============================================================================
 
+\chapter{Research}
+\label{research}
+%----------------------------------------------------------------------------
+\section{Existing Systems}
+\label{existingSystems}
 
-  %============================================================================
-  \chapter{Initial Planning}
-  \label{initialPlanning}
+Numerous systems have been created or theorised about which aim to ease or even reinvent the way which software projects are managed.
 
-  The problem that the project aims to solve was established in the initial meetings with the project supervisor. However, developing a set of requirements which would implement a solution for this problem proved more difficult. One of the primary aims of this project is to realise a system which would reduce the duplication of effort that is often required in maintaining ticket management systems whilst also externally discussing the project. This is a problem that existing solutions often make very little or no attempt to solve. Whilst carrying out analysis of existing products and ideas, it was found that Producteev and Codebook attempt to minimise the effects of this issue, and the other systems choose to ignore it completely.
 
-  Codebook attempted to solve this problem by closely integrating a social network with software project artifacts. The social network aspect of Codebook was noted by the team as one that may encourage users to use the system both as their primary communication method, and as their project management tool. It was also identified that by giving the software access to tickets and the discussions related to them, a wealth of additional data is available to the system which would otherwise have to be manually entered by a user.
+%----------------------------------------------------------------------------
+\subsection{Bugzilla}
+\label{bugzilla}
 
-  The approach taken by Producteev on the other hand, is to attempt to ease reduce duplication of effort by allowing users to convert emails into tasks. By allowing users to create a task in this way, we are overcoming the need to copy the information from the email to the task manually.
+Bugzilla is a bug tracker and testing tool created and used by Mozilla. It integrates with several version control systems such as Git and SVN.  Some interesting features include automated reminders, whereby when bugs are reported but left unresolved the system can be configured to send regular emails to specific people informing them of these bugs. This system is known as the ``whine'' system.  When any change is made to a known bug, this change is added to an automated bug report.  Bugzilla integrates with e-mail, whereby these reports can be e-mailed to the user. Although comparatively simple to use, criticisms of Bugzilla have been made that it is hard to manage errors and there exist many bugs in the program itself.
 
-  Both of these features helped inspire the primary requirements of the software. It was deemed a vital requirement that the software tightly integrate social features in order to make use of the data generated through users communicating with each other. In addition, the team decided that the software use this data in order to minimise the effort required in managing a software project. Agile software development aims to prioritise interactions over process, and so the software must be constructed to maintain some degree of process without overly interfering with communication.
+%----------------------------------------------------------------------------
+\subsection{Jira}
+\label{jira}
+JIRA is a well-used tool for project management, made by Atlassian. Atlassian have a history of working with various aspects of project management, and JIRA integrates with many of these to produce a coherent management environment. However, this makes JIRA less useful on its own, and so there is an identifiable need for a standalone solution, too. Many users of JIRA complain of its difficulty to use, and say that it can be a burdensome way to manage their projects.
 
-  It was decided to use Trello to manage the project initially.However, it was planned that once the tool had progressed sufficiently so at to be used independently management of the project would swap over onto that.
 
-  Several different ideas for the development of the system were discussed. One suggested approach was that an existing product be extended to attempt to meet the requirements. Suggestions for implementing this approach included:
+%----------------------------------------------------------------------------
+\subsection{Asana}
+\label{asana}
 
-  \begin{itemize}
-    \item \textit{Interfacing a custom ticket management system with Skype}. This approach was rejected due to the lack of control that the Skype API gives with regards to accessing data contained within conversations.
-    \item \textit{Creating an instant messaging extension for Jira}. This approach was rejected due to the emphasis that Jira places on the ticket based approach. Although the required design would have to maintain aspects of this approach, it would have been difficult to focus on communication when there is a major dependence on a colossal, process reliant ticket management system.
+The unique selling proposition offered by Asana is effective task management without reliance on email. However, the web interface it offers is difficult to understand, and thus results in a large learning curve. Asana also lacks a real-time communication system, relying on comments on tasks for users to communicate. Whilst analysing this product it was found that relying on commenting rather than instant messaging resulted in a lack of urgency, and users were not as inclined to immediately respond. Consequently, users may choose to rely on an external messaging system for communication.
 
-    \item \textit{Creating an instant messaging extension for Jira}. This approach was rejected due to the emphasis that Jira places on the ticket based approach. Although the required design would have to maintain aspects of this approach, it would have been difficult to focus on communication when there is a major dependence on a colossal, process reliant ticket management system.
+%----------------------------------------------------------------------------
+\subsection{Trello}
+\label{trello}
 
-  \end{itemize}
+Trello is a web-based task management platform which employs the Japanese ``Kanban''
+system, originally developed by Toyota. Kanban uses a hierarchical system of
+cards, contained within lists, which themselves are contained within boards, to
+manage how projects are managed. Kanban is often used to understand the flow of data within the real world, such as in supermarket production lines or in law cases, but also in project management using Trello.
+
+The team used Trello in the early stages of the project before eventually migrating to use the project itself.
+
+%----------------------------------------------------------------------------
+\subsection{Producteev}
+\label{producteev}
+
+Producteev provides a feature set similar to the aforementioned products, but allows skilled users to quickly navigate the system using numerous shortcuts. A critical feature of Producteev is the ability to convert an email into a task using a Microsoft Outlook extension, thus allowing users to create tasks without have to repeat themselves. This feature is of particular interest to the team, since it... 
+
+
+%----------------------------------------------------------------------------
+\subsection{Slack}
+\label{slack}
+Slack is an instant messaging system focussed around project management. It can be used in any team-based project, but excels at the management of software projects due to the large number of integrations with external services such as GitHub. Despite Slack not providing a mechanism for directly attaching project related issues to conversations, it was decided that the excellent messaging functionality it provides is something that the project should aim to emulate.
+
+%----------------------------------------------------------------------------
+\subsection{Codebook}
+\label{codebook}
+Codebook was a project management system theorised by Microsoft to visualise the connections between people and their software projects. The project failed to become a public product, but should be noted due to its high degree of social networking and understanding of metadata.
+
+Codebooks most significant lacking in reference to this project’s goals was ticket management. It was not possible to manage a project entirely through Codebook, because it had no ticket management or communication between groups of people; instead, Codebook mapped out projects so workflows could be better understood.
+
+%============================================================================
+\chapter{Initial Planning}
+\label{initialPlanning}
+
+%----------------------------------------------------------------------------
+\section{Requirements}
+\label{requirements}
+
+The problem that the project aims to solve was established in the initial meetings with the project supervisor. However, developing a set of requirements which would implement a solution for this problem proved more difficult. One of the primary aims of this project is to realise a system which would reduce the duplication of effort that is often required in maintaining ticket management systems whilst also externally discussing the project. This is a problem that existing solutions often make very little or no attempt to solve. Whilst carrying out analysis of existing products and ideas, it was found that Producteev and Codebook attempt to minimise the effects of this issue, and the other systems choose to ignore it completely.
+
+Codebook attempted to solve this problem by closely integrating a social network with software project artifacts. The social network aspect of Codebook was noted by the team as one that may encourage users to use the system both as their primary communication method, and as their project management tool. It was also identified that by giving the software access to tickets and the discussions related to them, a wealth of additional data is available to the system which would otherwise have to be manually entered by a user.
+
+The approach taken by Producteev on the other hand, is to attempt to ease reduce duplication of effort by allowing users to convert emails into tasks. By allowing users to create a task in this way, we are overcoming the need to copy the information from the email to the task manually.
+
+Both of these features helped inspire the primary requirements of the software. It was deemed a vital requirement that the software tightly integrate social features in order to make use of the data generated through users communicating with each other. In addition, the team decided that the software use this data in order to minimise the effort required in managing a software project. Agile software development aims to prioritise interactions over process, and so the software must be constructed to maintain some degree of process without overly interfering with communication.
+
+Several different ideas for the development of the system were discussed. One suggested approach was that an existing product be extended to attempt to meet the requirements. Suggestions for implementing this approach included:
 
-  With none of these approaches offering the desired flexibility, it was decided to build the system using Django, a Python web development framework.  As a result of this decision, and in addition to the extensive research of existing project management systems, an initial set of user stories were developed.
+\begin{itemize}
+\item \textit{Interfacing a custom ticket management system with Skype}. \par This approach was rejected due to the lack of control that the Skype API gives with regards to accessing data contained within conversations.
+\item \textit{Creating an instant messaging extension for Jira}. \par This approach was rejected due to the emphasis that Jira places on the ticket based approach. Although the required design would have to maintain aspects of this approach, it would have been difficult to focus on communication when there is a major dependence on a colossal, process reliant ticket management system.
 
-  \begin{itemize}
-  \item As a \textit{user} I want to \textit{create an account} on the system so that I can \textit{use the features it offers}.
-  \item As a \textit{user} I want to \textit{create a conversation with another user} so that I can \textit{discuss a proposed change}.
-  \item As a \textit{project manager} I want to \textit{change other users privileges} so that \textit{I limit other users access}.
-  \item  a \textit{developer} I want to \textit{tag a conversation as a ticket} so that \textit{it becomes managed}.
-  \item As a \textit{developer} I want to \textit{attach additional meta-data to a ticket} to allow me to keep track of priority, progress and other issues.
-  \item As a \textit{developer} I want to \textit{end a conversation or ticket} so that I\textit{don't have to look at irrelevant tickets}.
-  \item As a \textit{developer} I want to \textit{be able to change priorities of my tickets} so that \textit{more important tasks get priority}.
-  \item As a \textit{QA manager} I want to \textit{be able to change the priorities of other peoples tickets} so that I can \textit{decide the importance of certain tasks}.
-  \item As a \textit{developer} I want to \textit{assign milestones to a conversation} so that I can \textit{track project velocity}.
-  \item As a \textit{developer} I want to \textit{split a conversation} so that I can \textit{separate multiple issues if they appear in a single ticket}.
-  \item As a \textit{user} I want to \textit{tag another user} to \textit{add them to a discussion}.
-  \item As a \textit{project manager} I want to \textit{view metrics that have been extracted from a ticket} so that I can \textit{monitor my teams progress on an issue}.
-  \item As a \textit{developer} I want to \textit{link to a version control repository} so that I can \textit{quickly access the technical side of the ticket}.
-  \item As a \textit{user} I want to \textit{attach multimedia to a conversation or ticket} so that I can \textit{explain problems or ideas more easily}.
-  \item As a \textit{developer} I want to \textit{assign resolution to an owner} so that it will get done.
-  \item As a \textit{user} I want to \textit{add other people to help resolve the issue}.
-  \item As a \textit{user} I want to \textit{be able to autocomplete names of other users} so that I can \textit{tag other users correctly and quickly}.
-  \item As a \textit{user} I want to \textit{create labels} so that I can \textit{cross reference other conversations}.
-  \item As a \textit{developer} I want to \textit{view previous tickets} so that I can \textit{view what has been changed previously}.
-  \item As a \textit{project manager} I want to \textit{track the activity of other users} so that I \textit{know what is happening in the project}.
-  \item As a \textit{user} I want to \textit{search the website} so that I can \textit{find things within the site quickly}.
-  \end{itemize}
+\item \textit{Creating an instant messaging extension for Jira}. \par This approach was rejected due to the emphasis that Jira places on the ticket based approach. Although the required design would have to maintain aspects of this approach, it would have been difficult to focus on communication when there is a major dependence on a colossal, process reliant ticket management system.
 
-  From these user stories a set of high, medium and low priority tasks were determined:
+\end{itemize}
 
-  \begin{itemize}
-    \item High Priority:
-    \begin{itemize}
-      \item Create an account
-  	\item Create a conversation
-  	\item Create a project
-  	\item Add metadata to a conversation
-  	\item Change priority of conversations
-  	\item View previous closed conversations
-  	\item View visualisations based on data extracted from conversations
-    \end{itemize}
-    \item Medium Priority:
-    \begin{itemize}
-      \item Assign resolution of a conversation to an owner
-  	\item Tagging other users in a conversation to bring it to their attention
-  	\item Linking to other conversations to cross reference discussions
-  	\item Filtering conversations
-  	\item Saving messages within chats
-    \end{itemize}
-    \item Low Priority:
-    \begin{itemize}
-      \item Linking to version control repository
-  	\item Attach multimedia to a conversation
-  	\item Autocomplete names of users
-  	\item Branching conversations to separate different issues
-    \end{itemize}
-  \end{itemize}
+With none of these approaches offering the desired flexibility, it was decided to build the system using Django, a Python web development framework.  As a result of this decision, and in addition to the extensive research of existing project management systems, an initial set of user stories were developed.
 
-  %----------------------------------------------------------------------------
-  \section{Requirements}
-  \label{requirements}
+%----------------------------------------------------------------------------
+\section{User Stories}
+\label{userStories}
 
-  %----------------------------------------------------------------------------
-  \section{User Stories}
-  \label{userStories}
+Listed below is the collection of user stories that were initially created for the system.  Over time these were added to, modified and removed depending various decisions regarding development of the system.
 
-  %----------------------------------------------------------------------------
-  \section{Design}
-  \label{design}
+\begin{itemize}
+\item As a \textit{user} I want to \textit{create an account} on the system so that I can \textit{use the features it offers}.
+\item As a \textit{user} I want to \textit{create a conversation with another user} so that I can \textit{discuss a proposed change}.
+\item As a \textit{project manager} I want to \textit{change other users privileges} so that \textit{I limit other users access}.
+\item  a \textit{developer} I want to \textit{tag a conversation as a ticket} so that \textit{it becomes managed}.
+\item As a \textit{developer} I want to \textit{attach additional meta-data to a ticket} to allow me to keep track of priority, progress and other issues.
+\item As a \textit{developer} I want to \textit{end a conversation or ticket} so that I\textit{don't have to look at irrelevant tickets}.
+\item As a \textit{developer} I want to \textit{be able to change priorities of my tickets} so that \textit{more important tasks get priority}.
+\item As a \textit{QA manager} I want to \textit{be able to change the priorities of other peoples tickets} so that I can \textit{decide the importance of certain tasks}.
+\item As a \textit{developer} I want to \textit{assign milestones to a conversation} so that I can \textit{track project velocity}.
+\item As a \textit{developer} I want to \textit{split a conversation} so that I can \textit{separate multiple issues if they appear in a single ticket}.
+\item As a \textit{user} I want to \textit{tag another user} to \textit{add them to a discussion}.
+\item As a \textit{project manager} I want to \textit{view metrics that have been extracted from a ticket} so that I can \textit{monitor my teams progress on an issue}.
+\item As a \textit{developer} I want to \textit{link to a version control repository} so that I can \textit{quickly access the technical side of the ticket}.
+\item As a \textit{user} I want to \textit{attach multimedia to a conversation or ticket} so that I can \textit{explain problems or ideas more easily}.
+\item As a \textit{developer} I want to \textit{assign resolution to an owner} so that it will get done.
+\item As a \textit{user} I want to \textit{add other people to help resolve the issue}.
+\item As a \textit{user} I want to \textit{be able to autocomplete names of other users} so that I can \textit{tag other users correctly and quickly}.
+\item As a \textit{user} I want to \textit{create labels} so that I can \textit{cross reference other conversations}.
+\item As a \textit{developer} I want to \textit{view previous tickets} so that I can \textit{view what has been changed previously}.
+\item As a \textit{project manager} I want to \textit{track the activity of other users} so that I \textit{know what is happening in the project}.
+\item As a \textit{user} I want to \textit{search the website} so that I can \textit{find things within the site quickly}.
+\end{itemize}
 
-  Once the initial design goals were established an entity-relationship (ER) diagram was developed for the system. After several iterations, the diagram shown in figure [REF] was produced. This was used to assist the development by identifying the crucial components of the system. Additionally, the ER diagram greatly assisted in the modelling of our data using the Django Object Relational Mapper, since there is a close correlation between the features of the diagram and the structure of data models in Django. 
+From these user stories a set of high, medium and low priority tasks were determined:
 
-  Due to the experimental nature of the project, rapidly changing requirements meant that that the final model of the system varies from the design in the diagram.
+\subsection{High Priority}
+\begin{itemize}
+\item \textit{Create an account} \par
+The first page a user should see when loading the website must be a page asking them to log in, or create a new account if they have not already done so.
+\item \textit{Create a conversation} \par
+There must be a way to create a new conversation to discuss different topics relating to the project.
+\item \textit{Create a project} \par
+There must be a way to create a new project to manage within the software. 
+\item \textit{Add metadata to a conversation} \par
+Users must be able to attach relevant metadata to conversations.  Attaching additional information to a chat system is crucial in achieving the goal of combining a ticketing system with social networking.
+\item \textit{Change priority of conversations} \par
+A user must be able to change the priority of a conversation so that high priority tasks get more attention.  This goes hand-in-hand with adding metadata, whereby priority could be represented as a metadata object.
+\item \textit{View previous closed conversations} \par
+Viewing previous conversations is essential in seeing what has been achieved so far over the course of a project's lifespan.
+\item \textit{View visualisations based on data extracted from conversations} \par
+Viewing visual representations of different aspects of a project allows users to determine how much effort is being devoted to a project, how many people are working on a project and each users individual contribution.
+\end{itemize}
+\subsection{Medium Priority}
+\begin{itemize}
+\item \textit{Assign resolution of a conversation to an owner} \par
+Users should be able to assign a conversation to another user in order to regulate who works on what issue.  This prevents multiple people working on the same thing while another task goes undone.
+\item \textit{Tagging other users in a conversation to bring it to their attention} \par
+Users should be able to tag other users in a conversation, so that when the subject being discussed relates to.
+\item \textit{Linking to other conversations to cross reference discussions} \par
+In the event that multiple conversations have a common topic there should be a way to link these conversations, as this allows users to quickly find relevant information pertaining to the topic.
+\item \textit{Filtering conversations} \par
+Users should be able to filter conversations by typing text for which to search for, and remove any conversations that do not contain these terms.
+\item \textit{Saving messages within chats} \par
+Users should be able to save messages within chats, so that messages that contain important messages or links can be quickly found.
 
-  Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown in figure(TODO references i.e. fig 1.2 etc)
+\end{itemize}
+\subsection{Low Priority}
+\begin{itemize}
+\item \textit{Linking to version control repository} \par
+Users could be able to link to version control, so that it is quicker for teams to navigate between different tools relating to the management of the project.
 
-  The initial prototype for the design displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets for the project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
+\item \textit{Attach multimedia to a conversation} \par
+Attaching media to a conversation could be useful as users may wish to link videos, images or sound clips containing relevant information.
 
-  In this later version, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ``conversation'' tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project.  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
+\item \textit{Autocomplete names of users} \par
+Autocompleting user names can make it easier to tag other users by ensuring their name is correctly typed.
 
-  \includegraphics[scale=0.15]{mockup1}
-  \includegraphics[scale=0.15]{mockup2}
+\item \textit{Branching conversations to separate different issues} \par
+Branching conversations could be useful as it allows a discussion that involves multiple topics to be split up into separate conversations, allowing users to only read through information that is relevant.
 
+\end{itemize}
 
-  %----------------------------------------------------------------------------
-  \section{Entity Relationship Diagrams}
 
-  \includegraphics[scale=0.4]{ER_Diagram}
 
-  %============================================================================
-  \chapter{Implementation}
-  \label{impl}
 
-  In this chapter, we describe how the implemented the system. Should include the technologies used.  also discuss implementation of user interface (technologies), visualisations.
-  (JQuery, Ajax, Bootstrap, all those things)
+%----------------------------------------------------------------------------
+\section{Design}
+\label{design}
 
-  %----------------------------------------------------------------------------
-  \section{Model Implementation}
-  \label{modelImpl}
+Once the initial design goals were established an entity-relationship (ER) diagram was developed for the system. After several iterations, the diagram shown in figure [REF] was produced. This was used to assist the development by identifying the crucial components of the system. Additionally, the ER diagram greatly assisted in the modelling of our data using the Django Object Relational Mapper, since there is a close correlation between the features of the diagram and the structure of data models in Django. 
 
-  Framework
+Due to the experimental nature of the project, rapidly changing requirements meant that that the final model of the system varies from the design in the diagram.
 
-  \includegraphics[scale=0.35]{newERdiagram}
-  %----------------------------------------------------------------------------
-  \section{User Interface}
-  \label{userInterface}
+Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown in figure(TODO references i.e. fig 1.2 etc)
 
-  This should detail the early prototype of the user interface, what motivated the decisions made, 
-  and then discuss how the interface evolved over time, and what prompted these changes.
+The initial prototype for the design displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets for the project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
 
-  %----------------------------------------------------------------------------
-  \section{Messaging System}
-  \label{messagingSystem}
+In this later version, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ``conversation'' tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project.  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
 
-  Firebase
+\begin{figure}
+\includegraphics[scale=0.3]{mockup1}
+\caption{Mockup 1}
+\end{figure}
 
-  %----------------------------------------------------------------------------
-  \section{Rest API}
-  \label{restApi}
+\begin{figure}
+\includegraphics[scale=0.3]{mockup2}
+\caption{Mockup 2}
+\end{figure}
 
 
-  %----------------------------------------------------------------------------
-  \section{Prototype}
-  \label{prototype}
+%----------------------------------------------------------------------------
+\section{Entity Relationship Diagrams}
 
-  Demo
+\begin{figure}
+\includegraphics[scale=0.4]{ER_Diagram}
+\caption{ER Diagram}
+\end{figure}
+%============================================================================
+\chapter{Implementation}
+\label{impl}
 
-  %----------------------------------------------------------------------------
-  \section{Metadata}
-  \label{metadata}
+In this chapter, we describe how the implemented the system. Should include the technologies used.  also discuss implementation of user interface (technologies), visualisations.
+(JQuery, Ajax, Bootstrap, all those things)
 
-  Notes, due date, cost, assignee, tag, priority.
+%----------------------------------------------------------------------------
+\section{Model Implementation}
+\label{modelImpl}
 
-  %----------------------------------------------------------------------------
-  \section{Statistics}
-  \label{statistics}
+Framework
 
-  Three visualisations were implemented to show a proof-of-concept of how graphs would enhance a user’s understanding of their project. 
-  All visualisations were implemented as simple bar charts. It was found that, in all three cases of visualisation, the data being displayed was a mapping of ordinal data to some quantitative value. Users’ familiarity with bar carts made them an obvious choice for representing the site’s data. 
-  The visualisations provided were:
+\begin{figure}
+\includegraphics[scale=0.35]{newERdiagram}
+\caption{Final ER Diagram}
+\end{figure}
+%----------------------------------------------------------------------------
+\section{User Interface}
+\label{userInterface}
 
-  \begin{itemize}
-  \item Messages sent per user in a conversation
-  \item Messages sent per user in a project
-  \item Messages contained in each conversation in a project
-  \end{itemize}
+This should detail the early prototype of the user interface, what motivated the decisions made, 
+and then discuss how the interface evolved over time, and what prompted these changes.
 
-  These graphs were intended to show user participation and chat activity in a way that would allow an observer to judge the importance of different chats within the system, and to see the contributions a user was making on both a project level and within specific tickets (here conversations) they were working on.	
+%----------------------------------------------------------------------------
+\section{Messaging System}
+\label{messagingSystem}
 
-  %----------------------------------------------------------------------------
-  \section{Notifications}
-  \label{notifications}
+Firebase
 
+%----------------------------------------------------------------------------
+\section{Rest API}
+\label{restApi}
 
-  %----------------------------------------------------------------------------
-  \section{Saved Messages}
-  \label{savedMessages}
 
-  Make sure we mention dogfeeding at some point here.
+%----------------------------------------------------------------------------
+\section{Prototype}
+\label{prototype}
 
-  %============================================================================
-  \chapter{Evaluation}
-  \label{evaluation}
+Demo
 
-  In this section we should discuss what we did, did it achieve the intended objective, what could be done better, 
-  future developments and things that were unable to achieve.
+%----------------------------------------------------------------------------
+\section{Metadata}
+\label{metadata}
 
-  <<This is a chunk of text that I thought could be used in evaluation, I know it doesn't fit in by itself at the moment.>>
+Notes, due date, cost, assignee, tag, priority.
 
-  <<Something something dogfood>>
+%----------------------------------------------------------------------------
+\section{Statistics}
+\label{statistics}
 
-  An area of potential future development could be integration with the continuous integration system Jenkins.  This could be implemented through treating Jenkins as a user who would automatically create a ticket based on each build.  It could also automatically create a high priority ticket when a build fails, and tag the relevant developers.  This expansion would be possible due to Jenkins plugin based structure, whereby it is designed to be extended as necessary.
+Three visualisations were implemented to show a proof-of-concept of how graphs would enhance a user’s understanding of their project. 
+All visualisations were implemented as simple bar charts. It was found that, in all three cases of visualisation, the data being displayed was a mapping of ordinal data to some quantitative value. Users’ familiarity with bar carts made them an obvious choice for representing the site’s data. 
+The visualisations provided were:
 
-  Another potential addition could be linking to Git and other source control platforms. Often, these systems support tickets and issue control to some degree; 
+\begin{itemize}
+\item Messages sent per user in a conversation
+\item Messages sent per user in a project
+\item Messages contained in each conversation in a project
+\end{itemize}
 
-  %----------------------------------------------------------------------------
-  \section{Dogfooding}
-  \label{dogfooding}
+These graphs were intended to show user participation and chat activity in a way that would allow an observer to judge the importance of different chats within the system, and to see the contributions a user was making on both a project level and within specific tickets (here conversations) they were working on.	
 
+%----------------------------------------------------------------------------
+\section{Notifications}
+\label{notifications}
 
-  %----------------------------------------------------------------------------
-  \section{External Evaluation}
-  \label{externalEvaluation}
 
+%----------------------------------------------------------------------------
+\section{Saved Messages}
+\label{savedMessages}
 
-  %----------------------------------------------------------------------------
-  \section{Retrospective}
-  \label{retrospective}
+Make sure we mention dogfeeding at some point here.
 
+%============================================================================
+\chapter{Evaluation}
+\label{evaluation}
 
-  %============================================================================
-  \chapter{Conclusion}
-  \label{conclusion}
+In this section we should discuss what we did, did it achieve the intended objective, what could be done better, 
+future developments and things that were unable to achieve.
 
+<<This is a chunk of text that I thought could be used in evaluation, I know it doesn't fit in by itself at the moment.>>
 
-  %----------------------------------------------------------------------------
-  \section{Future Goals}
-  \label{futureGoals}
+<<Something something dogfood>>
 
-  Make sure we mention dogfeeding at some point here.
+An area of potential future development could be integration with the continuous integration system Jenkins.  This could be implemented through treating Jenkins as a user who would automatically create a ticket based on each build.  It could also automatically create a high priority ticket when a build fails, and tag the relevant developers.  This expansion would be possible due to Jenkins plugin based structure, whereby it is designed to be extended as necessary.
 
-  %============================================================================
-  % \bibliographystyle{plain}
-  % \bibliography{example}
-  \end{document}
+Another potential addition could be linking to Git and other source control platforms. Often, these systems support tickets and issue control to some degree; 
+
+%----------------------------------------------------------------------------
+\section{Dogfooding}
+\label{dogfooding}
+
+
+%----------------------------------------------------------------------------
+\section{External Evaluation}
+\label{externalEvaluation}
+
+
+%----------------------------------------------------------------------------
+\section{Retrospective}
+\label{retrospective}
+
+
+%============================================================================
+\chapter{Conclusion}
+\label{conclusion}
+
+
+%----------------------------------------------------------------------------
+\section{Future Goals}
+\label{futureGoals}
+
+Make sure we mention dogfeeding at some point here.
+
+%============================================================================
+% \bibliographystyle{plain}
+% \bibliography{example}
+\end{document}
