@@ -292,6 +292,7 @@ $(function () {
 
         messagesRef.on("child_added", function (object) {
             $("#spin").hide();
+            $("#chat-empty").addClass("invisible");
             addMessage(object);
         });
 
