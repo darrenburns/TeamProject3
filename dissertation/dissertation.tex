@@ -263,21 +263,25 @@ Once the initial design goals were established an entity-relationship (ER) diagr
 
 Due to the experimental nature of the project, rapidly changing requirements meant that that the final model of the system varies from the design in the diagram.
 
-Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown below. 
+Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown below. \par
 
-\begin{figure}
+\begin{figure}[ht]
+\centering
 \includegraphics[scale=0.2]{mockup1}
 \caption{Mockup 1}
+\label{fig:mockup1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[ht]
+\centering
 \includegraphics[scale=0.2]{mockup2}
 \caption{Mockup 2}
+\label{fig:mockup2}
 \end{figure}
 
-Figure[1] shows the initial prototype for the design, which displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets related to that project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
+\autoref{fig:mockup1} shows the initial prototype for the design, which displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets related to that project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
 
-In [2], the ticket appearance was changed whereby the information section was removed and two tabs were added, a ‘conversation’ tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project. This change was made to reduce clutter in the interface and  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
+\autoref{fig:mockup2}, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ‘conversation’ tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project. This change was made to reduce clutter in the interface and  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
 
 % The initial prototype for the design displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets for the project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
 
@@ -290,6 +294,7 @@ In [2], the ticket appearance was changed whereby the information section was re
 \section{Entity Relationship Diagrams}
 
 \begin{figure}
+\centering
 \includegraphics[scale=0.4]{ER_Diagram}
 \caption{ER Diagram}
 \end{figure}
@@ -315,14 +320,16 @@ Frequent merging of feature branches also provided the added benefit that breaki
 
 After realising the difficulties this workflow caused, this flaw was amended by substantially increasing the rate at which features were merged with the master branch. The diagram below shows how features were frequently merged into the master branch (shown as the black line at the top of the diagram) during the week of March 1st 2015. \\
 
-\begin{figure}
+\begin{figure}[ht]
+\centering
 \includegraphics[scale=0.5]{diagram}
 \caption{Git diagram}
 \end{figure} 
  
  For comparison, the lack of feature branch integration displayed during the early stages of the project is displayed below. This diagram shows branching activity between the 24th and 30th of November 2014. 
 
-\begin{figure}
+\begin{figure}[ht]
+\centering
 \includegraphics[scale=0.5]{diagram2}
 \caption{Git diagram}
 \end{figure} 
@@ -455,10 +462,6 @@ Make sure we mention dogfeeding at some point here.
 
 In this section we should discuss what we did, did it achieve the intended objective, what could be done better, 
 future developments and things that were unable to achieve.
-
-<<This is a chunk of text that I thought could be used in evaluation, I know it doesn't fit in by itself at the moment.>>
-
-<<Something something dogfood>>
 
 An area of potential future development could be integration with the continuous integration system Jenkins.  This could be implemented through treating Jenkins as a user who would automatically create a ticket based on each build.  It could also automatically create a high priority ticket when a build fails, and tag the relevant developers.  This expansion would be possible due to Jenkins plugin based structure, whereby it is designed to be extended as necessary.
 
