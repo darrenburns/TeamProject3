@@ -32,29 +32,34 @@ The abstract goes here
 %----------------------------------------------------------------------------
 \section{Preliminaries}
 \label{preliminaries}
-In the context of project development, a project task management tool is a system where tasks, issues and improvements relating to a specific project can be documented and listed for members of the project team to review, discuss and modify.  
-
-A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby…
-
-%----------------------------------------------------------------------------
-\section{Aims}
-\label{aims}
-
-The primary objective of the project was to eliminate this redundancy.  The proposition was to create a system whereby an instant messaging tool would be integrated into a ticket management tool, and the contents of the ticket are to be extracted from the conversation.  By pooling the two different aspects there is less time wasted in copying information from the conversation to a ticket, making the process as a whole faster and more intuitive.  This can result in improved productivity and more thorough documentation of tickets.
-
+A project management tool or suite is a program or set of programs which allow a team of developers, managers, and customers to understand the state of a project. These tools tend to be used to manage tickets. (The act of managing tickets is referred to as ticket management). A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby it manages and maintains lists of issues documented through tickets. These are notices that members of a development team can set up, discuss code on, and see information about a problem such as its severity and who is responsible for fixing this. Issues and bugs would be found recorded in tickets. They can also hold information about tasks or features that the team has to work on. Records of conversations in ticket comment threads help developers to understand the significance of a ticket, and serve as a platform of discussion on active tickets.
 
 
 %----------------------------------------------------------------------------
 \section{Motivation}
 \label{motivation}
 
-A recurring complaint regarding current task management software is that there exists a duplication of effort whereby teams will discuss a project in depth using an informal medium such as Facebook chat or Skype, and then will be forced to then rewrite these discussions in the form of tickets on their project management software of choice.  This leads to a less disciplined use of the management software as users may forget to create tickets or may not be willing to spend time doing so.
+A project management tool or suite is a program or set of programs which allow a team of developers, managers, and customers to understand the state of a project. These tools tend to be used to manage tickets. (The act of managing tickets is referred to as ticket management). A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby it manages and maintains lists of issues documented through tickets. These are notices that members of a development team can set up, discuss code on, and see information about a problem such as its severity and who is responsible for fixing this. Issues and bugs would be found recorded in tickets. They can also hold information about tasks or features that the team has to work on. Records of conversations in ticket comment threads help developers to understand the significance of a ticket, and serve as a platform of discussion on active tickets.
+
 
 %----------------------------------------------------------------------------
-\section{Team Organisation}
-\label{teamOrganisation}
+\section{Aims}
+\label{aims}
 
-The team elected to use git as a version control system for which to manage the software.  This was done due to a number of team members familiarity with the system as well as the ability to use Github made the workflow easy to learn.  Trello was chosen as a task management software initially, with the intent to swap to the tool being developed when the project had advanced sufficiently.  Facebook chat was used to communicate and arrange meetings.  This split of organisation between Facebook and Trello frustrated some team members which further reinforced the aim of the project - bypassing the repetition of certain tasks over different tools.
+The primary objective of the project was to eliminate redundancy in discussing tickets. The proposition was to create a web-based package where project managers, developers, and customers can discuss a project in a social-networking oriented way. Using conversations, this project should then develop tickets as the conversations being had with calculable and attachable metadata. With appropriate user interface design, using conversations as tickets should solve the three issues laid out in the Motivation section:
+
+\begin{itemize}
+\item The project allows for discussion of the issues and bugs within their project management suite.
+\item Because discussion occurs directly within a ticket, there is no need to duplicate work as there would be creating tickets on the basis of Skype or Facebook conversations.
+\item An easy-to-use user interface would allow for easy ticket management, meaning that the tool would be convenient enough that tickets would get created in the first place.
+\end{itemize}
+
+This can result in improved productivity and more thorough documentation of issues.
+
+
+
+
+
 
 %----------------------------------------------------------------------------
 \section{Outline}
@@ -64,7 +69,7 @@ The dissertation will discuss what was done during the process of developing the
 
 \textbf{Initial Planning} \autoref{initialPlanning}
 
-How the requirements of the system were developed, and through which we developed user stories, a user interface mockup and an ER diagram for our system.
+This section discusses how the requirements of the system were developed, and how using this user stories, a user interface mockup and an ER diagram for our system were developed.
 
 \textbf{Implementation} \autoref{impl}
 
@@ -72,7 +77,7 @@ An overview of the process of implementing the system, detailing the creation of
 
 \textbf{Evaluation} \autoref{evaluation}
 
-How the project was evaluated.  This will detail the results of the dogfooding as well as peer evaluation from another team using the system.
+How the project was evaluated.  This will detail the results of the dogfooding, peer evaluation from another team using the system, and improvements to the system that were identified from this feedback.
 
 \textbf{Conclusion} \autoref{conclusion}
 
@@ -137,6 +142,9 @@ Codebook was a project management system theorised by Microsoft to visualise the
 
 Codebooks most significant lacking in reference to this project’s goals was ticket management. It was not possible to manage a project entirely through Codebook, because it had no ticket management or communication between groups of people; instead, Codebook mapped out projects so workflows could be better understood.
 
+Codebook was never a project that was released to the public, but Microsoft published several papers on it.
+
+
 %============================================================================
 \chapter{Initial Planning}
 \label{initialPlanning}
@@ -149,7 +157,7 @@ The problem that the project aims to solve was established in the initial meetin
 
 Codebook attempted to solve this problem by closely integrating a social network with software project artifacts. The social network aspect of Codebook was noted by the team as one that may encourage users to use the system both as their primary communication method, and as their project management tool. It was also identified that by giving the software access to tickets and the discussions related to them, a wealth of additional data is available to the system which would otherwise have to be manually entered by a user.
 
-The approach taken by Producteev on the other hand, is to attempt to ease reduce duplication of effort by allowing users to convert emails into tasks. By allowing users to create a task in this way, we are overcoming the need to copy the information from the email to the task manually.
+The approach taken by Producteev on the other hand, is to attempt to reduce duplication of effort by allowing users to convert emails into tasks. By allowing users to create a task in this way, we are overcoming the need to copy the information from the email to the task manually.
 
 Both of these features helped inspire the primary requirements of the software. It was deemed a vital requirement that the software tightly integrate social features in order to make use of the data generated through users communicating with each other. In addition, the team decided that the software use this data in order to minimise the effort required in managing a software project. Agile software development aims to prioritise interactions over process, and so the software must be constructed to maintain some degree of process without overly interfering with communication.
 
@@ -255,21 +263,27 @@ Once the initial design goals were established an entity-relationship (ER) diagr
 
 Due to the experimental nature of the project, rapidly changing requirements meant that that the final model of the system varies from the design in the diagram.
 
-Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown in figure(TODO references i.e. fig 1.2 etc)
-
-The initial prototype for the design displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets for the project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
-
-In this later version, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ``conversation'' tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project.  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
+Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown below. 
 
 \begin{figure}
-\includegraphics[scale=0.3]{mockup1}
+\includegraphics[scale=0.2]{mockup1}
 \caption{Mockup 1}
 \end{figure}
 
 \begin{figure}
-\includegraphics[scale=0.3]{mockup2}
+\includegraphics[scale=0.2]{mockup2}
 \caption{Mockup 2}
 \end{figure}
+
+Figure[1] shows the initial prototype for the design, which displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets related to that project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
+
+In [2], the ticket appearance was changed whereby the information section was removed and two tabs were added, a ‘conversation’ tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project. This change was made to reduce clutter in the interface and  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
+
+% The initial prototype for the design displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets for the project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
+
+% In this later version, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ``conversation'' tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project.  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
+
+
 
 
 %----------------------------------------------------------------------------
@@ -279,18 +293,62 @@ In this later version, the ticket appearance was changed whereby the information
 \includegraphics[scale=0.4]{ER_Diagram}
 \caption{ER Diagram}
 \end{figure}
+
+%============================================================================
+\chapter{Team Organisation}
+\label{team}
+
+Trello was chosen as the team’s initial task management software, with the intent to swap to the tool being developed when the project had advanced sufficiently, through a process called ‘dogfooding’ whereby the system can be internally evaluated by the team during development. (TODO link to the dogfooding section?)  Facebook chat was used to communicate and arrange meetings.  This split of organisation between Facebook and Trello frustrated some team members which further reinforced the aim of the project - bypassing the repetition of certain tasks over different tools. 
+
+
+%----------------------------------------------------------------------------
+\section{Version Control}
+\label{versionControl}
+
+The team elected to use Git as the version control system to manage changes in the source code of the software. Git was used due to multiple team members being familiar with it, and for the integration it has with Github. Making use of version control was vital during development of the project, since features were often being developed simultaneously.
+
+The team maintained two main branches within the Git repository. The master branch, which contained the most stable build, and the beta branch, which was used as a deployment staging area for new features. Some code modifications may work as intended in a development environment and then break when deployed. To overcome this risk, code was first deployed to the beta branch before being merged into the master branch.
+
+One aspect of version control in which the team was eventually diligent in applying was continuous integration, in which feature branches are regularly merged into the master branch. Using continuous integration meant that the live version of the project never strayed too far from the overall set of features that were being developed at a given time. 
+
+Frequent merging of feature branches also provided the added benefit that breaking changes were easier to find, due to the fact that less code was being added in each merge. During the initial stages of the project, branches often went unmerged for several weeks, making integration of features exceptionally difficult. 
+
+After realising the difficulties this workflow caused, this flaw was amended by substantially increasing the rate at which features were merged with the master branch. The diagram below shows how features were frequently merged into the master branch (shown as the black line at the top of the diagram) during the week of March 1st 2015. \\
+
+\begin{figure}
+\includegraphics[scale=0.5]{diagram}
+\caption{Git diagram}
+\end{figure} 
+ 
+ For comparison, the lack of feature branch integration displayed during the early stages of the project is displayed below. This diagram shows branching activity between the 24th and 30th of November 2014. 
+
+\begin{figure}
+\includegraphics[scale=0.5]{diagram2}
+\caption{Git diagram}
+\end{figure} 
+
+%----------------------------------------------------------------------------
+\section{Continuous Deployment}
+\label{deployment}
+
+An unforeseen benefit of using the combination of Git and Github was the ease by which the system could be deployed. Two instances of the project were hosted on Heroku, a platform for hosting dynamically scalable web applications. The first instance hosted the code held within the master branch of the Git repository. The second instance ran the code present in the “beta” branch of the project.
+
+An extension to the Heroku platform called Codeship was used to ease the deployment of new builds. Codeship is a continuous deployment platform which was configured so that any changes to the master branch or the beta branch were automatically built and deployed to their respective live websites.
+
+
 %============================================================================
 \chapter{Implementation}
 \label{impl}
 
-In this chapter, we describe how the implemented the system. Should include the technologies used.  also discuss implementation of user interface (technologies), visualisations.
-(JQuery, Ajax, Bootstrap, all those things)
+Once the requirements for the system had been identified and the way the team was to organise itself had been formalised implementation of the system could begin.
+
 
 %----------------------------------------------------------------------------
 \section{Model Implementation}
 \label{modelImpl}
 
-Framework
+The system implementation began with the creation of a framework from which to build upon.  Models were implemented as identified in the ER diagram using Django’s built in Object Relational Mapper (ORM). During the initial stages of development, these objects were mapped to a SQLite schema, but as development progressed, the PostgreSQL database management system was used instead.
+
 
 \begin{figure}
 \includegraphics[scale=0.35]{newERdiagram}
@@ -300,25 +358,57 @@ Framework
 \section{User Interface}
 \label{userInterface}
 
-This should detail the early prototype of the user interface, what motivated the decisions made, 
-and then discuss how the interface evolved over time, and what prompted these changes.
+Due to the system being a web application, the main technologies used in the creation of the user interface were HTML5 and CSS3, as is standard in the vast majority of web based software. 
 
+Twitter’s Bootstrap library was used to manage the layout of web pages, and to improve compatibility with mobile devices. The intuitive grid layout system provided by this library greatly improved the rate at which the UI was developed, since it minimised the extent to which the team had to rely on custom CSS rules.
+
+To accommodate the requirement that the application be more reactive to user interaction, the JQuery Javascript library was used. JQuery assists almost every element of the application, from displaying new messages on the screen, to highlighting selected issues. 
+
+Perhaps the most important feature of the JQuery library used to make the website more responsive was Ajax (Asynchronous Javascript and XML). Ajax provides the ability to reload only small portions of the screen when required, rather than reloading the entire page and sending multiple requests for objects that have already been transferred. Ajax is the basis for several features of the application that would otherwise respond slowly, such as the search and sort features.
 %----------------------------------------------------------------------------
 \section{Messaging System}
 \label{messagingSystem}
 
-Firebase
+The instant messaging aspect of the project was implemented using a Javascript library and backend service called Firebase. An alternative option considered by the team was to implement a server side mechanism for handling messaging using the WebSocket protocol. However, several disadvantages to this approach were found on investigation:
+
+\begin{itemize}
+\item The default Django web server relies on the Web Server Gateway Interface (WSGI) for handling communication between the server and the framework. Due to the request handling mechanism employed by WSGI, it is not possible to support long term connections through the likes of WebSockets, and so an additional server which provides support for the WebSocket protocol would have to be set up to achieve the required functionality.
+\item The WebSocket protocol is extremely complex in comparison to the Firebase library, and so it would have been difficult to produce a working system within the time constraints of the project.
+\end{itemize}
+
+Another option which was considered was working within the constraints of the Django framework. Creating an instant messaging system within Django would require using an inefficient method such as asynchronous polling, in which the client repeatedly asks the server if a new message has been sent.
+
+The decision to use Firebase was not without its drawbacks:
+\begin{itemize}
+\item There is an overhead in ensuring that the data in the external storage provided by Firebase remains consistent with the data held within the relational database.
+\item Employing a third party storage service added an additional point of failure to the system. On several occasions throughout development, the Firebase API became unavailable, leaving the application unusable for a short period of time.
+\item Each member of the team had to understand the API exported by Firebase. Consequently, the project uses two REST APIs for communication with the server side rather than one, increasing the complexity of the design. The Firebase API also proved difficult to work at times, with simple queries departing from the well understood semantics of SQL.
+\end{itemize}
+
+In general, the use of an external service to implement the messaging system greatly improved the rate of development of the project and allowed the team to focus on other aspects of the system, which may not have been possible using one of the other options.
 
 %----------------------------------------------------------------------------
 \section{Rest API}
 \label{restApi}
 
+An Django plugin known as TastyPie was used to convert the models that were previously defined into endpoints that the client can call to request data from the database. After quick initial configuration of the plugin, specified portions of the database schema were available to the client side of the application. 
 
+TODO: write more here
 %----------------------------------------------------------------------------
 \section{Prototype}
 \label{prototype}
 
-Demo
+
+A prototype was prepared for demonstration after ten weeks. The interface was simple but fully functional (figure - screenshot of the demonstration). The system had basic functionalities such as: 
+
+\begin{itemize}
+\item User registration and login
+\item Project creation
+\item Creation of independent conversations (tickets)
+\item Ability to open and close conversations
+\end{itemize}
+
+The aim of the prototype development was to create a basic framework to display, which could then be build upon as opposed to implementing multiple user stories, resulting in a fragmented program with many isolated features but no overall functionality.  The resultant product therefore had a large amount of unseen ‘groundwork’ added and thus while it did not immediately appear as if a lot of work had been completed, allowed new features to be easily implemented as the project progressed. 
 
 %----------------------------------------------------------------------------
 \section{Metadata}
@@ -330,9 +420,9 @@ Notes, due date, cost, assignee, tag, priority.
 \section{Statistics}
 \label{statistics}
 
-Three visualisations were implemented to show a proof-of-concept of how graphs would enhance a user’s understanding of their project. 
-All visualisations were implemented as simple bar charts. It was found that, in all three cases of visualisation, the data being displayed was a mapping of ordinal data to some quantitative value. Users’ familiarity with bar carts made them an obvious choice for representing the site’s data. 
-The visualisations provided were:
+Three graphs were implemented to show a proof-of-concept of how visually representing information would enhance a user’s understanding of their project. 
+All visualisations were implemented as simple bar charts. It was found that, in all three cases, the data being displayed was a mapping of ordinal data and quantitative value. Users’ familiarity with bar carts made them an obvious choice for representing the site’s data. 
+The graphs provided were:
 
 \begin{itemize}
 \item Messages sent per user in a conversation
@@ -340,7 +430,13 @@ The visualisations provided were:
 \item Messages contained in each conversation in a project
 \end{itemize}
 
-These graphs were intended to show user participation and chat activity in a way that would allow an observer to judge the importance of different chats within the system, and to see the contributions a user was making on both a project level and within specific tickets (here conversations) they were working on.	
+These graphs were intended to show user participation and chat activity in a way that would allow an observer to judge the importance of different chats within the system, and to see the contributions a user was making on both a project level and within specific tickets (here conversations) they were working on.
+
+%----------------------------------------------------------------------------
+\section{Dogfooding}
+\label{dog}
+At this point in the implementation the team began using the tool to manage development, ... 
+
 
 %----------------------------------------------------------------------------
 \section{Notifications}
@@ -392,7 +488,6 @@ Another potential addition could be linking to Git and other source control plat
 \section{Future Goals}
 \label{futureGoals}
 
-Make sure we mention dogfeeding at some point here.
 
 %============================================================================
 % \bibliographystyle{plain}
