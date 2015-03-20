@@ -44,7 +44,7 @@ $(function () {
 
     if(typeof PROJECT_ID !== "undefined"){
         var i = 0;
-        var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
+        var ref = new Firebase("https://teamproject3.firebaseio.com/");
         // Creating a chat object
         var projectObj = ref.child("project/" + PROJECT_ID);
         var chatRoot = projectObj.child("chats");
