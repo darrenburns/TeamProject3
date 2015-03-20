@@ -268,6 +268,13 @@ $(function () {
 
         var messagesRef = chatObj.child("messages");
 
+        messagesRef.once('value', function(snap){
+            var messages = snap.val();
+            if(messages == null){
+                $("#spin").hide();
+                $("#chat-empty").removeClass("invisible");
+            }
+        });
 
         //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
@@ -285,6 +292,7 @@ $(function () {
 
         messagesRef.on("child_added", function (object) {
             $("#spin").hide();
+            $("#chat-empty").addClass("invisible");
             addMessage(object);
         });
 
