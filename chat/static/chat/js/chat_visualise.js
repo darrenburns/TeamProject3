@@ -1,6 +1,6 @@
 $(function() {
 
-    if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined') {
+    if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined' && typeof VISUALISING_CHATS != 'undefined') {
 
         var BASE_CHART_WIDTH = 400;
         var BASE_CHART_HEIGHT = 250;

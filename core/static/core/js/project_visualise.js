@@ -1,6 +1,6 @@
 $(function() {
 
-    if (typeof(PROJECT_ID) != 'undefined') {
+    if (typeof(PROJECT_ID) != 'undefined' && typeof VISUALISING_PROJECTS != 'undefined') {
 
 
         var BASE_CHART_WIDTH = 400;
