@@ -278,10 +278,14 @@ $(function () {
 
         //Listen for ENTER press and update Firebase
         messageInput.keypress(function (e) {
-            if (e.keyCode == 13 && !e.shiftKey) {
+            var messageInputValue = messageInput.val();
+            if (e.keyCode == 13 && messageInputValue === ""){
+                e.preventDefault();
+            }
+            else if (e.keyCode == 13 && messageInputValue !== "" && !e.shiftKey) {
                 e.preventDefault();
                 messagesRef.push({
-                    desc: messageInput.val(),
+                    desc: messageInputValue,
                     user: CURRENT_USER,
                     user_id: CURRENT_USER_ID,
                     dt: Date.now()
@@ -295,6 +299,7 @@ $(function () {
             $("#chat-empty").addClass("invisible");
             addMessage(object);
         });
+
 
         getMetadataInformation(CHAT_ID);
 
