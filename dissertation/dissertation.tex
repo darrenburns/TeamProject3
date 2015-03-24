@@ -2,10 +2,17 @@
 \usepackage{fullpage}
 \usepackage{indentfirst}
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage[usenames,dvipsnames]{xcolor}
 \definecolor{customURL}{HTML}{08096E}
 \usepackage{hyperref}
 \hypersetup{linkcolor=MidnightBlue, urlcolor=customURL, colorlinks}
+\def\partautorefname{ }
+\def\chapterautorefname{\S}
+\def\sectionautorefname{\S}
+\def\subsectionautorefname{\S}
+\def\subsubsectionautorefname{\S}
 
 \graphicspath{ {images/} }
 \begin{document}
@@ -266,31 +273,36 @@ Due to the experimental nature of the project, rapidly changing requirements mea
 Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown below. \par
 
 \begin{figure}[ht]
-\centering
-\includegraphics[scale=0.2]{mockup1}
-\caption{Mockup 1}
-\label{fig:mockup1}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+	    \centering
+		\includegraphics[width=\textwidth]{mockup1}
+		\caption{Mockup 1}
+		\label{fig:mockup1}        
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+		\includegraphics[width=\textwidth]{mockup2}
+		\caption{Mockup 2}
+		\label{fig:mockup2} 
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+		\includegraphics[width=\textwidth]{mockup3}
+		\caption{Mockup 3}
+		\label{fig:mockup3} 
+    \end{subfigure}
+    \caption{Three mockups}
+    \label{fig:Three mockups}
 \end{figure}
 
 \autoref{fig:mockup1} shows the initial prototype for the design, which displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets related to that project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
 
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.2]{mockup2}
-\caption{Mockup 2}
-\label{fig:mockup2}
-\end{figure}
+In \autoref{fig:mockup2}, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ‘conversation’ tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project. This change was made to reduce clutter in the interface and  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
 
-\autoref{fig:mockup2}, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ‘conversation’ tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project. This change was made to reduce clutter in the interface and  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.18]{mockup3}
-\caption{Mockup 3}
-\label{fig:mockup3}
-\end{figure}
-
-The final design \autoref{fig:mockup3}  moved the projects drop-down menu into the navbar, with the selected project shown below alongside the relevant conversations.  The controls section was removed and an options menu was added above the conversations.  The information tab was divided into an info and graphs tab, whereby info contained metadata relating to the conversation and graphs contained the visualisations that had been generated with the data.
+The final design, \autoref{fig:mockup3}, moved the projects drop-down menu into the navbar, with the selected project shown below alongside the relevant conversations.  The controls section was removed and an options menu was added above the conversations.  The information tab was divided into an info and graphs tab, whereby info contained metadata relating to the conversation and graphs contained the visualisations that had been generated with the data.
 % The initial prototype for the design displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets for the project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
 
 % In this later version, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ``conversation'' tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project.  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
@@ -302,7 +314,7 @@ The final design \autoref{fig:mockup3}  moved the projects drop-down menu into t
 %----------------------------------------------------------------------------
 \section{Entity Relationship Diagrams}
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.4]{ER_Diagram}
 \caption{ER Diagram}
