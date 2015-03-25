@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{enumitem}
 \usepackage[usenames,dvipsnames]{xcolor}
 \definecolor{customURL}{HTML}{08096E}
 \usepackage{hyperref}
@@ -13,6 +14,7 @@
 \def\sectionautorefname{\S}
 \def\subsectionautorefname{\S}
 \def\subsubsectionautorefname{\S}
+
 
 \graphicspath{ {images/} }
 \begin{document}
@@ -186,32 +188,33 @@ With none of these approaches offering the desired flexibility, it was decided t
 
 Listed below is the collection of user stories that were initially created for the system.  Over time these were added to, modified and removed depending various decisions regarding development of the system.
 
-\begin{itemize}
-\item As a \textit{user} I want to \textit{create an account} on the system so that I can \textit{use the features it offers}.
-\item As a \textit{user} I want to \textit{create a conversation with another user} so that I can \textit{discuss a proposed change}.
-\item As a \textit{project manager} I want to \textit{change other users privileges} so that \textit{I limit other users access}.
-\item  a \textit{developer} I want to \textit{tag a conversation as a ticket} so that \textit{it becomes managed}.
-\item As a \textit{developer} I want to \textit{attach additional meta-data to a ticket} to allow me to keep track of priority, progress and other issues.
-\item As a \textit{developer} I want to \textit{end a conversation or ticket} so that I\textit{don't have to look at irrelevant tickets}.
-\item As a \textit{developer} I want to \textit{be able to change priorities of my tickets} so that \textit{more important tasks get priority}.
-\item As a \textit{QA manager} I want to \textit{be able to change the priorities of other peoples tickets} so that I can \textit{decide the importance of certain tasks}.
-\item As a \textit{developer} I want to \textit{assign milestones to a conversation} so that I can \textit{track project velocity}.
-\item As a \textit{developer} I want to \textit{split a conversation} so that I can \textit{separate multiple issues if they appear in a single ticket}.
-\item As a \textit{user} I want to \textit{tag another user} to \textit{add them to a discussion}.
-\item As a \textit{project manager} I want to \textit{view metrics that have been extracted from a ticket} so that I can \textit{monitor my teams progress on an issue}.
-\item As a \textit{developer} I want to \textit{link to a version control repository} so that I can \textit{quickly access the technical side of the ticket}.
-\item As a \textit{user} I want to \textit{attach multimedia to a conversation or ticket} so that I can \textit{explain problems or ideas more easily}.
-\item As a \textit{developer} I want to \textit{assign resolution to an owner} so that it will get done.
-\item As a \textit{user} I want to \textit{add other people to help resolve the issue}.
-\item As a \textit{user} I want to \textit{be able to autocomplete names of other users} so that I can \textit{tag other users correctly and quickly}.
-\item As a \textit{user} I want to \textit{create labels} so that I can \textit{cross reference other conversations}.
-\item As a \textit{developer} I want to \textit{view previous tickets} so that I can \textit{view what has been changed previously}.
-\item As a \textit{project manager} I want to \textit{track the activity of other users} so that I \textit{know what is happening in the project}.
-\item As a \textit{user} I want to \textit{search the website} so that I can \textit{find things within the site quickly}.
-\end{itemize}
+\begin{enumerate}[ref=\arabic*]
+\item As a \textit{user} I want to \textit{create an account} on the system so that I can \textit{use the features it offers}. \label{item:1}
+\item As a \textit{user} I want to \textit{create a conversation with another user} so that I can \textit{discuss a proposed change}. \label{item:2}
+\item As a \textit{project manager} I want to \textit{change other users privileges} so that \textit{I limit other users access}. \label{item:3}
+\item  a \textit{developer} I want to \textit{tag a conversation as a ticket} so that \textit{it becomes managed}.\label{item:4}
+\item As a \textit{developer} I want to \textit{attach additional meta-data to a ticket} to allow me to keep track of priority, progress and other issues.\label{item:5}
+\item As a \textit{developer} I want to \textit{end a conversation or ticket} so that I\textit{don't have to look at irrelevant tickets}.\label{item6}
+\item As a \textit{developer} I want to \textit{be able to change priorities of my tickets} so that \textit{more important tasks get priority}.\label{item:7}
+\item As a \textit{QA manager} I want to \textit{be able to change the priorities of other peoples tickets} so that I can \textit{decide the importance of certain tasks}.\label{item:8}
+\item As a \textit{developer} I want to \textit{assign milestones to a conversation} so that I can \textit{track project velocity}.\label{item:9}
+\item As a \textit{developer} I want to \textit{split a conversation} so that I can \textit{separate multiple issues if they appear in a single ticket}.\label{item:10}
+\item As a \textit{user} I want to \textit{tag another user} to \textit{add them to a discussion}.\label{item:11}
+\item As a \textit{project manager} I want to \textit{view metrics that have been extracted from a ticket} so that I can \textit{monitor my teams progress on an issue}.\label{item:12}
+\item As a \textit{developer} I want to \textit{link to a version control repository} so that I can \textit{quickly access the technical side of the ticket}.\label{item:13}
+\item As a \textit{user} I want to \textit{attach multimedia to a conversation or ticket} so that I can \textit{explain problems or ideas more easily}.\label{item:14}
+\item As a \textit{developer} I want to \textit{assign resolution to an owner} so that it will get done.\label{item:15}
+\item As a \textit{user} I want to \textit{add other people to help resolve the issue}.\label{item:16}
+\item As a \textit{user} I want to \textit{be able to autocomplete names of other users} so that I can \textit{tag other users correctly and quickly}.\label{item:17}
+\item As a \textit{user} I want to \textit{create labels} so that I can \textit{cross reference other conversations}.\label{item:18}
+\item As a \textit{developer} I want to \textit{view previous tickets} so that I can \textit{view what has been changed previously}.\label{item:19}
+\item As a \textit{project manager} I want to \textit{track the activity of other users} so that I \textit{know what is happening in the project}.\label{item:20}
+\item As a \textit{user} I want to \textit{search the website} so that I can \textit{find things within the site quickly}.\label{item:21}
+\end{enumerate}
 
-From these user stories a set of high, medium and low priority tasks were determined:
+From these user stories a set of high, medium and low priority tasks were determined. The high priority user stories were: \ref{item:1}, \ref{item:2}, \ref{item:5}, \ref{item:7}, \ref{item:12}, \ref{item:19}. Medium priority: \ref{item:11}, \ref{item:15}, \ref{item:18}. Low priority: \ref{item:10}, \ref{item:13}, \ref{item:14}, \ref{item:17}.
 
+\iffalse
 \subsection{High Priority}
 \begin{itemize}
 \item \textit{Create an account} \par
@@ -259,20 +262,27 @@ Branching conversations could be useful as it allows a discussion that involves 
 
 \end{itemize}
 
-
+\fi
 
 
 %----------------------------------------------------------------------------
 \section{Design}
 \label{design}
 
-Once the initial design goals were established an entity-relationship (ER) diagram was developed for the system. After several iterations, the diagram shown in figure [REF] was produced. This was used to assist the development by identifying the crucial components of the system. Additionally, the ER diagram greatly assisted in the modelling of our data using the Django Object Relational Mapper, since there is a close correlation between the features of the diagram and the structure of data models in Django. 
+Once the initial design goals were established an entity-relationship (ER) diagram was developed for the system. After several iterations, the diagram shown in \autoref{figure:ERDiagram1} was produced. This was used to assist the development by identifying the crucial components of the system. Additionally, the ER diagram greatly assisted in the modelling of our data using the Django Object Relational Mapper, since there is a close correlation between the features of the diagram and the structure of data models in Django.
 
 Due to the experimental nature of the project, rapidly changing requirements meant that that the final model of the system varies from the design in the diagram.
 
-Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown below. \par
+Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown below.
 
-\begin{figure}[ht]
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{ER_Diagram}
+\caption{ER Diagram}
+\label{figure:ERDiagram1}
+\end{figure} 
+
+\begin{figure}
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
 	    \centering
@@ -308,17 +318,9 @@ The final design, \autoref{fig:mockup3}, moved the projects drop-down menu into 
 % In this later version, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ``conversation'' tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project.  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
 
 
-
-\par
-\par
 %----------------------------------------------------------------------------
-\section{Entity Relationship Diagrams}
+% \section{Entity Relationship Diagrams}
 
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.4]{ER_Diagram}
-\caption{ER Diagram}
-\end{figure}
 
 %============================================================================
 \chapter{Team Organisation}
@@ -339,20 +341,22 @@ One aspect of version control in which the team was eventually diligent in apply
 
 Frequent merging of feature branches also provided the added benefit that breaking changes were easier to find, due to the fact that less code was being added in each merge. During the initial stages of the project, branches often went unmerged for several weeks, making integration of features exceptionally difficult. 
 
-After realising the difficulties this workflow caused, this flaw was amended by substantially increasing the rate at which features were merged with the master branch. The diagram below shows how features were frequently merged into the master branch (shown as the black line at the top of the diagram) during the week of March 1st 2015.
+After realising the difficulties this workflow caused, this flaw was amended by substantially increasing the rate at which features were merged with the master branch. The diagram \ref{figure:diagram1} shows how features were frequently merged into the master branch (shown as the black line at the top of the diagram) during the week of March 1st 2015.
 
-\begin{figure}[ht]
+For comparison, the lack of feature branch integration displayed during the early stages of the project is displayed on diagram \ref{figure:diagram2}. This diagram shows branching activity between the 24th and 30th of November 2014. 
+
+\begin{figure}[ht, ref={\alph}]
 \centering
 \includegraphics[scale=0.5]{diagram}
-\caption{Git diagram}
+\caption{Git diagram 1}
+\label{figure:diagram1}
 \end{figure} 
- 
- For comparison, the lack of feature branch integration displayed during the early stages of the project is displayed below. This diagram shows branching activity between the 24th and 30th of November 2014. 
 
-\begin{figure}[ht]
+\begin{figure}[ht, ref={\alph}]
 \centering
 \includegraphics[scale=0.5]{diagram2}
-\caption{Git diagram}
+\caption{Git diagram 2}
+\label{figure:diagram2}
 \end{figure} 
 
 %----------------------------------------------------------------------------
@@ -375,12 +379,13 @@ Once the requirements for the system had been identified and the way the team wa
 \section{Model Implementation}
 \label{modelImpl}
 
-The system implementation began with the creation of a framework from which to build upon.  Models were implemented as identified in the ER diagram using Django’s built in Object Relational Mapper (ORM). During the initial stages of development, these objects were mapped to a SQLite schema, but as development progressed, the PostgreSQL database management system was used instead.
+The system implementation began with the creation of a framework from which to build upon.  Models were implemented as identified in the ER diagram \autoref{figure:ERDiagram} using Django’s built in Object Relational Mapper (ORM). During the initial stages of development, these objects were mapped to a SQLite schema, but as development progressed, the PostgreSQL database management system was used instead.
 
 
-\begin{figure}
+\begin{figure}[ht]
 \includegraphics[scale=0.35]{newERdiagram}
 \caption{Final ER Diagram}
+\label{figure:ERDiagram}
 \end{figure}
 %----------------------------------------------------------------------------
 \section{User Interface}
