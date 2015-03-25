@@ -5,6 +5,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{enumitem}
+\usepackage{cite}
 \usepackage[usenames,dvipsnames]{xcolor}
 \definecolor{customURL}{HTML}{08096E}
 \usepackage{hyperref}
@@ -65,11 +66,6 @@ The primary objective of the project was to eliminate redundancy in discussing t
 
 This can result in improved productivity and more thorough documentation of issues.
 
-
-
-
-
-
 %----------------------------------------------------------------------------
 \section{Outline}
 \label{outline}
@@ -112,7 +108,7 @@ Bugzilla is a bug tracker and testing tool created and used by Mozilla. It integ
 %----------------------------------------------------------------------------
 \subsection{Jira}
 \label{jira}
-JIRA is a well-used tool for project management, made by Atlassian. Atlassian have a history of working with various aspects of project management, and JIRA integrates with many of these to produce a coherent management environment. However, this makes JIRA less useful on its own, and so there is an identifiable need for a standalone solution, too. Many users of JIRA complain of its difficulty to use, and say that it can be a burdensome way to manage their projects.
+JIRA \cite{1_atlassian_2015} is a well-used tool for project management, made by Atlassian. Atlassian have a history of working with various aspects of project management, and JIRA integrates with many of these to produce a coherent management environment. However, this makes JIRA less useful on its own, and so there is an identifiable need for a standalone solution, too. Many users of JIRA complain of its difficulty to use, and say that it can be a burdensome way to manage their projects.
 
 
 %----------------------------------------------------------------------------
@@ -519,6 +515,7 @@ Another potential addition could be linking to Git and other source control plat
 
 
 %============================================================================
-% \bibliographystyle{plain}
-% \bibliography{example}
+\bibliography{dissertation}{}
+\bibliographystyle{acm}
+
 \end{document}
