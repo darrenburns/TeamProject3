@@ -1,8 +1,4 @@
 dissertation: dissertation.pdf
-	pdflatex -shell-escape dissertation
-	bibtex dissertation
-	pdflatex -shell-escape dissertation
-	pdflatex -shell-escape dissertation
 
 dissertation.pdf: dissertation.tex dissertation.bib
 	pdflatex -shell-escape dissertation
