@@ -102,19 +102,19 @@ It was found that ticket management systems tend to fall into three categories: 
 \subsection{Bugzilla}
 \label{bugzilla}
 
-Bugzilla is a bug tracker and testing tool created and used by Mozilla. It integrates with several version control systems such as Git and SVN.  Some interesting features include automated reminders, whereby when bugs are reported but left unresolved the system can be configured to send regular emails to specific people informing them of these bugs. This system is known as the ``whine'' system.  When any change is made to a known bug, this change is added to an automated bug report.  Bugzilla integrates with e-mail, whereby these reports can be e-mailed to the user. Although comparatively simple to use, criticisms of Bugzilla have been made that it is hard to manage errors and there exist many bugs in the program itself.
+Bugzilla \cite{site:bugzilla} is a bug tracker and testing tool created and used by Mozilla. It integrates with several version control systems such as Git and SVN.  Some interesting features include automated reminders, whereby when bugs are reported but left unresolved the system can be configured to send regular emails to specific people informing them of these bugs. This system is known as the ``whine'' system.  When any change is made to a known bug, this change is added to an automated bug report.  Bugzilla integrates with e-mail, whereby these reports can be e-mailed to the user. Although comparatively simple to use, criticisms of Bugzilla have been made that it is hard to manage errors and there exist many bugs in the program itself.
 
 %----------------------------------------------------------------------------
 \subsection{Jira}
 \label{jira}
-JIRA \cite{site:django} is a well-used tool for project management, made by Atlassian. Atlassian have a history of working with various aspects of project management, and JIRA integrates with many of these to produce a coherent management environment. However, this makes JIRA less useful on its own, and so there is an identifiable need for a standalone solution, too. Many users of JIRA complain of its difficulty to use, and say that it can be a burdensome way to manage their projects.
+JIRA \cite{site:jira1} is a well-used tool for project management, made by Atlassian. Atlassian have a history of working with various aspects of project management, and JIRA integrates with many of these to produce a coherent management environment. However, this makes JIRA less useful on its own, and so there is an identifiable need for a standalone solution, too. Many users of JIRA complain of its difficulty to use, and say that it can be a burdensome way to manage their projects.
 
 \section{Conversation Focused Systems}
 
 %----------------------------------------------------------------------------
 \subsection{Slack}
 \label{slack}
-Slack is an instant messaging system focussed around project management. It can be used in any team-based project, but excels at the management of software projects due to the large number of integrations with external services such as GitHub. Despite Slack not providing a mechanism for directly attaching project related issues to conversations, it was decided that the excellent messaging functionality it provides is something that the project should aim to emulate.
+Slack \cite{site:slack} is an instant messaging system focussed around project management. It can be used in any team-based project, but excels at the management of software projects due to the large number of integrations with external services such as GitHub. Despite Slack not providing a mechanism for directly attaching project related issues to conversations, it was decided that the excellent messaging functionality it provides is something that the project should aim to emulate.
 
 
 \section{Task-Based Systems}
@@ -122,19 +122,19 @@ Slack is an instant messaging system focussed around project management. It can 
 \subsection{Asana}
 \label{asana}
 
-The unique selling proposition offered by Asana is effective task management without reliance on email. However, the web interface it offers is difficult to understand, and thus results in a large learning curve. Asana also lacks a real-time communication system, relying on comments on tasks for users to communicate. Whilst analysing this product it was found that relying on commenting rather than instant messaging resulted in a lack of urgency, and users were not as inclined to immediately respond. Consequently, users may choose to rely on an external messaging system for communication.
+The unique selling proposition offered by Asana \cite{site:asana} is effective task management without reliance on email. However, the web interface it offers is difficult to understand, and thus results in a large learning curve. Asana also lacks a real-time communication system, relying on comments on tasks for users to communicate. Whilst analysing this product it was found that relying on commenting rather than instant messaging resulted in a lack of urgency, and users were not as inclined to immediately respond. Consequently, users may choose to rely on an external messaging system for communication.
 
 %----------------------------------------------------------------------------
 \subsection{Producteev}
 \label{producteev}
 
-Producteev provides a feature set similar to the aforementioned products, but allows skilled users to quickly navigate the system using numerous shortcuts. A critical feature of Producteev is the ability to convert an email into a task using a Microsoft Outlook extension, thus allowing users to create tasks without have to repeat themselves. 
+Producteev \cite{site:producteev} provides a feature set similar to the aforementioned products, but allows skilled users to quickly navigate the system using numerous shortcuts. A critical feature of Producteev is the ability to convert an email into a task using a Microsoft Outlook extension, thus allowing users to create tasks without have to repeat themselves. 
 
 %----------------------------------------------------------------------------
 \subsection{Trello}
 \label{trello}
 
-Trello is a web-based task management platform which employs the Japanese ``Kanban''
+Trello \cite{site:trello} is a web-based task management platform which employs the Japanese ``Kanban''
 system, originally developed by Toyota. Kanban uses a hierarchical system of
 cards, contained within lists, which themselves are contained within boards, to
 manage how projects are managed. Kanban is often used to understand the flow of data within the real world, such as in supermarket production lines or in law cases, but also in project management using Trello.
@@ -146,7 +146,7 @@ The team used Trello in the early stages of the project before eventually migrat
 %----------------------------------------------------------------------------
 \subsection{Codebook}
 \label{codebook}
-Codebook was a project management system theorised by Microsoft to visualise the connections between people and their software projects. The project failed to become a public product, but should be noted due to its high degree of social networking and understanding of metadata.
+Codebook \cite{site:codebook} was a project management system theorised by Microsoft to visualise the connections between people and their software projects. The project failed to become a public product, but should be noted due to its high degree of social networking and understanding of metadata.
 
 Codebooks most significant lacking in reference to this project’s goals was ticket management. It was not possible to manage a project entirely through Codebook, because it had no ticket management or communication between groups of people; instead, Codebook mapped out projects so workflows could be better understood.
 
@@ -164,7 +164,7 @@ Having researched other products on the market, the team began planning the proj
 %----------------------------------------------------------------------------
 \subsection{Communication}
 \label{communication}
-Trello was chosen as the team's initial task management software, with the intent to swap to the tool being developed when the project had advanced sufficiently. Facebook chat was used to communicate and arrange meetings.  This split of organisation between Facebook and Trello frustrated some team members which further reinforced the aim of the project - bypassing the repetition of certain tasks over different tools.
+Trello \cite{site:ourTrello} was chosen as the team's initial task management software, with the intent to swap to the tool being developed when the project had advanced sufficiently. Facebook chat was used to communicate and arrange meetings.  This split of organisation between Facebook and Trello frustrated some team members which further reinforced the aim of the project - bypassing the repetition of certain tasks over different tools.
 
 %----------------------------------------------------------------------------
 \subsection{Version Control}
@@ -208,8 +208,7 @@ Several different ideas for the development of the system were discussed. One su
 \begin{itemize}
 \item \textit{Interfacing a custom ticket management system with Skype}. \par This approach was rejected due to the lack of control that the Skype API gives with regards to accessing data contained within conversations.
 \item \textit{Creating an instant messaging extension for Jira}. \par This approach was rejected due to the emphasis that Jira places on the ticket based approach. Although the required design would have to maintain aspects of this approach, it would have been difficult to focus on communication when there is a major dependence on a colossal, process reliant ticket management system.
-
-\item \textit{Creating an instant messaging extension for Jira}. \par This approach was rejected due to the emphasis that Jira places on the ticket based approach. Although the required design would have to maintain aspects of this approach, it would have been difficult to focus on communication when there is a major dependence on a colossal, process reliant ticket management system.
+\item \textit{Use the Facebook API as a basis for a chat system}. \par  It was found that the Facebook API for integrating with the chat system is extremely limited and therefore would not have been suitable for achieving the requirements of this project.
 
 \end{itemize}
 
@@ -346,9 +345,7 @@ Next, a series of paper based prototypes were created in order to plan the user 
 In \autoref{fig:mockup2}, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ‘conversation’ tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project. This change was made to reduce clutter in the interface and  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
 
 The final design, \autoref{fig:mockup3}, moved the projects drop-down menu into the navbar, with the selected project shown below alongside the relevant conversations.  The controls section was removed and an options menu was added above the conversations.  The information tab was divided into an info and graphs tab, whereby info contained metadata relating to the conversation and graphs contained the visualisations that had been generated with the data.
-% The initial prototype for the design displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets for the project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
 
-% In this later version, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ``conversation'' tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project.  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
 
 
 
@@ -413,6 +410,7 @@ The data model was implemented as shown in \autoref{figure:ERDiagram} using Djan
 
 
 \begin{figure}[ht]
+\centering
 \includegraphics[scale=0.35]{newERdiagram}
 \caption{Final ER Diagram}
 \label{figure:ERDiagram}
@@ -434,7 +432,15 @@ It was identified that the application must be reactive to user interaction, and
 
 Perhaps the most important feature of the jQuery library used to make the website more responsive was Ajax (Asynchronous Javascript and XML). Ajax provides the ability to reload only small portions of the page when required, rather than reloading the entire page and sending multiple requests for objects that have already been transferred. Ajax is the basis for several features of the application that would otherwise respond slowly, such as the search and sort features. It was deemed that a constantly reloading page would be frustrating to a user, particularly a mobile user with potentially slow internet connections. Ajax was an appropriate way of circumventing this problem in a way that would be aesthetically pleasing to the user. 
 
-The resulting design of the project, shown in (TODO: final design ), was a set of pages that were responsive to user input and intuitive to use, which focused on the functionality of the application. In addition, the pages were mobile-ready, meaning that the intuitive design could be shared across any platform. 
+The resulting design of the project, shown in \autoref{figure:finalproduct}, was a set of pages that were responsive to user input and intuitive to use, which focused on the functionality of the application. In addition, the pages were mobile-ready, meaning that the intuitive design could be shared across any platform. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.35]{finalproduct}
+\caption{Final Design}
+\label{figure:finalproduct}
+\end{figure}
+
 %----------------------------------------------------------------------------
 \section{Messaging System}
 \label{messagingSystem}
@@ -515,7 +521,7 @@ The system relies heavily on client side processing of data, and so having a fle
 \label{prototype}
 
 
-A prototype was prepared for demonstration after ten weeks. The interface shown in \autoref{prototype} is simple but fully functional. The system had basic functionalities such as: 
+A prototype was prepared for demonstration after ten weeks. The interface shown in \autoref{figure:prototype} is simple but fully functional. The system had basic functionalities such as: 
 
 \begin{itemize}
 \item User registration and login
@@ -538,7 +544,31 @@ The aim of the prototype development was to create a basic proof-of-concept to d
 \section{Metadata}
 \label{metadata}
 
-The ability to attach metadata to conversations is a core feature, and one which differentiates the software from standard instant messaging applications. It is also the feature that makes the application suitable for use as a project management tool. Metadata provides essential information for developers and managers regarding a conversation, and is accessible through the information tab. Metadata is a crucial feature of the final product, so a prominent position was given in the UI. A dropdown menu to the right of the screen, shown in (TODO: show everything) allowed for the easy addition of six metadata types.
+The ability to attach metadata to conversations is a core feature, and one which differentiates the software from standard instant messaging applications. It is also the feature that makes the application suitable for use as a project management tool. Metadata provides essential information for developers and managers regarding a conversation, and is accessible through the information tab. Metadata is a crucial feature of the final product, so a prominent position was given in the UI. A dropdown menu to the right of the screen, shown in \autoref{figure:metadata1}, allowed for the easy addition of six metadata types through a menu shown in \autoref{figure:metadata2}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{dropdownMenu}
+\caption{Add metadata dropdown menu}
+\label{figure:metadata1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{addMetadata}
+\caption{Add metadata}
+\label{figure:metadata2}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{allmetadata}
+\caption{All metadata}
+\label{figure:metadata3}
+\end{figure}
+
+
+The metadata types are defined below and shown in \autoref{figure:metadata3}.
 
 \begin{itemize}
 \item \textit{Assignee} \par
@@ -554,7 +584,7 @@ This can be used to indicate the importance of a conversation. This field can co
 \item \textit{Tags} \par
 Users can set tags for a conversation. Every tag has a special label colour and is displayed beside of conversation title to make it easy to identify the nature of the conversation.
 \end{itemize}
-
+ 
 
 
 %----------------------------------------------------------------------------
@@ -575,8 +605,22 @@ The graphs provided were:
 
 These graphs were intended to show user participation and chat activity in a way that would allow an observer to judge the importance of different chats within the system, and to see the contributions a user was making on both a project level and within specific conversations.
 
-The graphs were constructed using the D3 \cite{site:d3} Javascript library. D3 allowed for the creation of graphs with relative ease, powered by the conversation data from Firebase.
+The graphs, shown in \autoref{figure:graphs1} and \autoref{figure:graphs2}, were constructed using the D3 \cite{site:d3} Javascript library. D3 allowed for the creation of graphs with relative ease, powered by the conversation data from Firebase.
 In addition, D3 allowed for the creation of tooltips which contained data regarding points on the graphs. It was identified that containing exact data on each bar of the graphs could make them cluttered, making data more difficult to understand at a glance. Therefore, the graph was designed to provide a simple visualisation of data, and tooltips would explain the data provided more when points on the graph were hovered over. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{graphs1}
+\caption{Chat graph}
+\label{figure:graphs1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{graphs2}
+\caption{Project graphs}
+\label{figure:graphs2}
+\end{figure}
 
 
 %----------------------------------------------------------------------------
@@ -602,9 +646,17 @@ Basic Support    & 5 webkit 22     & 4.0 moz 22               & Not supported   
 
 There is an script in the project that listens for updates in chats and when a change occurs, a new notification is created showing the id of the updated chat and the content of the new message and it is displayed to the user. While the notification is being displayed the user has three options: dismiss the notification, wait for the automatic closing time of ten seconds or click the notification and be redirected to the updated chat.
 
-A listener awaits changes in any conversation. When the listener detects that a new message has been sent, a new notification is created showing the ID of the chat and the content of the new message. This notification is then sent to all participants. With the notification on screen, the user has three options: dismiss the notification, wait for the automatic closing time of ten seconds, or click the notification and be redirected to the conversation.
+A listener awaits changes in any conversation. When the listener detects that a new message has been sent, a new notification is created showing the ID of the chat and the content of the new message. This notification is then sent to all participants, as shown in \autoref{figure:notification}. With the notification on screen, the user has three options: dismiss the notification, wait for the automatic closing time of ten seconds, or click the notification and be redirected to the conversation.
 
 Currently, the notification system does not save updates from periods that the user was offline, however it addresses the issue whereby users would have to manually check for updates by delivering useful and real-time information to the user.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.25]{notification}
+\caption{Notification example}
+\label{figure:notification}
+\end{figure}
 
 
 %----------------------------------------------------------------------------
