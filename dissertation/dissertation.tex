@@ -32,7 +32,7 @@
 \maketitle
 \begin{abstract}
 
-The abstract goes here
+The experimental application presented in this paper explores an alternative approach to project management which allows developers to focus on communication rather than on inputting data into ticket management systems. Since for each ticket there often exists a corresponding conversation, the system tightly integrates instant messaging and ticket management. In doing this, the application is able to emphasise  communication whilst retaining the power of ticket management. Consequently, developers are more likely to make use of the tool since it requires little effort on their part, and managers will remain well-informed as to the progress of the projects they are working on due to an increase in the amount of information available to them.
 
 \end{abstract}
 \educationalconsent
@@ -44,22 +44,24 @@ The abstract goes here
 %----------------------------------------------------------------------------
 \section{Preliminaries}
 \label{preliminaries}
-A project management tool or suite is a program or set of programs which allows a team of developers, managers, and customers to monitor the state of a project. These tools tend to be used to manage tickets. A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby it manages and maintains lists of issues documented through tickets. These are notices that members of a development team can set up, discuss code on, and see information about a problem such as its severity and who is responsible for fixing this. Issues and bugs would be found recorded in tickets. They can also hold information about tasks or features that the team has to work on. Records of conversations in ticket comment threads help developers to understand the significance of a ticket, and serve as a platform of discussion on active tickets.
+A project management tool or suite is a program or set of programs which allows a team of developers, managers, and customers to monitor the state of a project. These tools tend to be used to manage tickets. A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby it manages and maintains lists of issues documented through tickets. These are notices that members of a development team can set up, discuss code on, and see information about a problem such as its severity and who is responsible for fixing this. Issues and bugs would be found recorded in tickets. They can also hold information about tasks or features that the team has to work on. Metadata refers to pieces of data that can be attached to a ticket and contain small pieces of information relating to the topic of discussion. Records of conversations in ticket comment threads help developers to understand the significance of a ticket, and serve as a platform of discussion on active tickets.
 
 
 %----------------------------------------------------------------------------
 \section{Motivation}
 \label{motivation}
 
-A project management tool or suite is a program or set of programs which allow a team of developers, managers, and customers to understand the state of a project. These tools tend to be used to manage tickets. (The act of managing tickets is referred to as ticket management). A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby it manages and maintains lists of issues documented through tickets. These are notices that members of a development team can set up, discuss code on, and see information about a problem such as its severity and who is responsible for fixing this. Issues and bugs would be found recorded in tickets. They can also hold information about tasks or features that the team has to work on. Records of conversations in ticket comment threads help developers to understand the significance of a ticket, and serve as a platform of discussion on active tickets.
+% A project management tool or suite is a program or set of programs which allow a team of developers, managers, and customers to understand the state of a project. These tools tend to be used to manage tickets. (The act of managing tickets is referred to as ticket management). A ticket is a collection of items of data used to detail a fault, task or feature.  A ticket management system is a type of project management system, whereby it manages and maintains lists of issues documented through tickets. These are notices that members of a development team can set up, discuss code on, and see information about a problem such as its severity and who is responsible for fixing this. Issues and bugs would be found recorded in tickets. They can also hold information about tasks or features that the team has to work on. Records of conversations in ticket comment threads help developers to understand the significance of a ticket, and serve as a platform of discussion on active tickets.
 
+When writing a software project as a team, it can be difficult to manage issues and bugs. This is generally done in the form of tickets as discussed in the previous section. However, it is often found that programmers discuss these tickets in an informal environment (such as Facebook or Skype) and, once a conversation is had detailing the issue, this work must be carried out a second time in the creation and comments section of a ticket. This is a problem as it duplicates the work that has already been done, wasting time, and the project management tools can be cumbersome to use, making it difficult for users to integrate into their work schedule.
+
+While many systems exist to attempt to solve this issue, none effectively combine a focus on communication with metadata usually found within a ticket.
 
 %----------------------------------------------------------------------------
 \section{Aims}
 \label{aims}
 
-The primary objective of the project was to eliminate redundancy in discussing tickets. The proposition was to create a web-based package where project managers, developers, and customers can discuss a project in a social-networking oriented way. Using conversations, this project should then develop tickets as the conversations being had with calculable and attachable metadata. With appropriate user interface design, using conversations as tickets should solve the three issues laid out in the Motivation section:
-
+The primary objective of the project was to eliminate redundancy in discussing tickets. The proposition was to create a web-based application where project managers, developers, and customers can discuss a project in a social-networking oriented way. This application attempts to combine the concepts of tickets and conversations so that the data generated through conversations can be used as a source of information within the ticket. Using conversations, this project should then allow for the addition of metadata to facilitate ticket-like features. With appropriate user interface design, treating conversations as tickets should solve the three issues laid out in the Motivation section:
 \begin{itemize}
 \item The project allows for discussion of the issues and bugs within their project management suite.
 \item Because discussion occurs directly within a ticket, there is no need to duplicate work as there would be creating tickets on the basis of Skype or Facebook conversations.
@@ -198,7 +200,7 @@ A set of roles were identified and different team members were provisionally all
 These roles were distributed informally and over time each members duties changed as pertained to their strengths.
 
 %----------------------------------------------------------------------------
-\section{Learning to solve the problem}
+\section{Approaching the problem}
 \label{requirements}
 
 The problem that the project aims to solve was established in the initial meetings with the project supervisor. However, developing a set of requirements which would implement a solution for this problem proved more difficult. One of the primary aims of this project is to realise a system which would reduce the duplication of effort that is often required when managing tickets: a team discusses an issue or bug on one platform, and then logs the result in a ticket. This is a problem that existing solutions often make very little or no attempt to solve. Whilst carrying out analysis of existing products and ideas, it was found that Producteev and Codebook attempt to minimise the effects of this issue, and the other systems choose to ignore it completely.
@@ -209,7 +211,7 @@ The approach taken by Producteev on the other hand, is to attempt to reduce dupl
 
 Both of these features helped inspire the primary requirements of the software. It was deemed a vital requirement that the software tightly integrate social features in order to make use of the data generated through users communicating with each other. In addition, the team decided that the software needed to use this data in order to minimise the effort required in managing a software project. Agile software development aims to prioritise interactions over process, and so it would be prudent to design the software to maintain some degree of process without overly interfering with communication.
 
-It was noted that the products that were looked at often had native apps and websites designed for desktop, but very few employed a responsive design to cater to their mobile users. It was decided that the design of the project must provide for the variety of devices the user may use to navigate the site using responsive design.
+It was noted that the products that were looked at often had native apps and websites designed for desktop, but very few employed a responsive design to cater to their mobile users. It was decided that the design of the project must provide for the variety of devices the user may use to navigate the site, and that the website should accommodate all possible use cases itself.
 
 Several different ideas for the development of the system were discussed. One suggested approach was that an existing product be extended to attempt to meet the requirements. Suggestions for implementing this approach included:
 
@@ -314,7 +316,7 @@ Once the initial requirements were established an entity-relationship (ER) diagr
 
 Due to the experimental nature of the project, rapidly changing requirements meant that that the final model of the system varies from the design in the diagram.
 
-Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  An example of different designs that were considered are shown below.
+Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  Examples of different designs that were considered are shown below.
 
 \begin{figure}
 \centering
@@ -349,7 +351,7 @@ Next, a series of paper based prototypes were created in order to plan the user 
     \label{fig:Three mockups}
 \end{figure}
 
-\autoref{fig:mockup1} shows the initial prototype for the design, which displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets related to that project were listed below.  Each ticket consisted of the graphs,metadata and all the messages for the project.
+\autoref{fig:mockup1} shows the initial prototype for the design, which displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets related to that project were listed below.   Each ticket consisted of the graphs, metadata and the associated conversation.
 
 In \autoref{fig:mockup2}, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ‘conversation’ tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project. This change was made to reduce clutter in the interface and  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
 
@@ -376,21 +378,21 @@ The server side of the application is written in Python, using the Django web ap
 \subsection{Git}
 \label{git}
 
-The team maintained two main branches within the Git repository. The master branch, which contained the most stable build, and the beta branch, which was used as a deployment staging area for new features. Some code modifications may work as intended in a development environment and then break when deployed. To overcome this risk, code was first deployed to the beta branch before being merged into the master branch.
+Several branches were maintained within the Git repository. Two of these branches, were particularly important, as they represented primary and secondary deployments of the project. The master branch contained the most stable build, and the beta branch was used as a deployment staging area for new features. Some code modifications may work as intended in a development environment and then break when deployed. To overcome this risk, code was first deployed to the beta branch before being merged into the master branch.
 
 One aspect of version control in which the team was eventually diligent in applying was continuous integration, in which feature branches are regularly merged into the master branch. Using continuous integration meant that the live version of the project never strayed too far from the overall set of features that were being developed at a given time. Frequent merging of feature branches also provided the added benefit that breaking changes were easier to find, due to the fact that less code was being added in each merge. During the initial stages of the project, branches often went unmerged for several weeks, making integration of features exceptionally difficult. After realising the difficulties this workflow caused, this flaw was amended by substantially increasing the rate at which features were merged with the master branch. The diagram \ref{figure:diagram1} shows how features were frequently merged into the master branch (shown as the black line at the top of the diagram) during the week of March 1st 2015.
 
 \begin{figure}[ht, ref={\alph}]
 \centering
 \includegraphics[scale=0.5]{diagram}
-\caption{Git diagram 1}
+\caption{Branching Diagram 1}
 \label{figure:diagram1}
 \end{figure} 
 
 \begin{figure}[ht, ref={\alph}]
 \centering
 \includegraphics[scale=0.5]{diagram2}
-\caption{Git diagram 2}
+\caption{Branching Diagram 2}
 \label{figure:diagram2}
 \end{figure} 
 
@@ -416,7 +418,9 @@ A Python library known as WhiteNoise \cite{site:whitenoise} was used to index st
 \section{Model Implementation}
 \label{modelImpl}
 
-Implementation began with the creation of a framework from which to build upon.  Models were implemented as identified in the ER diagram \autoref{figure:ERDiagram} using Django’s built in Object Relational Mapper (ORM). During the initial stages of development, these objects were mapped to a SQLite schema, but as development progressed, the PostgreSQL \cite{site:postgresql} database management system was used instead. PostgreSQL was used due to the ease by which it can be connected to a Heroku hosted application, whilst SQLite is only suitable for desktop or mobile applications. An additional factor contributing to this decision is that SQLite \cite{site:sqlite} does not scale well on web applications due to the fact that concurrent access rates can change unpredictably, and are often much higher in comparison to client side applications.
+
+The data model was implemented as shown in \autoref{figure:ERDiagram} using Django’s built in Object Relational Mapper (ORM). During the initial stages of development, these models were mapped to a SQLite \cite{site:sqlite} schema, but as development progressed, the PostgreSQL database management system was used instead. PostgreSQL \cite{site:postgresql} was used due to the ease by which it can be connected to a Heroku hosted application, whilst SQLite is only suitable for desktop or mobile applications. An additional factor contributing to this decision is that SQLite does not scale well on web applications due to the fact that concurrent access rates can change unpredictably, and are often much higher in comparison to client side applications.
+
 
 \begin{figure}[ht]
 \includegraphics[scale=0.35]{newERdiagram}
@@ -431,17 +435,23 @@ Due to the system being a web application, the main technologies used in the cre
 
 Twitter’s Bootstrap library was used to manage the layout of web pages, and to improve compatibility with mobile devices. The intuitive grid layout system provided by this library greatly improved the rate at which the UI was developed, since it minimised the extent to which the team had to rely on custom CSS rules.
 
+Bootstrap satisfied the requirement of responsive design due to its feature of being mobile-first when necessary. This meant that the design of the web pages could be laid out in such a way as to accommodate small screens, and expand to larger sizes of screens when necessary.
+
+Certain decisions were made to enhance user friendliness and the quality of user experience during the design of the user interface. A tabbed design on the instant messaging pane meant that each chat was easy to use with a familiar design, but the conversations were constantly available via Bootstrap accordions in a sidebar. This design was intentionally similar to designs such as Slack, which is designed with communication in multiple channels in mind, but also designs like Twitter’s timeline where the content of a page is the focus of the design. The Bauhaus movement suggested that form following function was a highly functional design pattern, and the layout of the application’s main pages follows this where appropriate. 
+
 It was identified that the application must be reactive to user interaction, and to accommodate this, the jQuery Javascript library was used. jQuery assists almost every element of the application, from displaying new messages on the screen, to highlighting selected issues. 
 
-Perhaps the most important feature of the jQuery library used to make the website more responsive was Ajax (Asynchronous Javascript and XML). Ajax provides the ability to reload only small portions of the screen when required, rather than reloading the entire page and sending multiple requests for objects that have already been transferred. Ajax is the basis for several features of the application that would otherwise respond slowly, such as the search and sort features.
+Perhaps the most important feature of the jQuery library used to make the website more responsive was Ajax (Asynchronous Javascript and XML). Ajax provides the ability to reload only small portions of the page when required, rather than reloading the entire page and sending multiple requests for objects that have already been transferred. Ajax is the basis for several features of the application that would otherwise respond slowly, such as the search and sort features. It was deemed that a constantly reloading page would be frustrating to a user, particularly a mobile user with potentially slow internet connections. Ajax was an appropriate way of circumventing this problem in a way that would be aesthetically pleasing to the user. 
+
+The resulting design of the project was a set of pages that were responsive to user input and intuitive to use. In addition, the pages were mobile-ready, meaning that the intuitive design could be shared across any platform. 
 %----------------------------------------------------------------------------
 \section{Messaging System}
 \label{messagingSystem}
 
-The instant messaging aspect of the project was implemented using a Javascript library and backend service called Firebase. An alternative option considered by the team was to implement a server side mechanism for handling messaging using the WebSocket protocol. However, several disadvantages to this approach were found on investigation:
+The instant messaging aspect of the project was implemented using a Javascript library and backend data storage service called Firebase \cite{site:firebase}. An alternative option considered by the team was to implement a server side mechanism for handling messaging using the WebSocket \cite{site:websockets} protocol. However, several disadvantages to this approach were found on investigation:
 
 \begin{itemize}
-\item The default Django web server relies on the Web Server Gateway Interface (WSGI) for handling communication between the server and the framework. Due to the request handling mechanism employed by WSGI, it is not possible to support long term connections through the likes of WebSockets, and so an additional server which provides support for the WebSocket protocol would have to be set up to achieve the required functionality.
+\item The default Django web server relies on the Web Server Gateway Interface (WSGI) \cite{site:python-webserver} for handling communication between the server and the framework. Due to the request handling mechanism employed by WSGI, it is not possible to support long term connections through the likes of WebSockets, and so an additional server which provides support for the WebSocket protocol would have to be set up to achieve the required functionality.
 \item The WebSocket protocol is extremely complex in comparison to the Firebase library, and so it would have been difficult to produce a working system within the time constraints of the project.
 \end{itemize}
 
@@ -462,11 +472,11 @@ Due to the fact that some messages may try to convey a lot of information, it wa
 
 
 %----------------------------------------------------------------------------
-\section{Rest API}
+\section{REST API}
 \label{restApi}
 
 
-A Django plugin known as TastyPie was used to convert the models that were previously defined into REST endpoints that the client can call to request data from the database. After quick initial configuration of the plugin, specified portions of the database schema were available to the client side of the application. For example, if the browser requests the URL “/api/v1/chat/”, the server will respond with a Javascript Object Notation (JSON) object containing information about all conversations in the database. A truncated typical response from accessing this endpoint is shown below.
+A REST API provides an interface between the client and the server. A Django plugin known as TastyPie \cite{site:tastypie} was used to convert the models that were previously defined into REST endpoints that the client can call to request data from the database. After quick initial configuration of the plugin, specified portions of the database schema were available to the client side of the application. For example, if the browser requests the URL \texttt{/api/v1/chat/}, the server will respond with a Javascript Object Notation (JSON) object containing information about all conversations in the database. A truncated typical response from accessing this endpoint is shown below.
 
 \begin{minted}{json}
 {
@@ -498,6 +508,7 @@ A Django plugin known as TastyPie was used to convert the models that were previ
             "user":null
          }
 ...
+}
 \end{minted}
 
 This JSON object can then be parsed using Javascript and injected into the Document Object Model (DOM) using Ajax, therefore making it visible to the user without requiring a page refresh.
@@ -513,39 +524,42 @@ A prototype was prepared for demonstration after ten weeks. The interface was si
 \begin{itemize}
 \item User registration and login
 \item Project creation
-\item Creation of independent conversations (tickets)
-\item Ability to open and close conversations
+\item Creation of independent conversations
+\item Closing of conversations
 \end{itemize}
 
-The aim of the prototype development was to create a basic framework to display, which could then be build upon as opposed to implementing multiple user stories, resulting in a fragmented program with many isolated features but no overall functionality.  The resultant product therefore had a large amount of unseen ‘groundwork’ added and thus while it did not immediately appear as if a lot of work had been completed, allowed new features to be easily implemented as the project progressed. 
+The aim of the prototype development was to create a basic proof-of-concept to display, which could then be build upon as opposed to implementing multiple user stories, resulting in a fragmented program with many isolated features but no overall functionality.  The final demonstration therefore lacked the polish and features to be delivered by the end of the project. The tradeoff for this was that features were much easier to implement in the future, and solid groundwork had been made which the team could now build upon. 
+
 
 %----------------------------------------------------------------------------
 \section{Metadata}
 \label{metadata}
 
-Attach metadata is a core feature of the system. Metadata provides essential information for developers and manager regarding a conversation. There is an attach data button located at the right edge of the screen, when it is clicked, a dropdown menu is displayed with the six metadata types that a user can edit.
+The ability to attach metadata to conversations is a core feature, and one which differentiates the software from standard instant messaging applications. It is also the feature that makes the application suitable for use as a project management tool. Metadata provides essential information for developers and managers regarding a conversation. Metadata was a crucial feature of the final product, so a prominent position was given in the UI. A dropdown menu to the right of the screen allowed for the easy addition of six metadata types.
 
 \begin{itemize}
 \item \textit{Assignee} \par
 The user that creates the conversation is its assignee by default. Users can edit this later and choose from a dropdown list another user to be assigned.
 \item \textit{Cost} \par
-It is a decimal field which is flexible to development teams because is does not enforce a specific method for cost prediction. Therefore, teams can use methods ranging from Function Point Analysis to Planning Poker.
-\item \textit{Due Date} \par
-The day and time which the issue discussed in the conversation should be solved.
+ A decimal field which can be used flexibly by development teams to indicate the effort required to complete a task. The field is unitless and therefore does not enforce a specific cost prediction method.
+ \item \textit{Due Date} \par
+The date and time before which the issue discussed in the conversation should be resolved.
 \item \textit{Notes} \par
-It is a textarea field which is primarily used for linking resources of the conversation. This field supports markdown notation meaning that teams can also use it in the way they prefer, by just applying a common structure to the note.
+A text field which is primarily used for linking to resources relating to the conversation. This field supports Markdown notation, meaning that teams can use it to store almost any type of well formatted miscellaneous information.
 \item \textit{Priority} \par
-This metadata type consists of a list with three values Low, Medium and High. Conversations marked as high priority receive a red background in the conversations list.
+This can be used to indicate the importance of a conversation. This field can contain any one of the values: “Low”, “Medium”, or “High”. Conversations marked as high priority are displayed with a red background in the conversations list.
 \item \textit{Tags} \par
-Users can set tags for a conversation. Every tag has a special label colour and is displayed at the side of conversation title to make it easy to identify what is the content of the conversation.
+Users can set tags for a conversation. Every tag has a special label colour and is displayed beside of conversation title to make it easy to identify the nature of the conversation.
 \end{itemize}
 
 %----------------------------------------------------------------------------
 \section{Statistics}
 \label{statistics}
 
+The visualisation of statistics regarding a team’s activity was deemed an important feature of the product. Providing metrics to users allows for the identification of successes and failures within a project. Although the statistics provided cannot provide an absolute indication of the exact state of the project, they may provide hints to project managers of issues regarding progress or levels of developer contribution. A conversation which has been open for a week without any activity may indicate that an issue is being ignored, for example, and the graphs intend to aid in identifying situations like this.
+
 Three graphs were implemented to show a proof-of-concept of how visually representing information would enhance a user’s understanding of their project. 
-All visualisations were implemented as simple bar charts. It was found that, in all three cases, the data being displayed was a mapping of ordinal data and quantitative value. Users’ familiarity with bar carts made them an obvious choice for representing the site’s data. 
+All visualisations were implemented as simple bar charts. It was found that, in all three cases, the data being displayed was a mapping of ordinal data and quantitative value. Users’ familiarity with bar charts made them an obvious choice for representing the site’s data. 
 The graphs provided were:
 
 \begin{itemize}
@@ -554,11 +568,12 @@ The graphs provided were:
 \item Messages contained in each conversation in a project
 \end{itemize}
 
-These graphs were intended to show user participation and chat activity in a way that would allow an observer to judge the importance of different chats within the system, and to see the contributions a user was making on both a project level and within specific tickets (here conversations) they were working on.
+These graphs were intended to show user participation and chat activity in a way that would allow an observer to judge the importance of different chats within the system, and to see the contributions a user was making on both a project level and within specific conversations.
 
 Although the graphs provided cannot provide an absolute indication of the exact state of the project, the may provide hints to project managers of issues regarding progress or levels of developer contribution. A conversation which has been open for a week without any activity may indicate that an issue is being ignored, and the visualisations intend to aid in identifying situations like this. 
 
 The graphs were constructed using the D3 \cite{site:d3} Javascript library. D3 allowed for the creation of graphs with relative ease, powered by the conversation data from Firebase.
+In addition, D3 allowed for the creation of tooltips which contained data regarding points on the graphs. It was identified that containing exact data on each bar of the graphs could make them cluttered, making data more difficult to understand at a glance. Therefore, the graph was designed to provide a simple visualisation of data, and tooltips would explain the data provided more when points on the graph were hovered over. 
 
 
 %----------------------------------------------------------------------------
@@ -572,7 +587,7 @@ With the software being aimed at software development projects, the team was in 
 
 Users can participate in a significant number of different chats at the same time. Without a notification system, the user does not know when a chat had updates or if the user was mentioned in a conversation. The user could check each conversation manually, but it is non-practical and time consuming. In order to address this problem, the web notification feature was implemented.
 
-The Notification API specification is currently under development, however the technology is supported by most of the modern browsers. Notifications consist of four main attributes: title, body, icon and tag (i.e. an identifier for the notification).
+The Notification API specification \cite{site:mdnNotifications} is currently under development, however the technology is supported by most of the modern browsers. Notifications consist of four main attributes: title, body, icon and tag (i.e. an identifier for the notification).
 
 \begin{table}[h]
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -584,15 +599,35 @@ Basic Support    & 5 webkit 22     & 4.0 moz 22               & Not supported   
 
 There is an script in the project that listens for updates in chats and when a change occurs, a new notification is created showing the id of the updated chat and the content of the new message and it is displayed to the user. While the notification is being displayed the user has three options: dismiss the notification, wait for the automatic closing time of ten seconds or click the notification and be redirected to the updated chat.
 
+A listener awaits changes in any conversation. When the listener detects that a new message has been sent, a new notification is created showing the ID of the chat and the content of the new message. This notification is then sent to all participants. With the notification on screen, the user has three options: dismiss the notification, wait for the automatic closing time of ten seconds, or click the notification and be redirected to the conversation.
+
 Currently, the notification system does not save updates from periods that the user was offline, however it addresses the manual checking issue by delivering useful and real-time information to the user.
 
 %----------------------------------------------------------------------------
 \subsection{Saved Messages}
 \label{savedMessages}
 
-The amount of messages in each chat can be considerable, so it can be quite difficult for the user to find important information in a chat. The user could just add a note to avoid this problem, however this means recreating what has already been done, as the user would have to find the relevant information and then copy and paste it to a new note in the chat. To solve this problem, the saved message feature was added. 
+The number of messages in each chat can be considerable, so it can be quite difficult to locate messages of importance. The user could just add a note to avoid this problem, however this would involve copying the information from the message into the conversation notes. To do this each time important information was sent would be a slow and repetitive process. To solve this problem, the ability to save messages that are of value as metadata was added.
 
-It consists of a small button [screenshot] located in the bottom right corner of each message in a chat. If pressed, the message will be saved as a metadata, in the tab information as shown below: [another screenshot]
+This feature provides a small button \autoref{fig:saveMessage} located in the bottom right corner of each message. If pressed, the message will be saved as an item of metadata in the information tab as shown on \autoref{fig:messageSaved}.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+	    \centering
+		\includegraphics[width=\textwidth]{saveMessage}
+		\caption{Saving a message}
+		\label{fig:saveMessage}        
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+		\includegraphics[width=\textwidth]{messageSaved}
+		\caption{Message saved}
+		\label{fig:messageSaved} 
+    \end{subfigure}    
+    \caption{Saved Messages feature}
+    \label{fig:feature}
+\end{figure}
 
 With this feature, the user can have a list of all the relevant information of a chat and there is no need to read the entire conversation to understand what is happening. Thereby, there is no duplication of effort and every relevant content can be saved as the conversation is occurring.
 
@@ -609,7 +644,7 @@ Additionally, the user can filter the conversations based on their names. As the
 \chapter{Evaluation}
 \label{evaluation}
 
-The project was formulated with the intent to combine the functionality of a chat system and a ticketing system.  The resultant product does this effectively, with a means of associating additional information with a conversation.  The name of a conversation equates to a ticket name, and the data that would be stored in a ticket using a conventional ticketing system is contained within the information tab of the chat.  This means that despite appearing at a glance like a primarily chat system, with metadata almost an afterthought, it provides the full functionality of a ticketing system.  
+The project was formulated with the intent to create a ticket management system which emphasised communication between developers over coordination of data on a ticket. The resultant product does this effectively, by providing a means of associating additional information with a conversation. The name of a conversation equates to a ticket name, and the data that would be stored in a ticket using a conventional ticketing system is contained within the information tab of the chat.  This means that despite appearing at a glance like a primarily chat system, with metadata almost an afterthought, it provides the full functionality of a ticketing system.  
 
 Due to this, the system can be used as a self contained system for project management, without need of external systems to ‘fill in the gaps’.
 
@@ -625,7 +660,7 @@ However, a number of possible changes that were identified included:
 \begin{itemize}
 \item Metadata added was anonymous and thus open to abuse - it does not say who saves messages, who adds notes, etc.  Who added what should be shown in the information tab.
 \item System is open to attacks to due major security issues.  API is not secure in that users can view and modify database objects through it.
-\item An inclusion of a ‘newsfeed’ could greatly improve the usability of the site, allowing users to see what has been recently done on each project.  this can also replace the currently useless ‘profile page’.
+\item An inclusion of a  list of recent activity could greatly improve the usability of the site, allowing users to see what has been recently done on each project.  this can also replace the currently useless ‘profile page’.
 \item Allowing the user to customise the appearance, such as choosing a colour scheme or changing the font allows them to personalise it as they prefer and adds a sense of identity for different users.
 \end{itemize}
 
@@ -633,25 +668,50 @@ However, a number of possible changes that were identified included:
 \section{Dogfooding}
 \label{dogfooding}
 
-As a result of the team using the application to manage their own project, they were able to evaluate the effectiveness of the tool.  As discussed in the previous section, the identification of key weaknesses allowed the team to fix these and improve the user experience as a whole.  As the team are part of the target market they were in the optimal position to evaluate the usefulness of the system as a whole.  With the inclusion of the additional features the team found the tool to be a wholly inclusive management system, while remaining easy to use.
+As a result of the team using the application to manage their own project, they were able to evaluate the effectiveness of the tool.  As discussed in the previous section, the identification of key weaknesses allowed the team to fix these and improve the user experience as a whole.  As the team are part of the target market they were in the optimal position to evaluate the usefulness of the system as a whole, and with the inclusion of the additional features it was found that the tool functions as a wholly inclusive management system, while remaining easy to use.
 
+Some key additions were made to the functionality of the application as a result of the team experiencing it as users. For example, the need for a saved messages functionality was quickly identified and its inclusion proved very useful. Also, notifications were added after this part of the project’s evaluation. It became evident that the messaging system suffered from a lacking of updating users on activity, meaning that issues could go untreated as no developers were aware of new information. 
 %----------------------------------------------------------------------------
 \section{Future Goals}
 \label{futureGoals}
 
-As a result of the prototype demonstration in December, due to feedback received an area of potential future development identified was integration with Jenkins.  This is a continuous integration system used to monitor and execute repeated jobs, such as building and testing software being developed.  This could be implemented through treating Jenkins as a user who would automatically create a ticket based on each build.  It could also automatically create a high priority ticket when a build fails, and tag the relevant developers.  This expansion would be possible due to Jenkins plugin based structure, whereby it is designed to be extended as necessary.
+\subsection{Security and Stability}
+\label{security}
+As noted in the external evaluation section, the API remains public and so if someone can access the server that the application is deployed on, they will gain limited access to the REST API for that deployment instance. Therefore, checking whether the request is from an authenticated source is a high priority goal for the future. Additionally, using the “security rules” feature provided by Firebase, conversations can be made more secure by ensuring only users participating in a conversation and managers can see the messages within.
 
-Another potential addition could be linking to Git and other source control platforms. Often, these systems support tickets and issue control to some degree.  For example, a conversation could be created automatically when a pull request is created on Github.  This could be used to discuss the changes being made and suggest possible modifications.
+In order to improve the robustness of the application, the user interface could be tested using a tool such as Selenium WebDriver. Selenium \cite{site:selenium} automates web browsers by automatically performing user defined actions to ensure that web applications are working as expected.
 
-%----------------------------------------------------------------------------
-\section{Retrospective}
-\label{retrospective}
+\subsection{Updating the user}
+\label{updating}
+The landing page of the application is currently lacking in content and could be updated in order to provide a “birds-eye” view of all things happening within the user’s projects. Displaying a feed summarising all of the latest messages, conversations and high priority issues would vastly improve the capabilities of the software as project management suite. Managers would no longer have to check individual conversations or rely solely on the provided metrics, but could also receive up to the minute updates on the latest happenings within their projects. A feature like this would be particularly helpful in large scale software projects, where it would be infeasible to manually check each conversation for progress updates.
+
+Additionally, mobile users currently do not receive notifications, but users are frequently away from their keyboards and may need to be aware of an issue immediately. Native mobile applications would provide a richer mobile experience, and would also be capable of delivering notifications straight to a user’s smartphone or tablet. 
+
+\subsection{Integrating with Third Parties}
+\label{integration}
+Feedback received as a result of the prototype demonstration in December suggested that integration with a service such as Jenkins may be a valuable addition to the application. Jenkins \cite{site:jenkins}is a continuous integration server used to monitor and execute repeated jobs, such as building and testing software being developed.  This could be implemented through treating Jenkins as a user who would automatically create a ticket based on each build.  It could also automatically create a high priority ticket when a build fails, and tag the relevant developers.  Jenkins provides a REST API, which would make this integration relatively simple.
+
+Another potential addition could be integration with Github or version control systems such as Subversion. Version control systems often allow for issues to be noted within commits, and discussing these issues as tickets within this application would be useful.  For example, a conversation could be created automatically when a pull request (a request to merge one branch into another) is created on Github.  This could be used to discuss the changes being made and suggest possible modifications.
+
+\subsection{Scalability}
+\label{scalability}
+
+Currently, the setup of the project is such that it may not easily scale to large software development teams of hundreds or thousands of developers. 
+One solution to this problem would be to filter conversations only be those a user has interacted with. To add another developer to a conversation, a user may “tag” the other developer using a notation such as “@username”. This would allow for a user to easily see the conversations that concern them, but would come at the cost of the user’s awareness of the project at large, as to list all conversations within an excessively large project would take an enormous amount of screen space. 
+
+A second solution to this problem would be to allow for sub-projects. This would permit work to be broken into smaller chunks (an instance of the application managing a game could include a game engine project, with a game physics sub-project). This would require some alterations to the user interface, but would allow for effective management of projects in a way that is currently difficult with many popular project management tools such as Trac. Additionally, this would work well with the previously suggested feed of recent content, as users could see recent content in the context of its more specific sub-project title, rather than the context of an all-encompassing project title. 
+
 
 
 %============================================================================
 \chapter{Conclusion}
 \label{conclusion}
 
+As shown by the team’s self evaluation of the application, the project is currently in a stable and useful enough state that it can be used to monitor and track issues within a software development team. 
+
+The final project serves well as an example of how project management can benefit from a focus on communication in a ticket management scenario. In integrating communication and ticket management, it has been found through the team’s own usage of the application that communication is a vital component of a ticket’s lifecycle. Furthermore, the application shows that ticket management can benefit from an increased focus on communication over what currently used products provide. The project has achieved its aims of providing a ticket management system which treats an ordinary conversation as a ticket, and is a viable enough solution to be useful for at least small software development teams. 
+
+While some problems persist in the project, as exposed in the external evaluation, the utility of the project was evident to those who viewed it. This shows that there is a definite lacking in the integration of ticket management and instant messaging within project management. It also shows that communication between developers is unnecessarily complicated by current tools. 
 
 %============================================================================
 \bibliography{dissertation}{}
