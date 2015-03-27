@@ -28,7 +28,7 @@
       Euan Parker \\
 	  Tom Wallis \\
 }
-\date{13 October 2014}
+\date{27 March 2015}
 \maketitle
 \begin{abstract}
 
@@ -44,14 +44,14 @@ The experimental application presented in this paper explores an alternative app
 %----------------------------------------------------------------------------
 \section{Preliminaries}
 \label{preliminaries}
-A \textit{project management tool} or suite is a program or set of programs which allows a team of developers, managers, and customers to monitor the state of a project. These tools tend to be used to manage tickets. A \textit{ticket} is a collection of items of data used to detail a fault, task or feature.  A \textit{ticket management system} is a type of project management system, whereby it manages and maintains lists of issues documented through tickets. These are notices that members of a development team can set up, discuss code on, and see information about a problem such as its severity and who is responsible for fixing it. Issues and bugs would be found recorded in tickets. They can also hold information about tasks or features that the team has to work on. \textit{Metadata} refers to pieces of data that can be attached to a ticket and contain small pieces of information relating to the topic of discussion. Records of conversations in ticket comment threads help developers to understand the significance of a ticket, and serve as a platform of discussion on active tickets.
+A \textit{project management tool} is a program which allows a team of developers, managers, and customers to monitor the state of a project. These tools tend to be used to manage tickets. A \textit{ticket} is a collection of items of data used to detail a fault, task or feature.  A \textit{ticket management system} is a type of project management system, whereby it manages and maintains lists of issues documented through tickets. These are notices that members of a development team can set up, discuss code on, and see information about a problem such as its severity and who is responsible for fixing it. Issues and bugs would be found recorded in tickets. They can also hold information about tasks or features that the team has to work on. \textit{Metadata} refers to pieces of data that can be attached to a ticket and contain small pieces of information relating to the topic of discussion. Records of conversations in ticket comment threads help developers to understand the significance of a ticket, and serve as a platform of discussion on active tickets.
 
 
 %----------------------------------------------------------------------------
 \section{Motivation}
 \label{motivation}
 
-When writing a software project as a team, it can be difficult to manage issues and bugs. This is generally done in the form of tickets as discussed in the previous section. However, it is often found that programmers discuss these tickets in an informal environment (such as Facebook or Skype) and, once a conversation is had detailing the issue, this work must be carried out a second time in the creation and comments section of a ticket. This is a problem as it duplicates the work that has already been done, wasting time, and the project management tools can be cumbersome to use, making it difficult for users to integrate into their work schedule. Existing management schemes also result in a fragmentation across the different tools being used. Although attempts have been made to make extermal metadata available within conversations, the opposite approach of using the conversations as a source of metadata remain unexplored.
+When writing a software project as a team, it can be difficult to manage issues and bugs. This is generally done in the form of tickets as discussed in the previous section. However, it is often found that programmers discuss these tickets in an informal environment (such as Facebook or Skype) and, once a conversation is had detailing the issue, this work must be carried out a second time in the creation and comments section of a ticket. This is a problem as it duplicates the work that has already been done, wastes time. As a consequence of this, project management tools can be cumbersome to use, making it difficult for users to integrate into their work schedule. Existing management schemes also result in a fragmentation across the different tools being used. Although attempts have been made to make external metadata available within conversations, the opposite approach of using the conversations as a source of metadata remain unexplored.
 
 %----------------------------------------------------------------------------
 \section{Aims}
@@ -154,7 +154,7 @@ Having researched other products on the market, the team began planning the proj
 \section{Team Organisation}
 \label{organisation}
 
-In managing the development of the system the team determined a set of tools that would be used.  A means for team members to communicate, store code, divide tasks and document the process was decided upon.
+In managing the development of the project the team determined a set of tools that would be used.  A means for team members to communicate, store code, divide tasks and document the process was decided upon.
 
 %----------------------------------------------------------------------------
 \subsection{Communication}
@@ -213,7 +213,7 @@ With none of these approaches offering the desired flexibility, it was decided t
 \section{User Stories}
 \label{userStories}
 
-Listed below is the collection of user stories that were initially created for the system.  Over time these were added to, modified and removed depending on various decisions regarding development of the system.
+Listed below is the collection of user stories that were initially created.  Over time these were added to, modified and removed depending on various decisions regarding development of the system.
 
 \begin{enumerate}[ref=\arabic*]
 \item As a \textit{user} I want to \textit{create an account} on the system so that I can \textit{use the features it offers}. \label{item:1}
@@ -298,7 +298,7 @@ Branching conversations could be useful as it allows a discussion that involves 
 
 Once the initial requirements were established an entity-relationship (ER) diagram was developed. After several iterations, the diagram shown in \autoref{figure:ERDiagram1} was produced. This was used to assist the development by identifying the crucial components of the system. Additionally, the ER diagram greatly aided in the modelling of the data using the Django Object Relational Mapper, since there is a close correlation between the features of the diagram and the structure of data models in Django.
 
-Due to the experimental nature of the project, rapidly changing requirements meant that that the final model of the system varies from the design in the diagram.
+Due to the experimental nature of the project, rapidly changing requirements meant that that the final model varies from the design in the diagram.
 
 Next, a series of paper based prototypes were created in order to plan the user interface. Paper prototyping was used due to the quick, easy and inexpensive nature whereby multiple different possible designs can be quickly produced and contrasted. Several initial designs were brainstormed. The clutter, intuitiveness and overall appeal of different designs were compared.  Examples of different designs that were considered are shown below.
 
