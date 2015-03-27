@@ -92,7 +92,7 @@ This will detail the current state of the system, whether the aims of the projec
 \chapter{Research}
 \label{research}
 
-Numerous systems have been created or theorised about which aim to ease or even reinvent the way in which software projects are managed.
+Numerous systems have been developed which aim improve the way in which software projects are managed.
 
 It was found that ticket management systems tend to fall into three categories: ticket centric systems, conversation-based systems, and systems that focused on task management rather than tickets specifically. 
 
@@ -114,7 +114,7 @@ JIRA \cite{site:jira1} is a well-used tool for project management, made by Atlas
 %----------------------------------------------------------------------------
 \subsection{Slack}
 \label{slack}
-Slack \cite{site:slack} is an instant messaging system focussed around project management. It can be used in any team-based project, but excels at the management of software projects due to the large number of integrations with external services such as GitHub. Despite Slack not providing a mechanism for directly attaching project related issues to conversations, it was decided that the excellent messaging functionality it provides is something that the project should aim to emulate.
+Slack \cite{site:slack} is an instant messaging system focussed around project management. It can be used in any team-based project, but excels at the management of software projects due to the large number of external services it integrates with, such as GitHub. Despite Slack not providing a mechanism for directly attaching project related issues to conversations, it was decided that the excellent messaging functionality it provides is something that the project should aim to emulate.
 
 
 \section{Task-Based Systems}
@@ -161,6 +161,8 @@ Having researched other products on the market, the team began planning the proj
 \section{Team Organisation}
 \label{organisation}
 
+
+
 %----------------------------------------------------------------------------
 \subsection{Communication}
 \label{communication}
@@ -170,7 +172,7 @@ Trello \cite{site:ourTrello} was chosen as the team's initial task management so
 \subsection{Version Control}
 \label{version}
 
-The team elected to use Git as the version control system to manage changes in the source code of the software. Git was used due to multiple team members being familiar with it, and for the integration it has with Github. Making use of version control was vital during development of the project, since features were often being developed simultaneously.
+The team elected to use Git \cite{site:github} as the version control system to manage changes in the source code of the software. Git was used due to multiple team members being familiar with it, and for the integration it has with Github \cite{site:ourGithub}. Making use of version control was vital during development of the project, since features were often being developed simultaneously.
 
 
 %----------------------------------------------------------------------------
@@ -201,7 +203,7 @@ The approach taken by Producteev on the other hand, is to attempt to reduce dupl
 
 Both of these features helped inspire the primary requirements of the software. It was deemed a vital requirement that the software tightly integrate social features in order to make use of the data generated through users communicating with each other. In addition, the team decided that the software needed to use this data in order to minimise the effort required in managing a software project. Agile software development aims to prioritise interactions over process, and so it would be prudent to design the software to maintain some degree of process without overly interfering with communication.
 
-It was noted that the products that were looked at often had native apps and websites designed for desktop, but very few employed a responsive design to cater to their mobile users. It was decided that the design of the project must provide for the variety of devices the user may use to navigate the site, and that the website should accommodate all possible use cases itself.
+It was noted that the products that were looked at often had native apps and websites designed for desktop, but very few employed a responsive design to cater to their mobile users. It was decided that the design of the project must provide for the variety of devices the user may use to navigate the site, and that the website should accommodate for all possible cases.
 
 Several different ideas for the development of the system were discussed. One suggested approach was that an existing product be extended to attempt to meet the requirements. Suggestions for implementing this approach included:
 
@@ -212,7 +214,7 @@ Several different ideas for the development of the system were discussed. One su
 
 \end{itemize}
 
-With none of these approaches offering the desired flexibility, it was decided to build the system using Django, a Python web development framework. Django has a thriving developer community and its popularity means that it is easy to find tutorials and answers to questions should problems arise. Django is also exceptionally powerful when it comes to interfacing with database management systems, providing an easy to use interface allowing Python code to treat database records as Python objects by defining mapping classes known as “models”. As a result of this decision, and in addition to the extensive research of existing project management systems, an initial set of user stories were developed.
+With none of these approaches offering the desired flexibility, it was decided to build the system using Django, a Python web development framework. Django has a thriving developer community and its popularity means that it is easy to find tutorials and answers to questions should problems arise. It is also exceptionally powerful when it comes to interfacing with database management systems, providing an easy to use interface allowing Python code to treat database records as Python objects by defining mapping classes known as “models”. As a result of this decision, and in addition to the extensive research of existing project management systems, an initial set of user stories were developed.
 
 %----------------------------------------------------------------------------
 \section{User Stories}
@@ -301,7 +303,7 @@ Branching conversations could be useful as it allows a discussion that involves 
 \section{Design}
 \label{design}
 
-Once the initial requirements were established an entity-relationship (ER) diagram was developed. After several iterations, the diagram shown in \autoref{figure:ERDiagram1} was produced. This was used to assist the development by identifying the crucial components of the system. Additionally, the ER diagram greatly assisted in the modelling of the data using the Django Object Relational Mapper, since there is a close correlation between the features of the diagram and the structure of data models in Django.
+Once the initial requirements were established an entity-relationship (ER) diagram was developed. After several iterations, the diagram shown in \autoref{figure:ERDiagram1} was produced. This was used to assist the development by identifying the crucial components of the system. Additionally, the ER diagram greatly aided in the modelling of the data using the Django Object Relational Mapper, since there is a close correlation between the features of the diagram and the structure of data models in Django.
 
 Due to the experimental nature of the project, rapidly changing requirements meant that that the final model of the system varies from the design in the diagram.
 
@@ -365,7 +367,7 @@ The server side of the application is written in Python, using the Django web ap
 \subsection{Git}
 \label{git}
 
-Several branches were maintained within the Git repository. Two of these branches, were particularly important, as they represented primary and secondary deployments of the project. The master branch contained the most stable build, and the beta branch was used as a deployment staging area for new features. Some code modifications may work as intended in a development environment and then break when deployed. To overcome this risk, code was first deployed to the beta branch before being merged into the master branch.
+Several branches were maintained within the Git repository. Two of these branches were particularly important, as they represented primary and secondary deployments of the project. The master branch contained the most stable build, and the beta branch was used as a deployment staging area for new features. Some code modifications may work as intended in a development environment and then break when deployed. To overcome this risk, code was first deployed to the beta branch before being merged into the master branch.
 
 One aspect of version control in which the team was eventually diligent in applying was continuous integration, in which feature branches are regularly merged into the master branch. Using continuous integration meant that the live version of the project never strayed too far from the overall set of features that were being developed at a given time. Frequent merging of feature branches also provided the added benefit that breaking changes were easier to find, due to the fact that less code was being added in each merge. During the initial stages of the project, branches often went unmerged for several weeks, making integration of features exceptionally difficult. After realising the difficulties this workflow caused, this flaw was amended by substantially increasing the rate at which features were merged with the master branch. Diagram \ref{figure:diagram1} shows how features were frequently merged into the master branch (shown as the black line at the top of the diagram) during the week of March 1st 2015.
 
@@ -395,9 +397,9 @@ A service called Codeship was used to ease the deployment of new builds. Codeshi
 \section{Deployment}
 \label{deployment}
 
-An unforeseen benefit of using the combination of Git and Github was the ease by which the system could be deployed. Two instances of the project were hosted on Heroku, a platform for hosting dynamically scalable web applications. The first instance hosted the code held within the master branch of the Git repository. The second instance ran the code present in the “beta” branch of the project. Heroku provides a mechanism which enables deployment using Git, so the deployed version of the product is always equivalent to the most recent commit on the master branch.
+An unforeseen benefit of using the combination of Git and Github was the ease by which the system could be deployed. Two instances of the project \cite{site:liveproject} were hosted on Heroku \cite{site:heroku}, a platform for hosting dynamically scalable web applications. The first instance hosted the code held within the master branch of the Git repository. The second instance ran the code present in the “beta” branch of the project. Heroku provides a mechanism which enables deployment using Git, so the deployed version of the product is always equivalent to the most recent commit on the master branch.
 
-Since the default web server provided by Django is not suitable for production use, the Gunicorn \cite{site:gunicorn} server was used instead. Heroku \cite{site:heroku} made it easy to use Gunicorn through the use of a “Procfile”, which specifies the Bash commands that should be executed whenever a write is made to the master branch of the repository. Thus, using Gunicorn was as simple as adding the initialisation command to this file.
+Since the default web server provided by Django is not suitable for production use, the Gunicorn \cite{site:gunicorn} server was used instead. Heroku made it easy to use Gunicorn through the use of a “Procfile”, which specifies the Bash commands that should be executed whenever a write is made to the master branch of the repository. Thus, using Gunicorn was as simple as adding the initialisation command to this file.
 
 A Python library known as WhiteNoise \cite{site:whitenoise} was used to index static assets, such as images, Javascript, and CSS files. Since these assets are indexed into a dictionary, the server can perform an O(1) lookup to retrieve a file requested by the client instead of an O(n) file system traversal resulting in a performance increase.
 
@@ -521,7 +523,7 @@ The system relies heavily on client side processing of data, and so having a fle
 \label{prototype}
 
 
-A prototype was prepared for demonstration after ten weeks. The interface shown in \autoref{figure:prototype} is simple but fully functional. The system had basic functionalities such as: 
+A prototype was prepared for demonstration after an initial ten weeks of development. The interface shown in \autoref{figure:prototype} is simple but fully functional. The system had basic functionalities such as: 
 
 \begin{itemize}
 \item User registration and login
@@ -537,7 +539,7 @@ A prototype was prepared for demonstration after ten weeks. The interface shown 
 \label{figure:prototype}
 \end{figure}
 
-The aim of the prototype development was to create a basic proof-of-concept to display, which could then be build upon as opposed to implementing multiple user stories, resulting in a fragmented program with many isolated features but no overall functionality.  The final demonstration therefore lacked the polish and features to be delivered by the end of the project. The tradeoff for this was that features were much easier to implement in the future, and solid groundwork had been made which the team could now build upon. 
+The aim of developing the prototype was to create a basic proof-of-concept to display, which could then be build upon instead of implementing multiple user stories, resulting in a fragmented program with many isolated features but no overall functionality.  The final demonstration therefore lacked the polish and features to be delivered by the end of the project. The tradeoff for this was that features were much easier to implement in the future, and solid groundwork had been made which the team could now build upon. 
 
 
 %----------------------------------------------------------------------------
