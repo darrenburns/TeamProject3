@@ -143,8 +143,6 @@ Codebook \cite{site:codebook} was a project management system theorised by Micro
 
 Codebooks most significant lacking in reference to this project’s goals was ticket management. It was not possible to manage a project entirely through Codebook, because it had no ticket management or communication between groups of people; instead, Codebook mapped out projects so workflows could be better understood.
 
-Codebook was never a project that was released to the public, but Microsoft published several papers on it.
-
 %============================================================================
 \chapter{Initial Planning}
 \label{initialPlanning}
@@ -335,11 +333,11 @@ Next, a series of paper based prototypes were created in order to plan the user 
     \label{fig:Three mockups}
 \end{figure}
 
-\autoref{fig:mockup1} shows the initial prototype for the design, which displayed visualisations relating to the project on the main page.  A project was chosen from a dropdown menu and all the tickets related to that project were listed below.   Each ticket consisted of the graphs, metadata and the associated conversation.
+\autoref{fig:mockup1} shows the initial prototype for the design, which displayed visualisations relating to the project on the main page.  A project was chosen from a drop-down menu and all the tickets related to that project were listed below.   Each ticket consisted of the graphs, metadata and the associated conversation.
 
 In \autoref{fig:mockup2}, the ticket appearance was changed whereby the information section was removed and two tabs were added, a ‘conversation’ tab which was used to display the messages, and an ‘information’ tab which displayed visualisations and metadata related to the project. This change was made to reduce clutter in the interface and  A controls section was added which would be used to add new metadata such as due date, priority, assignee etc.
 
-The final design, \autoref{fig:mockup3}, moved the projects drop-down menu into the navbar, with the selected project shown below alongside the relevant conversations.  The controls section was removed and an options menu was added above the conversations.  The information tab was divided into an info and graphs tab, whereby info contained metadata relating to the conversation and graphs contained the visualisations that had been generated with the data.
+The final design, \autoref{fig:mockup3}, moved the projects drop-down menu into the navbar, with the selected project shown below alongside the relevant conversations.  The controls section was removed and an options menu was added above the conversations.  The information tab was divided into an info tab and a graphs tab, whereby info contained metadata relating to the conversation and graphs contained the visualisations that had been generated with the data.
 
 
 
@@ -350,7 +348,7 @@ The final design, \autoref{fig:mockup3}, moved the projects drop-down menu into 
 
 Once the requirements had been identified and the way the team was to organise itself had been formalised implementation could begin. 
 
-The server side of the application is written in Python, using the Django web application framework and several additional Python modules. A second server exists purely for handling real time communications. The client side is written using the jQuery Javascript library \cite{site:jquery}, with several other Javascript libraries being used to handle different components such as chat and graphs. 
+The server side of the application is written in Python, using the Django web application framework and several additional Python modules. A second server exists purely for handling real time communication. The client side is written using the jQuery Javascript library \cite{site:jquery}, with several other Javascript libraries being used to handle different components such as chat and graphs. 
 
 %----------------------------------------------------------------------------
 \section{Workflow}
@@ -539,7 +537,7 @@ The aim of developing the prototype was to create a basic proof-of-concept to di
 \section{Metadata}
 \label{metadata}
 
-The ability to attach metadata to conversations is a core feature, and one which differentiates the software from standard instant messaging applications. It is also the feature that makes the application suitable for use as a project management tool. Metadata provides essential information for developers and managers regarding a conversation, and is accessible through the information tab. Metadata is a crucial feature of the final product, so a prominent position was given in the UI. A dropdown menu to the right of the screen, shown in \autoref{figure:metadata1}, allowed for the easy addition of six metadata types through a menu shown in \autoref{figure:metadata2}.
+The ability to attach metadata to conversations is a core feature, and one which differentiates the software from standard instant messaging applications. It is also the feature that makes the application suitable for use as a project management tool. Metadata provides essential information for developers and managers regarding a conversation, and is accessible through the information tab. Metadata is a crucial feature of the final product, so a prominent position was given in the UI. A drop-down menu to the right of the screen, shown in \autoref{figure:metadata1}, allowed for the easy addition of six metadata types through a menu shown in \autoref{figure:metadata2}.
 
 \begin{figure}
 \centering
@@ -629,7 +627,7 @@ With the software being aimed at software development projects, the team was in 
 
 Users can participate in a significant number of different chats at the same time. Without a notification system, the user does not know when a chat had updates or if the user was mentioned in a conversation. The user could check each conversation manually, but it is non-practical and time consuming. In order to address this problem, the web notification feature was implemented.
 
-The Notification API specification \cite{site:mdnNotifications} is currently under development, however the technology is supported by most of the modern browsers. Notifications consist of four main attributes: title, body, icon and tag (i.e. an identifier for the notification).
+The Notification API specification \cite{site:mdnNotifications} is currently under development, however the technology is supported by most of the modern browsers, as shown in \autoref{table:notification}. Notifications consist of four main attributes: title, body, icon and tag (i.e. an identifier for the notification).
 
 \begin{table}[h]
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -637,6 +635,8 @@ The Notification API specification \cite{site:mdnNotifications} is currently und
 \textbf{Feature} & \textbf{Chrome} & \textbf{Firefox (Gecko)} & \textbf{Internet Explorer} & \textbf{Opera} & \textbf{Safari} \\ \hline
 Basic Support    & 5 webkit 22     & 4.0 moz 22               & Not supported              & 25             & 6               \\ \hline
 \end{tabular}
+\caption{Support for web notifications API}
+\label{table:notification}
 \end{table}
 
 There is an script in the project that listens for updates in chats and when a change occurs, a new notification is created showing the id of the updated chat and the content of the new message and it is displayed to the user. While the notification is being displayed the user has three options: dismiss the notification, wait for the automatic closing time of ten seconds or click the notification and be redirected to the updated chat.
