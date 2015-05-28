@@ -10,25 +10,38 @@
     "firebase": "^2.2.5",
     "jquery": "^2.1.4",
     "mustache": "^2.0.0",
+    "react": "^0.13.3",
+    "reactfire": "^0.4.0",
     "remodal": "^0.6.4",
     "showdown": "^1.0.1"
   },
   "devDependencies": {
     "browserify": "^10.2.1",
-    "browserify-shim": "^3.8.7"
+    "browserify-shim": "^3.8.7",
+    "reactify": "^1.1.1"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
   },
   "browserify": {
-    "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim",
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ]
+    ]
   },
   "browserify-shim": {
     "jquery": "$",
     "d3-tip": {
       "exports": "d3-tip",
-      "depends": ["d3"]
+      "depends": [
+        "d3"
+      ]
     },
     "bootstrap": {
       "exports": "bootstrap",
