@@ -1,3 +1,9 @@
+'use strict';
+
+var $ = require('jquery'),
+    Mustache = require('mustache'),
+    bootstrap = require('bootstrap');
+
 $(function () {
 
     var currentProjectId;  // The ID of the project currently selected.

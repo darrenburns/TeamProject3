@@ -10,6 +10,7 @@
     <link href="{% static 'remodal/dist/jquery.remodal.css' %}" rel="stylesheet">
     <link href="{% static 'chat/css/chat.css' %}" rel="stylesheet">
     <link href="{% static 'core/css/snptm.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -79,20 +80,6 @@
     CURRENT_USER_ID = {{ user.id }};
 </script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.3/d3-tip.min.js"></script>
-<script src="https://cdn.firebase.com/js/client/2.0.3/firebase.js"></script>
-<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'remodal/dist/jquery.remodal.js' %}"></script>
-<script src="{% static 'chat/js/chat.js' %}"></script>
-<script src="{% static 'core/js/project_visualise.js' %}"></script>
-<script src="{% static 'core/js/notification-listener.js' %}"></script>
-<script src="{% static 'chat/js/chat_visualise.js' %}"></script>
-<script src="{% static 'app.js' %}"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
-<script src="{% static 'core/js/dashboard-sidebar.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
-<link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
+<script src="{% static 'bundle.js' %}"></script>
 
 </html>

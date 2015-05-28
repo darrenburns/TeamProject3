@@ -1,5 +1,9 @@
+'use strict';
+
+var $ = require('jquery'),
+    Firebase = require('firebase');
+
 $(function () {
-    "use strict";
 
     var displayNotification = false;
 

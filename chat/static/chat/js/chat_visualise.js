@@ -1,3 +1,10 @@
+'use strict';
+
+var $ = require('jquery'),
+    Firebase = require('firebase'),
+    d3 = require('d3'),
+    d3tip = require('d3-tip');
+
 $(function() {
 
     if (typeof CHAT_ID != 'undefined' && typeof PROJECT_ID != 'undefined') {
@@ -25,7 +32,7 @@ $(function() {
             var messages = snap.val().messages;
             var userCount = {};
             for (var messageKey in messages) {
-                message = messages[messageKey];
+                var message = messages[messageKey];
                 if (message.hasOwnProperty('user')) {
                     if (message.user in userCount) {
                         userCount[message.user]++;
@@ -51,16 +58,16 @@ $(function() {
             }
 
             // Tooltips
-            var tip = d3.tip()
-                .attr("class", "d3-tip")
-                .offset([-10, 0])
-                .html(function(d) { return d[0] + " has sent " + d[1] + ( (d[1] == 1) ? ' message.' : ' messages.'); });
+            //var tip = d3tip.tip()
+            //    .attr("class", "d3-tip")
+            //    .offset([-10, 0])
+            //    .html(function(d) { return d[0] + " has sent " + d[1] + ( (d[1] == 1) ? ' message.' : ' messages.'); });
 
             // The svg to contain the graph!
             var svg = d3.select('#bacon').append('svg')
                 .attr("width", BASE_CHART_WIDTH)
                 .attr("height", BASE_CHART_HEIGHT + BASE_PADDING_BOTTOM + BASE_PADDING_TOP)
-                .call(tip);
+                //.call(tip);
 
             // Create the scale
             var scale = d3.scale.linear()
@@ -110,8 +117,8 @@ $(function() {
                     }
                 })
                 .attr("fill", "lightblue")
-                .on('mouseover', tip.show)
-                .on('mouseout', tip.hide);
+                //.on('mouseover', tip.show)
+                //.on('mouseout', tip.hide);
 
             svg.append("g")
                 .attr("class", "axis")

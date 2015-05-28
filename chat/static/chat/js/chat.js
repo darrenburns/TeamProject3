@@ -1,3 +1,8 @@
+var Showdown = require('showdown'),
+    $ = require('jquery'),
+    Firebase = require('firebase'),
+    Mustache = require('mustache');
+
 $(function () {
 
     //Cache the container and the input for later use
@@ -10,7 +15,7 @@ $(function () {
     var initialNoteValue;
     var initialTags = [];
     var noteTextArea = $("#note-value");
-    var converter = new Showdown.converter();
+    var converter = new Showdown.Converter();
 
     function attachMessageToNotes(message, user_id, date){
         var d = new Date(date);
