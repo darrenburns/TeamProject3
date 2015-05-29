@@ -1,3 +1,9 @@
+html, body {
+    margin: 3px;
+    padding: 3px;
+    max-height: 1200px;
+}
+
 a {
     text-decoration: none !important;
 }
@@ -35,15 +41,24 @@ a {
     margin: 5px;
 }
 
-#input-message{
-    position: fixed;
-    bottom: 1%;
-}
+/*#input-message{*/
+    /*position: fixed;*/
+    /*bottom: 1%;*/
+/*}*/
 
 .message-text {
     margin: 0;
     padding: 0;
     font-size: 1.3em;
+}
+
+.messages {
+    overflow-y: scroll;
+}
+.message {
+    padding: 10px;
+    margin: 4px;
+    background-color: #16a085;
 }
 
 .message-date {
@@ -65,60 +80,6 @@ a {
     margin: 22px 0 0 ;
 }
 
-.triangle-right {
-    position:relative;
-    padding: 5px 5px 5px 8px;
-    margin: 3px;
-    color:#fff;
-    background: #267dba; /* default background for browsers without gradient support */
-    /* css3 */
-    background:-webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
-    background:-moz-linear-gradient(#2e88c4, #075698);
-    background:-o-linear-gradient(#2e88c4, #075698);
-    background:linear-gradient(#2e88c4, #075698);
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-}
-
-.triangle-right.left {
-    margin-left:40px;
-    background: #267dba;
-}
-
-.triangle-right.right {
-    margin-left:40px;
-    background: #5eba54;
-}
-
-.triangle-right.right:after {
-    top: 16px;
-    left: -40px; /* value = - border-left-width - border-right-width */
-    bottom: auto;
-    border-width: 15px 40px 0 0; /* vary these values to change the angle of the vertex */
-    border-color: transparent #5eba54;
-}
-
-.triangle-right:after {
-    content:"";
-    position:absolute;
-    bottom:-20px; /* value = - border-top-width - border-bottom-width */
-    left:50px; /* controls horizontal position */
-    border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
-    border-style:solid;
-    border-color:#267dba transparent;
-    /* reduce the damage in FF3.0 */
-    display:block;
-    width:0;
-}
-
-.triangle-right.left:after {
-    top: 16px;
-    left: -40px; /* value = - border-left-width - border-right-width */
-    bottom: auto;
-    border-width: 15px 40px 0 0; /* vary these values to change the angle of the vertex */
-    border-color: transparent #267dba;
-}
 
 #tab-information {
     padding: 10px;
@@ -137,12 +98,12 @@ a {
     cursor: pointer;
 }
 
-#input-message {
-    position: fixed;
-    bottom: 1%;
-    right: 9.5%;
-    max-width: 61%;
-}
+/*#input-message {*/
+    /*position: fixed;*/
+    /*bottom: 1%;*/
+    /*right: 9.5%;*/
+    /*max-width: 61%;*/
+/*}*/
 
 #spin-container {
     padding-top: 15%;

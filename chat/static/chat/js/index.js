@@ -2,5 +2,7 @@ require('./chat');
 require('./chat_visualise.js');
 
 // React components
-require('./MessageThread.react');
+require('./Conversation.react');
+require('./ConversationFilter.react');
+require('./ConversationParticipantsList.react');
 require('./Message.react');
