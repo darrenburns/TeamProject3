@@ -15,6 +15,7 @@ module.exports = Conversation = React.createClass({
     /* These are 'private' variables that can only be modified from the component itself. */
     getInitialState: function() {
         return {
+            height: $(window).height() * 0.60,
             searchString: '',
             messages: [],
             participants: []
@@ -29,6 +30,16 @@ module.exports = Conversation = React.createClass({
         var participants = ref.child('participants');
         this.bindAsArray(messagesInThread, 'messages');
         this.bindAsArray(participants, 'participants');
+    },
+
+    componentDidMount: function() {
+        $('.messages').height(this.state.height);
+        window.addEventListener('resize', this.handleWindowResize);
+    },
+
+    handleWindowResize: function(event) {
+        this.setState({height: $(window).height() * 0.60});
+        $('.messages').height(this.state.height);
     },
 
     setSearchString: function(str) {
@@ -48,6 +59,9 @@ module.exports = Conversation = React.createClass({
                                 return <Message key={idx} text={msg.desc} dt={msg.dt} user={msg.user} userId={msg['user_id']}/>;
                             }
                         })}
+                    </div>
+                    <div id="message-input">
+                        <textarea className="form-control" rows="3" placeholder="Message" id="input-message"></textarea>
                     </div>
                 </div>
                 <div className="col-md-4">
