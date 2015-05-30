@@ -1,5 +1,6 @@
 var React = require('react'),
-    Showdown = require('showdown');
+    Showdown = require('showdown'),
+    moment = require('moment');
 
 module.exports = Message = React.createClass({
 
@@ -11,9 +12,11 @@ module.exports = Message = React.createClass({
 
     render: function() {
         var text = this.state.converter.makeHtml(this.props.text);
-        var dt = this.props.dt;
+        var formattedTime = moment(this.props.dt).calendar();
+        var user = this.props.user;
         return (
-            <div className="triangle-right right">
+            <div className="message">
+                <strong>{user}</strong> <em className="date">{formattedTime}</em>
                 <p dangerouslySetInnerHTML={{__html: text}}
                    className="message-text"></p>
             </div>

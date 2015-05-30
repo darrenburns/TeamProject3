@@ -9,6 +9,7 @@
     "d3-tip": "^0.6.7",
     "firebase": "^2.2.5",
     "jquery": "^2.1.4",
+    "moment": "^2.10.3",
     "mustache": "^2.0.0",
     "react": "^0.13.3",
     "reactfire": "^0.4.0",
@@ -18,7 +19,9 @@
   "devDependencies": {
     "browserify": "^10.2.1",
     "browserify-shim": "^3.8.7",
-    "reactify": "^1.1.1"
+    "reactify": "^1.1.1",
+    "tsify": "^0.11.2",
+    "watchify": "^3.2.1"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js",

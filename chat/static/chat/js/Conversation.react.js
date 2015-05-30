@@ -37,11 +37,13 @@ module.exports = Conversation = React.createClass({
         window.addEventListener('resize', this.handleWindowResize);
     },
 
+    /* Custom */
     handleWindowResize: function(event) {
         this.setState({height: $(window).height() * 0.60});
         $('.messages').height(this.state.height);
     },
 
+    /* Custom */
     setSearchString: function(str) {
         this.setState({searchString: str});
     },
@@ -55,7 +57,7 @@ module.exports = Conversation = React.createClass({
                 <div className="col-md-8">
                     <div className="messages">
                         {messages.map((msg, idx) => {
-                            if (msg.desc.indexOf(searchString) > -1) {
+                            if (msg.desc.toLowerCase().indexOf(searchString) > -1) {
                                 return <Message key={idx} text={msg.desc} dt={msg.dt} user={msg.user} userId={msg['user_id']}/>;
                             }
                         })}
@@ -77,14 +79,14 @@ module.exports = Conversation = React.createClass({
 
 });
 
-var currentChatId = CHAT_ID || -1;
-var currentProjectId = PROJECT_ID || -1;
-var currentUser = CURRENT_USER || '<< Anonymous User >>';
 
 /* If we're on the correct page, render the component,
    passing the current chat ID and project ID as props
    so that we can retrieve the messages from the Firebase. */
 var mountPoint = document.getElementById('message-thread');
 if (mountPoint !== null) {
+    var currentChatId = CHAT_ID || -1;
+    var currentProjectId = PROJECT_ID || -1;
+    var currentUser = CURRENT_USER || '<< Anonymous User >>';
     React.render(<Conversation chatId={currentChatId} projectId={currentProjectId}/>, mountPoint);
 }

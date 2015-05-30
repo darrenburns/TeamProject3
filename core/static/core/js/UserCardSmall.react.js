@@ -10,7 +10,7 @@ module.exports = UserCardSmall = React.createClass({
         return (
             <div className="panel panel-default">
                 <div className="panel-body">
-                    {this.props.userName}
+                    <a href={"/profiles/" + this.props.userName}>{this.props.userName}</a>
                 </div>
             </div>
         )

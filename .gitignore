@@ -75,4 +75,4 @@ target/
 # Front end dependencies - Heroku should fetch the dependencies
 # using npm or bower.
 node_modules/
-static/bundle.*
+static/bundle.js

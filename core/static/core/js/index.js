@@ -7,3 +7,4 @@ require('./globals');
 
 // React components
 require('./UserCardSmall.react');
+require('./utils');
