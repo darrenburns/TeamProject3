@@ -64,6 +64,14 @@ a {
     font-size: 11px;
     color: #728a9f;
 }
+.user-card {
+    padding: 6px;
+    margin-bottom: 6px;
+    border: solid 1px #cfcfcf;
+}
+.user-card-small {
+
+}
 
 #message-input {
     margin-top: 8px;

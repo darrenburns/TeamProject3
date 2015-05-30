@@ -28,6 +28,7 @@ module.exports = Conversation = React.createClass({
             new Firebase(`${fbBaseUrl}project/${this.props.projectId}/chats/${this.props.chatId}`);
         var messagesInThread = ref.child('messages');
         var participants = ref.child('participants');
+
         this.bindAsArray(messagesInThread, 'messages');
         this.bindAsArray(participants, 'participants');
     },
@@ -70,7 +71,7 @@ module.exports = Conversation = React.createClass({
                     <h3>Filter</h3>
                     <ConversationFilter filterMessages={this.setSearchString}/>
                     <h3>Participants</h3>
-                    <ConversationParticipantsList users={participants}/>
+                    <ConversationParticipantsList users={participants} />
                 </div>
             </div>
         )

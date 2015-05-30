@@ -3,7 +3,8 @@
 var $ = require('jquery'),
     Firebase = require('firebase'),
     d3 = require('d3'),
-    d3tip = require('d3-tip');
+    d3tip = require('d3-tip'),
+    GLOBALS = require('../../../../core/static/core/js/globals');
 
 $(function() {
 
@@ -16,7 +17,7 @@ $(function() {
         var BASE_PADDING_BOTTOM = 80;
 
         // Initialise the Firebase
-        var ref = new Firebase("https://teamproject3.firebaseio.com/");
+        var ref = new Firebase(GLOBALS.FIREBASE_BASE_URL);
 
         // Creating a chat object
         var projectObj = ref.child('project/' + PROJECT_ID);

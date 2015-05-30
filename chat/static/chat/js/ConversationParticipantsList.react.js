@@ -5,11 +5,13 @@ module.exports = ConversationParticipantsList = React.createClass({
 
     render: function() {
         var participants = this.props.users;
+        var userCards = [];
+        participants.forEach((user, idx) => {
+             userCards.push(<UserCardSmall key={idx} userName={user} />);
+        });
         return (
             <div>
-                {participants.map((user, idx) => {
-                    return <UserCardSmall key={idx} userName={user} />
-                })}
+                {userCards}
             </div>
         )
     }
