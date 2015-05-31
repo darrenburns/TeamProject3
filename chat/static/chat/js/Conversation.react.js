@@ -71,8 +71,8 @@ var Conversation = React.createClass({
         var participants = this.state.participants;
         var filteredMessages = [];
         messages.forEach((msg, idx) => {
-            if (msg.desc.toLowerCase().indexOf(searchString) > -1 &&
-                    this.state.selectedUsers.contains(msg.user)) {
+            if ((msg.desc.toLowerCase().indexOf(searchString) > -1 || searchString === '') &&
+                (this.state.selectedUsers.contains(msg.user) || this.state.selectedUsers.count() == 0)) {
                 filteredMessages.push(<Message key={idx} text={msg.desc} dt={msg.dt} user={msg.user} userId={msg['user_id']}/>);
             }
         });

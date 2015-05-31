@@ -76,8 +76,9 @@ a {
 .user-card:hover {
     background-color: #f5f5f5;
 }
-.user-card:active {
-    background-color: grey;
+.active-card {
+    background-color: #5782f3;
+    color: #fff;
 }
 
 #message-input {
