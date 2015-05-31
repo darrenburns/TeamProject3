@@ -3,22 +3,24 @@ var React = require('react'),
     Firebase = require('firebase'),
     $ = require('jquery'),
     Message = require('./Message.react'),
+    Immutable = require('immutable'),
     ConversationFilter = require('./ConversationFilter.react'),
     ConversationParticipantsList = require('./ConversationParticipantsList.react'),
     GLOBALS = require('../../../../core/static/core/js/globals');
 
 
-module.exports = Conversation = React.createClass({
+var Conversation = React.createClass({
 
     mixins: [ReactFireMixin],
 
     /* These are 'private' variables that can only be modified from the component itself. */
     getInitialState: function() {
         return {
-            height: $(window).height() * 0.60,
+            //height: $(window).height() * 0.60,
             searchString: '',
             messages: [],
-            participants: []
+            participants: [],
+            selectedUsers: Immutable.Set()
         }
     },
 
@@ -34,14 +36,14 @@ module.exports = Conversation = React.createClass({
     },
 
     componentDidMount: function() {
-        $('.messages').height(this.state.height);
-        window.addEventListener('resize', this.handleWindowResize);
+        //$('.messages').height(this.state.height);
+        //window.addEventListener('resize', this.handleWindowResize);
     },
 
     /* Custom */
     handleWindowResize: function(event) {
-        this.setState({height: $(window).height() * 0.60});
-        $('.messages').height(this.state.height);
+        //this.setState({height: $(window).height() * 0.60});
+        //$('.messages').height(this.state.height);
     },
 
     /* Custom */
@@ -49,34 +51,51 @@ module.exports = Conversation = React.createClass({
         this.setState({searchString: str});
     },
 
+    /* Custom */
+    toggleUserSelect: function(userName) {
+        if (userName.length === 0) return;
+        if (!this.state.selectedUsers.includes(userName)){
+            this.setState({
+                selectedUsers: this.state.selectedUsers.add(userName)
+            });
+        } else {
+            this.setState({
+                selectedUsers: this.state.selectedUsers.delete(userName)
+            });
+        }
+    },
+
     render: function() {
         var searchString = this.state.searchString;
         var messages = this.state.messages;
         var participants = this.state.participants;
+        var filteredMessages = [];
+        messages.forEach((msg, idx) => {
+            if (msg.desc.toLowerCase().indexOf(searchString) > -1 &&
+                    this.state.selectedUsers.contains(msg.user)) {
+                filteredMessages.push(<Message key={idx} text={msg.desc} dt={msg.dt} user={msg.user} userId={msg['user_id']}/>);
+            }
+        });
         return (
             <div id="conversation-box" className="row">
                 <div className="col-md-8">
                     <div className="messages">
-                        {messages.map((msg, idx) => {
-                            if (msg.desc.toLowerCase().indexOf(searchString) > -1) {
-                                return <Message key={idx} text={msg.desc} dt={msg.dt} user={msg.user} userId={msg['user_id']}/>;
-                            }
-                        })}
+                        {filteredMessages}
                     </div>
                     <div id="message-input">
                         <textarea className="form-control" rows="3" placeholder="Message" id="input-message"></textarea>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <h3>Filter</h3>
-                    <ConversationFilter filterMessages={this.setSearchString}/>
-                    <h3>Participants</h3>
-                    <ConversationParticipantsList users={participants} />
+                    <h4>Filter <small>(showing {filteredMessages.length}/{messages.length} messages)</small></h4>
+                    <ConversationFilter filterMessages={this.setSearchString} />
+                    <h4>Participants <small>({participants.length})</small></h4>
+                    <ConversationParticipantsList users={participants}
+                                                  toggleUser={this.toggleUserSelect} />
                 </div>
             </div>
         )
     }
-
 
 });
 
@@ -91,3 +110,5 @@ if (mountPoint !== null) {
     var currentUser = CURRENT_USER || '<< Anonymous User >>';
     React.render(<Conversation chatId={currentChatId} projectId={currentProjectId}/>, mountPoint);
 }
+
+module.exports = Conversation;

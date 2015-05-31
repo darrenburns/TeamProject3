@@ -2,7 +2,7 @@ var React = require('react'),
     Showdown = require('showdown'),
     moment = require('moment');
 
-module.exports = Message = React.createClass({
+var Message = React.createClass({
 
     getInitialState: function() {
         return {
@@ -24,3 +24,5 @@ module.exports = Message = React.createClass({
     }
 
 });
+
+module.exports = Message;

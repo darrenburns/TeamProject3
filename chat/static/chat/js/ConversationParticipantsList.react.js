@@ -1,19 +1,23 @@
 var React = require('react'),
     UserCardSmall = require('../../../../core/static/core/js/UserCardSmall.react');
 
-module.exports = ConversationParticipantsList = React.createClass({
+var ConversationParticipantsList = React.createClass({
 
     render: function() {
         var participants = this.props.users;
         var userCards = [];
         participants.forEach((user, idx) => {
-             userCards.push(<UserCardSmall key={idx} userName={user} />);
+             userCards.push(<UserCardSmall key={idx}
+                                           userName={user}
+                                           toggleUser={this.props.toggleUser.bind(null, user)} />);
         });
         return (
-            <div>
+            <div id="participants-list">
                 {userCards}
             </div>
         )
     }
 
 });
+
+module.exports = ConversationParticipantsList;

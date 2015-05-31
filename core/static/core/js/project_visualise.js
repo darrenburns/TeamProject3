@@ -169,7 +169,7 @@ if (typeof(PROJECT_ID) != 'undefined') {
 
         var messageCount = [];
         for (var index in Object.keys(users)) {
-            key = users[Object.keys(users)[index]];
+            var key = users[Object.keys(users)[index]];
             if (userMessageCount.hasOwnProperty(key)){
                 messageCount.push(userMessageCount[key]);
             }

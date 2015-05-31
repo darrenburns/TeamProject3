@@ -1,6 +1,6 @@
 var React = require('react');
 
-module.exports = ConversationFilter = React.createClass({
+var ConversationFilter = React.createClass({
 
     getInitialState: function() {
         return {
@@ -28,3 +28,5 @@ module.exports = ConversationFilter = React.createClass({
     }
 
 });
+
+module.exports = ConversationFilter;

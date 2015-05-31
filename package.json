@@ -5,9 +5,11 @@
   "main": "./static/app.js",
   "dependencies": {
     "bootstrap": "^3.3.4",
+    "buckets-js": "^1.90.0",
     "d3": "^3.5.5",
     "d3-tip": "^0.6.7",
     "firebase": "^2.2.5",
+    "immutable": "^3.7.3",
     "jquery": "^2.1.4",
     "moment": "^2.10.3",
     "mustache": "^2.0.0",
@@ -28,6 +30,11 @@
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
   },
   "browserify": {
+    "options": {
+      "browserifyOptions": {
+        "debug": true
+      }
+    },
     "transform": [
       "browserify-shim",
       [

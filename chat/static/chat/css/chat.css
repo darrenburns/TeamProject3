@@ -68,9 +68,16 @@ a {
     padding: 6px;
     margin-bottom: 6px;
     border: solid 1px #cfcfcf;
+    cursor: pointer;
 }
 .user-card-small {
 
+}
+.user-card:hover {
+    background-color: #f5f5f5;
+}
+.user-card:active {
+    background-color: grey;
 }
 
 #message-input {
@@ -95,6 +102,11 @@ a {
 
 .user-box {
     margin: 22px 0 0 ;
+}
+
+#participants-list {
+    max-height: 300px;
+    overflow-y: scroll;
 }
 
 
