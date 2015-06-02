@@ -73,7 +73,12 @@ var Conversation = React.createClass({
         messages.forEach((msg, idx) => {
             if ((msg.desc.toLowerCase().indexOf(searchString) > -1 || searchString === '') &&
                 (this.state.selectedUsers.contains(msg.user) || this.state.selectedUsers.count() == 0)) {
-                filteredMessages.push(<Message key={idx} text={msg.desc} dt={msg.dt} user={msg.user} userId={msg['user_id']}/>);
+                filteredMessages.push(<Message key={idx}
+                                               text={msg.desc}
+                                               dt={msg.dt}
+                                               user={msg.user}
+                                               userId={msg['user_id']}
+                                               searchString={searchString} />);
             }
         });
         return (
@@ -87,7 +92,11 @@ var Conversation = React.createClass({
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <h4>Filter <small>(showing {filteredMessages.length}/{messages.length} messages)</small></h4>
+                    <h4>
+                        Filter <small className={filteredMessages.length !== messages.length ? 'text-danger' : null}>
+                            (showing {filteredMessages.length}/{messages.length} messages)
+                        </small>
+                    </h4>
                     <ConversationFilter filterMessages={this.setSearchString} />
                     <h4>Participants <small>({participants.length})</small></h4>
                     <ConversationParticipantsList users={participants}

@@ -76,9 +76,8 @@ a {
 .user-card:hover {
     background-color: #f5f5f5;
 }
-.active-card {
-    background-color: #5782f3;
-    color: #fff;
+.hover-for-pointer {
+    cursor: pointer;
 }
 
 #message-input {
@@ -104,12 +103,6 @@ a {
 .user-box {
     margin: 22px 0 0 ;
 }
-
-#participants-list {
-    max-height: 300px;
-    overflow-y: scroll;
-}
-
 
 #tab-information {
     padding: 10px;

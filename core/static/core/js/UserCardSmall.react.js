@@ -13,7 +13,7 @@ var UserCardSmall = React.createClass({
     },
 
     /* Custom */
-    handleClick: function() {
+    handleClick: function(event) {
         this.setState({isSelected: !this.state.isSelected});
         this.props.toggleUser(this.props.userName);
     },
@@ -28,7 +28,7 @@ var UserCardSmall = React.createClass({
                     </div>
                     <div className="col-md-2">
                         <span className="fa fa-filter"
-                              style={{color: this.state.isSelected ? "inherit" : "#cfcfcf"}}></span>
+                              style={{color: this.state.isSelected ? "" : "#cfcfcf"}}></span>
                     </div>
 
                 </div>
