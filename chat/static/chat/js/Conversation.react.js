@@ -3,6 +3,7 @@ var React = require('react'),
     Firebase = require('firebase'),
     $ = require('jquery'),
     Message = require('./Message.react'),
+    MessageInput = require('./MessageInput.react'),
     Immutable = require('immutable'),
     ConversationFilter = require('./ConversationFilter.react'),
     ConversationParticipantsList = require('./ConversationParticipantsList.react'),
@@ -30,7 +31,6 @@ var Conversation = React.createClass({
             new Firebase(`${fbBaseUrl}project/${this.props.projectId}/chats/${this.props.chatId}`);
         var messagesInThread = ref.child('messages');
         var participants = ref.child('participants');
-
         this.bindAsArray(messagesInThread, 'messages');
         this.bindAsArray(participants, 'participants');
     },
@@ -87,9 +87,7 @@ var Conversation = React.createClass({
                     <div className="messages">
                         {filteredMessages}
                     </div>
-                    <div id="message-input">
-                        <textarea className="form-control" rows="3" placeholder="Message" id="input-message"></textarea>
-                    </div>
+                    <MessageInput />
                 </div>
                 <div className="col-md-4">
                     <h4>
