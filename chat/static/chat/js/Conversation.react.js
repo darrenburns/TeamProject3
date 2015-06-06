@@ -4,6 +4,7 @@ var React = require('react'),
     $ = require('jquery'),
     Message = require('./Message.react'),
     MessageInput = require('./MessageInput.react'),
+    MessagePreview = require('./MessagePreview.react'),
     Immutable = require('immutable'),
     ConversationFilter = require('./ConversationFilter.react'),
     ConversationParticipantsList = require('./ConversationParticipantsList.react'),
@@ -19,6 +20,7 @@ var Conversation = React.createClass({
         return {
             //height: $(window).height() * 0.60,
             searchString: '',
+            activeMessage: '',
             messages: [],
             participants: [],
             selectedUsers: Immutable.Set()
@@ -49,6 +51,11 @@ var Conversation = React.createClass({
     /* Custom */
     setSearchString: function(str) {
         this.setState({searchString: str});
+    },
+
+    /* Custom */
+    setActiveMessage: function(str) {
+        this.setState({activeMessage: str});
     },
 
     /* Custom */
@@ -87,7 +94,8 @@ var Conversation = React.createClass({
                     <div className="messages">
                         {filteredMessages}
                     </div>
-                    <MessageInput />
+                    <MessagePreview text={this.state.activeMessage}/>
+                    <MessageInput setConversationActiveMessage={this.setActiveMessage} />
                 </div>
                 <div className="col-md-4">
                     <h4>

@@ -10,19 +10,25 @@ var MessageInput = React.createClass({
 
     /* Custom */
     handleChange(event) {
-        this.setState({contents: event.target.value});
+        var newActiveMessage = event.target.value;
+        this.setState({contents: newActiveMessage});
+        this.props.setConversationActiveMessage(newActiveMessage);
     },
 
     render: function() {
         return (
             <div id="message-input">
-                <textarea className="form-control"
-                          rows="3"
-                          placeholder="Message"
-                          id="input-message"
-                          value={this.state.contents}
-                          onChange={this.handleChange}>
-                </textarea>
+                <div className="row">
+                    <div className="col-md-12">
+                        <textarea className="form-control"
+                                  rows="3"
+                                  placeholder="Message"
+                                  id="input-message"
+                                  value={this.state.contents}
+                                  onChange={this.handleChange}>
+                        </textarea>
+                    </div>
+                </div>
             </div>
         )
     }

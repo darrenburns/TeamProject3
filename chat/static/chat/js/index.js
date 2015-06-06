@@ -7,3 +7,4 @@ require('./ConversationFilter.react');
 require('./ConversationParticipantsList.react');
 require('./Message.react');
 require('./MessageInput.react');
+require('./MessagePreview.react');
