@@ -1,0 +1,76 @@
+{
+  "name": "TeamProject3",
+  "version": "0.0.1",
+  "description": "Communication oriented software project management tool",
+  "main": "./static/app.js",
+  "dependencies": {
+    "bootstrap": "^3.3.4",
+    "buckets-js": "^1.90.0",
+    "d3": "^3.5.5",
+    "d3-tip": "^0.6.7",
+    "firebase": "^2.2.5",
+    "immutable": "^3.7.3",
+    "jquery": "^2.1.4",
+    "moment": "^2.10.3",
+    "mustache": "^2.0.0",
+    "react": "^0.13.3",
+    "reactfire": "^0.4.0",
+    "remodal": "^0.6.4",
+    "showdown": "^1.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.1",
+    "browserify-shim": "^3.8.7",
+    "reactify": "^1.1.1",
+    "tsify": "^0.11.2",
+    "watchify": "^3.2.1"
+  },
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.js",
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
+  },
+  "browserify": {
+    "options": {
+      "browserifyOptions": {
+        "debug": true
+      }
+    },
+    "transform": [
+      "browserify-shim",
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ]
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "d3-tip": {
+      "exports": "d3-tip",
+      "depends": [
+        "d3"
+      ]
+    },
+    "bootstrap": {
+      "exports": "bootstrap",
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darrenburns/TeamProject3.git"
+  },
+  "author": "Darren Burns",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darrenburns/TeamProject3/issues"
+  },
+  "homepage": "https://github.com/darrenburns/TeamProject3"
+}
