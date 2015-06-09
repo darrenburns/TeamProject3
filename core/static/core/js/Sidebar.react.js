@@ -1,4 +1,4 @@
-var React = require('react')
+var React = require('react');
     //Api = require('./api');
 
 var Sidebar = React.createClass({
@@ -24,7 +24,8 @@ var Sidebar = React.createClass({
         return (
            <div>
                <h5>Conversations</h5>
-               <input value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Tickets" />
+               <input className="form-control"
+                      type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Tickets" />
 
            </div>
         )
