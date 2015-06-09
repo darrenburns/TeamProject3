@@ -1,6 +1,7 @@
-var React = require('react');
+var React = require('react')
+    //Api = require('./api');
 
-var Sidebar = react.createClass({
+var Sidebar = React.createClass({
 
     getInitialState: function() {
         return {
@@ -10,13 +11,29 @@ var Sidebar = react.createClass({
         }
     },
 
+    handleSearch: function(event) {
+        var newSearchValue = event.target.value;
+        this.setState({currentSearch: newSearchValue});
+    },
+
+    componentWillMount: function() {
+        // TODO: call api here an set the state of the conversation
+    },
+
     render: function() {
         return (
-           <h5>Conversations</h5>
-           <input value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Tickets" />
+           <div>
+               <h5>Conversations</h5>
+               <input value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Tickets" />
+
+           </div>
         )
     }
 
 });
 
-module.exports = Sidebar;
+var mountPoint = document.getElementById('react-sidebar');
+React.render(
+    <Sidebar />,
+    mountPoint
+);
