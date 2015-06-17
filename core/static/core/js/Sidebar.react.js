@@ -2,7 +2,8 @@ var React = require('react'),
     ReactFireMixin = require('reactfire'),
     Firebase = require('firebase'),
     GLOBALS = require('./globals'),
-    api = require('./api');
+    api = require('./api'),
+    Accordion = require('./Accordion.react');
 
 var Sidebar = React.createClass({
 
@@ -35,23 +36,23 @@ var Sidebar = React.createClass({
 
         var list = [];
         this.state.conversations.forEach((obj) => {
-            list.push(<li>{obj.title}</li>);
+            list.push(<a className="list-group-item">{obj.title}</a>);
         });
 
 
         return (
             <div>
-                <h5>Conversations</h5>
                 <input className="form-control"
                        type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Tickets" />
-                <div><ul>{list}</ul></div>
+                <Accordion  />
             </div>
+
         )
     }
 
 });
 
-var mountPoint = document.getElementById('react-sidebar');
+var mountPoint = document.getElementById('tickets-panel');
 React.render(
     <Sidebar />,
     mountPoint

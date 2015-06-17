@@ -9,4 +9,5 @@ require('./api');
 // React components
 require('./UserCardSmall.react');
 require('./Sidebar.react');
+require('./Accordion.react');
 require('./utils');

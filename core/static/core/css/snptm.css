@@ -16,3 +16,15 @@
 .xaxis line{
     fill: none;
 }
+
+#number-of-conversations {
+    background-color: #c0c0c0;
+}
+
+#group-sort-new {
+    margin-top: 10px;
+}
+
+#btn-sort {
+    margin-right: 3px;
+}
