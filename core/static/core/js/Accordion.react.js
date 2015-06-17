@@ -1,11 +1,13 @@
 /**
  * Created by LeoLinhares on 17/06/2015.
  */
-var React = require('react')
+var React = require('react');
 
 var Accordion = React.createClass({
 
     render: function() {
+
+        var conversationList = this.props.conversationList;
 
         return (
             <div className="panel panel-default">
@@ -32,6 +34,7 @@ var Accordion = React.createClass({
                 </div>
                 <div id="collapse-open" className="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-open">
                     <div className="list-group" id="open-tickets-list">
+                        <a className="list-group-item">Leonardo</a>
                     </div>
                 </div>
             </div>
@@ -39,5 +42,7 @@ var Accordion = React.createClass({
     }
 
 });
+
+
 
 module.exports = Accordion;

@@ -34,17 +34,13 @@ var Sidebar = React.createClass({
 
     render: function() {
 
-        var list = [];
-        this.state.conversations.forEach((obj) => {
-            list.push(<a className="list-group-item">{obj.title}</a>);
-        });
-
+        var list = this.state.conversations;
 
         return (
             <div>
                 <input className="form-control"
                        type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Tickets" />
-                <Accordion  />
+                <Accordion conversationList={list} />
             </div>
 
         )
