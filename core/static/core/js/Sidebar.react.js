@@ -48,7 +48,7 @@ var Sidebar = React.createClass({
 
 });
 
-var mountPoint = document.getElementById('tickets-panel');
+var mountPoint = document.getElementById('sidebar');
 React.render(
     <Sidebar />,
     mountPoint

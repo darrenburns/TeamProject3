@@ -26,8 +26,8 @@
     "watchify": "^3.2.1"
   },
   "browser": {
-    "jquery": "./node_modules/jquery/dist/jquery.js",
-    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
+    "jquery": "./node_modules/jquery/dist/jquery.min.js",
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.min.js"
   },
   "browserify": {
     "options": {
