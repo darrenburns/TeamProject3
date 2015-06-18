@@ -53,10 +53,13 @@ var Accordion = React.createClass({
                     </div>
                     <div id="collapse-closed" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-closed">
                         <div className="list-group" id="closed-tickets-list">
-                            {conversationList.map(function(result) {
-                                if(result.closed != null){
-                                    return <a className="list-group-item" href={/chats/+result.id} key={result.id}>{result.title}</a>;
-                                }                            })}
+                            {
+                                conversationList.map(function(result) {
+                                    if(result.closed != null){
+                                        return <a className="list-group-item" href={/chats/+result.id} key={result.id}>{result.title}</a>;
+                                    }
+                                })
+                            }
                         </div>
                     </div>
                 </div>

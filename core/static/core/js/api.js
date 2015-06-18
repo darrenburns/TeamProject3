@@ -8,8 +8,16 @@ var api = {
         $.getJSON(`${GLOBALS.API_BASE_URL}chat/`, { project__id: projectId })
             .success(function (chats) {
                 var chatObjects = chats.objects;
-                console.log(chatObjects);
                 sendBackResult(chatObjects);
+            });
+    },
+
+    getAllProjects: function(sendBackResult){
+
+        $.getJSON(`${GLOBALS.API_BASE_URL}project/`)
+            .success(function (project) {
+                var projectObjects = project.objects;
+                sendBackResult(projectObjects);
             });
     }
 
