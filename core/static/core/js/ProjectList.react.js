@@ -25,23 +25,33 @@ var ProjectList = React.createClass({
         var projectList = this.state.projectList;
 
         return (
-                <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span className="caret"></span></a>
-                    <ul className="dropdown-menu" role="menu" aria-labelledby="navbar-dropdown-list" id="navbar-dropdown-list">
-                        {
-                            projectList.map(function(project){
-                                return (<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id={project.id}>{project.name}</a></li>)
-                            })
-                        }
-                    </ul>
-                </li>
+            <div className="row">{
+                projectList.map(function(project){
+                    return (
+                        <div className="col-xs-3">
+                            <div className="panel panel-default panel-information">
+                                <div className="panel-heading">
+                                    <strong>{project.name}</strong>
+                                    <div className="btn-info-project">
+                                        i
+                                    </div>
+                                </div>
+                                <div className="panel-body">
+                                    {project.desc}
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })
+            }
+            </div>
         )
 
     }
 
 });
 
-var mountPoint = document.getElementById("mount-project-list");
+var mountPoint = document.getElementById("mount-home-projects");
 React.render(<ProjectList />, mountPoint);
 
 module.exports = ProjectList;

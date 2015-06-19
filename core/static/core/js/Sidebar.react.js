@@ -49,7 +49,9 @@ var Sidebar = React.createClass({
 });
 
 var mountPoint = document.getElementById('sidebar');
-React.render(
-    <Sidebar />,
-    mountPoint
-);
+if(mountPoint != null){
+    React.render(
+        <Sidebar />,
+        mountPoint
+    );
+}
