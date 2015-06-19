@@ -17,20 +17,11 @@ var Accordion = React.createClass({
                             <a data-toggle="collapse" data-parent="#tickets-panel" href="#collapse-open" aria-expanded="false" aria-controls="collapse-open">
                                 Conversations    <span className="badge" id="number-of-conversations"></span>
                             </a>
-                            <br/>
-                            <div className="btn-group" id="group-sort-new">
-
-                                <button className="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" id="btn-sort" >
-                                    <span className="fa fa-sort"></span> Sort
-                                    <span className="caret"></span>
+                            <a href="/projects/id/newchat/" id="group-sort-new">
+                                <button type="button" className="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="right" title="New Conversation" id="new-project-button">
+                                    <i className="fa fa-plus"></i> New
                                 </button>
-
-                                <a href="/projects/id/newchat/">
-                                    <button type="button" className="btn btn-default btn-xs pull-left" data-toggle="tooltip" data-placement="right" title="New Conversation" id="new-project-button">
-                                        <i className="fa fa-plus"></i> New
-                                    </button>
-                                </a>
-                            </div>
+                            </a>
                         </h4>
                     </div>
                     <div id="collapse-open" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-open">

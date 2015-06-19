@@ -38,11 +38,20 @@ var Sidebar = React.createClass({
 
         return (
             <div>
-                <input className="form-control"
-                       type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Tickets" />
+                <div className="row">
+                    <div className="col-sm-9">
+                        <input className="form-control"
+                               type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Conversations" />
+                    </div>
+                    <div className="col-sm-3">
+                        <button className="btn btn-default btn-xs dropdown-toggle pull-right" type="button" data-toggle="dropdown" id="btn-sort" >
+                            <span className="fa fa-sort"></span> Sort
+                            <span className="caret"></span>
+                        </button>
+                    </div>
+                </div>
                 <Accordion conversationList={list} />
             </div>
-
         )
     }
 
