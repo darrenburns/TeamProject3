@@ -52,6 +52,7 @@ var ProjectList = React.createClass({
 });
 
 var mountPoint = document.getElementById("mount-home-projects");
-React.render(<ProjectList />, mountPoint);
-
+if(mountPoint != null) {
+    React.render(<ProjectList />, mountPoint);
+}
 module.exports = ProjectList;
