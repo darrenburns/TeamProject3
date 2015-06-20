@@ -32,9 +32,9 @@ var ProjectList = React.createClass({
                             <div className="panel panel-default panel-information">
                                 <div className="panel-heading">
                                     <strong>{project.name}</strong>
-                                    <div className="btn-info-project">
-                                        i
-                                    </div>
+                                    <a href={'/projects/' + project.id + '/info/'} className="btn-info-project">
+                                        <span className="fa fa-info-circle fa-1"></span>
+                                    </a>
                                 </div>
                                 <div className="panel-body">
                                     {project.desc}
