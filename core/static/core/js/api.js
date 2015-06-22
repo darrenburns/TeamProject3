@@ -12,6 +12,15 @@ var api = {
             });
     },
 
+    getAllTickets2: function(sendBackResult){
+
+        $.getJSON(`${GLOBALS.API_BASE_URL}chat/`)
+            .success(function (chats) {
+                var chatObjects = chats.objects;
+                sendBackResult(chatObjects);
+            });
+    },
+
     getAllProjects: function(sendBackResult){
 
         $.getJSON(`${GLOBALS.API_BASE_URL}project/`)
