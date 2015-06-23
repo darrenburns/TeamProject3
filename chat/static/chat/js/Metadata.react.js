@@ -42,8 +42,6 @@ var Metadata = React.createClass({
     },
 
     render: function() {
-        console.log(this.state.priority);
-        console.log(this.state.priorityList);
         return (
             <div className="row">
                 <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
