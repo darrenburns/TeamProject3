@@ -11,4 +11,5 @@ require('./UserCardSmall.react');
 require('./Sidebar.react');
 require('./Accordion.react');
 require('./ProjectList.react');
+require('./ProjectListFilter.react');
 require('./utils');

@@ -6,9 +6,14 @@ var ProjectList = React.createClass({
 
     getInitialState: function () {
         return {
-            projectList: []
+            projectList: [],
+            //searchString: ''
         }
     },
+
+    //setSearchString: function(str) {
+    //  this.setState({searchString: str});
+    //},
 
     setProjectList: function(result){
         this.setState({
@@ -23,7 +28,16 @@ var ProjectList = React.createClass({
     render: function(){
 
         var projectList = this.state.projectList;
-
+        //var searchString = this.state.searchString;
+        //var filteredProjects = [];
+        //projectList.forEach((conversation, idx) => {
+        //    if(conversation.name.toLowerCase().indexOf(searchString) > -1 || searchString === ''){
+        //        filteredProjects.push(<li role="presentation">
+        //            <a role="menuitem" tabindex="-1" href="#" id={conversation.id}>
+        //                {conversation.name}</a>
+        //        </li>);
+        //    }
+        //});
         return (
                 <li className="dropdown">
                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span className="caret"></span></a>
