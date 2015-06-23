@@ -5,6 +5,7 @@
   "main": "./static/app.js",
   "dependencies": {
     "bootstrap": "^3.3.4",
+    "bootstrap-select": "^1.7.2",
     "buckets-js": "^1.90.0",
     "d3": "^3.5.5",
     "d3-tip": "^0.6.7",

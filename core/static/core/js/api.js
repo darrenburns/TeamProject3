@@ -28,6 +28,23 @@ var api = {
                 var projectObjects = project.objects;
                 sendBackResult(projectObjects);
             });
+    },
+
+    getChatById: function(chatId, sendBackResult){
+
+        $.getJSON(`${GLOBALS.API_BASE_URL}chat/${chatId}`)
+            .success(function (chat) {
+                sendBackResult(chat);
+            });
+    },
+
+    getPriority: function(sendBackResult){
+
+        $.getJSON(`${GLOBALS.API_BASE_URL}priority/`)
+            .success(function (priorityListObject) {
+                var priorityList = priorityListObject.objects;
+                sendBackResult(priorityList);
+            });
     }
 
 };
