@@ -1,6 +1,7 @@
 'use strict';
 var React = require('react');
 var api = require('./api');
+var GLOBALS = require('./globals');
 
 var ProjectList = React.createClass({
 
@@ -8,6 +9,7 @@ var ProjectList = React.createClass({
         return {
             projectList: [],
             //searchString: ''
+            chatList: []
         }
     },
 
@@ -21,8 +23,15 @@ var ProjectList = React.createClass({
         })
     },
 
+    setChatList: function(result){
+        this.setState({
+            chatList: result
+        })
+    },
+
     componentWillMount: function(){
-        api.getAllProjects(this.setProjectList)
+        api.getAllProjects(this.setProjectList);
+        api.getAllTickets2(this.setChatList);
     },
 
     render: function(){
@@ -38,24 +47,53 @@ var ProjectList = React.createClass({
         //        </li>);
         //    }
         //});
+        var chatList = this.state.chatList;
+
         return (
-                <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span className="caret"></span></a>
-                    <ul className="dropdown-menu" role="menu" aria-labelledby="navbar-dropdown-list" id="navbar-dropdown-list">
-                        {
-                            projectList.map(function(project){
-                                return (<li role="presentation"><a role="menuitem" tabindex="-1" href="#" id={project.id}>{project.name}</a></li>)
-                            })
+            <div className="row">{
+                projectList.map(function(project){
+
+                    project.firstChat = "";
+
+                    for (var i = 0; i < chatList.length; i++) {
+                        var chat = chatList[i];
+
+                        if(chat.project == (GLOBALS.API_BASE_URL + "project/" + project.id + "/")){
+                            project.firstChat = chat;
+                            break;
                         }
-                    </ul>
-                </li>
+                    }
+
+                    return (
+                        <div className="col-xs-3">
+                            <div className="panel panel-default panel-information">
+                                <div className="panel-heading">
+                                    <a href={
+                                        (project.firstChat ?
+                                        '/chats/' + project.firstChat.id :
+                                        '/projects/' + project.id + '/newchat/')
+                                    }><strong>{project.name}</strong></a>
+                                    <a href={'/projects/' + project.id + '/info/'} className="btn-info-project">
+                                        <span className="fa fa-info-circle fa-1"></span>
+                                    </a>
+                                </div>
+                                <div className="panel-body">
+                                    {project.desc}
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })
+            }
+            </div>
         )
 
     }
 
 });
 
-var mountPoint = document.getElementById("mount-project-list");
-React.render(<ProjectList />, mountPoint);
-
+var mountPoint = document.getElementById("mount-home-projects");
+if(mountPoint != null) {
+    React.render(<ProjectList />, mountPoint);
+}
 module.exports = ProjectList;

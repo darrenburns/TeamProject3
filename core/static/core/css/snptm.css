@@ -28,3 +28,9 @@
 #btn-sort {
     margin-right: 3px;
 }
+
+.btn-info-project {
+    position: absolute;
+    right: 8%;
+    top: 5%;
+}
