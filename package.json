@@ -15,6 +15,7 @@
     "moment": "^2.10.3",
     "mustache": "^2.0.0",
     "react": "^0.13.3",
+    "react-datepicker": "^0.8.0",
     "reactfire": "^0.4.0",
     "remodal": "^0.6.4",
     "showdown": "^1.0.1"
@@ -28,7 +29,9 @@
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
-    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+    "react-datepicker": "./node_modules/react-datepicker/dist/react-datepicker.min.js",
+    "moment": "./node_modules/moment/min/moment.min.js"
   },
   "browserify": {
     "options": {
