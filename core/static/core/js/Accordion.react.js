@@ -2,6 +2,7 @@
  * Created by LeoLinhares on 17/06/2015.
  */
 var React = require('react');
+var Chat = require('./Chat.react');
 
 var Accordion = React.createClass({
 
@@ -25,13 +26,7 @@ var Accordion = React.createClass({
                         </h4>
                     </div>
                     <div id="collapse-open" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-open">
-                        <div className="list-group" id="open-tickets-list">
-                            {conversationList.map(function(result) {
-                                if(result.closed == null){
-                                    return <a className="list-group-item" href={/chats/+result.id} key={result.id}>{result.title}</a>;
-                                }
-                            })}
-                        </div>
+                        <Chat conversationList={conversationList}/>
                     </div>
                 </div>
                 <div className="panel panel-default">

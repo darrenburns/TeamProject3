@@ -12,4 +12,7 @@ require('./Sidebar.react');
 require('./Accordion.react');
 require('./ProjectList.react');
 require('./ProjectListFilter.react');
+require('./Chat.react');
+require('./Label.react');
+
 require('./utils');
