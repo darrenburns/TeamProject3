@@ -14,5 +14,6 @@ require('./ProjectList.react');
 require('./ProjectListFilter.react');
 require('./Chat.react');
 require('./Label.react');
+require('./LabelTags.react');
 
 require('./utils');
