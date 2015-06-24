@@ -14,18 +14,24 @@ var Metadata = React.createClass({
     getInitialState: function(){
         return{
             priority: '',
-            priorityList: []
+            priorityList: [],
+            allTags: [],
+            chatTagList: [],
+            cost: '0'
         }
     },
 
     componentWillMount: function() {
         api.getChatById(this.props.chatId, this.setChat);
         api.getPriority(this.setPriorityList);
+        api.getAllTags(this.setAllTags);
     },
 
     setChat: function(chat){
         this.setState({
-            priority: chat.ticket.priority
+            priority: chat.ticket.priority,
+            chatTagList: chat.ticket.tag,
+            cost: chat.ticket.cost
         });
     },
 
@@ -41,10 +47,31 @@ var Metadata = React.createClass({
         });
     },
 
+    setAllTags: function(tag_list){
+        this.setState({
+            allTags: tag_list
+        });
+    },
+
+    setChatTagList: function(chat_tag_list){
+        this.setState({
+            chatTagList: chat_tag_list
+        });
+    },
+
+    setCost: function(chat_cost){
+        this.setState({
+            cost: chat_cost
+        });
+    },
+
     render: function() {
         return (
             <div className="row">
+                <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
                 <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
+                <Cost cost={this.state.cost} setCost={this.setCost}/>
+
             </div>
         )
     }

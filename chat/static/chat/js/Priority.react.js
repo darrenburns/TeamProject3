@@ -26,7 +26,7 @@ var Priority = React.createClass({
                         <select onChange={this.handlePriority} className="selectpicker" data-width="90%">
                             {
                                 priorityList.map(function(item){
-                                    return (<option>{item.name}</option>)
+                                    return (<option key={item.id}>{item.name}</option>)
                                 })
                             }
                         </select>

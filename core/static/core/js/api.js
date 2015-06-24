@@ -45,6 +45,15 @@ var api = {
                 var priorityList = priorityListObject.objects;
                 sendBackResult(priorityList);
             });
+    },
+
+    getAllTags: function(sendBackResult){
+
+        $.getJSON(`${GLOBALS.API_BASE_URL}tag/`)
+            .success(function (tagListObject) {
+                var tagList = tagListObject.objects;
+                sendBackResult(tagList);
+            });
     }
 
 };
