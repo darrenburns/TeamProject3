@@ -16,8 +16,8 @@ var Chat = React.createClass({
                     if(result.closed == null){
                         return(
                             <a className="list-group-item" href={/chats/+result.id} key={result.id}>{result.title}
-                                <Label labelName={result.ticket.priority.name} labelColour={result.ticket.priority.colour}/>
-                                <Label labelName={result.ticket.tag[0].title} labelColour={result.ticket.tag[0].colour}/>
+                                <Label labelName={result.ticket.priority ? result.ticket.priority.name : ''} labelColour={result.ticket.priority ? result.ticket.priority.colour : ''}/>
+                                <Label labelName={result.ticket.tag[0] ? result.ticket.tag[0].title : ''} labelColour={result.ticket.tag[0] ? result.ticket.tag[0].colour : ''}/>
                             </a>);
                     }
                 })}

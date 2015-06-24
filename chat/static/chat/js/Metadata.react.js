@@ -71,7 +71,6 @@ var Metadata = React.createClass({
                 <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
                 <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
                 <Cost cost={this.state.cost} setCost={this.setCost}/>
-
             </div>
         )
     }

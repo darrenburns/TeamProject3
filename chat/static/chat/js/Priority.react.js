@@ -6,27 +6,43 @@ var $ = require('jquery');
 require('bootstrap-select');
 
 var Priority = React.createClass({
-    componentDidMount: function(){
-        $('.selectpicker').selectpicker();
-        setInterval(function(){$('.selectpicker').selectpicker('refresh');}, 2000)
+
+    handlePriority: function(priorityId){
     },
 
-    handlePriority: function(e){
-       console.log("leo");
+
+    componentWillReceiveProps: function(before, next){
+        setTimeout(function(){
+            $('.selectpicker').selectpicker('refresh');
+        }, 1000);
     },
 
     render: function() {
         var priorityList = this.props.priorityList;
+        var priority = this.props.priority;
+        var setPriorityFunc = this.props.setPriority;
+
+        $( document ).ready(function() {
+            $('select.selectpicker').on('change', function(){
+                var selectedPriority = $('.selectpicker option:selected').val();
+                priorityList.forEach(function(priority){
+                    if(priority.id == selectedPriority){
+                        setPriorityFunc(priority);
+                    }
+                });
+            });
+
+        });
 
         return (
             <div className="col-xs-3">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Priority</strong></div>
                     <div className="panel-body">
-                        <select onChange={this.handlePriority} className="selectpicker" data-width="90%">
+                        <select value={priority.id} className="selectpicker" data-width="90%">
                             {
                                 priorityList.map(function(item){
-                                    return (<option key={item.id}>{item.name}</option>)
+                                    return (<option value={item.id} key={item.id}>{item.name}</option>)
                                 })
                             }
                         </select>
