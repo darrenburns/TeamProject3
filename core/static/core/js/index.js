@@ -13,6 +13,7 @@ require('./Accordion.react');
 require('./ProjectList.react');
 require('./ProjectListFilter.react');
 require('./Chat.react');
+require('./ClosedChat.react');
 require('./Label.react');
 require('./LabelTags.react');
 

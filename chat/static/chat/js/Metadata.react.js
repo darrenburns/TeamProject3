@@ -17,7 +17,11 @@ var Metadata = React.createClass({
             priorityList: [],
             allTags: [],
             chatTagList: [],
-            cost: '0'
+            cost: '',
+            dateCreated: '',
+            dateClosed: '',
+            ticketId: '',
+            notes: ''
         }
     },
 
@@ -32,7 +36,10 @@ var Metadata = React.createClass({
             priority: chat.ticket.priority,
             chatTagList: chat.ticket.tag,
             cost: chat.ticket.cost,
-            ticketId: chat.ticket.id
+            ticketId: chat.ticket.id,
+            dateCreated: chat.created,
+            dateClosed: chat.closed,
+            notes: chat.ticket.notes
         });
     },
 
@@ -67,12 +74,23 @@ var Metadata = React.createClass({
         });
     },
 
+    setNote: function(notes){
+        this.setState({
+            notes: notes
+        });
+    },
+
+
+
     render: function() {
         return (
             <div className="row">
                 <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
                 <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
                 <Cost cost={this.state.cost} setCost={this.setCost}/>
+                <DateCreated date={this.state.dateCreated}/>
+                <DateClosed date={this.state.dateClosed}/>
+                <Notes notes={this.state.notes} setNote={this.setNote}/>
             </div>
         )
     }
