@@ -11,9 +11,14 @@ var Priority = React.createClass({
     },
 
 
-    componentWillReceiveProps: function(before, next){
+    componentWillReceiveProps: function(next){
+    },
+
+    componentDidMount: function(){
+
+        var selectPicker = $('select.selectpicker');
         setTimeout(function(){
-            $('.selectpicker').selectpicker('refresh');
+            selectPicker.selectpicker('refresh');
         }, 1000);
     },
 
@@ -21,6 +26,9 @@ var Priority = React.createClass({
         var priorityList = this.props.priorityList;
         var priority = this.props.priority;
         var setPriorityFunc = this.props.setPriority;
+
+
+        //TODO: CleanUp
 
         $( document ).ready(function() {
             $('select.selectpicker').on('change', function(){
@@ -31,7 +39,6 @@ var Priority = React.createClass({
                     }
                 });
             });
-
         });
 
         return (
