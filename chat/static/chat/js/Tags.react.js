@@ -11,7 +11,7 @@ var Tags = React.createClass({
         var result = this.props.allTags;
 
         return (
-            <div className="col-xs-3">
+            <div className="col-xs-4">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Tags</strong></div>
                     <div className="panel-body">

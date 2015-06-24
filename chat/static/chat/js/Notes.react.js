@@ -11,7 +11,7 @@ var Notes = React.createClass({
         var notes = this.props.notes;
 
         return (
-            <div className="col-xs-6">
+            <div className="col-xs-12">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Notes</strong></div>
                     <div className="panel-body">

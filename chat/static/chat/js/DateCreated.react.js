@@ -12,7 +12,7 @@ var DateCreated = React.createClass({
         var d = new Date(date);
         var formattedDate = d.toLocaleDateString();
         return (
-            <div className="col-xs-3">
+            <div className="col-xs-4">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Date Created</strong></div>
                     <div className="panel-body">

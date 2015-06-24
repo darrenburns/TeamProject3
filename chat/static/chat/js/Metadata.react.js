@@ -6,6 +6,8 @@ var DueDate = require('./DueDate.react');
 var Notes = require('./Notes.react');
 var Tags = require('./Tags.react');
 var Priority = require('./Priority.react');
+var Assignee = require('./Assignee.react');
+
 var api = require('../../../../core/static/core/js/api');
 
 
@@ -85,12 +87,15 @@ var Metadata = React.createClass({
     render: function() {
         return (
             <div className="row">
-                <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
-                <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
-                <Cost cost={this.state.cost} setCost={this.setCost}/>
-                <DateCreated date={this.state.dateCreated}/>
-                <DateClosed date={this.state.dateClosed}/>
-                <Notes notes={this.state.notes} setNote={this.setNote}/>
+                <div className="col-xs-9">
+                    <DateCreated date={this.state.dateCreated}/>
+                    <DateClosed date={this.state.dateClosed}/>
+                    <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
+                    <Cost cost={this.state.cost} setCost={this.setCost}/>
+                    <Assignee/>
+                    <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
+                    <Notes notes={this.state.notes} setNote={this.setNote}/>
+                </div>
             </div>
         )
     }

@@ -13,7 +13,7 @@ var Cost = React.createClass({
             cost = 0;
         }
         return (
-            <div className="col-xs-3">
+            <div className="col-xs-4">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Cost</strong></div>
                     <div className="panel-body">

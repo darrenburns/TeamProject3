@@ -12,7 +12,7 @@ var DateClosed = React.createClass({
 
         if(date != null){
             return (
-                <div className="col-xs-3">
+                <div className="col-xs-4">
                     <div className="panel panel-default panel-information">
                         <div className="panel-heading"><strong>Date Closed</strong></div>
                         <div className="panel-body">
@@ -23,7 +23,7 @@ var DateClosed = React.createClass({
             )
         }else{
             return(
-                <div className="col-xs-3">
+                <div className="col-xs-4">
                     <div className="panel panel-default panel-information">
                         <div className="panel-heading"><strong>Date Closed</strong></div>
                         <div className="panel-body">

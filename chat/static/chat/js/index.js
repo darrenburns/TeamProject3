@@ -13,6 +13,7 @@ require('./DueDate.react');
 require('./Notes.react');
 require('./Tags.react');
 require('./Priority.react');
+require('./Assignee.react');
 require('./Message.react');
 require('./MessageInput.react');
 require('./MessagePreview.react');
