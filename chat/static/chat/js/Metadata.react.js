@@ -31,7 +31,8 @@ var Metadata = React.createClass({
         this.setState({
             priority: chat.ticket.priority,
             chatTagList: chat.ticket.tag,
-            cost: chat.ticket.cost
+            cost: chat.ticket.cost,
+            ticketId: chat.ticket.id
         });
     },
 
@@ -39,6 +40,7 @@ var Metadata = React.createClass({
         this.setState({
             priority: chat_priority
         });
+        api.setPriority(this.state.ticketId, chat_priority.id);
     },
 
     setPriorityList: function(priority_list){
@@ -71,7 +73,6 @@ var Metadata = React.createClass({
                 <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
                 <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
                 <Cost cost={this.state.cost} setCost={this.setCost}/>
-
             </div>
         )
     }

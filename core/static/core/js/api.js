@@ -54,6 +54,19 @@ var api = {
                 var tagList = tagListObject.objects;
                 sendBackResult(tagList);
             });
+    },
+
+    setPriority: function(ticketId, priorityId){
+        var passData = {
+            "priority": `${GLOBALS.API_BASE_URL}priority/${priorityId}/`
+        };
+        $.ajax({
+            url: `${GLOBALS.API_BASE_URL}ticket/${ticketId}/`,
+            type: "PATCH",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData)
+        });
     }
 
 };
