@@ -69,13 +69,22 @@ var Metadata = React.createClass({
         });
     },
 
+    setDueDate: function(chat_due_date){
+      this.setState({
+          dueDate: chat_due_date
+      });
+
+        api.setDueDate(this.state.ticketId, chat_due_date);
+    },
+
     render: function() {
+
         return (
             <div className="row">
                 <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
                 <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
                 <Cost cost={this.state.cost} setCost={this.setCost}/>
-                <DueDate dueDate={this.state.dueDate} />
+                <DueDate dueDate={this.state.dueDate} setDueDate={this.setDueDate} />
             </div>
         )
     }

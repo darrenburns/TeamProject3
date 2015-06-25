@@ -25,10 +25,19 @@ var DueDate = React.createClass({
         }
     },
 
-    handleStartDateChange: function(date) {
+    componentWillReceiveProps: function(next){
+        if(next.dueDate){
+            this.setState({
+                dueDate: moment(next.dueDate)
+            });
+        }
+    },
+
+    handleDueDateChange: function(date) {
         this.setState({
             dueDate: date
         });
+        this.props.setDueDate(date.format());
     },
 
     render: function() {
@@ -41,10 +50,9 @@ var DueDate = React.createClass({
                             key="example1"
                             dateFormat="DD/MM/YYYY"
                             selected={this.state.dueDate}
-                            onChange={this.handleStartDateChange}
+                            onChange={this.handleDueDateChange}
                             minDate={moment()}
                             />
-                        <button className="btn btn-default pull-right">Edit</button>
                     </div>
                 </div>
             </div>
