@@ -100,10 +100,10 @@ var Metadata = React.createClass({
                 <div className="col-xs-9">
                     <DateCreated date={this.state.dateCreated}/>
                     <DateClosed date={this.state.dateClosed}/>
-                    <DueDate dueDate={this.state.dueDate} setDueDate={this.setDueDate} />
                     <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
-                    <Cost cost={this.state.cost} setCost={this.setCost}/>
+                    <DueDate dueDate={this.state.dueDate} setDueDate={this.setDueDate} />
                     <Assignee/>
+                    <Cost cost={this.state.cost} setCost={this.setCost}/>
                     <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
                     <Notes notes={this.state.notes} setNote={this.setNote}/>
                 </div>

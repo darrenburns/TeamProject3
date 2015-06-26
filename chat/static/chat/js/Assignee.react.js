@@ -34,7 +34,7 @@ var Assignee = React.createClass({
     render: function() {
 
         return (
-            <div className="col-xs-4">
+            <div className="col-xs-6">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Assignee</strong></div>
                     <div className="panel-body">

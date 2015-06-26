@@ -42,7 +42,7 @@ var DueDate = React.createClass({
 
     render: function() {
         return (
-            <div className="col-xs-3">
+            <div className="col-xs-6">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Due Date</strong></div>
                     <div className="panel-body">
