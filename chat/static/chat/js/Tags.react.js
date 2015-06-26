@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by LeoLinhares on 23/06/2015.
  */
@@ -7,8 +8,48 @@ var $ = require('jquery');
 
 var Tags = React.createClass({
 
+    getInitialStatus: function(){
+        return {
+            chatTagList: []
+        }
+    },
+
+    componentWillReceiveProps: function(next){
+        this.setState({
+            chatTagList: next.chatTagList
+        });
+    },
+
+    handleTagSelected: function(event){
+        var tag = JSON.parse(event.target.getAttribute('data-item'));
+        var currentTagList = this.state.chatTagList;
+        var checked = event.target.checked;
+
+        if(checked){
+            currentTagList.push(tag);
+        } else {
+            for(var i = 0; i < currentTagList.length; i++){
+                if(currentTagList[i].id == tag.id){
+                    currentTagList.splice(i, 1);
+                }
+            }
+        }
+
+        this.setState({
+            chatTagList : currentTagList
+        });
+
+        this.props.setChatTagList(currentTagList);
+
+    },
+
     render: function() {
-        var result = this.props.allTags;
+        var results = this.props.allTags;
+        var chatTagList = [];
+        if(this.state){
+            chatTagList = this.state.chatTagList;
+        }
+        var myFunction = this.handleTagSelected;
 
         return (
             <div className="col-xs-3">
@@ -16,14 +57,29 @@ var Tags = React.createClass({
                     <div className="panel-heading"><strong>Tags</strong></div>
                     <div className="panel-body">
                         {
-                            result.map(function(result) {
-                                    return <div className="checkbox" key={result.id}>
-                                        <label>
-                                            <input type="checkbox"/>{result.title}
-                                        </label>
-                                    </div>;
+                            results.map(function(result){
+
+                                var checked = false;
+                                for (var i = 0; i < chatTagList.length; i++){
+                                    if(chatTagList[i].id == result.id){
+                                        checked = true;
+                                        break;
+                                    }
                                 }
-                            )
+                                return(
+                                    <div className="checkbox" key={result.id}>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                checked={checked}
+                                                data-item={JSON.stringify(result)}
+                                                value={result.id}
+                                                onChange={myFunction}
+                                                /> {result.title}
+                                        </label>
+                                    </div>
+                                )
+                            })
                         }
                     </div>
                 </div>
