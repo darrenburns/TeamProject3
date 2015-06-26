@@ -38,7 +38,7 @@ var Priority = React.createClass({
         var priorityList = this.props.priorityList;
         var priority = this.props.priority;
         return (
-            <div className="col-xs-3">
+            <div className="col-xs-4">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Priority</strong></div>
                     <div className="panel-body">

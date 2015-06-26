@@ -13,12 +13,16 @@ var Cost = React.createClass({
             cost = 0;
         }
         return (
-            <div className="col-xs-3">
+            <div className="col-xs-4">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Cost</strong></div>
                     <div className="panel-body">
-                        {cost}
-                        <button className="btn btn-default pull-right">Edit</button>
+                        <div className="input-group">
+                            <input type="text" className="form-control" value={cost} disabled="true"/>
+                              <span className="input-group-btn">
+                                <button className="btn btn-default" type="button">Edit</button>
+                              </span>
+                        </div>
                     </div>
                 </div>
             </div>
