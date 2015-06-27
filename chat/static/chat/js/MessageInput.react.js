@@ -10,9 +10,21 @@ var MessageInput = React.createClass({
 
     /* Custom */
     handleChange(event) {
+
+        // TODO: Fix preview performance issue
+
         var newActiveMessage = event.target.value;
         this.setState({contents: newActiveMessage});
         this.props.setConversationActiveMessage(newActiveMessage);
+
+        if (event.keyCode == 13 && newActiveMessage === ""){
+            event.preventDefault();
+        }
+        else if(event.keyCode == 13 && newActiveMessage !== "" && !event.shiftKey){
+            this.props.sendMessage(newActiveMessage);
+            this.setState({contents: ''});
+            React.findDOMNode(this.refs['inputMessage']).value = '';
+        }
     },
 
     render: function() {
@@ -24,7 +36,7 @@ var MessageInput = React.createClass({
                                   rows="3"
                                   placeholder="Message"
                                   id="input-message"
-                                  value={this.state.contents}
+                                  ref="inputMessage"
                                   onChange={this.handleChange}>
                         </textarea>
                     </div>
