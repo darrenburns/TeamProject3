@@ -3,7 +3,8 @@ var React = require('react'),
     Firebase = require('firebase'),
     GLOBALS = require('./globals'),
     api = require('./api'),
-    Accordion = require('./Accordion.react');
+    Accordion = require('./Accordion.react'),
+    TicketListSort = require('./TicketListSort.react');
 
 //TODO: complete filter and sort
 /*TODO: Integrate with metadata tab. (
@@ -19,6 +20,13 @@ var Sidebar = React.createClass({
     getInitialState: function() {
         return {
             conversations: [],
+            sortingOptions: [
+                "DateCreatedAsc", "DateCreatedDesc",
+                "TitleAsc", "TitleDesc",
+                "DueDateAsc", "DueDateDesc",
+                "PriorityAsc", "PriorityDesc"
+            ],
+            activeSortingOptionIndex: 0,
             currentSearch: '',
             activeIndex: null
         }
@@ -51,10 +59,7 @@ var Sidebar = React.createClass({
                                type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Conversations" />
                     </div>
                     <div className="col-sm-3">
-                        <button className="btn btn-default btn-xs dropdown-toggle pull-right" type="button" data-toggle="dropdown" id="btn-sort" >
-                            <span className="fa fa-sort"></span> Sort
-                            <span className="caret"></span>
-                        </button>
+                        <TicketListSort sortingOptions={this.state.sortingOptions} />
                     </div>
                 </div>
                 <Accordion projectId={this.props.projectId} chatId={this.props.chatId} conversationList={list} searchString={this.state.currentSearch} />
