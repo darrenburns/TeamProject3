@@ -76,6 +76,7 @@ var Metadata = React.createClass({
         this.setState({
             cost: chat_cost
         });
+        api.setCost(this.state.ticketId, chat_cost);
     },
 
     setNote: function(notes){

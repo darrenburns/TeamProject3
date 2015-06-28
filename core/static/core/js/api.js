@@ -93,6 +93,19 @@ var api = {
             dataType: "json",
             data: JSON.stringify(passData)
         });
+    },
+
+    setCost: function (ticketId, cost) {
+        var passData = {
+            "cost": cost
+        };
+        $.ajax({
+            url: `${GLOBALS.API_BASE_URL}ticket/${ticketId}/`,
+            type: "PATCH",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData)
+        });
     }
 
 };
