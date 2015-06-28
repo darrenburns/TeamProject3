@@ -7,6 +7,8 @@ var $ = require('jquery');
 var DatePicker = require('react-datepicker');
 var moment = require('moment');
 
+//TODO: Fix issue with different time zones
+
 var DueDate = React.createClass({
 
     getInitialState: function() {

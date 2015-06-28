@@ -57,7 +57,7 @@ var Sidebar = React.createClass({
                         </button>
                     </div>
                 </div>
-                <Accordion projectId={this.props.projectId} chatId={this.props.chatId} conversationList={list} />
+                <Accordion projectId={this.props.projectId} chatId={this.props.chatId} conversationList={list} searchString={this.state.currentSearch} />
             </div>
         )
     }
