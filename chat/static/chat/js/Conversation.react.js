@@ -118,7 +118,6 @@ var Conversation = React.createClass({
                     <div className="messages">
                         {filteredMessages}
                     </div>
-                    <MessagePreview text={this.state.activeMessage}/>
                     <MessageInput setConversationActiveMessage={this.setActiveMessage} sendMessage={this.sendMessage} />
                 </div>
                 <div className="col-md-4">

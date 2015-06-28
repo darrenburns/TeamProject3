@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+    MessagePreview = require('./MessagePreview.react');
 
 var MessageInput = React.createClass({
 
@@ -11,12 +12,10 @@ var MessageInput = React.createClass({
     /* Custom */
     handleChange(event) {
 
-        // TODO: Fix preview performance issue
+        // TODO: Fix send empty messages
 
         var newActiveMessage = event.target.value;
         this.setState({contents: newActiveMessage});
-        this.props.setConversationActiveMessage(newActiveMessage);
-
         if (event.keyCode == 13 && newActiveMessage === ""){
             event.preventDefault();
         }
@@ -29,16 +28,22 @@ var MessageInput = React.createClass({
 
     render: function() {
         return (
-            <div id="message-input">
-                <div className="row">
-                    <div className="col-md-12">
-                        <textarea className="form-control"
-                                  rows="3"
-                                  placeholder="Message"
-                                  id="input-message"
-                                  ref="inputMessage"
-                                  onChange={this.handleChange}>
-                        </textarea>
+            <div>
+
+                <MessagePreview text={this.state.contents}/>
+
+                <div id="message-input">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <textarea className="form-control"
+                                      rows="3"
+                                      placeholder="Message"
+                                      defaultValue={this.state.contents}
+                                      id="input-message"
+                                      ref="inputMessage"
+                                      onKeyUp={this.handleChange}>
+                            </textarea>
+                        </div>
                     </div>
                 </div>
             </div>
