@@ -15,6 +15,12 @@ var Conversation = React.createClass({
 
     mixins: [ReactFireMixin],
 
+
+    // TODO: Check if it is OK
+    fbRef: '',
+    messagesRef: '',
+    participantsRef: '',
+
     /* These are 'private' variables that can only be modified from the component itself. */
     getInitialState: function() {
         return {
@@ -29,12 +35,19 @@ var Conversation = React.createClass({
 
     componentWillMount: function() {
         var fbBaseUrl = GLOBALS.FIREBASE_BASE_URL;
-        var ref =
+        this.fbRef =
             new Firebase(`${fbBaseUrl}project/${this.props.projectId}/chats/${this.props.chatId}`);
-        var messagesInThread = ref.child('messages');
-        var participants = ref.child('participants');
-        this.bindAsArray(messagesInThread, 'messages');
-        this.bindAsArray(participants, 'participants');
+        this.messagesRef = this.fbRef.child('messages');
+        this.participantsRef = this.fbRef.child('participants');
+        this.bindAsArray(this.messagesRef, 'messages');
+        this.bindAsArray(this.participantsRef, 'participants');
+    },
+
+    componentDidUpdate: function(prevProp, prevState){
+        $(document).ready(function(){
+            var messageContainer = $('.messages');
+            messageContainer[0].scrollTop = messageContainer[0].scrollHeight
+        });
     },
 
     componentDidMount: function() {
@@ -59,6 +72,25 @@ var Conversation = React.createClass({
     },
 
     /* Custom */
+    sendMessage: function(str) {
+        var messagesArray = this.state.messages;
+        var now = Date.now();
+        var messageObj = {
+            desc: str,
+            dt: now,
+            user: this.props.currentUser,
+            user_id:this.props.currentUserId
+        };
+        messagesArray.push(messageObj);
+        this.setState({
+            messages: messagesArray,
+            activeMessage: ''
+        });
+        this.messagesRef.push(messageObj);
+
+    },
+
+    /* Custom */
     toggleUserSelect: function(userName) {
         if (userName.length === 0) return;
         if (!this.state.selectedUsers.includes(userName)){
@@ -78,7 +110,7 @@ var Conversation = React.createClass({
         var participants = this.state.participants;
         var filteredMessages = [];
         messages.forEach((msg, idx) => {
-            if ((msg.desc.toLowerCase().indexOf(searchString) > -1 || searchString === '') &&
+            if ((msg.desc.toLowerCase().indexOf(searchString.toLowerCase()) > -1 || searchString === '') &&
                 (this.state.selectedUsers.contains(msg.user) || this.state.selectedUsers.count() == 0)) {
                 filteredMessages.push(<Message key={idx}
                                                text={msg.desc}
@@ -94,14 +126,13 @@ var Conversation = React.createClass({
                     <div className="messages">
                         {filteredMessages}
                     </div>
-                    <MessagePreview text={this.state.activeMessage}/>
-                    <MessageInput setConversationActiveMessage={this.setActiveMessage} />
+                    <MessageInput setConversationActiveMessage={this.setActiveMessage} sendMessage={this.sendMessage} />
                 </div>
                 <div className="col-md-4">
                     <h4>
                         Filter <small className={filteredMessages.length !== messages.length ? 'text-danger' : null}>
-                            (showing {filteredMessages.length}/{messages.length} messages)
-                        </small>
+                        (showing {filteredMessages.length}/{messages.length} messages)
+                    </small>
                     </h4>
                     <ConversationFilter filterMessages={this.setSearchString} />
                     <h4>Participants <small>({participants.length})</small></h4>
@@ -116,14 +147,22 @@ var Conversation = React.createClass({
 
 
 /* If we're on the correct page, render the component,
-   passing the current chat ID and project ID as props
-   so that we can retrieve the messages from the Firebase. */
+ passing the current chat ID and project ID as props
+ so that we can retrieve the messages from the Firebase. */
 var mountPoint = document.getElementById('message-thread');
 if (mountPoint !== null) {
     var currentChatId = CHAT_ID || -1;
     var currentProjectId = PROJECT_ID || -1;
     var currentUser = CURRENT_USER || '<< Anonymous User >>';
-    React.render(<Conversation chatId={currentChatId} projectId={currentProjectId}/>, mountPoint);
+    var currentUserId = CURRENT_USER_ID || -1;
+    React.render(
+        <Conversation
+            chatId={currentChatId}
+            projectId={currentProjectId}
+            currentUser={currentUser}
+            currentUserId={currentUserId}/>,
+        mountPoint
+    );
 }
 
 module.exports = Conversation;

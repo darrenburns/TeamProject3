@@ -6,6 +6,12 @@ var React = require('react'),
     Accordion = require('./Accordion.react');
 
 //TODO: complete filter and sort
+/*TODO: Integrate with metadata tab. (
+ *     when a priority has changed, update exclamation mark
+ *     When the label list has changed, update it on sidebar
+ *    )
+ *
+ */
 var Sidebar = React.createClass({
 
     mixins: [ReactFireMixin],
