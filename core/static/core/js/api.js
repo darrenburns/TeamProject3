@@ -106,6 +106,19 @@ var api = {
             dataType: "json",
             data: JSON.stringify(passData)
         });
+    },
+
+    setNotes: function (ticketId, notes) {
+        var passData = {
+            "notes": notes
+        };
+        $.ajax({
+            url: `${GLOBALS.API_BASE_URL}ticket/${ticketId}/`,
+            type: "PATCH",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData)
+        });
     }
 
 };

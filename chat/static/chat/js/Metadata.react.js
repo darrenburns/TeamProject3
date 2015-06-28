@@ -79,10 +79,11 @@ var Metadata = React.createClass({
         api.setCost(this.state.ticketId, chat_cost);
     },
 
-    setNote: function(notes){
+    setNotes: function(notes){
         this.setState({
             notes: notes
         });
+        api.setNotes(this.state.ticketId, notes);
     },
 
 
@@ -106,7 +107,7 @@ var Metadata = React.createClass({
                     <Assignee/>
                     <Cost cost={this.state.cost} setCost={this.setCost}/>
                     <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
-                    <Notes notes={this.state.notes} setNote={this.setNote}/>
+                    <Notes notes={this.state.notes} setNotes={this.setNotes}/>
                 </div>
             </div>
         )
