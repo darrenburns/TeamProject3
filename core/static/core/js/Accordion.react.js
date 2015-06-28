@@ -29,7 +29,7 @@ var Accordion = React.createClass({
                         </h4>
                     </div>
                     <div id="collapse-open" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-open">
-                        <Chat conversationList={conversationList}/>
+                        <Chat activeChatId={this.props.chatId} conversationList={conversationList}/>
                     </div>
                 </div>
                 <div className="panel panel-default">
