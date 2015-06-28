@@ -43,6 +43,13 @@ var Conversation = React.createClass({
         this.bindAsArray(this.participantsRef, 'participants');
     },
 
+    componentDidUpdate: function(prevProp, prevState){
+        $(document).ready(function(){
+            var messageContainer = $('.messages');
+            messageContainer[0].scrollTop = messageContainer[0].scrollHeight
+        });
+    },
+
     componentDidMount: function() {
         //$('.messages').height(this.state.height);
         //window.addEventListener('resize', this.handleWindowResize);
@@ -80,6 +87,7 @@ var Conversation = React.createClass({
             activeMessage: ''
         });
         this.messagesRef.push(messageObj);
+
     },
 
     /* Custom */

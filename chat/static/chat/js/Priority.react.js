@@ -22,15 +22,18 @@ var Priority = React.createClass({
 
             var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
 
-            setTimeout(function(){ //Update element after the priorities are retrieved
-                priorityListElement.selectpicker('refresh');
-            }, 1000);
-
             priorityListElement.on('change', function(){ //Update parent's state when a new priority is selected
                 var selectedPriority = priorityListElement.find('option:selected').data('item');
                 setPriorityFunction(selectedPriority);
             });
 
+        });
+    },
+
+    componentDidUpdate: function(prevProps, prevState){
+        $( document ).ready(function() { //After document has been parsed
+            var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
+            priorityListElement.selectpicker('refresh'); //Refresh after new properties arrived
         });
     },
 
