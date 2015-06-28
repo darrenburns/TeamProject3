@@ -4,7 +4,7 @@
 
 var React = require('react');
 var $ = require('jquery');
-
+//TODO: complete notes
 var Notes = React.createClass({
 
     render: function() {

@@ -5,6 +5,7 @@ var React = require('react'),
     api = require('./api'),
     Accordion = require('./Accordion.react');
 
+//TODO: complete filter and sort
 var Sidebar = React.createClass({
 
     mixins: [ReactFireMixin],
@@ -50,7 +51,7 @@ var Sidebar = React.createClass({
                         </button>
                     </div>
                 </div>
-                <Accordion conversationList={list} />
+                <Accordion projectId={this.props.projectId} chatId={this.props.chatId} conversationList={list} />
             </div>
         )
     }
@@ -58,9 +59,9 @@ var Sidebar = React.createClass({
 });
 
 var mountPoint = document.getElementById('sidebar');
-if(mountPoint != null){
-    React.render(
-        <Sidebar />,
-        mountPoint
-    );
+if (mountPoint !== null) {
+    var currentChatId = CHAT_ID || -1;
+    var currentProjectId = PROJECT_ID || -1;
+    var currentUser = CURRENT_USER || '<< Anonymous User >>';
+    React.render(<Sidebar chatId={currentChatId} projectId={currentProjectId}/>, mountPoint);
 }

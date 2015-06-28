@@ -4,7 +4,7 @@
 
 var React = require('react');
 var $ = require('jquery');
-
+// TODO: complete closed
 var DateClosed = React.createClass({
 
     render: function() {

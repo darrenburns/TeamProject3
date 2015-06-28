@@ -5,6 +5,7 @@ var React = require('react');
 var Chat = require('./Chat.react');
 var ClosedChat = require('./ClosedChat.react');
 
+//TODO: label active
 
 var Accordion = React.createClass({
 
@@ -20,7 +21,7 @@ var Accordion = React.createClass({
                             <a data-toggle="collapse" data-parent="#tickets-panel" href="#collapse-open" aria-expanded="false" aria-controls="collapse-open">
                                 Conversations    <span className="badge" id="number-of-conversations"></span>
                             </a>
-                            <a href="/projects/id/newchat/" id="group-sort-new">
+                            <a href={"/projects/"+this.props.projectId+"/newchat/"} id="group-sort-new">
                                 <button type="button" className="btn btn-default btn-xs pull-right" data-toggle="tooltip" data-placement="right" title="New Conversation" id="new-project-button">
                                     <i className="fa fa-plus"></i> New
                                 </button>

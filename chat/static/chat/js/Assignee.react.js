@@ -5,6 +5,8 @@ var React = require('react');
 var $ = require('jquery');
 require('bootstrap-select');
 
+
+//TODO: complete assignee
 var Assignee = React.createClass({
 
     //componentWillReceiveProps: function(next){
