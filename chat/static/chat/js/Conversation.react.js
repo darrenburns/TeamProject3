@@ -28,8 +28,9 @@ var Conversation = React.createClass({
             searchString: '',
             activeMessage: '',
             messages: [],
+            savedMessages: [],
             participants: [],
-            selectedUsers: Immutable.Set()
+            selectedUsers: Immutable.Set(),
         }
     },
 
@@ -41,6 +42,12 @@ var Conversation = React.createClass({
         this.participantsRef = this.fbRef.child('participants');
         this.bindAsArray(this.messagesRef, 'messages');
         this.bindAsArray(this.participantsRef, 'participants');
+        this.bindAsArray(
+            this.messagesRef.
+            orderByChild("isStarred").
+            equalTo(true),
+            'savedMessages'
+        )
     },
 
     componentDidUpdate: function(prevProp, prevState){
@@ -73,20 +80,39 @@ var Conversation = React.createClass({
 
     /* Custom */
     sendMessage: function(str) {
-        var messagesArray = this.state.messages;
         var now = Date.now();
         var messageObj = {
             desc: str,
             dt: now,
             user: this.props.currentUser,
-            user_id:this.props.currentUserId
+            user_id:this.props.currentUserId,
+            isStarred: false
         };
-        messagesArray.push(messageObj);
         this.setState({
-            messages: messagesArray,
             activeMessage: ''
         });
         this.messagesRef.push(messageObj);
+    },
+
+    updateStarAtFirebase: function(snapshot){
+
+        var key = snapshot.key();
+        var value = snapshot.val();
+        var isStarred = !value.isStarred;
+
+        this.messagesRef.child("/"+key).child("isStarred").set(isStarred);
+
+    },
+
+    setStar: function(isStarred, index){
+
+        var messagesArray = this.state.messages;
+        var searchByDate = messagesArray[index].dt;
+
+        this.messagesRef.
+            orderByChild("dt").
+            equalTo(searchByDate).
+            once("child_added", this.updateStarAtFirebase);
 
     },
 
@@ -105,6 +131,7 @@ var Conversation = React.createClass({
     },
 
     render: function() {
+
         var searchString = this.state.searchString;
         var messages = this.state.messages;
         var participants = this.state.participants;
@@ -114,9 +141,12 @@ var Conversation = React.createClass({
                 (this.state.selectedUsers.contains(msg.user) || this.state.selectedUsers.count() == 0)) {
                 filteredMessages.push(<Message key={idx}
                                                text={msg.desc}
+                                               index={idx}
                                                dt={msg.dt}
                                                user={msg.user}
                                                userId={msg['user_id']}
+                                               isStarred={msg.isStarred}
+                                               setStar={this.setStar}
                                                searchString={searchString} />);
             }
         });

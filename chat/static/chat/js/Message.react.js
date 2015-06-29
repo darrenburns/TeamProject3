@@ -16,7 +16,15 @@ var Message = React.createClass({
         this.setState({
             isStarred: !this.state.isStarred
         });
-        // todo: star the message in firebase (add an extra field to messages: isStarred)
+        this.props.setStar(!this.state.isStarred, this.props.index);
+    },
+
+    componentWillReceiveProps: function(next){
+        if(next){
+            this.setState({
+                isStarred: next.isStarred
+            })
+        }
     },
 
     render: function() {
