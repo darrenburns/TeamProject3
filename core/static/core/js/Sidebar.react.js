@@ -17,14 +17,118 @@ var Sidebar = React.createClass({
 
     mixins: [ReactFireMixin],
 
+
+    sortByTitleAsc: function (a, b) {
+        var keyA = a.title.toLowerCase(),
+            keyB = b.title.toLowerCase();
+        return keyB < keyA;
+    },
+
+    sortByTitleDesc: function (a, b) {
+        var keyA = a.title.toLowerCase(),
+            keyB = b.title.toLowerCase();
+        return keyB > keyA;
+    },
+
+    //By default null dates stay at the end
+
+    sortByDateCreatedAsc: function (a, b) {
+        var x = Date.parse(a.created);
+        var y = Date.parse(b.created);
+        if (x == y) { return 0; }
+        if (isNaN(y) || x < y) { return -1; }
+        if (isNaN(x) || x > y) { return 1; }
+    },
+
+    sortByDateCreatedDesc: function (a, b) {
+        var x = Date.parse(a.created);
+        var y = Date.parse(b.created);
+        if (x == y) { return 0; }
+        if (isNaN(x) || x < y) { return 1; }
+        if (isNaN(y) || x > y) { return -1; }
+    },
+
+    sortByDueDateAsc: function (a, b) {
+        var x = Date.parse(a.ticket.due_date);
+        var y = Date.parse(b.ticket.due_date);
+        if (x == y) { return 0; }
+        if (isNaN(y) || x < y) { return -1; }
+        if (isNaN(x) || x > y) { return 1; }
+    },
+
+    sortByDueDateDesc: function (a, b) {
+        var x = Date.parse(a.ticket.due_date);
+        var y = Date.parse(b.ticket.due_date);
+        if (x == y) { return 0; }
+        if (isNaN(x) || x < y) { return 1; }
+        if (isNaN(y) || x > y) { return -1; }
+    },
+
+    //Temporary solution to sort priority
+
+    sortByPriorityAsc: function (a, b) {
+
+        var defaultPriorityNumber = 5;
+
+        var keyA = a.ticket.priority,
+            keyB = b.ticket.priority;
+
+        if(keyA) { keyA = keyA.id } else { keyA = defaultPriorityNumber }
+        if(keyB) { keyB = keyB.id } else { keyB = defaultPriorityNumber }
+
+        return keyB > keyA;
+    },
+
+    sortByPriorityDesc: function (a, b) {
+
+        var defaultPriorityNumber = 5;
+
+        var keyA = a.ticket.priority,
+            keyB = b.ticket.priority;
+
+        if(keyA) { keyA = keyA.id } else { keyA = defaultPriorityNumber }
+        if(keyB) { keyB = keyB.id } else { keyB = defaultPriorityNumber }
+
+        return keyB < keyA;
+    },
+
+
     getInitialState: function() {
         return {
             conversations: [],
             sortingOptions: [
-                "DateCreatedAsc", "DateCreatedDesc",
-                "TitleAsc", "TitleDesc",
-                "DueDateAsc", "DueDateDesc",
-                "PriorityAsc", "PriorityDesc"
+                {
+                    name:"Date Created (Asc)",
+                    sortFunction: this.sortByDateCreatedAsc
+                },
+                {
+                    name:"Date Created (Desc)",
+                    sortFunction: this.sortByDateCreatedDesc
+                },
+                {
+                    name:"Title (Asc)",
+                    sortFunction: this.sortByTitleAsc
+                },
+                {
+                    name:"Title (Desc)",
+                    sortFunction: this.sortByTitleDesc
+                },
+                {
+                    name:"Due Date (Asc)",
+                    sortFunction: this.sortByDueDateAsc
+                },
+                {
+                    name:"Due Date (Desc)",
+                    sortFunction: this.sortByDueDateDesc
+                },
+                {
+                    name:"Priority (Asc)",
+                    sortFunction: this.sortByPriorityAsc
+                },
+                {
+                    name:"Priority (Desc)",
+                    sortFunction: this.sortByPriorityDesc
+                }
             ],
             activeSortingOptionIndex: 0,
             currentSearch: '',
@@ -65,7 +169,10 @@ var Sidebar = React.createClass({
                                type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Conversations" />
                     </div>
                     <div className="col-sm-3">
-                        <TicketListSort sortingOptions={this.state.sortingOptions} setActive={this.setActiveSortingOptionIndex} />
+                        <TicketListSort
+                            activeSortingOptionIndex={this.state.activeSortingOptionIndex}
+                            sortingOptions={this.state.sortingOptions}
+                            setActive={this.setActiveSortingOptionIndex} />
                     </div>
                 </div>
                 <Accordion

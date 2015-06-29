@@ -2,15 +2,13 @@
  * Created by gustavo on 28/06/15.
  */
 var React = require('react');
-
+var classNames = require('classnames');
 var TicketListSort = React.createClass({
 
     //TODO: Check if it is correct
 
     clickHandler: function(event){
-        console.log(event.target);
         var index = event.target.getAttribute('data-index');
-        console.log(index);
         this.props.setActive(index);
     },
 
@@ -19,9 +17,13 @@ var TicketListSort = React.createClass({
         var sortingOptions = this.props.sortingOptions;
         var elementsArray = [];
         var myFunction = this.clickHandler;
+        var activeSortingOptionIndex = this.props.activeSortingOptionIndex;
 
         sortingOptions.forEach(function(option, index){
-            elementsArray.push(<li><a onClick={myFunction} data-index={index} href="#">{option}</a></li>);
+            var classes = classNames({
+                'active': activeSortingOptionIndex == index
+            });
+            elementsArray.push(<li className={classes}><a onClick={myFunction} data-index={index} href="#">{option.name}</a></li>);
         });
 
         return (

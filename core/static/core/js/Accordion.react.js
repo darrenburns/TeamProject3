@@ -11,73 +11,6 @@ var ClosedChat = require('./ClosedChat.react');
 
 var Accordion = React.createClass({
 
-    sortByTitleAsc: function (a, b) {
-        var keyA = new String(a.title),
-            keyB = new String(b.title);
-        return keyB < keyA;
-    },
-
-    sortByTitleDesc: function (a, b) {
-        var keyA = new String(a.title),
-            keyB = new String(b.title);
-        return keyB > keyA;
-    },
-
-    //By default null dates stay at the end
-
-    sortByDateCreatedAsc: function (a, b) {
-        var x = Date.parse(a.created);
-        var y = Date.parse(b.created);
-        if (x == y) { return 0; }
-        if (isNaN(y) || x < y) { return -1; }
-        if (isNaN(x) || x > y) { return 1; }
-    },
-
-    sortByDateCreatedDesc: function (a, b) {
-        var x = Date.parse(a.created);
-        var y = Date.parse(b.created);
-        if (x == y) { return 0; }
-        if (isNaN(x) || x < y) { return 1; }
-        if (isNaN(y) || x > y) { return -1; }
-    },
-
-    sortByDueDateAsc: function (a, b) {
-        var x = Date.parse(a.ticket.due_date);
-        var y = Date.parse(b.ticket.due_date);
-        if (x == y) { return 0; }
-        if (isNaN(y) || x < y) { return -1; }
-        if (isNaN(x) || x > y) { return 1; }
-    },
-
-    sortByDueDateDesc: function (a, b) {
-        var x = Date.parse(a.ticket.due_date);
-        var y = Date.parse(b.ticket.due_date);
-        if (x == y) { return 0; }
-        if (isNaN(x) || x < y) { return 1; }
-        if (isNaN(y) || x > y) { return -1; }
-    },
-
-    sortByPriorityAsc: function (a, b) {
-        var keyA = a.ticket.priority,
-            keyB = b.ticket.priority;
-
-        if(keyA) { keyA = keyA.id } else { keyA = 0 }
-        if(keyB) { keyB = keyB.id } else { keyB = 0 }
-
-        return keyB > keyA;
-    },
-
-    sortByPriorityDesc: function (a, b) {
-        var keyA = a.ticket.priority,
-            keyB = b.ticket.priority;
-
-        if(keyA) { keyA = keyA.id } else { keyA = 0 }
-        if(keyB) { keyB = keyB.id } else { keyB = 0 }
-
-        return keyB < keyA;
-    },
-
-
     render: function() {
 
         var conversationList = this.props.conversationList;
@@ -87,34 +20,8 @@ var Accordion = React.createClass({
         var activeIndex = this.props.activeSortingOptionIndex;
         var activeSortingOption = this.props.sortingOptions[activeIndex];
 
-        console.log(activeSortingOption);
 
-        switch(activeSortingOption) {
-            case "DateCreatedAsc":
-                conversationList.sort(this.sortByDateCreatedAsc);
-                break;
-            case "DateCreatedDesc":
-                conversationList.sort(this.sortByDateCreatedDesc);
-                break;
-            case "TitleAsc":
-                conversationList.sort(this.sortByTitleAsc);
-                break;
-            case "TitleDesc":
-                conversationList.sort(this.sortByTitleDesc);
-                break;
-            case "DueDateAsc":
-                conversationList.sort(this.sortByDueDateAsc);
-                break;
-            case "DueDateDesc":
-                conversationList.sort(this.sortByDueDateDesc);
-                break;
-            case "PriorityAsc":
-                conversationList.sort(this.sortByPriorityAsc);
-                break;
-            case "PriorityDesc":
-                conversationList.sort(this.sortByPriorityDesc);
-                break;
-        }
+        conversationList.sort(activeSortingOption.sortFunction);
 
         conversationList.forEach((chatObj, index) => {
             if(searchString === '' || chatObj.title.toLowerCase().indexOf(searchString) > -1){
