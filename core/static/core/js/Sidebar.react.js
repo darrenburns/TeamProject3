@@ -32,6 +32,12 @@ var Sidebar = React.createClass({
         }
     },
 
+    setActiveSortingOptionIndex: function(index){
+        this.setState({
+            activeSortingOptionIndex: index
+        })
+    },
+
     setConversations: function(resultObj){
         this.setState({
             conversations: resultObj
@@ -59,10 +65,17 @@ var Sidebar = React.createClass({
                                type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Conversations" />
                     </div>
                     <div className="col-sm-3">
-                        <TicketListSort sortingOptions={this.state.sortingOptions} />
+                        <TicketListSort sortingOptions={this.state.sortingOptions} setActive={this.setActiveSortingOptionIndex} />
                     </div>
                 </div>
-                <Accordion projectId={this.props.projectId} chatId={this.props.chatId} conversationList={list} searchString={this.state.currentSearch} />
+                <Accordion
+                    projectId={this.props.projectId}
+                    chatId={this.props.chatId}
+                    conversationList={list}
+                    searchString={this.state.currentSearch}
+                    sortingOptions={this.state.sortingOptions}
+                    activeSortingOptionIndex={this.state.activeSortingOptionIndex}
+                    />
             </div>
         )
     }

@@ -84,6 +84,37 @@ var Accordion = React.createClass({
         var searchString = this.props.searchString.toLowerCase();
         var openTicketList = [],
             closedTicketList = [];
+        var activeIndex = this.props.activeSortingOptionIndex;
+        var activeSortingOption = this.props.sortingOptions[activeIndex];
+
+        console.log(activeSortingOption);
+
+        switch(activeSortingOption) {
+            case "DateCreatedAsc":
+                conversationList.sort(this.sortByDateCreatedAsc);
+                break;
+            case "DateCreatedDesc":
+                conversationList.sort(this.sortByDateCreatedDesc);
+                break;
+            case "TitleAsc":
+                conversationList.sort(this.sortByTitleAsc);
+                break;
+            case "TitleDesc":
+                conversationList.sort(this.sortByTitleDesc);
+                break;
+            case "DueDateAsc":
+                conversationList.sort(this.sortByDueDateAsc);
+                break;
+            case "DueDateDesc":
+                conversationList.sort(this.sortByDueDateDesc);
+                break;
+            case "PriorityAsc":
+                conversationList.sort(this.sortByPriorityAsc);
+                break;
+            case "PriorityDesc":
+                conversationList.sort(this.sortByPriorityDesc);
+                break;
+        }
 
         conversationList.forEach((chatObj, index) => {
             if(searchString === '' || chatObj.title.toLowerCase().indexOf(searchString) > -1){
