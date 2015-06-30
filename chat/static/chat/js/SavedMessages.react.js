@@ -11,7 +11,7 @@ var SavedMessages = React.createClass({
             var messageDate = new Date(messageObj.dt).toLocaleDateString();
 
             savedMessageElement.push(
-                <li className="list-group-item saved-message-item">
+                <li key={index} className="list-group-item saved-message-item">
                     <span><strong>{messageObj.user}</strong> {messageDate}</span>
                     <p>{messageObj.desc}</p>
                 </li>

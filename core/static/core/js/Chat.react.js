@@ -29,8 +29,12 @@ var Chat = React.createClass({
                     if(chatSharedProperties){
                         if(chatSharedProperties.id == result.id){
 
-                            if(chatSharedProperties.priority){
+                            if(chatSharedProperties.priority != null){
                                 priority = chatSharedProperties.priority
+                            }
+
+                            if(chatSharedProperties.chatTagList != null ){
+                                tag = chatSharedProperties.chatTagList
                             }
 
                         }
@@ -39,7 +43,7 @@ var Chat = React.createClass({
 
                     if(result.closed == null){
                         return(
-                            <div>
+                            <div key={result.id}>
                                 <a className={classes} href={/chats/+result.id} key={result.id}>{result.title}
                                     <Label priority={priority}/>
                                     <LabelTags tagList={tag}/>

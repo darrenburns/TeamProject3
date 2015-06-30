@@ -21,7 +21,7 @@ var Root = React.createClass({
     getInitialState: function(){
         return {
             savedMessages: [],
-            chatSharedProperties: null
+            chatSharedProperties: {}
         }
     },
 
@@ -37,10 +37,38 @@ var Root = React.createClass({
             'savedMessages')
     },
 
-    setChatSharedProperties: function(properties){
-        this.setState({
-           chatSharedProperties : properties
-        });
+    setChatSharedProperties: function(newProperties){
+
+        //      var currentProps = this.state.chatSharedProperties;
+
+        if(newProperties){
+
+            this.setState({
+                chatSharedProperties : newProperties
+            });
+
+            /*
+             if(newProperties.priority != null){
+             currentProps.priority = newProperties.priority
+             }
+
+             if(newProperties.chatTagList != null){
+             currentProps.chatTagList = newProperties.chatTagList
+             }
+
+             if(newProperties.id){
+             currentProps.id = newProperties.id
+             }
+
+             this.setState({
+             chatSharedProperties : currentProps
+             });
+
+             */
+
+        }
+
+
     },
 
     render: function(){
@@ -105,7 +133,7 @@ var Root = React.createClass({
 
                                         <div id="metadata-thread">
                                             <div className="row">
-                                                <Metadata setChatSharedProperties={this.setChatSharedProperties} chatId={this.props.currentChatId} projectId={this.props.currentProjectId}/>
+                                                <Metadata setChatSharedProperties={this.setChatSharedProperties} chatSharedProperties={this.state.chatSharedProperties} chatId={this.props.currentChatId} projectId={this.props.currentProjectId}/>
                                                 <SavedMessages savedMessages={this.state.savedMessages} chatId={this.props.currentChatId} projectId={this.props.currentProjectId} />
                                             </div>
                                         </div>

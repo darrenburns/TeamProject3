@@ -23,7 +23,7 @@ var TicketListSort = React.createClass({
             var classes = classNames({
                 'active': activeSortingOptionIndex == index
             });
-            elementsArray.push(<li className={classes}><a onClick={myFunction} data-index={index} href="#">{option.name}</a></li>);
+            elementsArray.push(<li key={index} className={classes}><a onClick={myFunction} data-index={index} href="#">{option.name}</a></li>);
         });
 
         return (
