@@ -39,7 +39,7 @@ var Message = React.createClass({
                     </div>
                     <div className="col-md-3">
                         <span className="fa fa-star pull-right hover-for-pointer"
-                              style={{color: this.state.isStarred ? "" : "#cfcfcf"}}
+                              style={{color: this.state.isStarred ? "#f4d331" : "#cfcfcf"}}
                               onClick={this.handleStarClick}>
                         </span>
                     </div>
