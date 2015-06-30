@@ -119,6 +119,19 @@ var api = {
             dataType: "json",
             data: JSON.stringify(passData)
         });
+    },
+
+    setClosedDate: function (chatId, date) {
+        var passData = {
+            "closed": date
+        };
+        $.ajax({
+            url: `${GLOBALS.API_BASE_URL}chat/${chatId}/`,
+            type: "PATCH",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData)
+        });
     }
 
 };

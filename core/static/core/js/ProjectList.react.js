@@ -2,6 +2,7 @@
 var React = require('react');
 var api = require('./api');
 var GLOBALS = require('./globals');
+var Graph = require('./Graph.react');
 
 var ProjectList = React.createClass({
 

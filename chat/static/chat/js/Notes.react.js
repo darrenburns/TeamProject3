@@ -4,7 +4,7 @@
 
 var React = require('react');
 var $ = require('jquery');
-//TODO: complete notes
+
 var Notes = React.createClass({
 
     getInitialState : function() {
@@ -26,7 +26,6 @@ var Notes = React.createClass({
     handleChange: function(e) {
         var notes = e.target.value;
         this.setState({currentNotes: notes});
-        console.log(this.state.currentNotes);
     },
 
     handleClick: function() {

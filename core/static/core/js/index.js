@@ -19,4 +19,5 @@ require('./LabelTags.react');
 require('./TicketListSort.react');
 require('./Root.react');
 
+require('./Graph.react');
 require('./utils');

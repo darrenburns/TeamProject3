@@ -104,11 +104,18 @@ var Metadata = React.createClass({
         api.setDueDate(this.state.ticketId, chat_due_date);
     },
 
+    setClosedDate: function(chat_closed_date){
+        this.setState({
+            dateClosed: chat_closed_date
+        });
+        api.setClosedDate(this.props.chatId, chat_closed_date);
+    },
+
     render: function() {
         return (
                 <div className="col-xs-12 col-sm-9">
                     <DateCreated date={this.state.dateCreated}/>
-                    <DateClosed date={this.state.dateClosed}/>
+                    <DateClosed date={this.state.dateClosed} setClosedDate={this.setClosedDate}/>
                     <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
                     <DueDate dueDate={this.state.dueDate} setDueDate={this.setDueDate} />
                     <Assignee/>

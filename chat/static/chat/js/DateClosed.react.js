@@ -7,9 +7,22 @@ var $ = require('jquery');
 // TODO: complete closed
 var DateClosed = React.createClass({
 
+    getInitialState : function() {
+        return {
+            closedDate: ''
+        };
+    },
+
+
+    handleClick: function() {
+        var date = new Date();
+        date = date.toISOString();
+        this.setState({closedDate: date});
+        this.props.setClosedDate(date);
+    },
+
     render: function() {
         var date = this.props.date;
-
         if(date != null){
             return (
                 <div className="col-xs-4">
@@ -27,7 +40,7 @@ var DateClosed = React.createClass({
                     <div className="panel panel-default panel-information">
                         <div className="panel-heading"><strong>Date Closed</strong></div>
                         <div className="panel-body">
-                            <button className="btn btn-danger">Close Chat</button>
+                            <button className="btn btn-danger" onClick={this.handleClick}>Close Chat</button>
                         </div>
                     </div>
                 </div>
