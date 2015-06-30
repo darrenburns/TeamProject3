@@ -59,9 +59,11 @@ var Conversation = React.createClass({
     },
 
     componentDidMount: function() {
-        //$('.messages').height(this.state.height);
-        //window.addEventListener('resize', this.handleWindowResize);
+        this.handleWindowResize();
+    },
 
+    /* Custom */
+    handleWindowResize: function(event) {
         var windowHeight = $(window).outerHeight();
         var navbarHeight = $(".navbar-default").outerHeight();
         var navTabsHeight = $(".nav-tabs").outerHeight();
@@ -69,13 +71,6 @@ var Conversation = React.createClass({
 
         var maxHeight = windowHeight - (navbarHeight + navTabsHeight + messageInputHeight + 50);
         $('.messages').css("max-height", maxHeight + "px");
-
-    },
-
-    /* Custom */
-    handleWindowResize: function(event) {
-        //this.setState({height: $(window).height() * 0.60});
-        //$('.messages').height(this.state.height);
     },
 
     /* Custom */
