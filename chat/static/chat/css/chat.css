@@ -48,6 +48,14 @@ a {
     width: 100%;
 }
 
+#saved-messages span {
+    font-size: 0.9em;
+}
+
+#saved-messages li.saved-message-item {
+    padding: 5px 10px;
+}
+
 .message-text {
     margin: 0;
     padding: 0;

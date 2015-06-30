@@ -51,6 +51,12 @@ var Metadata = React.createClass({
             priority: chat_priority
         });
         api.setPriority(this.state.ticketId, chat_priority.id);
+        this.props.setChatSharedProperties(
+            {
+                priority: chat_priority,
+                id: this.props.chatId
+            }
+        );
     },
 
     setPriorityList: function(priority_list){

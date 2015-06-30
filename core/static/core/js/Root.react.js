@@ -20,7 +20,8 @@ var Root = React.createClass({
 
     getInitialState: function(){
         return {
-            savedMessages: []
+            savedMessages: [],
+            chatSharedProperties: null
         }
     },
 
@@ -36,6 +37,12 @@ var Root = React.createClass({
             'savedMessages')
     },
 
+    setChatSharedProperties: function(properties){
+        this.setState({
+           chatSharedProperties : properties
+        });
+    },
+
     render: function(){
         return (
             <div>
@@ -45,6 +52,7 @@ var Root = React.createClass({
 
                         <div className="col-sm-12" id="sidebar">
                             <Sidebar
+                                chatSharedProperties={this.state.chatSharedProperties}
                                 chatId={this.props.currentChatId}
                                 projectId={this.props.currentProjectId}
                                 />
@@ -97,7 +105,7 @@ var Root = React.createClass({
 
                                         <div id="metadata-thread">
                                             <div className="row">
-                                                <Metadata chatId={this.props.currentChatId} projectId={this.props.currentProjectId}/>
+                                                <Metadata setChatSharedProperties={this.setChatSharedProperties} chatId={this.props.currentChatId} projectId={this.props.currentProjectId}/>
                                                 <SavedMessages savedMessages={this.state.savedMessages} chatId={this.props.currentChatId} projectId={this.props.currentProjectId} />
                                             </div>
                                         </div>

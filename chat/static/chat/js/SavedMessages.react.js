@@ -7,7 +7,15 @@ var SavedMessages = React.createClass({
         var savedMessagesArray = this.props.savedMessages;
         var savedMessageElement = [];
         savedMessagesArray.forEach((messageObj, index) => {
-            savedMessageElement.push(<li className="list-group-item">{messageObj.desc}</li>)
+
+            var messageDate = new Date(messageObj.dt).toLocaleDateString();
+
+            savedMessageElement.push(
+                <li className="list-group-item saved-message-item">
+                    <span><strong>{messageObj.user}</strong> {messageDate}</span>
+                    <p>{messageObj.desc}</p>
+                </li>
+            )
         })
 
 

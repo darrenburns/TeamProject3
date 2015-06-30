@@ -53,11 +53,7 @@ var Conversation = React.createClass({
     },
 
     componentDidUpdate: function(prevProp, prevState){
-        console.log(this.state);
-
         if(this.state){
-            console.log("Prev length: " +  prevState.messages.length);
-            console.log("Current length: " +  this.state.messages.length);
             if(prevState.messages.length != this.state.messages.length){
                 var messageContainer = $('.messages');
                 messageContainer[0].scrollTop = messageContainer[0].scrollHeight
@@ -76,7 +72,7 @@ var Conversation = React.createClass({
         var navTabsHeight = $(".nav-tabs").outerHeight();
         var messageInputHeight = $("#message-input").outerHeight();
 
-        var maxHeight = windowHeight - (navbarHeight + navTabsHeight + messageInputHeight + 50);
+        var maxHeight = (windowHeight * 0.92) - (navbarHeight + navTabsHeight + messageInputHeight);
         $('.messages').css("max-height", maxHeight + "px");
         $('.messages')[0].scrollTop = $('.messages')[0].scrollHeight
     },

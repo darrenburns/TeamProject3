@@ -7,11 +7,15 @@ var Label = require('./Label.react');
 var LabelTags = require('./LabelTags.react');
 var classNames = require('classnames');
 
+//TODO: Check if it is the best way to implement shared properties
+
 var Chat = React.createClass({
 
     render: function () {
         var conversationList = this.props.conversationList;
         var activeChatId = this.props.activeChatId;
+        var chatSharedProperties = this.props.chatSharedProperties;
+
         return(
             <div className="list-group" id="open-tickets-list">
                 {conversationList.map(function(result) {
@@ -21,6 +25,18 @@ var Chat = React.createClass({
                         'list-group-item': true,
                         'active': activeChatId == result.id
                     });
+
+                    if(chatSharedProperties){
+                        if(chatSharedProperties.id == result.id){
+
+                            if(chatSharedProperties.priority){
+                                priority = chatSharedProperties.priority
+                            }
+
+                        }
+                    }
+
+
                     if(result.closed == null){
                         return(
                             <div>

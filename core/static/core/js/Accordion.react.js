@@ -19,7 +19,7 @@ var Accordion = React.createClass({
             closedTicketList = [];
         var activeIndex = this.props.activeSortingOptionIndex;
         var activeSortingOption = this.props.sortingOptions[activeIndex];
-
+        var chatSharedProperties = this.props.chatSharedProperties
 
         conversationList.sort(activeSortingOption.sortFunction);
 
@@ -50,7 +50,7 @@ var Accordion = React.createClass({
                         </h4>
                     </div>
                     <div id="collapse-open" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-open">
-                        <Chat activeChatId={this.props.chatId} conversationList={openTicketList}/>
+                        <Chat chatSharedProperties={this.props.chatSharedProperties} activeChatId={this.props.chatId} conversationList={openTicketList}/>
                     </div>
                 </div>
                 <div className="panel panel-default">

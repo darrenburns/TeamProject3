@@ -176,6 +176,7 @@ var Sidebar = React.createClass({
                     </div>
                 </div>
                 <Accordion
+                    chatSharedProperties={this.props.chatSharedProperties}
                     projectId={this.props.projectId}
                     chatId={this.props.chatId}
                     conversationList={list}
