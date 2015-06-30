@@ -164,11 +164,11 @@ var Sidebar = React.createClass({
         return (
             <div>
                 <div className="row">
-                    <div className="col-sm-9">
+                    <div className="col-xs-10 col-sm-9">
                         <input className="form-control"
                                type="text" value={this.state.currentSearch} onChange={this.handleSearch} placeholder="Filter Conversations" />
                     </div>
-                    <div className="col-sm-3">
+                    <div className="col-xs-2 col-sm-3">
                         <TicketListSort
                             activeSortingOptionIndex={this.state.activeSortingOptionIndex}
                             sortingOptions={this.state.sortingOptions}
@@ -188,11 +188,4 @@ var Sidebar = React.createClass({
     }
 
 });
-
-var mountPoint = document.getElementById('sidebar');
-if (mountPoint !== null) {
-    var currentChatId = CHAT_ID || -1;
-    var currentProjectId = PROJECT_ID || -1;
-    var currentUser = CURRENT_USER || '<< Anonymous User >>';
-    React.render(<Sidebar chatId={currentChatId} projectId={currentProjectId}/>, mountPoint);
-}
+module.exports=Sidebar;

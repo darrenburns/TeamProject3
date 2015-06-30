@@ -17,3 +17,4 @@ require('./Assignee.react');
 require('./Message.react');
 require('./MessageInput.react');
 require('./MessagePreview.react');
+require('./SavedMessages.react');

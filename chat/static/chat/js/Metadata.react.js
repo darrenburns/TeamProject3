@@ -98,8 +98,7 @@ var Metadata = React.createClass({
 
     render: function() {
         return (
-            <div className="row">
-                <div className="col-xs-9">
+                <div className="col-xs-12 col-sm-9">
                     <DateCreated date={this.state.dateCreated}/>
                     <DateClosed date={this.state.dateClosed}/>
                     <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
@@ -109,16 +108,7 @@ var Metadata = React.createClass({
                     <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
                     <Notes notes={this.state.notes} setNotes={this.setNotes}/>
                 </div>
-            </div>
         )
     }
 });
-
-var mountPoint = document.getElementById('metadata-thread');
-if (mountPoint !== null) {
-    var currentChatId = CHAT_ID || -1;
-    var currentProjectId = PROJECT_ID || -1;
-    var currentUser = CURRENT_USER || '<< Anonymous User >>';
-    React.render(<Metadata chatId={currentChatId} projectId={currentProjectId}/>, mountPoint);
-}
 module.exports = Metadata;

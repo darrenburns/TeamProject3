@@ -41,10 +41,12 @@ a {
     margin: 5px;
 }
 
-/*#input-message{*/
-    /*position: fixed;*/
-    /*bottom: 1%;*/
-/*}*/
+#input-message-container {
+    display: inline-block;
+    vertical-align: bottom;
+    min-width: 100%;
+    width: 100%;
+}
 
 .message-text {
     margin: 0;

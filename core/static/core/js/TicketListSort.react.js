@@ -28,7 +28,7 @@ var TicketListSort = React.createClass({
 
         return (
             <div>
-                <button className="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" id="btn-sort" >
+                <button className="btn btn-default btn-xs dropdown-toggle pull-right" type="button" data-toggle="dropdown" id="btn-sort" >
                     <span className="fa fa-sort"></span> Sort
                     <span className="caret"></span>
                 </button>

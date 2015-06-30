@@ -17,5 +17,6 @@ require('./ClosedChat.react');
 require('./Label.react');
 require('./LabelTags.react');
 require('./TicketListSort.react');
+require('./Root.react');
 
 require('./utils');

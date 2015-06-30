@@ -30,7 +30,7 @@ var Conversation = React.createClass({
             messages: [],
             savedMessages: [],
             participants: [],
-            selectedUsers: Immutable.Set(),
+            selectedUsers: Immutable.Set()
         }
     },
 
@@ -44,8 +44,8 @@ var Conversation = React.createClass({
         this.bindAsArray(this.participantsRef, 'participants');
         this.bindAsArray(
             this.messagesRef.
-            orderByChild("isStarred").
-            equalTo(true),
+                orderByChild("isStarred").
+                equalTo(true),
             'savedMessages'
         )
     },
@@ -55,11 +55,21 @@ var Conversation = React.createClass({
             var messageContainer = $('.messages');
             messageContainer[0].scrollTop = messageContainer[0].scrollHeight
         });
+
     },
 
     componentDidMount: function() {
         //$('.messages').height(this.state.height);
         //window.addEventListener('resize', this.handleWindowResize);
+
+        var windowHeight = $(window).outerHeight();
+        var navbarHeight = $(".navbar-default").outerHeight();
+        var navTabsHeight = $(".nav-tabs").outerHeight();
+        var messageInputHeight = $("#message-input").outerHeight();
+
+        var maxHeight = windowHeight - (navbarHeight + navTabsHeight + messageInputHeight + 50);
+        $('.messages').css("max-height", maxHeight + "px");
+
     },
 
     /* Custom */
@@ -152,7 +162,7 @@ var Conversation = React.createClass({
         });
         return (
             <div id="conversation-box" className="row">
-                <div className="col-md-8">
+                <div className="col-md-8" id="message-container">
                     <div className="messages">
                         {filteredMessages}
                     </div>
@@ -179,20 +189,4 @@ var Conversation = React.createClass({
 /* If we're on the correct page, render the component,
  passing the current chat ID and project ID as props
  so that we can retrieve the messages from the Firebase. */
-var mountPoint = document.getElementById('message-thread');
-if (mountPoint !== null) {
-    var currentChatId = CHAT_ID || -1;
-    var currentProjectId = PROJECT_ID || -1;
-    var currentUser = CURRENT_USER || '<< Anonymous User >>';
-    var currentUserId = CURRENT_USER_ID || -1;
-    React.render(
-        <Conversation
-            chatId={currentChatId}
-            projectId={currentProjectId}
-            currentUser={currentUser}
-            currentUserId={currentUserId}/>,
-        mountPoint
-    );
-}
-
 module.exports = Conversation;

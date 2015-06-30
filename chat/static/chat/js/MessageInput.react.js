@@ -30,22 +30,25 @@ var MessageInput = React.createClass({
         return (
             <div>
 
-                <MessagePreview text={this.state.contents}/>
-
                 <div id="message-input">
                     <div className="row">
-                        <div className="col-md-12">
-                            <textarea className="form-control"
-                                      rows="3"
-                                      placeholder="Message"
-                                      defaultValue={this.state.contents}
-                                      id="input-message"
-                                      ref="inputMessage"
-                                      onKeyUp={this.handleChange}>
-                            </textarea>
+                        <div className="col-xs-12">
+                            <div id="input-message-container">
+                                <textarea className="form-control"
+                                          rows="3"
+                                          placeholder="Message"
+                                          defaultValue={this.state.contents}
+                                          id="input-message"
+                                          ref="inputMessage"
+                                          onKeyUp={this.handleChange}>
+                                </textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <MessagePreview text={this.state.contents}/>
+
             </div>
         )
     }
