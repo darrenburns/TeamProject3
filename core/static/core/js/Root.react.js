@@ -4,10 +4,37 @@ var React = require('react'),
     Sidebar = require('./Sidebar.react'),
     Conversation = require('../../../../chat/static/chat/js/Conversation.react'),
     Metadata = require('../../../../chat/static/chat/js/Metadata.react'),
-    SavedMessages = require('../../../../chat/static/chat/js/SavedMessages.react');
+    SavedMessages = require('../../../../chat/static/chat/js/SavedMessages.react'),
+    ReactFireMixin = require('reactfire'),
+    GLOBALS = require('./globals');
 
 
 var Root = React.createClass({
+
+    mixins: [ReactFireMixin],
+
+
+    // TODO: Check if it is OK
+    fbRef: '',
+    messagesRef: '',
+
+    getInitialState: function(){
+        return {
+            savedMessages: []
+        }
+    },
+
+    componentWillMount: function(){
+        var fbBaseUrl = GLOBALS.FIREBASE_BASE_URL;
+        this.fbRef =
+            new Firebase(`${fbBaseUrl}project/${this.props.currentProjectId}/chats/${this.props.currentChatId}`);
+        this.messagesRef = this.fbRef.child('messages');
+        this.bindAsArray(
+            this.messagesRef.
+                orderByChild("isStarred").
+                equalTo(true),
+            'savedMessages')
+    },
 
     render: function(){
         return (
@@ -61,6 +88,7 @@ var Root = React.createClass({
                                                 projectId={this.props.currentProjectId}
                                                 currentUser={this.props.currentUser}
                                                 currentUserId={this.props.currentUserId}
+                                                savedMessages={this.state.savedMessages}
                                                 />
                                         </div>
                                     </div>
@@ -70,7 +98,7 @@ var Root = React.createClass({
                                         <div id="metadata-thread">
                                             <div className="row">
                                                 <Metadata chatId={this.props.currentChatId} projectId={this.props.currentProjectId}/>
-                                                <SavedMessages chatId={this.props.currentChatId} projectId={this.props.currentProjectId} />
+                                                <SavedMessages savedMessages={this.state.savedMessages} chatId={this.props.currentChatId} projectId={this.props.currentProjectId} />
                                             </div>
                                         </div>
                                     </div>

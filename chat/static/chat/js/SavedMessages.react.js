@@ -3,6 +3,14 @@ var React = require('react');
 var SavedMessages = React.createClass({
 
     render: function(){
+
+        var savedMessagesArray = this.props.savedMessages;
+        var savedMessageElement = [];
+        savedMessagesArray.forEach((messageObj, index) => {
+            savedMessageElement.push(<li className="list-group-item">{messageObj.desc}</li>)
+        })
+
+
         return(
             <div className="col-xs-12 col-sm-3">
                 <div className="panel panel-primary">
@@ -11,7 +19,7 @@ var SavedMessages = React.createClass({
                     </div>
                     <div className="panel-body">
                         <ul className="list-group" id="saved-messages">
-
+                            {savedMessageElement}
                         </ul>
                     </div>
                 </div>

@@ -34,6 +34,14 @@ var Conversation = React.createClass({
         }
     },
 
+    componentWillReceiveProps: function(next){
+        if(next) {
+            this.setState({
+                savedMessages: next.savedMessages
+            });
+        }
+    },
+
     componentWillMount: function() {
         var fbBaseUrl = GLOBALS.FIREBASE_BASE_URL;
         this.fbRef =
@@ -42,20 +50,19 @@ var Conversation = React.createClass({
         this.participantsRef = this.fbRef.child('participants');
         this.bindAsArray(this.messagesRef, 'messages');
         this.bindAsArray(this.participantsRef, 'participants');
-        this.bindAsArray(
-            this.messagesRef.
-                orderByChild("isStarred").
-                equalTo(true),
-            'savedMessages'
-        )
     },
 
     componentDidUpdate: function(prevProp, prevState){
-        $(document).ready(function(){
-            var messageContainer = $('.messages');
-            messageContainer[0].scrollTop = messageContainer[0].scrollHeight
-        });
+        console.log(this.state);
 
+        if(this.state){
+            console.log("Prev length: " +  prevState.messages.length);
+            console.log("Current length: " +  this.state.messages.length);
+            if(prevState.messages.length != this.state.messages.length){
+                var messageContainer = $('.messages');
+                messageContainer[0].scrollTop = messageContainer[0].scrollHeight
+            }
+        }
     },
 
     componentDidMount: function() {
@@ -71,6 +78,7 @@ var Conversation = React.createClass({
 
         var maxHeight = windowHeight - (navbarHeight + navTabsHeight + messageInputHeight + 50);
         $('.messages').css("max-height", maxHeight + "px");
+        $('.messages')[0].scrollTop = $('.messages')[0].scrollHeight
     },
 
     /* Custom */

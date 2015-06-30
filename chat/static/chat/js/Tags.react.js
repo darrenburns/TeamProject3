@@ -8,7 +8,7 @@ var $ = require('jquery');
 
 var Tags = React.createClass({
 
-    getInitialStatus: function(){
+    getInitialState: function(){
         return {
             chatTagList: []
         }
