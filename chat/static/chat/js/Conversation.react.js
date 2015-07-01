@@ -90,17 +90,26 @@ var Conversation = React.createClass({
     /* Custom */
     sendMessage: function(str) {
         var now = Date.now();
+        var currentUser = this.props.currentUser;
+        var participants = this.state.participants;
         var messageObj = {
             desc: str,
             dt: now,
-            user: this.props.currentUser,
+            user: currentUser,
             user_id:this.props.currentUserId,
             isStarred: false
         };
+
         this.setState({
             activeMessage: ''
         });
+
         this.messagesRef.push(messageObj);
+
+        if(participants.indexOf(currentUser) == -1){
+            this.participantsRef.push(currentUser);
+        }
+
     },
 
     updateStarAtFirebase: function(snapshot){
