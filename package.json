@@ -32,7 +32,7 @@
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.min.js",
     "react-datepicker": "./node_modules/react-datepicker/dist/react-datepicker.min.js",
-    "moment": "./node_modules/moment/min/moment.min.js"
+    "moment": "./node_modules/moment/min/moment-with-locales.min.js"
   },
   "browserify": {
     "options": {

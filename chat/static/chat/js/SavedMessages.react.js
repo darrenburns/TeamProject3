@@ -1,6 +1,9 @@
-var React = require('react');
+var React = require('react'),
+    Showdown = require('showdown');
 
 var SavedMessages = React.createClass({
+
+    converter: new Showdown.Converter(),
 
     render: function(){
 
@@ -9,11 +12,12 @@ var SavedMessages = React.createClass({
         savedMessagesArray.forEach((messageObj, index) => {
 
             var messageDate = new Date(messageObj.dt).toLocaleDateString();
+            var formattedMessage = this.converter.makeHtml(messageObj.desc);
 
             savedMessageElement.push(
                 <li key={index} className="list-group-item saved-message-item">
                     <span><strong>{messageObj.user}</strong> {messageDate}</span>
-                    <p>{messageObj.desc}</p>
+                    <p dangerouslySetInnerHTML={{__html: formattedMessage}}></p>
                 </li>
             )
         })

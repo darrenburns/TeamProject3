@@ -51,5 +51,5 @@ var Message = React.createClass({
     }
 
 });
-
+moment.locale('en-GB');
 module.exports = Message;

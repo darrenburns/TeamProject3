@@ -1,7 +1,3 @@
-/**
- * Created by LeoLinhares on 23/06/2015.
- */
-
 var React = require('react');
 var $ = require('jquery');
 var DatePicker = require('react-datepicker');
@@ -39,7 +35,7 @@ var DueDate = React.createClass({
         this.setState({
             dueDate: date
         });
-        this.props.setDueDate(date.format());
+        this.props.setDueDate(date.format('YYYY-MM-DD'));
     },
 
     render: function() {
@@ -61,4 +57,5 @@ var DueDate = React.createClass({
         )
     }
 });
+moment.locale('en-gb');
 module.exports = DueDate;
