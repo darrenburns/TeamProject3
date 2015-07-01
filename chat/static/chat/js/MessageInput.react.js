@@ -11,19 +11,18 @@ var MessageInput = React.createClass({
 
     /* Custom */
     handleChange(event) {
-
-        // TODO: Fix send empty messages
-
         var newActiveMessage = event.target.value;
-        this.setState({contents: newActiveMessage});
-        if (event.keyCode == 13 && newActiveMessage === ""){
-            event.preventDefault();
-        }
-        else if(event.keyCode == 13 && newActiveMessage !== "" && !event.shiftKey){
-            this.props.sendMessage(newActiveMessage);
-            this.setState({contents: ''});
+        if (event.keyCode == 13 && (newActiveMessage === "" || newActiveMessage === "\n")){
             React.findDOMNode(this.refs['inputMessage']).value = '';
+            newActiveMessage = "";
         }
+        else if(event.keyCode == 13 && newActiveMessage !== "\n" && !event.shiftKey){
+            React.findDOMNode(this.refs['inputMessage']).value = '';
+            newActiveMessage = newActiveMessage.substring(0, newActiveMessage.length - 1); //Remove new paragraph char
+            this.props.sendMessage(newActiveMessage);
+            newActiveMessage = ""
+        }
+        this.setState({contents: newActiveMessage});
     },
 
     render: function() {

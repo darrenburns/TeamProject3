@@ -100,7 +100,6 @@ var Metadata = React.createClass({
         this.setState({
             dueDate: chat_due_date
         });
-
         api.setDueDate(this.state.ticketId, chat_due_date);
     },
 
