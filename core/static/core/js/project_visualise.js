@@ -12,7 +12,7 @@ if (typeof(PROJECT_ID) != 'undefined') {
     var BASE_PADDING_TOP = GLOBALS.GRAPHS.BASE_PADDING_TOP;
     var BASE_PADDING_BOTTOM = GLOBALS.GRAPHS.BASE_PADDING_BOTTOM;
 
-    var ref = new Firebase("https://teamproject3.firebaseio.com/");
+    var ref = new Firebase("https://torid-fire-4899.firebaseio.com/");
 
     var projectChats = ref.child('project/' + PROJECT_ID);
 
