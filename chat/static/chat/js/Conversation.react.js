@@ -49,7 +49,7 @@ var Conversation = React.createClass({
         this.messagesRef = this.fbRef.child('messages');
         this.participantsRef = this.fbRef.child('participants');
         this.bindAsArray(this.messagesRef, 'messages');
-        this.bindAsArray(this.participantsRef, 'participants');
+        this.bindAsObject(this.participantsRef, 'participants');
     },
 
     componentDidUpdate: function(prevProp, prevState){
@@ -91,7 +91,6 @@ var Conversation = React.createClass({
     sendMessage: function(str) {
         var now = Date.now();
         var currentUser = this.props.currentUser;
-        var participants = this.state.participants;
         var messageObj = {
             desc: str,
             dt: now,
@@ -104,11 +103,18 @@ var Conversation = React.createClass({
             activeMessage: ''
         });
 
-        this.messagesRef.push(messageObj);
+        var participantObjects = this.state.participants;
+        var numberOfMessages = participantObjects[currentUser];
+        if(isNaN(numberOfMessages)) { numberOfMessages = 0 }
 
-        if(participants.indexOf(currentUser) == -1){
-            this.participantsRef.push(currentUser);
-        }
+        numberOfMessages = numberOfMessages + 1;
+
+        var pushJSON = '{ "' + currentUser + '" : ' + numberOfMessages + ' }';
+
+        pushJSON = JSON.parse(pushJSON);
+
+        this.messagesRef.push(messageObj);
+        this.participantsRef.update(pushJSON);
 
     },
 
@@ -149,10 +155,10 @@ var Conversation = React.createClass({
     },
 
     render: function() {
-
         var searchString = this.state.searchString;
         var messages = this.state.messages;
-        var participants = this.state.participants;
+        var participants = Object.keys(this.state.participants);
+
         var filteredMessages = [];
         messages.forEach((msg, idx) => {
             if ((msg.desc.toLowerCase().indexOf(searchString.toLowerCase()) > -1 || searchString === '') &&
@@ -168,6 +174,7 @@ var Conversation = React.createClass({
                                                searchString={searchString} />);
             }
         });
+
         return (
             <div id="conversation-box" className="row">
                 <div className="col-md-8" id="message-container">

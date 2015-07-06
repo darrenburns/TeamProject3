@@ -4,8 +4,9 @@ var React = require('react'),
 var ConversationParticipantsList = React.createClass({
 
     render: function() {
-        var participants = this.props.users;
+        var participantObjects = this.props.users;
         var userCards = [];
+        var participants = participantObjects;
         participants.forEach((user, idx) => {
              userCards.push(<UserCardSmall key={idx}
                                            userName={user}
