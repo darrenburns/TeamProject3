@@ -27,8 +27,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'home' %}"> <i class="fa fa-home fa-lg"></i></a>
-
+            <div id="project-title-navbar">
+                <a class="navbar-brand" href="{% url 'home' %}"> <i class="fa fa-home fa-lg"></i></a>
+                {% if chat.project.id %}
+                    <a class="navbar-brand" href="{% url 'project_description' chat.project.id %}">{{ chat.project.name }} </a>
+                {% endif %}
+            </div>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
