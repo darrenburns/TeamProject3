@@ -206,3 +206,7 @@ a {
 .invisible{
     visibility: hidden;
 }
+
+.panel-body .btn-closed-chat {
+    margin-left: 10%;
+}

@@ -21,15 +21,23 @@ var DateClosed = React.createClass({
         this.props.setClosedDate(date);
     },
 
+    handleReopenClick: function(){
+        this.setState({closedDate: null});
+        this.props.setClosedDate(null);
+    },
+
     render: function() {
         var date = this.props.date;
         if(date != null){
+            var d = new Date(date);
+            var formattedDate = d.toLocaleDateString();
             return (
                 <div className="col-xs-4">
                     <div className="panel panel-default panel-information">
                         <div className="panel-heading"><strong>Date Closed</strong></div>
                         <div className="panel-body">
-                            {this.props.date}
+                            {formattedDate}
+                            <button className="btn btn-danger btn-sm btn-closed-chat" onClick={this.handleReopenClick} >Reopen</button>
                         </div>
                     </div>
                 </div>
@@ -40,7 +48,7 @@ var DateClosed = React.createClass({
                     <div className="panel panel-default panel-information">
                         <div className="panel-heading"><strong>Date Closed</strong></div>
                         <div className="panel-body">
-                            <button className="btn btn-danger" onClick={this.handleClick}>Close Chat</button>
+                            <button className="btn btn-danger btn-sm" onClick={this.handleClick}>Close Chat</button>
                         </div>
                     </div>
                 </div>
