@@ -19,7 +19,7 @@ var ChatGraph = React.createClass({
 
     getInitialState: function(){
         return {
-            participants : "",
+            participants : {},
             projectId : PROJECT_ID,
             chatId: CHAT_ID
         }
@@ -44,14 +44,16 @@ var ChatGraph = React.createClass({
 
     getDataset: function() {
         var data = this.getInitialConfig();
-        //var participants = this.state.participants;
-        //var k = [];
-        //k = Object.keys(participants);
-        //var values = Object.keys(participants).map(function (key) {
-        //    return participants[key];
-        //});
-
-
+        var participants = this.state.participants;
+        console.log(participants);
+        var values = [];
+        var labels = [];
+        if(participants != null){
+            values = Object.keys(participants).map(function(k) { return participants[k] });
+            labels = Object.keys(participants);
+        }
+        console.log(values);
+        console.log(labels);
 
         var datapush = {
             "label": "Chat Graph",
@@ -59,9 +61,9 @@ var ChatGraph = React.createClass({
             "strokeColor": "rgba(220,220,220,0.8)",
             "highlightFill": "rgba(220,220,220,0.75)",
             "highlightStroke": "rgba(220,220,220,1)",
-            "data": [13,42,21]
+            "data": values
         };
-        data.labels.push("leo", "gustavo", "leonardo");
+        data.labels = labels;
         data.datasets.push(datapush);
         return data;
     },
@@ -72,7 +74,7 @@ var ChatGraph = React.createClass({
             return (
                 <div>
                     <h3>Number of messages per participant</h3>
-                    <BarChart id="bar-chart-test" data={chartData} width="800" height="250"/>
+                    <BarChart id="bar-chart-test" data={chartData} width="600" height="250" />
                 </div>
             );
         }else{
