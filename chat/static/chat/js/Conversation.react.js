@@ -149,8 +149,11 @@ var Conversation = React.createClass({
             activeMessage: ''
         });
 
+        var numberOfMessages = 0;
         var participantObjects = this.state.participants;
-        var numberOfMessages = participantObjects[currentUser];
+        if (participantObjects  != null) {
+            numberOfMessages = participantObjects[currentUser];
+        }
 
         if(isNaN(numberOfMessages)) { numberOfMessages = 0 }
         numberOfMessages = numberOfMessages + 1;
@@ -202,7 +205,11 @@ var Conversation = React.createClass({
     render: function() {
         var searchString = this.state.searchString;
         var messages = this.state.messages;
-        var participants = Object.keys(this.state.participants);
+        var participants = [];
+
+        if(this.state.participants) {
+            participants = Object.keys(this.state.participants);
+        }
 
         var filteredMessages = [];
         messages.forEach((msg, idx) => {
