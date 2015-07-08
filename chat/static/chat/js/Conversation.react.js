@@ -8,7 +8,8 @@ var React = require('react'),
     Immutable = require('immutable'),
     ConversationFilter = require('./ConversationFilter.react'),
     ConversationParticipantsList = require('./ConversationParticipantsList.react'),
-    GLOBALS = require('../../../../core/static/core/js/globals');
+    GLOBALS = require('../../../../core/static/core/js/globals'),
+    moment = require('moment');
 
 
 var Conversation = React.createClass({
@@ -20,6 +21,7 @@ var Conversation = React.createClass({
     fbRef: '',
     messagesRef: '',
     participantsRef: '',
+    statisticsRef: '',
 
     /* These are 'private' variables that can only be modified from the component itself. */
     getInitialState: function() {
@@ -30,6 +32,7 @@ var Conversation = React.createClass({
             messages: [],
             savedMessages: [],
             participants: [],
+            statistics: {},
             selectedUsers: Immutable.Set()
         }
     },
@@ -48,8 +51,10 @@ var Conversation = React.createClass({
             new Firebase(`${fbBaseUrl}project/${this.props.projectId}/chats/${this.props.chatId}`);
         this.messagesRef = this.fbRef.child('messages');
         this.participantsRef = this.fbRef.child('participants');
+        this.statisticsRef = this.fbRef.child('statistics');
         this.bindAsArray(this.messagesRef, 'messages');
         this.bindAsObject(this.participantsRef, 'participants');
+        this.bindAsObject(this.statisticsRef, 'statistics');
     },
 
     componentDidUpdate: function(prevProp, prevState){
@@ -87,6 +92,47 @@ var Conversation = React.createClass({
         this.setState({activeMessage: str});
     },
 
+    updateStatistics: function(){
+
+        //Update the number of messages node
+
+        var numberOfMessages = 0;
+        var todayNumberOfMessages = 0;
+        var messagesByDay = {};
+        var statisticsObj = this.state.statistics;
+        var today = moment().format('YYYY-MM-DD');
+
+        if(statisticsObj != null){
+
+            numberOfMessages = statisticsObj["numberOfMessages"];
+            if(isNaN(numberOfMessages)){ numberOfMessages = 0 }
+
+
+            messagesByDay = statisticsObj["messagesByDay"];
+            if(messagesByDay != null) {
+                var temp1 = messagesByDay[today];
+                if(temp1 != null){
+                    todayNumberOfMessages = temp1;
+                }
+            }
+        }
+
+
+        numberOfMessages = numberOfMessages + 1;
+        todayNumberOfMessages = todayNumberOfMessages + 1;
+
+        var pushJSON = '{ "numberOfMessages" : ' + numberOfMessages + '}';
+        pushJSON = JSON.parse(pushJSON);
+
+        var pushJSON2 = '{ "'+ today +'" : ' + todayNumberOfMessages + '}';
+        pushJSON2 = JSON.parse(pushJSON2);
+
+        this.statisticsRef.update(pushJSON);
+        this.statisticsRef.child("messagesByDay").update(pushJSON2);
+
+
+    },
+
     /* Custom */
     sendMessage: function(str) {
         var now = Date.now();
@@ -105,17 +151,16 @@ var Conversation = React.createClass({
 
         var participantObjects = this.state.participants;
         var numberOfMessages = participantObjects[currentUser];
-        if(isNaN(numberOfMessages)) { numberOfMessages = 0 }
 
+        if(isNaN(numberOfMessages)) { numberOfMessages = 0 }
         numberOfMessages = numberOfMessages + 1;
 
         var pushJSON = '{ "' + currentUser + '" : ' + numberOfMessages + ' }';
-
         pushJSON = JSON.parse(pushJSON);
 
         this.messagesRef.push(messageObj);
         this.participantsRef.update(pushJSON);
-
+        this.updateStatistics();
     },
 
     updateStarAtFirebase: function(snapshot){
@@ -200,8 +245,5 @@ var Conversation = React.createClass({
 
 });
 
-
-/* If we're on the correct page, render the component,
- passing the current chat ID and project ID as props
- so that we can retrieve the messages from the Firebase. */
+moment.locale('en-GB');
 module.exports = Conversation;
