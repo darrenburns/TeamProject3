@@ -38,6 +38,18 @@ var Root = React.createClass({
             'savedMessages')
     },
 
+    renderGraph: function() {
+        var mountPoint = document.getElementById("chat-graph");
+        React.render(<ChatGraph />, mountPoint);
+    },
+
+    componentDidMount: function(){
+        var myFunction = this.renderGraph; //Workaround for hidden div display problem
+        $('#open-tab-visualisations').on('shown.bs.tab', function (e) {
+            myFunction();
+        });
+    },
+
     setChatSharedProperties: function(newProperties){
 
         //      var currentProps = this.state.chatSharedProperties;
@@ -144,8 +156,7 @@ var Root = React.createClass({
                                     <div role="tabpanel" className="tab-pane" id="tab-visualisations">
                                         <div className="row">
                                             <div className="col-xs-12" id="chat-graph">
-                                                <h3>Number of messages per participant</h3>
-                                                <ChatGraph />
+
                                             </div>
                                         </div>
                                     </div>

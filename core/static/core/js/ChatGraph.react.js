@@ -34,12 +34,6 @@ var ChatGraph = React.createClass({
         this.bindAsObject(this.participantsRef, 'participants');
     },
 
-    componentWillReceiveProps: function(next){
-        this.setState({
-            refresh: next.refresh
-        })
-    },
-
     getInitialConfig: function(){
         var data = {
             labels: [],
@@ -75,7 +69,12 @@ var ChatGraph = React.createClass({
     render: function() {
         var chartData = this.getDataset();
         if(chartData.length != 0){
-            return (<BarChart id="bar-chart-test" data={chartData} width="800" height="250"/>);
+            return (
+                <div>
+                    <h3>Number of messages per participant</h3>
+                    <BarChart id="bar-chart-test" data={chartData} width="800" height="250"/>
+                </div>
+            );
         }else{
             return false;
         }
