@@ -66,7 +66,7 @@ var ProjectList = React.createClass({
                     }
 
                     return (
-                        <div className="col-xs-3">
+                        <div className="col-md-3 col-sm-6">
                             <div className="panel panel-default panel-information">
                                 <div className="panel-heading">
                                     <a href={
@@ -86,6 +86,16 @@ var ProjectList = React.createClass({
                     )
                 })
             }
+                <div className="col-md-3 col-sm-6">
+                    <div className="panel panel-default panel-information">
+                        <div className="panel-heading">
+                            <a id="panel-new-project"><strong>Create new project</strong></a>
+                        </div>
+                        <div className="panel-body">
+                            <a href="/newproject/" ><span className="fa fa-plus-square"></span> New project</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
 

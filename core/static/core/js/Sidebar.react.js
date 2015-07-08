@@ -154,7 +154,7 @@ var Sidebar = React.createClass({
     },
 
     componentWillMount: function() {
-        api.getAllTickets(1, this.setConversations);
+        api.getAllTickets(this.props.projectId, this.setConversations);
     },
 
     render: function() {

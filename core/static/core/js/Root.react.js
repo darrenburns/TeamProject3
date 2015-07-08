@@ -2,6 +2,7 @@ var React = require('react'),
     $ = require('jquery'),
     bootstrap = require('bootstrap'),
     Sidebar = require('./Sidebar.react'),
+    ChatGraph = require('./ChatGraph.react'),
     Conversation = require('../../../../chat/static/chat/js/Conversation.react'),
     Metadata = require('../../../../chat/static/chat/js/Metadata.react'),
     SavedMessages = require('../../../../chat/static/chat/js/SavedMessages.react'),
@@ -35,6 +36,18 @@ var Root = React.createClass({
                 orderByChild("isStarred").
                 equalTo(true),
             'savedMessages')
+    },
+
+    renderGraph: function() {
+        var mountPoint = document.getElementById("chat-graph");
+        React.render(<ChatGraph />, mountPoint);
+    },
+
+    componentDidMount: function(){
+        var myFunction = this.renderGraph; //Workaround for hidden div display problem
+        $('#open-tab-visualisations').on('shown.bs.tab', function (e) {
+            myFunction();
+        });
     },
 
     setChatSharedProperties: function(newProperties){
@@ -141,13 +154,13 @@ var Root = React.createClass({
 
 
                                     <div role="tabpanel" className="tab-pane" id="tab-visualisations">
-                                        <div className="chat-vis-container chat-visualisations" id="bacon">
-                                            <h4>Number of messages per participant:</h4>
+                                        <div className="row">
+                                            <div className="col-xs-12" id="chat-graph">
+
+                                            </div>
                                         </div>
                                     </div>
 
-
-                                    <div role="tabpanel" className="tab-pane" id="tab-users">Users content</div>
                                 </div>
 
                             </div>

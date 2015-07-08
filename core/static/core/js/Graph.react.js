@@ -38,6 +38,7 @@ var Graph = React.createClass({
         this.fbRef =
             new Firebase(`${fbBaseUrl}project/${this.state.projectId}`);
         this.chatRef = this.fbRef.child('chats/');
+        //chats/${this.state.chatId}
         this.bindAsArray(this.chatRef, 'chats');
     },
 
@@ -66,6 +67,9 @@ var Graph = React.createClass({
             var numberOfChatsPerDay = [0,0,0,0,0,0,0];
             var messages = chat.messages;
             var messagesFormatted = Object.keys(messages).map(function(k) { return messages[k] });
+            //participants = this.state.participants
+            //arraydevalores = Object.keys(participants).map(function(k) { return participants[k] });
+            //arraydelabels = object.keys(participants)
             messagesFormatted.forEach(function(message, index){
                 var messageDay = moment(message.dt).format('YYYY-MM-DD');
                 var messageDay2 = moment(messageDay);
