@@ -109,7 +109,10 @@ var Graph = React.createClass({
                 };
                 x.datasets.push(datapush);
             }
-            return <LineChart data={x} width="800" height="250"/>
+            return <div>
+                    <h3>Number of messages per day per chat</h3>
+                        <LineChart data={x} width="800" height="250"/>
+                    </div>
         }else{
             return false
         }

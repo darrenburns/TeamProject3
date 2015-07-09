@@ -21,4 +21,5 @@ require('./Root.react');
 
 require('./Graph.react');
 require('./ChatGraph.react');
+require('./ProjectGraph.react');
 require('./utils');
