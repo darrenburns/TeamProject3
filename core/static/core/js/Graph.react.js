@@ -44,7 +44,7 @@ var Graph = React.createClass({
 
     getDays : function () {
         var days = [];
-        for(var i = -3; i <= 3 ; i++){
+        for(var i = -6; i <= 0 ; i++){
             days.push(moment().add(i,'day').format('YYYY-MM-DD'));
         }
         return days;

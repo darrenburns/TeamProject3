@@ -61,7 +61,7 @@ var Accordion = React.createClass({
                             </a>
                         </h4>
                     </div>
-                    <div id="collapse-closed" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-closed">
+                    <div id="collapse-closed" className="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-closed">
                         <div className="list-group" id="closed-tickets-list">
                             <ClosedChat activeChatId={this.props.chatId} conversationList={closedTicketList}/>
                         </div>
