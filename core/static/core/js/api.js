@@ -3,6 +3,14 @@ var GLOBALS = require('./globals'),
 
 var api = {
 
+    getAllUsers: function(sendBackResult) {
+        $.getJSON(`${GLOBALS.API_BASE_URL}user/`)
+            .success(function (users) {
+                var userObjects = users.objects;
+                sendBackResult(userObjects);
+            });
+    },
+
     getAllTickets: function(projectId, sendBackResult){
 
         $.getJSON(`${GLOBALS.API_BASE_URL}chat/`, { project__id: projectId })
@@ -85,6 +93,19 @@ var api = {
     setChatTagList: function(ticketId, chatTagList){
         var passData = {
             "tag": chatTagList
+        };
+        $.ajax({
+            url: `${GLOBALS.API_BASE_URL}ticket/${ticketId}/`,
+            type: "PATCH",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(passData)
+        });
+    },
+
+    setAssignee: function(ticketId, assignee){
+        var passData = {
+            "user": assignee
         };
         $.ajax({
             url: `${GLOBALS.API_BASE_URL}ticket/${ticketId}/`,

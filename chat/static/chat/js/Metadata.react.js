@@ -23,7 +23,9 @@ var Metadata = React.createClass({
             dateCreated: '',
             dateClosed: '',
             ticketId: '',
-            notes: ''
+            notes: '',
+            userList: [],
+            assignee: ''
         }
     },
 
@@ -31,6 +33,7 @@ var Metadata = React.createClass({
         api.getChatById(this.props.chatId, this.setChat);
         api.getPriority(this.setPriorityList);
         api.getAllTags(this.setAllTags);
+        api.getAllUsers(this.setAllUsers);
     },
 
     setChat: function(chat){
@@ -42,7 +45,14 @@ var Metadata = React.createClass({
             dateCreated: chat.created,
             dateClosed: chat.closed,
             notes: chat.ticket.notes,
-            dueDate: chat.ticket.due_date
+            dueDate: chat.ticket.due_date,
+            assignee: chat.ticket.user
+        });
+    },
+
+    setAllUsers: function(users){
+        this.setState({
+           userList: users
         });
     },
 
@@ -94,7 +104,12 @@ var Metadata = React.createClass({
         api.setNotes(this.state.ticketId, notes);
     },
 
-
+    setAssignee: function(assignee){
+        this.setState({
+           assignee: assignee
+        });
+        api.setAssignee(this.state.ticketId, assignee.resource_uri);
+    },
 
     setDueDate: function(chat_due_date){
         this.setState({
@@ -112,16 +127,16 @@ var Metadata = React.createClass({
 
     render: function() {
         return (
-                <div className="col-xs-12 col-sm-9">
-                    <DateCreated date={this.state.dateCreated}/>
-                    <DateClosed date={this.state.dateClosed} setClosedDate={this.setClosedDate}/>
-                    <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
-                    <DueDate dueDate={this.state.dueDate} setDueDate={this.setDueDate} />
-                    <Assignee/>
-                    <Cost cost={this.state.cost} setCost={this.setCost}/>
-                    <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
-                    <Notes notes={this.state.notes} setNotes={this.setNotes}/>
-                </div>
+            <div className="col-xs-12 col-sm-9">
+                <DateCreated date={this.state.dateCreated}/>
+                <DateClosed date={this.state.dateClosed} setClosedDate={this.setClosedDate}/>
+                <Priority priorityList={this.state.priorityList} priority={this.state.priority} setPriority={this.setPriority} chatId={this.props.chatId}/>
+                <DueDate dueDate={this.state.dueDate} setDueDate={this.setDueDate} />
+                <Assignee assignee={this.state.assignee} setAssignee={this.setAssignee} users={this.state.userList} />
+                <Cost cost={this.state.cost} setCost={this.setCost}/>
+                <Tags allTags={this.state.allTags} chatTagList={this.state.chatTagList} setChatTagList={this.setChatTagList} chatId={this.props.chatId}/>
+                <Notes notes={this.state.notes} setNotes={this.setNotes}/>
+            </div>
         )
     }
 });

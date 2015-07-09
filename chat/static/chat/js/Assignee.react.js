@@ -5,43 +5,47 @@ var React = require('react');
 var $ = require('jquery');
 require('bootstrap-select');
 
-
-//TODO: complete assignee
 var Assignee = React.createClass({
 
-    //componentWillReceiveProps: function(next){
-    //},
-    //
-    //componentDidMount: function(){
-    //
-    //    var setPriorityFunction = this.props.setPriority;
-    //
-    //    $( document ).ready(function() { //After document has been parsed
-    //
-    //        var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
-    //
-    //        setTimeout(function(){ //Update element after the priorities are retrieved
-    //            priorityListElement.selectpicker('refresh');
-    //        }, 1000);
-    //
-    //        priorityListElement.on('change', function(){ //Update parent's state when a new priority is selected
-    //            var selectedPriority = priorityListElement.find('option:selected').data('item');
-    //            setPriorityFunction(selectedPriority);
-    //        });
-    //
-    //    });
-    //},
+    componentDidMount: function(){
 
+        var setAssigneeFunction = this.props.setAssignee;
+
+        $( document ).ready(function() { //After document has been parsed
+
+            var userListElement = $('#metadata-assignee'); //Get the userListElement
+
+            userListElement.on('change', function(){ //Update parent's state when a new user is selected
+                var selectedUser = userListElement.find('option:selected').data('item');
+                setAssigneeFunction(selectedUser);
+            });
+
+        });
+    },
+
+    componentDidUpdate: function(prevProps, prevState){
+        $( document ).ready(function() { //After document has been parsed
+            var userListElement = $('#metadata-assignee'); //Get the userListElement
+            userListElement.selectpicker('refresh'); //Refresh after new properties arrived
+        });
+    },
 
     render: function() {
+
+        var users = this.props.users;
+        var assignee = this.props.assignee;
 
         return (
             <div className="col-xs-6">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Assignee</strong></div>
                     <div className="panel-body">
-                        <select id="metadata-priority" className="selectpicker" data-width="90%">
-                            <option></option>
+                        <select id="metadata-assignee" value={assignee.id} className="selectpicker" data-width="90%">
+                            {
+                                users.map(function(userObj){
+                                    return (<option data-item={JSON.stringify(userObj)} value={userObj.id} key={userObj.id}>{userObj.username}</option>)
+                                })
+                            }
                         </select>
                     </div>
                 </div>
