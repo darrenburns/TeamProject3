@@ -21,13 +21,17 @@ var Sidebar = React.createClass({
     sortByTitleAsc: function (a, b) {
         var keyA = a.title.toLowerCase(),
             keyB = b.title.toLowerCase();
-        return keyB < keyA;
+        if (keyB < keyA) return 1;
+        if (keyB > keyA) return -1;
+        return 0;
     },
 
     sortByTitleDesc: function (a, b) {
         var keyA = a.title.toLowerCase(),
             keyB = b.title.toLowerCase();
-        return keyB > keyA;
+        if (keyB < keyA) return -1;
+        if (keyB > keyA) return 1;
+        return 0;
     },
 
     //By default null dates stay at the end
@@ -36,22 +40,22 @@ var Sidebar = React.createClass({
         var x = Date.parse(a.created);
         var y = Date.parse(b.created);
         if (x == y) { return 0; }
-        if (isNaN(y) || x < y) { return -1; }
-        if (isNaN(x) || x > y) { return 1; }
+        if (x < y) { return -1; }
+        if (x > y) { return 1; }
     },
 
     sortByDateCreatedDesc: function (a, b) {
         var x = Date.parse(a.created);
         var y = Date.parse(b.created);
         if (x == y) { return 0; }
-        if (isNaN(x) || x < y) { return 1; }
-        if (isNaN(y) || x > y) { return -1; }
+        if (x < y) { return 1; }
+        if (x > y) { return -1; }
     },
 
     sortByDueDateAsc: function (a, b) {
         var x = Date.parse(a.ticket.due_date);
         var y = Date.parse(b.ticket.due_date);
-        if (x == y) { return 0; }
+        if (x == y || (isNaN(x) && isNaN(y))) { return 0; }
         if (isNaN(y) || x < y) { return -1; }
         if (isNaN(x) || x > y) { return 1; }
     },
@@ -59,7 +63,7 @@ var Sidebar = React.createClass({
     sortByDueDateDesc: function (a, b) {
         var x = Date.parse(a.ticket.due_date);
         var y = Date.parse(b.ticket.due_date);
-        if (x == y) { return 0; }
+        if (x == y || (isNaN(x) && isNaN(y))) { return 0; }
         if (isNaN(x) || x < y) { return 1; }
         if (isNaN(y) || x > y) { return -1; }
     },
@@ -68,28 +72,28 @@ var Sidebar = React.createClass({
 
     sortByPriorityAsc: function (a, b) {
 
-        var defaultPriorityNumber = 5;
+        //var defaultPriorityNumber = 5;
 
-        var keyA = a.ticket.priority,
-            keyB = b.ticket.priority;
+        var keyA = a.ticket.priority.id,
+            keyB = b.ticket.priority.id;
 
-        if(keyA) { keyA = keyA.id } else { keyA = defaultPriorityNumber }
-        if(keyB) { keyB = keyB.id } else { keyB = defaultPriorityNumber }
+        //if(keyA) { keyA = keyA.id } else { keyA = defaultPriorityNumber }
+        //if(keyB) { keyB = keyB.id } else { keyB = defaultPriorityNumber }
 
-        return keyB > keyA;
+        return keyB - keyA;
     },
 
     sortByPriorityDesc: function (a, b) {
 
-        var defaultPriorityNumber = 5;
+        //var defaultPriorityNumber = 5;
 
-        var keyA = a.ticket.priority,
-            keyB = b.ticket.priority;
+        var keyA = a.ticket.priority.id,
+            keyB = b.ticket.priority.id;
 
-        if(keyA) { keyA = keyA.id } else { keyA = defaultPriorityNumber }
-        if(keyB) { keyB = keyB.id } else { keyB = defaultPriorityNumber }
+        //if(keyA) { keyA = keyA.id } else { keyA = defaultPriorityNumber }
+        //if(keyB) { keyB = keyB.id } else { keyB = defaultPriorityNumber }
 
-        return keyB < keyA;
+        return keyA - keyB;
     },
 
 
