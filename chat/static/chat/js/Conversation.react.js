@@ -22,6 +22,7 @@ var Conversation = React.createClass({
     messagesRef: '',
     participantsRef: '',
     statisticsRef: '',
+    notificationsRef: '',
 
     /* These are 'private' variables that can only be modified from the component itself. */
     getInitialState: function() {
@@ -33,7 +34,8 @@ var Conversation = React.createClass({
             savedMessages: [],
             participants: [],
             statistics: {},
-            selectedUsers: Immutable.Set()
+            selectedUsers: Immutable.Set(),
+            notifications: []
         }
     },
 
@@ -49,12 +51,15 @@ var Conversation = React.createClass({
         var fbBaseUrl = GLOBALS.FIREBASE_BASE_URL;
         this.fbRef =
             new Firebase(`${fbBaseUrl}project/${this.props.projectId}/chats/${this.props.chatId}`);
+        this.notificationsRef = new Firebase(`${fbBaseUrl}notifications`);
         this.messagesRef = this.fbRef.child('messages');
         this.participantsRef = this.fbRef.child('participants');
         this.statisticsRef = this.fbRef.child('statistics');
+
         this.bindAsArray(this.messagesRef, 'messages');
         this.bindAsObject(this.participantsRef, 'participants');
         this.bindAsObject(this.statisticsRef, 'statistics');
+        this.bindAsObject(this.notificationsRef, 'notifications');
     },
 
     componentDidUpdate: function(prevProp, prevState){
@@ -162,8 +167,43 @@ var Conversation = React.createClass({
         pushJSON = JSON.parse(pushJSON);
 
         this.messagesRef.push(messageObj);
+        this.specialMarkupParser(messageObj);
         this.participantsRef.update(pushJSON);
         this.updateStatistics();
+    },
+
+    postNotification: function(user, title, message, date, author, chatId){
+
+        var pushJSON = {
+            "title": title,
+            "message": message,
+            "date": date,
+            "author": author,
+            "chatId": chatId
+        };
+
+        this.notificationsRef.child(user).push(pushJSON);
+    },
+
+    notifyUserMentioned: function(userMentioned, messageObj){
+
+        var chatId = this.props.chatId,
+            title = "You were mentioned in chat #" + chatId,
+            message = messageObj.desc,
+            date = messageObj.dt,
+            author = messageObj.user;
+
+        this.postNotification(userMentioned, title, message, date, author, chatId);
+    },
+
+
+    specialMarkupParser(messageObj){
+        var description = messageObj.desc;
+        var arrayMentioned = description.match(/@[a-zA-Z0-9]+/);
+        var userMentioned = arrayMentioned[0].substring(1);
+        if(userMentioned != null){
+            this.notifyUserMentioned(userMentioned, messageObj);
+        }
     },
 
     updateStarAtFirebase: function(snapshot){
