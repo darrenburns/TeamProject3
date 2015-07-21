@@ -52,11 +52,17 @@
                     <li><a href="{% url 'user_register' %}">Register</a></li>
                 {% endif %}
             </ul>
-{#            <form class="navbar-form navbar-right" role="search">#}
-{#                <div class="col-md-12">#}
-{#                    <input id="search-box" type="text" class="form-control" placeholder="Type to filter tickets">#}
-{#                </div><!-- /.col-md-12 -->#}
-{#            </form>#}
+
+            {% if user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-right" id="notification-centre-mount">
+                </ul>
+            {% endif %}
+
+            {#            <form class="navbar-form navbar-right" role="search">#}
+            {#                <div class="col-md-12">#}
+            {#                    <input id="search-box" type="text" class="form-control" placeholder="Type to filter tickets">#}
+            {#                </div><!-- /.col-md-12 -->#}
+            {#            </form>#}
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
