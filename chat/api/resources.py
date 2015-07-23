@@ -55,7 +55,8 @@ class ChatResource(ModelResource):
     class Meta:
         resource_name = 'chat'
         queryset = Chat.objects.all()
-        allowed_methods = ['get']
+        allowed_methods = ['get', 'put', 'post', 'patch']
+        authorization = Authorization()
         filtering = {
             'project': ALL_WITH_RELATIONS,
             'ticket': ALL_WITH_RELATIONS,

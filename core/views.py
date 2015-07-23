@@ -5,11 +5,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.contrib.auth.models import User, Group
 from django.template import RequestContext
 from core.forms import ProjectCreationForm, ChatCreationForm, CustomUserCreationForm
-from chat.models import Ticket, Chat
+from chat.models import Ticket, Chat, Priority
 from core.models import UserProfile, Project
 
 
@@ -166,15 +166,19 @@ def new_chat(request, project_id):
         form.data = form.data.copy()
         form.data['project'] = project_id
         form.data['created'] = datetime.datetime.now()  # TODO: change to django timezone
+        priority = Priority.objects.get(name="Normal")
+        saved_chat = ''
 
         if form.is_valid():
             chat = form.save()
             ticket = Ticket(created=datetime.datetime.now())
             ticket.assignee = request.user
+            ticket.priority = priority
             ticket.save()
             chat.ticket = ticket
             chat.save()
-            return render(request, 'dashboard.html', {})  # TODO: the url is wrong!
+            url = "/chats/%d" % chat.id
+            return redirect(url)
         else:
             return render(request, 'new_chat.html', {'form': form, 'project_id': project_id})
 

@@ -23,8 +23,8 @@ def is_production():
 SECRET_KEY = 'c20m%-55-pu+m+_@3)4=l#d^t611n%9o2xsfo4iuz=ru2(ht-r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
+DEBUG = not is_production()
+TEMPLATE_DEBUG = False
 
 TEMPLATE_DIRS = (
     'templates',

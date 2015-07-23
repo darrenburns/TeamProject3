@@ -9,37 +9,41 @@
     </script>
 
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h2 class="page-header" id="chat-title">{{ project.name }}</h2>
-            </div>
-            <div class="col-sm-6">
-                <div class="btn-group pull-right" role="group">
-                    <button type="button" class="btn btn-default">
-                        <i class="fa fa-times"></i> Delete project
-                    </button>
-                    <br/>
-                </div>
-            </div>
-        </div>
+{#        <div class="row">#}
+{#            <div class="col-sm-12">#}
+{#                <h2 class="page-header" id="chat-title">{{ project.name }}</h2>#}
+{#            </div>#}
+{#            <div class="col-sm-6">#}
+{#                <div class="btn-group pull-right" role="group">#}
+{#                    <button type="button" class="btn btn-default">#}
+{#                        <i class="fa fa-times"></i> Delete project#}
+{#                    </button>#}
+{#                    <br/>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
 
-        <div class="row">
-            <div class="col-md-6" id="d3-graph-one">
-                <p>Number of messages in each conversation, ordered by time created:</p>
-            </div>
-            <div class="col-md-6" id="d3-graph-two">
-                <p>Number of messages per user:</p>
-            </div>
-        </div>
+{#        <div class="row">#}
+{#            <div class="col-md-6" id="d3-graph-one">#}
+{#                <p>Number of messages in each conversation, ordered by time created:</p>#}
+{#            </div>#}
+{#            <div class="col-md-6" id="d3-graph-two">#}
+{#                <p>Number of messages per user:</p>#}
+{#            </div>#}
+{#        </div>#}
 
         <div class="row">
             <div class="col-sm-12" align="left">
+                <div id="graph-chartjs"></div>
+                <div id="graph-chartjs1"></div>
+
                 <ul class="list-group">
                     <li class="list-group-item"><strong>Project Manager: </strong>{{ project.manager }}</li>
                     <li class="list-group-item"><strong>Project Description: </strong>{{ project.desc }}</li>
                     <li class="list-group-item"><strong>Project Homepage: </strong>{{ project.homepage }}</li>
                     <li class="list-group-item"><strong>Project Repository:</strong> {{ project.repo }}</li>
                 </ul>
+
 
                 <a href="{{ next }}">
                     <button class="btn btn-default">Back</button>
