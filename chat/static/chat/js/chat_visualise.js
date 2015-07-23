@@ -1,5 +1,3 @@
-//'use strict';
-//
 //var $ = require('jquery'),
 //    Firebase = require('firebase'),
 //    d3 = require('d3'),
