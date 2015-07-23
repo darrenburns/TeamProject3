@@ -179,7 +179,8 @@ var Conversation = React.createClass({
             "message": message,
             "date": date,
             "author": author,
-            "chatId": chatId
+            "chatId": chatId,
+            "read": false
         };
 
         this.notificationsRef.child(user).push(pushJSON);
