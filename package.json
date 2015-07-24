@@ -68,8 +68,7 @@
     }
   },
   "scripts": {
-    "test": "test",
-    "postinstall": "browserify static/app.js -o static/bundle.js -t -v"
+    "test": "test"
   },
   "repository": {
     "type": "git",
