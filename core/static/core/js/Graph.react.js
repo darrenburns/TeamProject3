@@ -244,6 +244,7 @@ var Graph = React.createClass({
         //    pointHighlightStroke: "rgba(126,87,96,1)",
         //    data: []
         //}
+
     }
 });
 
