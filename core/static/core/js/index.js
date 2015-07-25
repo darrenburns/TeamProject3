@@ -23,3 +23,5 @@ require('./Graph.react');
 require('./ChatGraph.react');
 require('./ProjectGraph.react');
 require('./utils');
+
+require('./NotificationCentre.react');

@@ -10,19 +10,22 @@ var MessageInput = React.createClass({
     },
 
     /* Custom */
-    handleChange(event) {
-        var newActiveMessage = event.target.value;
-        if (event.keyCode == 13 && (newActiveMessage === "" || newActiveMessage === "\n")){
-            React.findDOMNode(this.refs['inputMessage']).value = '';
-            newActiveMessage = "";
-        }
-        else if(event.keyCode == 13 && newActiveMessage !== "\n" && !event.shiftKey){
-            React.findDOMNode(this.refs['inputMessage']).value = '';
-            newActiveMessage = newActiveMessage.substring(0, newActiveMessage.length - 1); //Remove new paragraph char
-            this.props.sendMessage(newActiveMessage);
-            newActiveMessage = ""
-        }
+    handleKeyUp(event) {
+        var newActiveMessage = event.target.value.trim();
         this.setState({contents: newActiveMessage});
+    },
+
+    handleKeyDown: function(event){
+        var auxMessage = event.target.value;
+        var auxMessage2 = auxMessage;
+        auxMessage = auxMessage.replace(/\r\n|\n|\r| /g, ""); //Avoid sending empty messages
+        if (event.keyCode == 13 && !event.shiftKey && auxMessage == ""){ //When ENTER is hit with no message: Block
+            event.preventDefault();
+        } else if(event.keyCode == 13 && !event.shiftKey && auxMessage !== ""){
+            event.preventDefault();
+            React.findDOMNode(this.refs['inputMessage']).value = '';
+            this.props.sendMessage(auxMessage2);
+        }
     },
 
     render: function() {
@@ -39,7 +42,8 @@ var MessageInput = React.createClass({
                                           defaultValue={this.state.contents}
                                           id="input-message"
                                           ref="inputMessage"
-                                          onKeyUp={this.handleChange}>
+                                          onKeyDown={this.handleKeyDown}
+                                          onKeyUp={this.handleKeyUp}>
                                 </textarea>
                             </div>
                         </div>
