@@ -63,8 +63,7 @@ var NotificationCentre = React.createClass({
                 <a href="#" className="dropdown-toggle"
                    data-toggle="dropdown" role="button"
                    aria-haspopup="true" aria-expanded="false">
-                    Notifications
-                    <span className="caret"></span>
+                    <span class="badge">{ listOfNotifications.length }</span> Notifications <span className="caret"></span>
                 </a>
 
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuDivider">
