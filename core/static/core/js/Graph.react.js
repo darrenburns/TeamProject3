@@ -95,7 +95,7 @@ var Graph = React.createClass({
             var pointColor = "#fff";
             var x = this.getInitialConfig();
 
-            for(var i = 0; i < 2; i++){
+            for(var i = 0; i < 5; i++){
                 var datapush = {};
                 datapush = {
                     "label" : i+1,
