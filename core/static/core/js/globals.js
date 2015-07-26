@@ -9,6 +9,6 @@ module.exports = {
         BASE_PADDING_BOTTOM: 120
     },
 
-    FIREBASE_BASE_URL: 'https://torrid-torch-673.firebaseio.com/',
+    FIREBASE_BASE_URL: 'https://torid-torch-5171.firebaseio.com/',
     API_BASE_URL: '/api/v1/'
 };
