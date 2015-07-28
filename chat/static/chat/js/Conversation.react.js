@@ -9,7 +9,8 @@ var React = require('react'),
     ConversationFilter = require('./ConversationFilter.react'),
     ConversationParticipantsList = require('./ConversationParticipantsList.react'),
     GLOBALS = require('../../../../core/static/core/js/globals'),
-    moment = require('moment');
+    moment = require('moment'),
+    CustomMarkupParser = require('./CustomMarkupParser');
 
 
 var Conversation = React.createClass({
@@ -167,44 +168,9 @@ var Conversation = React.createClass({
         pushJSON = JSON.parse(pushJSON);
 
         this.messagesRef.push(messageObj);
-        this.specialMarkupParser(messageObj);
+        CustomMarkupParser.parse(messageObj, this.props.chatId);
         this.participantsRef.update(pushJSON);
         this.updateStatistics();
-    },
-
-    postNotification: function(user, title, message, date, author, chatId){
-
-        var pushJSON = {
-            "title": title,
-            "message": message,
-            "date": date,
-            "author": author,
-            "chatId": chatId,
-            "read": false
-        };
-
-        this.notificationsRef.child(user).push(pushJSON);
-    },
-
-    notifyUserMentioned: function(userMentioned, messageObj){
-
-        var chatId = this.props.chatId,
-            title = "You were mentioned in chat #" + chatId,
-            message = messageObj.desc,
-            date = messageObj.dt,
-            author = messageObj.user;
-
-        this.postNotification(userMentioned, title, message, date, author, chatId);
-    },
-
-
-    specialMarkupParser(messageObj){
-        var description = messageObj.desc;
-        var arrayMentioned = description.match(/@[a-zA-Z0-9]+/);
-        var userMentioned = arrayMentioned[0].substring(1);
-        if(userMentioned != null){
-            this.notifyUserMentioned(userMentioned, messageObj);
-        }
     },
 
     updateStarAtFirebase: function(snapshot){
