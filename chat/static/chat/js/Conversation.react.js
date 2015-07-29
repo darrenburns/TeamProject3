@@ -201,9 +201,11 @@ var Conversation = React.createClass({
     specialMarkupParser(messageObj){
         var description = messageObj.desc;
         var arrayMentioned = description.match(/@[a-zA-Z0-9]+/);
-        var userMentioned = arrayMentioned[0].substring(1);
-        if(userMentioned != null){
-            this.notifyUserMentioned(userMentioned, messageObj);
+        if(arrayMentioned != null){
+            var userMentioned = arrayMentioned[0].substring(1);
+            if(userMentioned != null){
+                this.notifyUserMentioned(userMentioned, messageObj);
+            }
         }
     },
 
