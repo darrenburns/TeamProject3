@@ -19,21 +19,39 @@ var NotificationDispatcher = {
         this.notificationsRef.child(user).push(pushJSON);
     },
 
-    postNotifications: function(users, title, chatId, author, newCost){
+    postNotifications: function(users, title, chatId, author, newCost, newPriority){
         var myFunction = this.notificationsRef;
         var date = Date.now();
-        var message = "The new cost of chat #" + chatId + " is: " + newCost;
+        if(newCost !== null){
+            var messageCost = "The new cost of chat #" + chatId + " is: " + newCost;
+        }
+        if(newPriority !== null){
+            var messagePriority = "The new priority of chat #" + chatId + " is: " + newPriority;
+        }
         users.forEach(function(user){
             var username = user.username;
             if(username !== 'undefined'){
-                var pushJSON = {
+                if(newPriority !== null){
+                    var pushJSON = {
                     "title": title,
-                    "message": message,
+                    "message": messagePriority,
                     "date": date,
                     "author": author,
                     "chatId": chatId,
                     "read": false
                 };
+                }
+                if(newCost !== null){
+                    var pushJSON = {
+                    "title": title,
+                    "message": messageCost,
+                    "date": date,
+                    "author": author,
+                    "chatId": chatId,
+                    "read": false
+                };
+                }
+
                 myFunction.child(username).push(pushJSON);
             }
 
@@ -50,9 +68,15 @@ var NotificationDispatcher = {
         this.postNotification(userMentioned, title, message, date, author, chatId);
     },
 
-    notifyAllUsers: function(users, newCost, chatId, author){
-        var title = "Cost has changed";
-        this.postNotifications(users, title, chatId, author, newCost);
+    notifyAllUsers: function(users, newCost, chatId, author, newPriority){
+        var titleCost = "Cost has changed";
+        var titlePriority = "Priority has changed";
+        if(newCost !== null){
+            this.postNotifications(users, titleCost, chatId, author, newCost, null);
+        }
+        if(newPriority !== null){
+            this.postNotifications(users, titlePriority, chatId, author, null, newPriority);
+        }
     }
 };
 module.exports=NotificationDispatcher;

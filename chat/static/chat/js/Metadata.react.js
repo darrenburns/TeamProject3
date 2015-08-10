@@ -66,6 +66,8 @@ var Metadata = React.createClass({
         chatSharedProperties.priority = chat_priority;
         chatSharedProperties.id = this.props.chatId;
         this.props.setChatSharedProperties(chatSharedProperties);
+        var priority = chat_priority.name;
+        this.notifyUsers(null, priority);
     },
 
     setPriorityList: function(priority_list){
@@ -96,16 +98,17 @@ var Metadata = React.createClass({
             cost: chat_cost
         });
         api.setCost(this.state.ticketId, chat_cost);
-        this.notifyUsers(chat_cost);
+        this.notifyUsers(chat_cost, null);
     },
 
-    notifyUsers: function(chat_cost){
+    notifyUsers: function(chat_cost, priority){
         var allUsers = this.state.userList;
         var newCost = chat_cost;
+        var newPriority = priority;
         var chatId = this.props.chatId;
         var author = this.props.currentUser;
         if(chatId !== null){
-            NotificationDispatcher.notifyAllUsers(allUsers, newCost , chatId, author);
+            NotificationDispatcher.notifyAllUsers(allUsers, newCost , chatId, author, newPriority);
         }
     },
 
