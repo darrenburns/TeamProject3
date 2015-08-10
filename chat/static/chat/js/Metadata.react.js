@@ -103,8 +103,9 @@ var Metadata = React.createClass({
         var allUsers = this.state.userList;
         var newCost = chat_cost;
         var chatId = this.props.chatId;
+        var author = this.props.currentUser;
         if(chatId !== null){
-            NotificationDispatcher.notifyAllUsers(allUsers, newCost , chatId);
+            NotificationDispatcher.notifyAllUsers(allUsers, newCost , chatId, author);
         }
     },
 

@@ -19,21 +19,21 @@ var NotificationDispatcher = {
         this.notificationsRef.child(user).push(pushJSON);
     },
 
-    postNotifications: function(users, title, chatId){
-        console.log(users);
+    postNotifications: function(users, title, chatId, author, newCost){
         var myFunction = this.notificationsRef;
+        var date = Date.now();
+        var message = "The new cost of chat #" + chatId + " is: " + newCost;
         users.forEach(function(user){
             var username = user.username;
             if(username !== 'undefined'){
                 var pushJSON = {
                     "title": title,
-                    "message": "test",
-                    "date": 1437933090906,
-                    "author": "System",
+                    "message": message,
+                    "date": date,
+                    "author": author,
                     "chatId": chatId,
                     "read": false
                 };
-                console.log(pushJSON);
                 myFunction.child(username).push(pushJSON);
             }
 
@@ -50,9 +50,9 @@ var NotificationDispatcher = {
         this.postNotification(userMentioned, title, message, date, author, chatId);
     },
 
-    notifyAllUsers: function(users, newCost, chatId){
-        var title = "The new cost of chat #" + chatId + " is: " + newCost;
-        this.postNotifications(users, title, chatId);
+    notifyAllUsers: function(users, newCost, chatId, author){
+        var title = "Cost has changed";
+        this.postNotifications(users, title, chatId, author, newCost);
     }
 };
 module.exports=NotificationDispatcher;

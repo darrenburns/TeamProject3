@@ -146,7 +146,7 @@ var Root = React.createClass({
 
                                         <div id="metadata-thread">
                                             <div className="row">
-                                                <Metadata setChatSharedProperties={this.setChatSharedProperties} chatSharedProperties={this.state.chatSharedProperties} chatId={this.props.currentChatId} projectId={this.props.currentProjectId}/>
+                                                <Metadata currentUser={this.props.currentUser} setChatSharedProperties={this.setChatSharedProperties} chatSharedProperties={this.state.chatSharedProperties} chatId={this.props.currentChatId} projectId={this.props.currentProjectId}/>
                                                 <SavedMessages savedMessages={this.state.savedMessages} chatId={this.props.currentChatId} projectId={this.props.currentProjectId} />
                                             </div>
                                         </div>
