@@ -7,6 +7,7 @@ var Notes = require('./Notes.react');
 var Tags = require('./Tags.react');
 var Priority = require('./Priority.react');
 var Assignee = require('./Assignee.react');
+var NotificationDispatcher = require('./NotificationDispatcher');
 var api = require('../../../../core/static/core/js/api');
 
 
@@ -52,7 +53,7 @@ var Metadata = React.createClass({
 
     setAllUsers: function(users){
         this.setState({
-           userList: users
+            userList: users
         });
     },
 
@@ -95,6 +96,16 @@ var Metadata = React.createClass({
             cost: chat_cost
         });
         api.setCost(this.state.ticketId, chat_cost);
+        this.notifyUsers(chat_cost);
+    },
+
+    notifyUsers: function(chat_cost){
+        var allUsers = this.state.userList;
+        var newCost = chat_cost;
+        var chatId = this.props.chatId;
+        if(chatId !== null){
+            NotificationDispatcher.notifyAllUsers(allUsers, newCost , chatId);
+        }
     },
 
     setNotes: function(notes){
@@ -106,7 +117,7 @@ var Metadata = React.createClass({
 
     setAssignee: function(assignee){
         this.setState({
-           assignee: assignee
+            assignee: assignee
         });
         api.setAssignee(this.state.ticketId, assignee.resource_uri);
     },
