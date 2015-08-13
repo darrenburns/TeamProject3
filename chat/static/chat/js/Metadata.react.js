@@ -49,6 +49,12 @@ var Metadata = React.createClass({
             dueDate: chat.ticket.due_date,
             assignee: chat.ticket.user
         });
+
+        var chatSharedProperties= this.props.chatSharedProperties;
+        chatSharedProperties.chatTagList = chat.ticket.tag;
+        chatSharedProperties.ticketId = chat.ticket.id;
+        this.props.setChatSharedProperties(chatSharedProperties);
+
     },
 
     setAllUsers: function(users){
@@ -80,6 +86,10 @@ var Metadata = React.createClass({
         this.setState({
             allTags: tag_list
         });
+
+        var chatSharedProperties= this.props.chatSharedProperties;
+        chatSharedProperties.allTags = tag_list;
+        this.props.setChatSharedProperties(chatSharedProperties);
     },
 
     setChatTagList: function(chat_tag_list){

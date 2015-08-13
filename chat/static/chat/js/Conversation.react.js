@@ -10,7 +10,8 @@ var React = require('react'),
     ConversationParticipantsList = require('./ConversationParticipantsList.react'),
     GLOBALS = require('../../../../core/static/core/js/globals'),
     moment = require('moment'),
-    CustomMarkupParser = require('./CustomMarkupParser');
+    CustomMarkupParser = require('./CustomMarkupParser'),
+    api = require('../../../../core/static/core/js/api');
 
 
 var Conversation = React.createClass({
@@ -171,6 +172,31 @@ var Conversation = React.createClass({
         CustomMarkupParser.parse(messageObj, this.props.chatId);
         this.participantsRef.update(pushJSON);
         this.updateStatistics();
+
+        //TODO: Transform all shared properties into real properties of Root and then pass those to the children
+        //Code below just for the demonstration, not use in production
+        var sharedProperties = this.props.chatSharedProperties;
+        var allTags = sharedProperties.allTags;
+        var chatTagList = sharedProperties.chatTagList;
+
+        var description = str;
+        var arrayTag = description.match(/%[a-zA-Z0-9]+/);
+        if(arrayTag != null){
+            var tagMentioned = arrayTag[0].substring(1);
+            if(tagMentioned != null && allTags != null){
+
+                for(var i = 0; i < allTags.length; i++){
+                    if(allTags[i].title.toLowerCase() == tagMentioned.toLowerCase()){
+                        sharedProperties.chatTagList.push(allTags[i]);
+                        api.setChatTagList(sharedProperties.ticketId, sharedProperties.chatTagList);
+                        this.props.setChatSharedProperties(sharedProperties);
+                        break;
+                    }
+                }
+
+            }
+        }
+
     },
 
     updateStarAtFirebase: function(snapshot){

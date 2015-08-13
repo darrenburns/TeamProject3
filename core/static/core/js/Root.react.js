@@ -133,6 +133,8 @@ var Root = React.createClass({
                                     <div role="tabpanel" className="tab-pane active" id="tab-chats">
                                         <div id="message-thread">
                                             <Conversation
+                                                chatSharedProperties={this.state.chatSharedProperties}
+                                                setChatSharedProperties={this.setChatSharedProperties}
                                                 chatId={this.props.currentChatId}
                                                 projectId={this.props.currentProjectId}
                                                 currentUser={this.props.currentUser}
