@@ -9,7 +9,9 @@ var React = require('react'),
     ConversationFilter = require('./ConversationFilter.react'),
     ConversationParticipantsList = require('./ConversationParticipantsList.react'),
     GLOBALS = require('../../../../core/static/core/js/globals'),
-    moment = require('moment');
+    moment = require('moment'),
+    CustomMarkupParser = require('./CustomMarkupParser'),
+    api = require('../../../../core/static/core/js/api');
 
 
 var Conversation = React.createClass({
@@ -167,46 +169,34 @@ var Conversation = React.createClass({
         pushJSON = JSON.parse(pushJSON);
 
         this.messagesRef.push(messageObj);
-        this.specialMarkupParser(messageObj);
+        CustomMarkupParser.parse(messageObj, this.props.chatId);
         this.participantsRef.update(pushJSON);
         this.updateStatistics();
-    },
 
-    postNotification: function(user, title, message, date, author, chatId){
+        //TODO: Transform all shared properties into real properties of Root and then pass those to the children
+        //Code below just for the demonstration, not use in production
+        var sharedProperties = this.props.chatSharedProperties;
+        var allTags = sharedProperties.allTags;
+        var chatTagList = sharedProperties.chatTagList;
 
-        var pushJSON = {
-            "title": title,
-            "message": message,
-            "date": date,
-            "author": author,
-            "chatId": chatId,
-            "read": false
-        };
+        var description = str;
+        var arrayTag = description.match(/%[a-zA-Z0-9]+/);
+        if(arrayTag != null){
+            var tagMentioned = arrayTag[0].substring(1);
+            if(tagMentioned != null && allTags != null){
 
-        this.notificationsRef.child(user).push(pushJSON);
-    },
+                for(var i = 0; i < allTags.length; i++){
+                    if(allTags[i].title.toLowerCase() == tagMentioned.toLowerCase()){
+                        sharedProperties.chatTagList.push(allTags[i]);
+                        api.setChatTagList(sharedProperties.ticketId, sharedProperties.chatTagList);
+                        this.props.setChatSharedProperties(sharedProperties);
+                        break;
+                    }
+                }
 
-    notifyUserMentioned: function(userMentioned, messageObj){
-
-        var chatId = this.props.chatId,
-            title = "You were mentioned in chat #" + chatId,
-            message = messageObj.desc,
-            date = messageObj.dt,
-            author = messageObj.user;
-
-        this.postNotification(userMentioned, title, message, date, author, chatId);
-    },
-
-
-    specialMarkupParser(messageObj){
-        var description = messageObj.desc;
-        var arrayMentioned = description.match(/@[a-zA-Z0-9]+/);
-        if(arrayMentioned != null){
-            var userMentioned = arrayMentioned[0].substring(1);
-            if(userMentioned != null){
-                this.notifyUserMentioned(userMentioned, messageObj);
             }
         }
+
     },
 
     updateStarAtFirebase: function(snapshot){

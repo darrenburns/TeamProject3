@@ -19,7 +19,7 @@ var Accordion = React.createClass({
             closedTicketList = [];
         var activeIndex = this.props.activeSortingOptionIndex;
         var activeSortingOption = this.props.sortingOptions[activeIndex];
-        var chatSharedProperties = this.props.chatSharedProperties
+        var chatSharedProperties = this.props.chatSharedProperties;
 
         conversationList.sort(activeSortingOption.sortFunction);
 

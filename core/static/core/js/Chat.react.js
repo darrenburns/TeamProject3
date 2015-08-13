@@ -21,6 +21,11 @@ var Chat = React.createClass({
                 {conversationList.map(function(result) {
                     var priority = result.ticket.priority;
                     var tag = result.ticket.tag;
+
+                    if(result.ticket.id == chatSharedProperties.ticketId){
+                        tag = chatSharedProperties.chatTagList;
+                    }
+
                     var classes = classNames({
                         'list-group-item': true,
                         'active': activeChatId == result.id

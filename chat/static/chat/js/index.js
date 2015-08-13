@@ -1,5 +1,7 @@
 require('./chat');
-require('./chat_visualise.js');
+require('./chat_visualise');
+require('./CustomMarkupParser');
+require('./NotificationDispatcher');
 
 // React components
 require('./Conversation.react');

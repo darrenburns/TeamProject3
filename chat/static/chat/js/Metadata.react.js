@@ -7,6 +7,7 @@ var Notes = require('./Notes.react');
 var Tags = require('./Tags.react');
 var Priority = require('./Priority.react');
 var Assignee = require('./Assignee.react');
+var NotificationDispatcher = require('./NotificationDispatcher');
 var api = require('../../../../core/static/core/js/api');
 
 
@@ -48,11 +49,17 @@ var Metadata = React.createClass({
             dueDate: chat.ticket.due_date,
             assignee: chat.ticket.user
         });
+
+        var chatSharedProperties= this.props.chatSharedProperties;
+        chatSharedProperties.chatTagList = chat.ticket.tag;
+        chatSharedProperties.ticketId = chat.ticket.id;
+        this.props.setChatSharedProperties(chatSharedProperties);
+
     },
 
     setAllUsers: function(users){
         this.setState({
-           userList: users
+            userList: users
         });
     },
 
@@ -65,6 +72,8 @@ var Metadata = React.createClass({
         chatSharedProperties.priority = chat_priority;
         chatSharedProperties.id = this.props.chatId;
         this.props.setChatSharedProperties(chatSharedProperties);
+        var priority = chat_priority.name;
+        this.notifyUsers(null, priority);
     },
 
     setPriorityList: function(priority_list){
@@ -77,6 +86,10 @@ var Metadata = React.createClass({
         this.setState({
             allTags: tag_list
         });
+
+        var chatSharedProperties= this.props.chatSharedProperties;
+        chatSharedProperties.allTags = tag_list;
+        this.props.setChatSharedProperties(chatSharedProperties);
     },
 
     setChatTagList: function(chat_tag_list){
@@ -95,6 +108,18 @@ var Metadata = React.createClass({
             cost: chat_cost
         });
         api.setCost(this.state.ticketId, chat_cost);
+        this.notifyUsers(chat_cost, null);
+    },
+
+    notifyUsers: function(chat_cost, priority){
+        var allUsers = this.state.userList;
+        var newCost = chat_cost;
+        var newPriority = priority;
+        var chatId = this.props.chatId;
+        var author = this.props.currentUser;
+        if(chatId !== null){
+            NotificationDispatcher.notifyAllUsers(allUsers, newCost , chatId, author, newPriority);
+        }
     },
 
     setNotes: function(notes){
@@ -106,7 +131,7 @@ var Metadata = React.createClass({
 
     setAssignee: function(assignee){
         this.setState({
-           assignee: assignee
+            assignee: assignee
         });
         api.setAssignee(this.state.ticketId, assignee.resource_uri);
     },
