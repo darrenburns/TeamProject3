@@ -1,0 +1,212 @@
+html, body {
+    margin: 3px;
+    padding: 3px;
+    max-height: 1200px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+#search-bar {
+    background-color: #32a2d6;
+}
+
+#search-bar-button {
+    background-color: #32a2d6;
+}
+
+#search-bar-button span {
+    color: #ffffff;
+}
+
+.navbar .form-control::-webkit-input-placeholder { color: #ffffff; }
+
+.remodal, .remodal * {
+    font-family: inherit;
+}
+
+.latest-messages {
+    padding: 5px;
+    overflow-y: auto;
+}
+
+#chat-title{
+    margin-top: 0;
+}
+
+
+/* information tab */
+.information-panel {
+    margin: 5px;
+}
+
+#input-message-container {
+    display: inline-block;
+    vertical-align: bottom;
+    min-width: 100%;
+    width: 100%;
+}
+
+#saved-messages span {
+    font-size: 0.9em;
+}
+
+#saved-messages li.saved-message-item {
+    padding: 5px 10px;
+}
+
+.message-text {
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+    color: #465563;
+}
+
+.messages {
+    overflow-y: scroll;
+    max-height: 500px;
+    overflow-x: hidden;
+}
+.message {
+    padding: 6px;
+    border-bottom: solid 1px #cfcfcf;
+}
+.date {
+    font-size: 11px;
+    color: #728a9f;
+}
+.user-card {
+    padding: 6px;
+    margin-bottom: 6px;
+    border: solid 1px #cfcfcf;
+    cursor: pointer;
+}
+.user-card-small {
+
+}
+.user-card:hover {
+    background-color: #f5f5f5;
+}
+.hover-for-pointer {
+    cursor: pointer;
+}
+
+#message-input {
+    margin-top: 8px;
+
+}
+
+.message-date {
+    font-size: 0.7em;
+    color: #f5f5f5;
+}
+
+.message-date-2 {
+    font-size: 0.75em;
+    color: #a2a2a2;
+    margin: 0px 0px 0px;
+}
+
+.message-to-note {
+    cursor: pointer;
+}
+
+.message-preview {
+    background-color: lightgoldenrodyellow;
+}
+
+.user-box {
+    margin: 22px 0 0 ;
+}
+
+#tab-information {
+    padding: 10px;
+}
+
+#project-title{
+    margin-top: 13px;
+}
+
+#project-title a{
+    color: #000;
+}
+
+#project-title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/*#input-message {*/
+    /*position: fixed;*/
+    /*bottom: 1%;*/
+    /*right: 9.5%;*/
+    /*max-width: 61%;*/
+/*}*/
+
+#spin-container {
+    padding-top: 15%;
+    color: #32a2d6;
+}
+
+#spin {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.tag-list-item {
+    background-color: #444444;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+/* Visualisations Tab */
+.xAxis path,
+.xAxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.chat-vis-container {
+    padding: 6px;
+}
+
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.invisible{
+    visibility: hidden;
+}
+
+.panel-body .btn-closed-chat {
+    margin-left: 5%;
+}

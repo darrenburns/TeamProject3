@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Communication oriented software project management tool",
   "main": "./static/app.js",
+  "engines": {
+	"node": "0.12.7",
+	"npm" : "2.11.3"
+  },
   "dependencies": {
     "bootstrap": "^3.3.4",
     "bootstrap-select": "^1.7.2",
@@ -30,6 +34,7 @@
     "tsify": "^0.11.2",
     "watchify": "^3.2.1"
   },
+	
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.min.js",
