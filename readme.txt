@@ -1,4 +1,4 @@
- A Social Network for Project Task Management
+A Social Network for Project Task Management
 ============
 
 Installation:
