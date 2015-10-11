@@ -33,7 +33,7 @@ var Priority = React.createClass({
     componentDidUpdate: function(prevProps, prevState){
         $( document ).ready(function() { //After document has been parsed
             var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
-           // priorityListElement.selectpicker('refresh'); //Refresh after new properties arrived
+            priorityListElement.selectpicker('refresh'); //Refresh after new properties arrived
         });
     },
 
