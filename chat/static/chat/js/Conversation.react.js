@@ -142,6 +142,9 @@ var Conversation = React.createClass({
 
     /* Custom */
     sendMessage: function(str) {
+        console.log("test");
+
+
         var now = Date.now();
         var currentUser = this.props.currentUser;
         var messageObj = {
@@ -178,6 +181,8 @@ var Conversation = React.createClass({
         var sharedProperties = this.props.chatSharedProperties;
         var allTags = sharedProperties.allTags;
         var chatTagList = sharedProperties.chatTagList;
+        console.log("test");
+
 
         var description = str;
         var arrayTag = description.match(/%[a-zA-Z0-9]+/);
@@ -197,6 +202,14 @@ var Conversation = React.createClass({
             }
         }
 
+        var arrayCost = description.match(/$[0-9]+/);
+        if(arrayCost != null) {
+            sharedProperties.cost.push(arrayCost);
+            api.setCost(sharedProperties.ticketId,sharedProperties.cost);
+            this.props.setChatSharedProperties(sharedProperties);
+
+        }
+        console.log("test");
     },
 
     updateStarAtFirebase: function(snapshot){

@@ -26,7 +26,7 @@ var Assignee = React.createClass({
     componentDidUpdate: function(prevProps, prevState){
         $( document ).ready(function() { //After document has been parsed
             var userListElement = $('#metadata-assignee'); //Get the userListElement
-            //userListElement.selectpicker('refresh'); //Refresh after new properties arrived
+            userListElement.selectpicker('refresh'); //Refresh after new properties arrived
         });
     },
 
