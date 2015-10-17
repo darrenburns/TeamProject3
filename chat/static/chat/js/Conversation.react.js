@@ -200,16 +200,17 @@ var Conversation = React.createClass({
             }
         }
 
-        var arrayCost = description.match(/$[0-9]+/);
+        var arrayCost = description.match(/\$[0-9]+/);
         console.log(arrayCost.toString());
 
         if(arrayCost != null) {
-            sharedProperties.cost.push(arrayCost[0]);
+            var strCost = arrayCost[0].substring(1);
+            sharedProperties.cost.push(strCost);
             api.setCost(sharedProperties.ticketId,sharedProperties.cost);
             this.props.setChatSharedProperties(sharedProperties);
 
         }
-        
+
     },
 
     updateStarAtFirebase: function(snapshot){
