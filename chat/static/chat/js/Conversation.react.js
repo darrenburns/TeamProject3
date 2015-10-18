@@ -199,17 +199,25 @@ var Conversation = React.createClass({
 
             }
         }
-
         var arrayCost = description.match(/\$[0-9]+/);
-        console.log(arrayCost.toString());
 
         if(arrayCost != null) {
-            var strCost = arrayCost[0].substring(1);
-            sharedProperties.cost.push(strCost);
-            api.setCost(sharedProperties.ticketId,sharedProperties.cost);
+           // var strCost = arrayCost[0].substring(1);
+            //sharedProperties.cost.push(arrayCost[0]);
+            api.setCost(sharedProperties.ticketId,arrayCost[0].substring(1));
             this.props.setChatSharedProperties(sharedProperties);
 
         }
+/* //to be finished: priority once the priority has been fixed in the details tab
+        var arrayPrio = description.match(/\^[a-zA-Z]+/);
+        if (arrayPrio != null)
+                var priorityMentioned = arrayPrio[0].substring[1];
+
+
+
+
+
+        }*/
 
     },
 
