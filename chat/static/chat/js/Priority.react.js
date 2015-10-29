@@ -3,6 +3,7 @@
  */
 var React = require('react');
 var $ = require('jquery');
+console.log("2");
 require('bootstrap-select');
 
 var Priority = React.createClass({
@@ -32,6 +33,7 @@ var Priority = React.createClass({
 
     componentDidUpdate: function(prevProps, prevState){
         $( document ).ready(function() { //After document has been parsed
+            console.log("1");
            // var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
             $('#metadata-priority').selectpicker('refresh'); //Refresh after new properties arrived
         });
