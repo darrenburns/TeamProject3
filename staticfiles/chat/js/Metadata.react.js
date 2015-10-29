@@ -53,6 +53,8 @@ var Metadata = React.createClass({
         var chatSharedProperties= this.props.chatSharedProperties;
         chatSharedProperties.chatTagList = chat.ticket.tag;
         chatSharedProperties.ticketId = chat.ticket.id;
+        chatSharedProperties.cost = chat.ticket.cost;
+        chatSharedProperties.priority = chat.ticket.priority;
         this.props.setChatSharedProperties(chatSharedProperties);
 
     },

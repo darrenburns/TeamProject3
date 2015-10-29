@@ -9,6 +9,6 @@ module.exports = {
         BASE_PADDING_BOTTOM: 120
     },
 
-    FIREBASE_BASE_URL: 'https://torid-torch-5171.firebaseio.com/',
+    FIREBASE_BASE_URL: 'https://luminous-torch-4255.firebaseio.com/',
     API_BASE_URL: '/api/v1/'
 };

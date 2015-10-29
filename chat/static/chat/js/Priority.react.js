@@ -4,7 +4,6 @@
 var React = require('react');
 var $ = require('jquery');
 require('bootstrap-select');
-//require('bootstrap-react')
 
 var Priority = React.createClass({
 
@@ -33,30 +32,26 @@ var Priority = React.createClass({
 
     componentDidUpdate: function(prevProps, prevState){
         $( document ).ready(function() { //After document has been parsed
-            var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
-            priorityListElement.selectpicker('refresh'); //Refresh after new properties arrived
+           // var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
+            $('#metadata-priority').selectpicker('refresh'); //Refresh after new properties arrived
         });
     },
 
     render: function() {
         var priorityList = this.props.priorityList;
         var priority = this.props.priority;
-      /*  var tempPriorities = [];
-        priority.forEach((prio,idx)=>{
-            tempPriorities.push(<priority = {idx});
 
-        }
-*/
-
+          /*var tempPriorities = [];
+          priorityList.forEach((prio,idx)=>{
+              tempPriorities.push(prio);
+          })*/
+       // var DropdownButton = ReactBootstrap.DropdownButton
         return (
             <div className="col-xs-4">
                 <div className="panel panel-default panel-information">
                     <div className="panel-heading"><strong>Priority</strong></div>
                     <div className="panel-body">
-
-
-
-                        <select id="metadata-priority" value={priority.id} className="selectpicker" data-width="90%">
+                       <select id="metadata-priority" value={priority.id} className="selectpicker" data-width="90%">
                             {
                                 priorityList.map(function(item){
                                     return (<option data-item={JSON.stringify(item)} value={item.id} key={item.id}>{item.name}</option>)
