@@ -76,3 +76,4 @@ target/
 # using npm or bower.
 node_modules/
 static/bundle.js
+staticfiles/
