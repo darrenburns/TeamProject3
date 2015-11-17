@@ -12,6 +12,7 @@ var Priority = React.createClass({
     },
 
 
+
     componentWillReceiveProps: function(next){
     },
 
@@ -19,34 +20,28 @@ var Priority = React.createClass({
 
         var setPriorityFunction = this.props.setPriority;
 
-        $( document ).ready(function() { //After document has been parsed
 
-            var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
+        var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
 
-            priorityListElement.on('change', function(){ //Update parent's state when a new priority is selected
-                var selectedPriority = priorityListElement.find('option:selected').data('item');
-                setPriorityFunction(selectedPriority);
-            });
-
+        priorityListElement.on('change', function(){ //Update parent's state when a new priority is selected
+            var selectedPriority = priorityListElement.find('option:selected').data('item');
+            setPriorityFunction(selectedPriority);
         });
+
     },
 
     componentDidUpdate: function(prevProps, prevState){
-        $( document ).ready(function() { //After document has been parsed
-            var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
+        console.log("Updated!");
+        var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
+        if (priorityListElement) {
             priorityListElement.selectpicker('refresh'); //Refresh after new properties arrived
-        });
+        }
     },
 
     render: function() {
         var priorityList = this.props.priorityList;
         var priority = this.props.priority;
-      /*  var tempPriorities = [];
-        priority.forEach((prio,idx)=>{
-            tempPriorities.push(<priority = {idx});
 
-        }
-*/
 
         return (
             <div className="col-xs-4">
