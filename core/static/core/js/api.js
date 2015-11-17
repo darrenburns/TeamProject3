@@ -66,8 +66,11 @@ var api = {
 
     setPriority: function(ticketId, priorityId){
         var passData = {
-            "priority": `${GLOBALS.API_BASE_URL}priority/${priorityId}/`
+            "priority": {
+                id: priorityId
+            }
         };
+        console.log(priorityId);
         $.ajax({
             url: `${GLOBALS.API_BASE_URL}ticket/${ticketId}/`,
             type: "PATCH",

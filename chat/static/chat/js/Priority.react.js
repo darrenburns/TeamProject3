@@ -1,67 +1,65 @@
-/**
- * Created by LeoLinhares on 23/06/2015.
- */
-var React = require('react');
-var $ = require('jquery');
-require('bootstrap-select');
-//require('bootstrap-react')
+const React = require('react');
+const DropdownButton = require('react-bootstrap/lib/DropdownButton');
+const MenuItem = require('react-bootstrap/lib/MenuItem');
 
-var Priority = React.createClass({
+const Priority = React.createClass({
 
-    handlePriority: function(priorityId){
-    },
-
-
-
-    componentWillReceiveProps: function(next){
-    },
-
-    componentDidMount: function(){
-
-        var setPriorityFunction = this.props.setPriority;
-
-
-        var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
-
-        priorityListElement.on('change', function(){ //Update parent's state when a new priority is selected
-            var selectedPriority = priorityListElement.find('option:selected').data('item');
-            setPriorityFunction(selectedPriority);
-        });
-
-    },
-
-    componentDidUpdate: function(prevProps, prevState){
-        console.log("Updated!");
-        var priorityListElement = $('#metadata-priority'); //Get the priorityListElement
-        if (priorityListElement) {
-            priorityListElement.selectpicker('refresh'); //Refresh after new properties arrived
+    getInitialState: function() {
+        return {
+            currentPriority: this.props.priority.name
         }
     },
 
+    componentWillReceiveProps(nextProps) {
+        var priorityName = '';
+        switch (nextProps.priority) {
+            case 1: priorityName = 'High'; break;
+            case 2: priorityName = 'Normal'; break;
+            case 3: priorityName = 'Low'; break;
+            default: priorityName = nextProps.priority.name;
+        }
+        this.setState({
+            currentPriority: priorityName
+        });
+    },
+
+    changePriority(event, newPriority) {
+        console.log("event", event);
+        console.log("newPriority", newPriority);
+        this.setState({
+            currentPriority: newPriority
+        });
+        this.props.setPriority(newPriority)
+    },
+
     render: function() {
-        var priorityList = this.props.priorityList;
-        var priority = this.props.priority;
 
+        console.log("Priority from parent", this.props.priority);
 
+        //let colourClasses = {
+        //    "Low": "success",
+        //    "Normal": "primary",
+        //    "High": "danger"
+        //};
+
+        var menuItems = this.props.priorityList.map(priority => {
+                return <MenuItem eventKey={priority.id}>{priority.name}</MenuItem>;
+            });
         return (
             <div className="col-xs-4">
                 <div className="panel panel-default panel-information">
-                    <div className="panel-heading"><strong>Priority</strong></div>
+                    <div className="panel-heading">
+                        <strong>Priority</strong>
+                    </div>
                     <div className="panel-body">
-
-
-
-                        <select id="metadata-priority" value={priority.id} className="selectpicker" data-width="90%">
-                            {
-                                priorityList.map(function(item){
-                                    return (<option data-item={JSON.stringify(item)} value={item.id} key={item.id}>{item.name}</option>)
-                                })
-                            }
-                        </select>
+                        <DropdownButton title={this.state.currentPriority} onSelect={this.changePriority}>
+                            {menuItems}
+                        </DropdownButton>
                     </div>
                 </div>
             </div>
         )
-    }
+}
+
 });
 module.exports = Priority;

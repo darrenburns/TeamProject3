@@ -65,17 +65,17 @@ var Metadata = React.createClass({
         });
     },
 
-    setPriority: function(chat_priority){
+    setPriority: function(priorityId){
         this.setState({
-            priority: chat_priority
+            priority: priorityId
         });
-        api.setPriority(this.state.ticketId, chat_priority.id);
+        api.setPriority(this.state.ticketId, priorityId);
         var chatSharedProperties = this.props.chatSharedProperties;
-        chatSharedProperties.priority = chat_priority;
+        chatSharedProperties.priority = priorityId;
         chatSharedProperties.id = this.props.chatId;
         this.props.setChatSharedProperties(chatSharedProperties);
-        var priority = chat_priority.name;
-        this.notifyUsers(null, priority);
+        //var priority = chat_priority.name;
+        //this.notifyUsers(null, priority);
     },
 
     setPriorityList: function(priority_list){
