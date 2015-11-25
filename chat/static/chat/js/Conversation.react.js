@@ -180,7 +180,7 @@ var Conversation = React.createClass({
         var sharedProperties = this.props.chatSharedProperties;
         var allTags = sharedProperties.allTags;
         var chatTagList = sharedProperties.chatTagList;
-
+        var allPrio = sharedProperties.priorityList;
 
         var description = str;
         var arrayTag = description.match(/%[a-zA-Z0-9]+/);
@@ -202,22 +202,41 @@ var Conversation = React.createClass({
         var arrayCost = description.match(/\$[0-9]+/);
 
         if(arrayCost != null) {
-           // var strCost = arrayCost[0].substring(1);
-            //sharedProperties.cost.push(arrayCost[0]);
             api.setCost(sharedProperties.ticketId,arrayCost[0].substring(1));
             this.props.setChatSharedProperties(sharedProperties);
 
         }
-/* //to be finished: priority once the priority has been fixed in the details tab
         var arrayPrio = description.match(/\^[a-zA-Z]+/);
-        if (arrayPrio != null)
-                var priorityMentioned = arrayPrio[0].substring[1];
+        if (arrayPrio != null){
+            var priorityMentioned = arrayPrio[0].substring(1);
+
+            if(priorityMentioned != null){
+                for(var i = 0; i< allPrio.length; i++){
+                    if(allPrio[i].name.toLowerCase() == priorityMentioned.toLowerCase()){
+                        var prioId;
+                        switch (priorityMentioned) { //casual case in an if in a for in an if in an if
+                            case "high":
+                                prioId = '1';
+                                break;
+
+                            case "normal":
+                                prioId = '2';
+                                break;
+                            case "low":
+                                prioId = '3';
+                                break;
+
+                        }
+                        api.setPriority(sharedProperties.ticketId,prioId);
+                        break;
+                    }
+                }
+            }
+        //TODO: both priority and cost don't update in real time, have to refresh the page.  Fix this u nerd
 
 
 
-
-
-        }*/
+        }
 
     },
 

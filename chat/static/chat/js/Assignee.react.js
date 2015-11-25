@@ -1,56 +1,57 @@
 /**
  * Created by LeoLinhares on 23/06/2015.
  */
-var React = require('react');
-var $ = require('jquery');
-require('bootstrap-select');
+const React = require('react');
+const DropdownButton = require('react-bootstrap/lib/DropdownButton');
+const MenuItem = require('react-bootstrap/lib/MenuItem');
 
-var Assignee = React.createClass({
+const Assignee = React.createClass({
 
-    componentDidMount: function(){
-
-        var setAssigneeFunction = this.props.setAssignee;
-
-        $( document ).ready(function() { //After document has been parsed
-
-            var userListElement = $('#metadata-assignee'); //Get the userListElement
-
-            userListElement.on('change', function(){ //Update parent's state when a new user is selected
-                var selectedUser = userListElement.find('option:selected').data('item');
-                setAssigneeFunction(selectedUser);
-            });
-
-        });
+    getInitialState: function() {
+        return{
+            currentAssignee: this.props.assignee.name
+        }
     },
 
-    componentDidUpdate: function(prevProps, prevState){
-        $( document ).ready(function() { //After document has been parsed
-            var userListElement = $('#metadata-assignee'); //Get the userListElement
-            userListElement.selectpicker('refresh'); //Refresh after new properties arrived
+    componentWillRecieveProps(nextProps){
+        this.setState({
+            currentAssignee: nextProps.assignee
+        })
+
+    },
+    changeAssignee(event,newAssignee){
+        this.setState({
+            currentAssignee: newAssignee
         });
+        this.props.setAssignee(newAssignee)
+
+
     },
 
     render: function() {
 
-        var users = this.props.users;
-        var assignee = this.props.assignee;
-
-        return (
-            <div className="col-xs-6">
+        var menuItems = this.props.users.map(assignee => {
+            return <MenuItem eventKey={assignee.username}>{assignee.username}</MenuItem>;
+        });
+        return(
+            <div className="col-xs-4">
                 <div className="panel panel-default panel-information">
-                    <div className="panel-heading"><strong>Assignee</strong></div>
+                    <div className="panel-heading">
+                        <strong>Assignee</strong>
+                    </div>
                     <div className="panel-body">
-                        <select id="metadata-assignee" value={assignee.id} className="selectpicker" data-width="90%">
-                            {
-                                users.map(function(userObj){
-                                    return (<option data-item={JSON.stringify(userObj)} value={userObj.id} key={userObj.id}>{userObj.username}</option>)
-                                })
-                            }
-                        </select>
+                        <DropdownButton title={this.state.currentAssignee} onSelect={this.changeAssignee}>
+                            {menuItems}
+                        </DropdownButton>
                     </div>
                 </div>
             </div>
-        )
-    }
+            )
+        }
+
+
+
+
+
 });
 module.exports = Assignee;

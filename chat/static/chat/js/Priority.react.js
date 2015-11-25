@@ -24,8 +24,7 @@ const Priority = React.createClass({
     },
 
     changePriority(event, newPriority) {
-        console.log("event", event);
-        console.log("newPriority", newPriority);
+
         this.setState({
             currentPriority: newPriority
         });
@@ -34,13 +33,6 @@ const Priority = React.createClass({
 
     render: function() {
 
-        console.log("Priority from parent", this.props.priority);
-
-        //let colourClasses = {
-        //    "Low": "success",
-        //    "Normal": "primary",
-        //    "High": "danger"
-        //};
 
         var menuItems = this.props.priorityList.map(priority => {
                 return <MenuItem eventKey={priority.id}>{priority.name}</MenuItem>;

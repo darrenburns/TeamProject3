@@ -70,7 +70,6 @@ var api = {
                 id: priorityId
             }
         };
-        console.log(priorityId);
         $.ajax({
             url: `${GLOBALS.API_BASE_URL}ticket/${ticketId}/`,
             type: "PATCH",

@@ -82,6 +82,9 @@ var Metadata = React.createClass({
         this.setState({
             priorityList: priority_list
         });
+        var chatSharedProperties= this.props.chatSharedProperties;
+        chatSharedProperties.priorityList = priority_list;
+        this.props.setChatSharedProperties(chatSharedProperties);
     },
 
     setAllTags: function(tag_list){
@@ -135,7 +138,10 @@ var Metadata = React.createClass({
         this.setState({
             assignee: assignee
         });
-        api.setAssignee(this.state.ticketId, assignee.resource_uri);
+ /*       console.log(assignee.resource_uri);
+        console.log(assignee);
+        console.log(this.state.ticketId);*/
+        api.setAssignee(this.state.ticketId, assignee);
     },
 
     setDueDate: function(chat_due_date){
