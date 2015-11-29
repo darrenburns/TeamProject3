@@ -136,12 +136,9 @@ var Metadata = React.createClass({
 
     setAssignee: function(assignee){
         this.setState({
-            assignee: assignee
+            assignee: assignee.username
         });
- /*       console.log(assignee.resource_uri);
-        console.log(assignee);
-        console.log(this.state.ticketId);*/
-        api.setAssignee(this.state.ticketId, assignee);
+        api.setAssignee(this.state.ticketId, assignee.resource_uri);
     },
 
     setDueDate: function(chat_due_date){

@@ -105,9 +105,9 @@ var api = {
         });
     },
 
-    setAssignee: function(ticketId, assignee){
+    setAssignee: function(ticketId, id){
         var passData = {
-            "user": assignee
+            "user": id
         };
         $.ajax({
             url: `${GLOBALS.API_BASE_URL}ticket/${ticketId}/`,

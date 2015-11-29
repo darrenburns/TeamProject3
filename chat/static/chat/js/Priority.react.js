@@ -1,3 +1,7 @@
+/*
+ *Created by Darren Burns
+ */
+
 const React = require('react');
 const DropdownButton = require('react-bootstrap/lib/DropdownButton');
 const MenuItem = require('react-bootstrap/lib/MenuItem');
@@ -24,7 +28,6 @@ const Priority = React.createClass({
     },
 
     changePriority(event, newPriority) {
-
         this.setState({
             currentPriority: newPriority
         });

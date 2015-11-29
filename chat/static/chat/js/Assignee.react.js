@@ -1,5 +1,5 @@
-/**
- * Created by LeoLinhares on 23/06/2015.
+/*
+ * Created by LeoLinhares on 23/06/2015.  Modified by Euan Parker
  */
 const React = require('react');
 const DropdownButton = require('react-bootstrap/lib/DropdownButton');
@@ -9,19 +9,26 @@ const Assignee = React.createClass({
 
     getInitialState: function() {
         return{
-            currentAssignee: this.props.assignee.name
+            currentAssignee: this.props.assignee.username
         }
     },
 
-    componentWillRecieveProps(nextProps){
-        this.setState({
-            currentAssignee: nextProps.assignee
-        })
+    componentWillReceiveProps(nextProps){
+
+        if (nextProps.assignee.username != undefined){
+            this.setState({
+                currentAssignee: nextProps.assignee.username
+             })
+        }else{
+            this.setState({
+                currentAssignee: nextProps.assignee
+            })
+        }
 
     },
     changeAssignee(event,newAssignee){
         this.setState({
-            currentAssignee: newAssignee
+            currentAssignee: newAssignee.username
         });
         this.props.setAssignee(newAssignee)
 
@@ -31,7 +38,7 @@ const Assignee = React.createClass({
     render: function() {
 
         var menuItems = this.props.users.map(assignee => {
-            return <MenuItem eventKey={assignee.username}>{assignee.username}</MenuItem>;
+            return <MenuItem eventKey={assignee}>{assignee.username}</MenuItem>;
         });
         return(
             <div className="col-xs-4">
