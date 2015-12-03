@@ -81,6 +81,7 @@ var ProjectGraph = React.createClass({
         if(labels.length > 0 && values.length > 0) {
             data.labels = labels;
 
+            console.log(values);
             var datapush = {
                 "label": "Chat Graph2",
                 "fillColor": "rgba(220,220,220,0.5)",
@@ -101,7 +102,7 @@ var ProjectGraph = React.createClass({
             return (
                 <div>
                     <h3>Total Number of Messages per Chat</h3>
-                    <BarChart data={chartData} width="600" height="250" />
+                    <BarChart data={chartData} width="800" height="250" />
                 </div>
             );
         }else{
