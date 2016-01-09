@@ -76,7 +76,7 @@ var Graph = React.createClass({
                 days.forEach(function(date, index2){
                     var diff = messageDay2.diff(date,'days');
                     if(diff == 0){
-                        numberOfChatsPerDay[index2] = numberOfChatsPerDay[index2] + 1;
+                        numberOfChatsPerDay[index2] = numberOfChatsPerDay[index2] +1;
                     }
                 });
             });

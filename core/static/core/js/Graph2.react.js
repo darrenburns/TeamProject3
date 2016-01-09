@@ -1,9 +1,6 @@
 /**
- * Created by Euan
- */
-
-/**
  * Created by LeoLinhares on 29/06/2015.
+ * Modified by Euan Parker
  */
 var React = require('react'),
     ReactFireMixin = require('reactfire'),
@@ -14,7 +11,7 @@ var GLOBALS = require('./globals');
 var moment = require('moment');
 
 
-var Graph = React.createClass({
+var Graph2 = React.createClass({
     //functionDataAPI : function(){
     //
     //},
@@ -80,7 +77,8 @@ var Graph = React.createClass({
                 days.forEach(function(date, index2){
                     var diff = messageDay2.diff(date,'days');
                     if(diff == 0){
-                        numberOfChatsPerDay[index2] = numberOfChatsPerDay[index2] + 1;
+                        var messageSize = (message.desc);
+                        numberOfChatsPerDay[index2] = numberOfChatsPerDay[index2] +messageSize.length;
                     }
                 });
             });
@@ -114,7 +112,7 @@ var Graph = React.createClass({
                 x.datasets.push(datapush);
             }
             return <div>
-                    <h3>Number of messages per day per chat</h3>
+                    <h3>Number of characters per day per chat</h3>
                         <LineChart data={x} width="800" height="250"/>
                     </div>
         }else{
@@ -252,13 +250,13 @@ var Graph = React.createClass({
     }
 });
 
-var mountPoint = document.getElementById('graph-chartjs');
+var mountPoint = document.getElementById('graph-chartjs2');
 if (mountPoint !== null) {
     React.render(
-        <Graph/>,
+        <Graph2/>,
         mountPoint
     );
 }
 
-moment.locale('en-gb');
-module.exports = Graph;
+
+module.exports = Graph2;

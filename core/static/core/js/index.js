@@ -20,6 +20,8 @@ require('./TicketListSort.react');
 require('./Root.react');
 
 require('./Graph.react');
+require('./Graph2.react');
+require('./userMessages.react');
 require('./ChatGraph.react');
 require('./ProjectGraph.react');
 require('./utils');

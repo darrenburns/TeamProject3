@@ -1,5 +1,6 @@
 /**
  * Created by LeoLinhares on 29/06/2015.
+ * modified by Euan Parker
  */
 var React = require('react'),
     ReactFireMixin = require('reactfire'),
@@ -10,7 +11,7 @@ var GLOBALS = require('./globals');
 var moment = require('moment');
 
 
-var Graph = React.createClass({
+var userMessages = React.createClass({
     //functionDataAPI : function(){
     //
     //},
@@ -21,12 +22,15 @@ var Graph = React.createClass({
     ref : "",
     chatRef : "",
     messageRef : "",
+    participantRef: "",
     mixins : [ReactFireMixin],
 
     getInitialState: function(){
+        console.log("WITTT");
         return {
             chats : [],
-            projectId : PROJECT_ID
+            projectId : PROJECT_ID,
+            participants : {}
         }
     },
     getMessagesPerDay : function(){
@@ -38,8 +42,9 @@ var Graph = React.createClass({
         this.fbRef =
             new Firebase(`${fbBaseUrl}project/${this.state.projectId}`);
         this.chatRef = this.fbRef.child('chats/');
+        this.participantRef = this.charRef.child('participants');
         //chats/${this.state.chatId}
-        this.bindAsArray(this.chatRef, 'chats');
+        this.bindAsObject(this.participantRef, 'participants');
     },
 
     getDays : function () {
@@ -62,28 +67,35 @@ var Graph = React.createClass({
         var days = this.getDays();
         var chats = this.state.chats;
         var ds = [];
-
-        chats.forEach(function (chat) {
+        var participants = this.state.participants;
+        participants.forEach(function (participant){
             var numberOfChatsPerDay = [0,0,0,0,0,0,0];
-            var messages = chat.messages;
-            var messagesFormatted = Object.keys(messages).map(function(k) { return messages[k] });
-            //participants = this.state.participants
-            //arraydevalores = Object.keys(participants).map(function(k) { return participants[k] });
-            //arraydelabels = object.keys(participants)
-            messagesFormatted.forEach(function(message, index){
-                var messageDay = moment(message.dt).format('YYYY-MM-DD');
-                var messageDay2 = moment(messageDay);
-                days.forEach(function(date, index2){
-                    var diff = messageDay2.diff(date,'days');
-                    if(diff == 0){
-                        numberOfChatsPerDay[index2] = numberOfChatsPerDay[index2] +1;
-                    }
+
+
+
+            chats.forEach(function (chat) {
+                var messages = chat.messages;
+                var messagesFormatted = Object.keys(messages).map(function(k) { return messages[k] });
+                //participants = this.state.participants
+                //arraydevalores = Object.keys(participants).map(function(k) { return participants[k] });
+                //arraydelabels = object.keys(participants)
+                messagesFormatted.forEach(function(message, index){
+                    var messageDay = moment(message.dt).format('YYYY-MM-DD');
+                    var messageDay2 = moment(messageDay);
+                    days.forEach(function(date, index2){
+                        var diff = messageDay2.diff(date,'days');
+                        if(diff == 0 && participant == message.user){
+                            numberOfChatsPerDay[index2] = numberOfChatsPerDay[index2] +1;
+                        }
+                    });
                 });
+
             });
             ds.push({
                 "data" : numberOfChatsPerDay
             });
         });
+
         return ds;
     },
 
@@ -110,8 +122,8 @@ var Graph = React.createClass({
                 x.datasets.push(datapush);
             }
             return <div>
-                    <h3>Number of messages per day per chat</h3>
-                        <LineChart data={x} width="800" height="250"/>
+                    <h3>Number of messages per day per participant</h3>
+                         <LineChart data={x} width="800" height="250"/>
                     </div>
         }else{
             return false
@@ -248,14 +260,13 @@ var Graph = React.createClass({
     }
 });
 
-var mountPoint = document.getElementById('graph-chartjs');
-console.log("HI?");
+var mountPoint = document.getElementById('graph-chartjs3');
 if (mountPoint !== null) {
     React.render(
-        <Graph/>,
+        <userMessages/>,
         mountPoint
     );
 }
 
 moment.locale('en-gb');
-module.exports = Graph;
+module.exports = userMessages;

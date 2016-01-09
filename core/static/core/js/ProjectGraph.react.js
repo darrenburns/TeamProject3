@@ -49,7 +49,10 @@ var ProjectGraph = React.createClass({
                 "index": chat.id,
                 "title": chat.title
             };
-            x.push(info);
+            if (!chat.closed) {
+                x.push(info);
+           //     console.log(chat.closed)
+            }
         });
         this.setState({
             chatsApi : x
@@ -59,15 +62,16 @@ var ProjectGraph = React.createClass({
     getDataset: function() {
         var data = this.getInitialConfig();
         var chats = this.state.chats;
+    //    console.log(chats)
         var chatsTitles = this.state.chatsApi;
-        console.log(chatsTitles);
+     //   console.log(chatsTitles);
         if(chats != null && chatsTitles != null) {
             var values = [];
             var indexes = [];
             var labels = [];
             var i = 0;
             Object.keys(chats).forEach(function(key) {
-                console.log(key);
+         //       console.log(key);
                 var statistics = chats[key].statistics;
                 values[i] = statistics.numberOfMessages;
                 Object.keys(chatsTitles).forEach(function(key1){
@@ -81,7 +85,7 @@ var ProjectGraph = React.createClass({
         if(labels.length > 0 && values.length > 0) {
             data.labels = labels;
 
-            console.log(values);
+           // console.log(values);
             var datapush = {
                 "label": "Chat Graph2",
                 "fillColor": "rgba(220,220,220,0.5)",

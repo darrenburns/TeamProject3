@@ -45,16 +45,15 @@ var ChatGraph = React.createClass({
     getDataset: function() {
         var data = this.getInitialConfig();
         var participants = this.state.participants;
-        console.log(participants);
         var values = [];
         var labels = [];
         if(participants != null){
             values = Object.keys(participants).map(function(k) { return participants[k] });
             labels = Object.keys(participants);
         }
-        console.log(values);
+    /*    console.log(values);
         console.log(labels);
-
+*/
         var datapush = {
             "label": "Chat Graph",
             "fillColor": "rgba(220,220,220,0.5)",
