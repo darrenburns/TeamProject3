@@ -11,7 +11,7 @@ var GLOBALS = require('./globals');
 var moment = require('moment');
 
 
-var userMessages = React.createClass({
+var userGraph = React.createClass({
     //functionDataAPI : function(){
     //
     //},
@@ -26,7 +26,6 @@ var userMessages = React.createClass({
     mixins : [ReactFireMixin],
 
     getInitialState: function(){
-        console.log("WITTT");
         return {
             chats : [],
             projectId : PROJECT_ID,
@@ -100,6 +99,7 @@ var userMessages = React.createClass({
     },
 
     render: function() {
+        console.log("WITTT");
         var data = this.getDataset();
         if(data.length > 0){
             var allOtherColors = ["rgba(0,67,88,1)","rgba(112,206,93,1)", "rgba(102,120,238,1)", "rgba(59,44,80,1)","rgba(203,6,170,1)", "rgba(163,169,201,1)","rgba(191,180,82,1)","rgba(63,126,11,1)", "rgba(55,119,196,1)","rgba(126,87,96,1)"];
@@ -123,7 +123,7 @@ var userMessages = React.createClass({
             }
             return <div>
                     <h3>Number of messages per day per participant</h3>
-                         <LineChart data={x} width="800" height="250"/>
+                        <LineChart data={x} width="800" height="250"/>
                     </div>
         }else{
             return false
@@ -263,10 +263,9 @@ var userMessages = React.createClass({
 var mountPoint = document.getElementById('graph-chartjs3');
 if (mountPoint !== null) {
     React.render(
-        <userMessages/>,
+        <userGraph/>,
         mountPoint
     );
 }
 
-moment.locale('en-gb');
-module.exports = userMessages;
+module.exports = userGraph;
