@@ -249,6 +249,7 @@ var Graph2 = React.createClass({
 
     }
 });
+/*
 
 var mountPoint = document.getElementById('graph-chartjs2');
 if (mountPoint !== null) {
@@ -257,6 +258,7 @@ if (mountPoint !== null) {
         mountPoint
     );
 }
+*/
 
 
 module.exports = Graph2;

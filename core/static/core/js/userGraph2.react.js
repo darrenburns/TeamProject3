@@ -121,9 +121,9 @@ var userGraph2 = React.createClass({
                 x.datasets.push(datapush);
             }
             return <div>
-                <h3>Number of messages per day per participant</h3>
-                <LineChart data={x} width="800" height="250"/>
-            </div>
+                      <h3>Number of messages per day per participant</h3>
+                          <LineChart data={x} width="800" height="250"/>
+                   </div>
         }else{
             return false
         }
@@ -259,6 +259,7 @@ var userGraph2 = React.createClass({
     }
 });
 
+/*
 var mountPoint = document.getElementById('graph-chartjs4');
 if (mountPoint !== null) {
     React.render(
@@ -266,5 +267,6 @@ if (mountPoint !== null) {
         mountPoint
     );
 }
+*/
 
 module.exports = userGraph2;

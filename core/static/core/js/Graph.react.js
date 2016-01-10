@@ -34,6 +34,7 @@ var Graph = React.createClass({
     },
 
     componentWillMount: function(){
+
         var fbBaseUrl = GLOBALS.FIREBASE_BASE_URL;
         this.fbRef =
             new Firebase(`${fbBaseUrl}project/${this.state.projectId}`);
@@ -248,6 +249,7 @@ var Graph = React.createClass({
     }
 });
 
+/*
 var mountPoint = document.getElementById('graph-chartjs');
 if (mountPoint !== null) {
     React.render(
@@ -255,6 +257,7 @@ if (mountPoint !== null) {
         mountPoint
     );
 }
+*/
 
 moment.locale('en-gb');
 module.exports = Graph;
