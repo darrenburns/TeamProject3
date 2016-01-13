@@ -80,13 +80,13 @@ var NotificationCentre = React.createClass({
 var mountPoint = document.getElementById('notification-centre-mount');
 
 if (mountPoint !== null) {
-    var currentChatId = CHAT_ID || -1;
+   // var currentChatId = CHAT_ID || -1;
     var currentProjectId = PROJECT_ID || -1;
     var currentUser = CURRENT_USER || '<< Anonymous User >>';
     var currentUserId = CURRENT_USER_ID || -1;
     React.render(
         <NotificationCentre
-            chatId={currentChatId}
+         //   chatId={currentChatId}
             projectId={currentProjectId}
             user={currentUser}
             userId={currentUserId}

@@ -1,5 +1,5 @@
 /**
- * Created by euan
+ * Created by Euan
  */
 
 var React = require('react');

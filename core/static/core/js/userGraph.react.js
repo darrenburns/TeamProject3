@@ -267,4 +267,5 @@ if (mountPoint !== null) {
     );
 }*/
 
+moment.locale('en-gb');
 module.exports = userGraph;
