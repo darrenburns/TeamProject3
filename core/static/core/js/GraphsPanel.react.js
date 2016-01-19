@@ -5,7 +5,7 @@
 var React = require('react');
 var Graph = require('./Graph.react');
 var Graph2 = require('./Graph2.react');
-var userGraph = require('./userGraph.react');
+var UserGraph = require('./userGraph.react');
 var userGraph2 = require('./userGraph2.react');
 
 var GraphsPanel = React.createClass({
@@ -14,8 +14,7 @@ var GraphsPanel = React.createClass({
             <div className="graphs-panel">
                 <Graph/>
                 <Graph2/>
-                <userGraph/>
-                <userGraph2/>
+
             </div>
 
         )
@@ -30,3 +29,4 @@ if(mountPoint != null){
         mountPoint
     )
 }
+//re-add  <UserGraph/> and <userGraph2/>

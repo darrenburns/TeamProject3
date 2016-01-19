@@ -11,7 +11,7 @@ var GLOBALS = require('./globals');
 var moment = require('moment');
 
 
-var userGraph = React.createClass({
+var UserGraph = React.createClass({
     //functionDataAPI : function(){
     //
     //},
@@ -22,7 +22,7 @@ var userGraph = React.createClass({
     ref : "",
     chatRef : "",
     messageRef : "",
-    participantRef: "",
+    participantsRef: "",
     mixins : [ReactFireMixin],
 
     getInitialState: function(){
@@ -40,10 +40,9 @@ var userGraph = React.createClass({
         var fbBaseUrl = GLOBALS.FIREBASE_BASE_URL;
         this.fbRef =
             new Firebase(`${fbBaseUrl}project/${this.state.projectId}`);
-        this.chatRef = this.fbRef.child('chats/');
-        this.participantRef = this.charRef.child('participants');
-        //chats/${this.state.chatId}
-        this.bindAsObject(this.participantRef, 'participants');
+        this.chatRef = this.fbRef.child(`chats/1`);
+        this.participantsRef = this.chatRef.child(`participants`);
+        this.bindAsObject(this.participantsRef, `participants`);
     },
 
     getDays : function () {
@@ -268,4 +267,4 @@ if (mountPoint !== null) {
 }*/
 
 moment.locale('en-gb');
-module.exports = userGraph;
+module.exports = UserGraph;
