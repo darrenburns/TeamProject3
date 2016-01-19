@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
-
+                <!-- TODO: fix redirect -->
                 <h1>Create a new chat:</h1>
                 {% if form.non_field_errors  %}
                     <div class="alert alert-warning">
@@ -38,6 +38,8 @@
                     <input class="btn btn-default" type="submit" value="Create Chat"/>
                     <input type='hidden' name='csrfmiddlewaretoken' value='{{csrf_token}}'>
                 </form>
+
+
                 <br/>
 
                 <a href="{% url 'dashboard' %}">

@@ -1,6 +1,6 @@
 {
   "name": "remodal",
-  "version": "0.4.0",
+  "version": "0.6.4",
   "homepage": "http://vodkabears.github.io/remodal/",
   "authors": [
     "Ilya Makarov <dfrost.00@gmail.com>"
@@ -46,14 +46,14 @@
     "jquery2": "jquery#^2.1.1",
     "zepto": "~1.1.4"
   },
-  "_release": "0.4.0",
+  "_release": "0.6.4",
   "_resolution": {
     "type": "version",
-    "tag": "0.4.0",
-    "commit": "53211415918f1c814138bcdafce73656a18230ef"
+    "tag": "0.6.4",
+    "commit": "a371a5f8da76ea4ef420bb55dc24a7fe5d9d7622"
   },
   "_source": "git://github.com/VodkaBears/Remodal.git",
-  "_target": "~0.4.0",
+  "_target": "~0.6.4",
   "_originalSource": "remodal",
   "_direct": true
 }

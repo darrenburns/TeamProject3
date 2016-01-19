@@ -72,3 +72,8 @@ target/
 # Emacs backups
 *~
 
+# Front end dependencies - Heroku should fetch the dependencies
+# using npm or bower.
+node_modules/
+static/bundle.js
+staticfiles/

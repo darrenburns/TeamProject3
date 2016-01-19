@@ -7,15 +7,18 @@
     {% load staticfiles %}
     <title>Social Network for Project Task Management</title>
     <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
     <link href="{% static 'remodal/dist/jquery.remodal.css' %}" rel="stylesheet">
+    <link href="{% static 'react-datepicker/dist/react-datepicker.min.css' %}" rel="stylesheet">
     <link href="{% static 'chat/css/chat.css' %}" rel="stylesheet">
     <link href="{% static 'core/css/snptm.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -24,22 +27,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'home' %}"> <i class="fa fa-home fa-lg"></i></a>
-
+            <div id="project-title-navbar">
+                <a class="navbar-brand" href="{% url 'home' %}"> <i class="fa fa-home fa-lg"></i></a>
+                {% if chat.project.id %}
+                    <a class="navbar-brand" href="{% url 'project_description' chat.project.id %}">{{ chat.project.name }} </a>
+                {% endif %}
+            </div>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                {% if user.is_authenticated %}
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="navbar-dropdown-list" id="navbar-dropdown-list">
-                        <!-- Ajax content injected here -->
-                    </ul>
-                {% endif %}
-                </li>
-            </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user_profile' user.username %}" >{{ user }}</a></li>
@@ -49,24 +47,23 @@
                     <li><a href="{% url 'user_register' %}">Register</a></li>
                 {% endif %}
             </ul>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <input id="search-box" type="text" class="form-control" placeholder="Type to filter tickets">
-                        <span class="input-group-btn">
-                            <button id="search-bar-button" type="submit" class="btn btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                         </span>
-                    </div><!-- /input-group -->
-                </div><!-- /.col-md-12 -->
-            </form>
+
+            {% if user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-right" id="notification-centre-mount">
+                </ul>
+            {% endif %}
+
+            {#            <form class="navbar-form navbar-right" role="search">#}
+            {#                <div class="col-md-12">#}
+            {#                    <input id="search-box" type="text" class="form-control" placeholder="Type to filter tickets">#}
+            {#                </div><!-- /.col-md-12 -->#}
+            {#            </form>#}
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container page-container">
-    <div class="row page-row">
+<div class="container-fluid">
+    <div class="row">
         {% block sidebar %}{% endblock %}
         {% block content %}{% endblock %}
     </div>
@@ -79,20 +76,5 @@
     CURRENT_USER_ID = {{ user.id }};
 </script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.3/d3-tip.min.js"></script>
-<script src="https://cdn.firebase.com/js/client/2.0.3/firebase.js"></script>
-<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'remodal/dist/jquery.remodal.js' %}"></script>
-<script src="{% static 'chat/js/chat.js' %}"></script>
-<script src="{% static 'core/js/project_visualise.js' %}"></script>
-<script src="{% static 'core/js/notification-listener.js' %}"></script>
-<script src="{% static 'chat/js/chat_visualise.js' %}"></script>
-<script src="{% static 'app.js' %}"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
-<script src="{% static 'core/js/dashboard-sidebar.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
-<link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
-
+<script src="{% static 'bundle.js' %}"></script>
 </html>

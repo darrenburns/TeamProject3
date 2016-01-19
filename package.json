@@ -1,0 +1,88 @@
+{
+  "name": "TeamProject3",
+  "version": "0.0.1",
+  "description": "Communication oriented software project management tool",
+  "main": "./static/app.js",
+  "engines": {
+    "node": "0.12.7",
+    "npm": "2.11.3"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.4",
+    "bootstrap-select": "^1.7.2",
+    "browserify": "^10.2.1",
+    "browserify-shim": "^3.8.7",
+    "buckets-js": "^1.90.0",
+    "chart.js": "^1.0.2",
+    "classnames": "^2.1.2",
+    "d3": "^3.5.5",
+    "d3-tip": "^0.6.7",
+    "firebase": "^2.2.5",
+    "immutable": "^3.7.3",
+    "jquery": "^2.1.4",
+    "moment": "^2.10.3",
+    "mustache": "^2.0.0",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.26.4",
+    "react-chartjs": "^0.6.0",
+    "react-datepicker": "^0.8.0",
+    "reactfire": "^0.4.0",
+    "reactify": "^1.1.1",
+    "remodal": "^0.6.4",
+    "showdown": "^1.0.1"
+  },
+  "devDependencies": {
+    "tsify": "^0.11.2",
+    "watchify": "^3.2.1"
+  },
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.min.js",
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+    "react-datepicker": "./node_modules/react-datepicker/dist/react-datepicker.min.js",
+    "moment": "./node_modules/moment/min/moment-with-locales.min.js"
+  },
+  "browserify": {
+    "options": {
+      "browserifyOptions": {
+        "debug": true
+      }
+    },
+    "transform": [
+      "browserify-shim",
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ]
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "d3-tip": {
+      "exports": "d3-tip",
+      "depends": [
+        "d3"
+      ]
+    },
+    "bootstrap": {
+      "exports": "bootstrap",
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  },
+  "scripts": {
+    "postinstall": "browserify static/app.js -o static/bundle.js -t"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darrenburns/TeamProject3.git"
+  },
+  "author": "Darren Burns",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darrenburns/TeamProject3/issues"
+  },
+  "homepage": "https://github.com/darrenburns/TeamProject3"
+}

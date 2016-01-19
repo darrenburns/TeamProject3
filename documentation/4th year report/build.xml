@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ 
+<project basedir="." default="build" name="hussien2015deontobot">
+  
+  <target 
+      name="clean"
+      description="Remove all non-versioned files, except compiled PDFs.">
+        
+    <delete>
+      
+      <fileset
+	  dir="."
+	  includes="**/*.*~"
+	  defaultexcludes="false"
+	  />
+
+      <fileset dir="." includes="**/cache.properties"/>
+      
+
+      <fileset dir="." includes="*.aux"/>
+      <fileset dir="." includes="*.bbl"/>
+      <fileset dir="." includes="*.blg"/>
+      <fileset dir="." includes="*.dvi"/>
+      <fileset dir="." includes="*.idx"/>
+      <fileset dir="." includes="*.lof"/>
+      <fileset dir="." includes="*.log"/>
+      <fileset dir="." includes="*.ckeys"/>
+      <fileset dir="." includes="*.maf"/>
+      <fileset dir="." includes="*.mtc*"/>
+      <fileset dir="." includes="*.nav"/>
+      <fileset dir="." includes="*.out"/>
+      <fileset dir="." includes="*.ps"/>
+      <fileset dir="." includes="*.snm"/>
+      <fileset dir="." includes="*.toc"/>
+      <fileset dir="." includes="*.vrb"/>
+      <fileset dir="." includes="*.svn"/>  
+
+    </delete>
+   
+  </target>
+ 
+  <target
+      name="cleanall"
+      description="Remove all non-versioned files, including compiled PDFs."
+      depends="clean">
+    
+    <delete >
+      <fileset dir="." includes="*.pdf"/>
+    </delete>
+
+  </target>
+
+  <target
+      name="build-file"
+      description="Builds a specified LaTeX job."
+      >
+    
+    <echo>LaTeXing document first run...</echo>
+    
+    <exec executable="pdflatex" dir=".">
+      <arg value="-interaction=nonstopmode" />
+      <arg value="${file.name}" />
+    </exec>
+    
+    <exec executable="bibtex" dir=".">
+      <arg value="${file.name}" />
+    </exec>
+    
+    <exec executable="pdflatex" dir=".">
+      <arg value="-interaction=nonstopmode" />
+      <arg value="${file.name}" />
+    </exec>
+    
+    <exec executable="pdflatex" dir="." failonerror="true" >
+      <arg value="-interaction=nonstopmode" />
+      <arg value="${file.name}" />
+    </exec>
+    
+  </target>
+    
+  <target
+      name="working"
+      description="Builds a working version of the document, formatted for internal distribution and review."
+      >
+    <antcall target="build-file">
+      <param name="file.name" value="l4proj"/>
+    </antcall>
+  </target>
+  
+  <target
+      name="build"
+      description="Builds a working, final and presentation version of the document."
+      depends="working"/>
+  
+</project>
