@@ -9,6 +9,8 @@ module.exports = {
         BASE_PADDING_BOTTOM: 120
     },
 
-    FIREBASE_BASE_URL: 'team-p-beta-test-app.firebaseIO.com',
+    FIREBASE_BASE_URL: 'team-p-beta-test-app.firebaseIO.com/',
     API_BASE_URL: '/api/v1/'
 };
+
+
