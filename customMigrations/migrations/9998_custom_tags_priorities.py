@@ -19,6 +19,7 @@ def populate_tags_priorities(apps, schema_editor):
         tag_enhancement.save()
 
     if len(Priority.objects.all()) == 0:
+        print "Saving initial priorities to database."
         priority_high = Priority(name="High", colour="#eb5a46")
         priority_normal = Priority(name="Normal", colour="#055a8c")
         priority_low = Priority(name="Low", colour="#12AB0A")

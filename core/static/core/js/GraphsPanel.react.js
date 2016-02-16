@@ -6,7 +6,7 @@ var React = require('react');
 var Graph = require('./Graph.react');
 var Graph2 = require('./Graph2.react');
 var UserGraph = require('./userGraph.react');
-var userGraph2 = require('./userGraph2.react');
+var UserGraph2 = require('./userGraph2.react');
 
 var GraphsPanel = React.createClass({
     render: function(){
@@ -14,6 +14,8 @@ var GraphsPanel = React.createClass({
             <div className="graphs-panel">
                 <Graph/>
                 <Graph2/>
+                <UserGraph/>
+                <UserGraph2/>
 
             </div>
 
