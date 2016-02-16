@@ -90,33 +90,37 @@ var Graph = React.createClass({
 
     render: function() {
         var data = this.getDataset();
-        if(data.length > 0){
-            var allOtherColors = ["rgba(0,67,88,1)","rgba(112,206,93,1)", "rgba(102,120,238,1)", "rgba(59,44,80,1)","rgba(203,6,170,1)", "rgba(163,169,201,1)","rgba(191,180,82,1)","rgba(63,126,11,1)", "rgba(55,119,196,1)","rgba(126,87,96,1)"];
-            var fillColor = ["rgba(0,67,88,0.2)","rgba(112,206,93,0.2)", "rgba(102,120,238,0.2)", "rgba(59,44,80,0.2)","rgba(203,6,170,0.2)", "rgba(163,169,201,0.2)","rgba(191,180,82,0.2)","rgba(63,126,11,0.2)", "rgba(55,119,196,0.2)","rgba(126,87,96,0.2)"];
+        if (data.length > 0) {
+            var allOtherColors = ["rgba(0,67,88,1)", "rgba(112,206,93,1)", "rgba(102,120,238,1)", "rgba(59,44,80,1)", "rgba(203,6,170,1)", "rgba(163,169,201,1)", "rgba(191,180,82,1)", "rgba(63,126,11,1)", "rgba(55,119,196,1)", "rgba(126,87,96,1)"];
+            var fillColor = ["rgba(0,67,88,0.2)", "rgba(112,206,93,0.2)", "rgba(102,120,238,0.2)", "rgba(59,44,80,0.2)", "rgba(203,6,170,0.2)", "rgba(163,169,201,0.2)", "rgba(191,180,82,0.2)", "rgba(63,126,11,0.2)", "rgba(55,119,196,0.2)", "rgba(126,87,96,0.2)"];
             var pointColor = "#fff";
             var x = this.getInitialConfig();
 
-            for(var i = 0; i < 5; i++){
-                var datapush = {};
-                datapush = {
-                    "label" : i+1,
-                    "fillColor" : fillColor[i],
-                    "strokeColor" : allOtherColors[i],
-                    "pointColor" : allOtherColors[i],
-                    "pointStrokeColor" : pointColor,
-                    "pointHighlightFill" : pointColor,
-                    "pointHighlightStroke" : allOtherColors[i],
-                    "data" : data[i].data
+            data.forEach(function(elem, i) {
+                var datapush = {
+                    "label": i + 1,
+                    "fillColor": fillColor[i],
+                    "strokeColor": allOtherColors[i],
+                    "pointColor": allOtherColors[i],
+                    "pointStrokeColor": pointColor,
+                    "pointHighlightFill": pointColor,
+                    "pointHighlightStroke": allOtherColors[i],
+                    "data": data[i].data
                 };
                 x.datasets.push(datapush);
-            }
-            return <div>
-                    <h3>Number of messages per day per chat</h3>
-                        <LineChart data={x} width="800" height="250"/>
-                    </div>
-        }else{
+            });
+
+            return (
+                <div>
+                    <h3>Number of characters per day per chat</h3>
+                    <LineChart data={x} width="800" height="250"/>
+                 </div>
+            )
+        } else {
             return false
         }
+    }
+
         //var colorArray = ["214,25,75", "112,206,93", "102,120,238", "59,44,80", "203,6,170", "163,169,201", "191,180,82", "63,126,11", "55,119,196", "126,87,96", "250,58,54", "80,61,160"];
         //, "198,143,158", "148,0,119", "107,152,17"
 
@@ -246,7 +250,7 @@ var Graph = React.createClass({
         //    data: []
         //}
 
-    }
+
 });
 
 /*

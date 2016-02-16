@@ -19,14 +19,51 @@
             </div>
 
             <h2>Overview</h2>
-
             <div class="row">
                 <div class="col-sm-6">
+                    {% comment %} sample data {% endcomment %}
+                    <h3>Project A</h3>
+                    <br>
+                    <ul class="list-group">
+                        <h4 class="List-group-item-heading">{{ "Conversations involved in" }}</h4>
+                        <li class="list-group-item">Analysis</li>
+                        <li class="list-group-item">Design</li>
+                        <li class="list-group-item">Implementation</li>
+                        <li class="list-group-item">Testing</li>
+                    </ul>
+
+                    <br>
+                    <h4 class="List-group-item-heading">{{ "Frequently talks about" }}</h4>
+                    <p class ="List-group-item">{{ "Features (2 conversations)" }}</p>
+                    <p class ="List-group-item">{{ "Enhancements (2 conversations)" }}</p>
+
+                </div>
+            </div>
+
+
+            <br><br>
+            <h3>Project B</h3>
+            <br>
+            <ul class="list-group">
+                <h4 class="List-group-item-heading">{{ "Conversations involved in" }}</h4>
+                <li class="list-group-item">What's for lunch?</li>
+                <li class="list-group-item">We need to start doing work soon</li>
+                <li class="list-group-item">Can anyone here code?</li>
+            </ul>
+
+            <br>
+            <h4 class="List-group-item-heading">{{ "Frequently talks about" }}</h4>
+            <p class ="List-group-item">{{ "Bugs (3 conversations)" }}</p>
+
+        </div>
+    </div>
+            {% comment %}           <div class="row">
+                <div class="col-sm-6">
                     {% for project in projects %}
-                    <h3>{{ project.name }}</h3>
-                    <div class="list-group">
-                        {% for chat in project.chat_set.all %}
-                        <a href="/chats/{{ chat.id }}" class="list-group-item">
+                        <h3>{{ project.name }}</h3>
+                        <div class="list-group">
+                            {% for chat in project.chat_set.all %}
+                                <a href="/chats/{{ chat.id }}" class="list-group-item">
                             <h4 class="list-group-item-heading">{{ chat.title }}</h4>
                             <p class="list-group-item-text">{{ chat.project.name }}</p>
                         </a>
@@ -35,17 +72,17 @@
                         {% endfor %}
                     </div>
                     {% endfor %}
-                   </div>
-
-
                 </div>
 
-            </div>
+            </div>{% endcomment %}
+
+
 
         </div>
-    </div>
 
+    </div>
 </div>
+
 
 
 {% endblock %}

@@ -11,7 +11,7 @@ var GLOBALS = require('./globals');
 var moment = require('moment');
 
 
-var userGraph2 = React.createClass({
+var UserGraph2 = React.createClass({
     //functionDataAPI : function(){
     //
     //},
@@ -19,7 +19,7 @@ var userGraph2 = React.createClass({
     //functionDataFirebase : function(){
     //
     //},
-    ref : "",
+/*    ref : "",
     chatRef : "",
     messageRef : "",
     participantRef: "",
@@ -97,164 +97,48 @@ var userGraph2 = React.createClass({
 
         return ds;
     },
-
+*/
     render: function() {
-        var data = this.getDataset();
-        if(data.length > 0){
-            var allOtherColors = ["rgba(0,67,88,1)","rgba(112,206,93,1)", "rgba(102,120,238,1)", "rgba(59,44,80,1)","rgba(203,6,170,1)", "rgba(163,169,201,1)","rgba(191,180,82,1)","rgba(63,126,11,1)", "rgba(55,119,196,1)","rgba(126,87,96,1)"];
-            var fillColor = ["rgba(0,67,88,0.2)","rgba(112,206,93,0.2)", "rgba(102,120,238,0.2)", "rgba(59,44,80,0.2)","rgba(203,6,170,0.2)", "rgba(163,169,201,0.2)","rgba(191,180,82,0.2)","rgba(63,126,11,0.2)", "rgba(55,119,196,0.2)","rgba(126,87,96,0.2)"];
-            var pointColor = "#fff";
-            var x = this.getInitialConfig();
+        var data = {
+            labels: ["2016-02-10", "2016-02-11", "2016-02-12", "2016-02-13", "2016-02-14", "2016-02-15", "2016-02-16"],
+            datasets: [
+                {
+                    label: "David",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [24, 46, 8, 16, 22, 56, 3]
+                },
+                {
+                    label: "Mike",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [60, 5, 9, 2, 150, 50, 80]
+                },
+                {
+                    label: "Paul",
+                    fillColor: "rgba(100,20,90,0.2)",
+                    strokeColor: "rgba(100,20,90,0.1)",
+                    pointColor: "rgba(100,20,90,0.1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(100,20,90,0.1)",
+                    data: [43, 33, 51, 15, 20, 100, 20]
+                }
+            ]
+        };
 
-            for(var i = 0; i < 5; i++){
-                var datapush = {};
-                datapush = {
-                    "label" : i+1,
-                    "fillColor" : fillColor[i],
-                    "strokeColor" : allOtherColors[i],
-                    "pointColor" : allOtherColors[i],
-                    "pointStrokeColor" : pointColor,
-                    "pointHighlightFill" : pointColor,
-                    "pointHighlightStroke" : allOtherColors[i],
-                    "data" : data[i].data
-                };
-                x.datasets.push(datapush);
-            }
-            return <div>
-                      <h3>Number of messages per day per participant</h3>
-                          <LineChart data={x} width="800" height="250"/>
-                   </div>
-        }else{
-            return false
-        }
-        //var colorArray = ["214,25,75", "112,206,93", "102,120,238", "59,44,80", "203,6,170", "163,169,201", "191,180,82", "63,126,11", "55,119,196", "126,87,96", "250,58,54", "80,61,160"];
-        //, "198,143,158", "148,0,119", "107,152,17"
-
-
-        //{
-        //            label: "My First dataset",
-        //            fillColor: "rgba(0,67,88,0.2)",
-        //            strokeColor: "rgba(0,67,88,1)",
-        //            pointColor: "rgba(0,67,88,1)",
-        //            pointStrokeColor: "#fff",
-        //            pointHighlightFill: "#fff",
-        //            pointHighlightStroke: "rgba(0,67,88,1)",
-        //            data: [65, 59, 80, 81, 56, 55, 40]
-        //        },
-        //        {
-        //            label: "My Second dataset",
-        //            fillColor: "rgba(31,118,112,0.2)",
-        //            strokeColor: "rgba(31,118,112,1)",
-        //            pointColor: "rgba(31,118,112,1)",
-        //            pointStrokeColor: "#fff",
-        //            pointHighlightFill: "#fff",
-        //            pointHighlightStroke: "rgba(31,118,112,1)",
-        //            data: [28, 48, 40, 19, 86, 27, 90]
-        //        }
-        //    data.datasets[0].data = meuArray;
-        //api.getAllTickets(PROJECT_ID, functionDataAPI);
-        //firebaseAPI.getAllChatName(1,functionDataFirebase);
-
-        //{
-        //            label: "1",
-        //            fillColor: "rgba(214,25,75,0)",
-        //            strokeColor: "rgba(214,25,75,1)",
-        //            pointColor: "rgba(214,25,75,1)",
-        //            pointStrokeColor: "#fff",
-        //            pointHighlightFill: "#fff",
-        //            pointHighlightStroke: "rgba(214,25,75,1)",
-        //            data: []
-        //        },
-        //        {
-        //            label: "2",
-        //            fillColor: "rgba(112,206,93,0)",
-        //            strokeColor: "rgba(112,206,93,1)",
-        //            pointColor: "rgba(112,206,93,1)",
-        //            pointStrokeColor: "#fff",
-        //            pointHighlightFill: "#fff",
-        //            pointHighlightStroke: "rgba(112,206,93,1)",
-        //            data: []
-        //        },
-        //        {
-        //            label: "3",
-        //            fillColor: "rgba(102,120,238,0)",
-        //            strokeColor: "rgba(102,120,238,1)",
-        //            pointColor: "rgba(102,120,238,1)",
-        //            pointStrokeColor: "#fff",
-        //            pointHighlightFill: "#fff",
-        //            pointHighlightStroke: "rgba(102,120,238,1)",
-        //            data: []
-        //        },
-        //        {
-        //            label: "4",
-        //            fillColor: "rgba(59,44,80,0)",
-        //            strokeColor: "rgba(59,44,80,1)",
-        //            pointColor: "rgba(59,44,80,1)",
-        //            pointStrokeColor: "#fff",
-        //            pointHighlightFill: "#fff",
-        //            pointHighlightStroke: "rgba(59,44,80,1)",
-        //            data: []
-        //        }
-        //{
-        //    label: "5",
-        //    fillColor: "rgba(203,6,170,0.2)",
-        //    strokeColor: "rgba(203,6,170,1)",
-        //    pointColor: "rgba(203,6,170,1)",
-        //    pointStrokeColor: "#fff",
-        //    pointHighlightFill: "#fff",
-        //    pointHighlightStroke: "rgba(203,6,170,1)",
-        //    data: []
-        //},
-        //{
-        //    label: "6",
-        //    fillColor: "rgba(163,169,201,0.2)",
-        //    strokeColor: "rgba(163,169,201,1)",
-        //    pointColor: "rgba(163,169,201,1)",
-        //    pointStrokeColor: "#fff",
-        //    pointHighlightFill: "#fff",
-        //    pointHighlightStroke: "rgba(163,169,201,1)",
-        //    data: []
-        //},
-        //{
-        //    label: "7",
-        //    fillColor: "rgba(191,180,82,0.2)",
-        //    strokeColor: "rgba(191,180,82,1)",
-        //    pointColor: "rgba(191,180,82,1)",
-        //    pointStrokeColor: "#fff",
-        //    pointHighlightFill: "#fff",
-        //    pointHighlightStroke: "rgba(191,180,82,1)",
-        //    data: []
-        //},
-        //{
-        //    label: "8",
-        //    fillColor: "rgba(63,126,11,0.2)",
-        //    strokeColor: "rgba(63,126,11,1)",
-        //    pointColor: "rgba(63,126,11,1)",
-        //    pointStrokeColor: "#fff",
-        //    pointHighlightFill: "#fff",
-        //    pointHighlightStroke: "rgba(63,126,11,1)",
-        //    data: []
-        //},
-        //{
-        //    label: "9",
-        //    fillColor: "rgba(55,119,196,0.2)",
-        //    strokeColor: "rgba(55,119,196,1)",
-        //    pointColor: "rgba(55,119,196,1)",
-        //    pointStrokeColor: "#fff",
-        //    pointHighlightFill: "#fff",
-        //    pointHighlightStroke: "rgba(55,119,196,1)",
-        //    data: []
-        //},
-        //{
-        //    label: "10",
-        //    fillColor: "rgba(126,87,96,0.2)",
-        //    strokeColor: "rgba(126,87,96,1)",
-        //    pointColor: "rgba(126,87,96,1)",
-        //    pointStrokeColor: "#fff",
-        //    pointHighlightFill: "#fff",
-        //    pointHighlightStroke: "rgba(126,87,96,1)",
-        //    data: []
-        //}
+        return <div>
+            <h3>Content per day per participant (example data)</h3>
+            <LineChart data={data} width="800" height="250"/>
+        </div>
 
     }
 });
@@ -270,4 +154,4 @@ if (mountPoint !== null) {
 */
 
 moment.locale('en-gb');
-module.exports = userGraph2;
+module.exports = UserGraph2;

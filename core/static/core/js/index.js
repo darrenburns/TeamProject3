@@ -19,10 +19,7 @@ require('./LabelTags.react');
 require('./TicketListSort.react');
 require('./Root.react');
 
-/*require('./Graph.react');
-require('./Graph2.react');
-require('./userGraph.react');
-require('./userGraph2.react');*/
+
 require('./GraphsPanel.react');
 require('./ChatGraph.react');
 require('./ProjectGraph.react');
