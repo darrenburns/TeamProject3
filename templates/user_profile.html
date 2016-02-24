@@ -3,61 +3,82 @@
 
 
 {% block content %}
-<div class="container">
-    <div class="row">
+    <div class="container">
+        <div class="row">
 
-        <div class="col-sm-12">
+            <div class="col-sm-12">
 
-            <div class="row">
+                <div class="row">
 
-                <div class="col-sm-12">
+                    <div class="col-sm-12">
 
-                    <h1><strong> <u> {{ userProfile.user }} </u> </strong></h1> <HR>
+                        <h1><strong> <u> {{ userProfile.user }} </u> </strong></h1> <HR>
+
+                    </div>
 
                 </div>
-
-            </div>
-
-            <h2>Overview</h2>
-            <div class="row">
                 <div class="col-sm-6">
-                    {% comment %} sample data {% endcomment %}
-                    <h3>Project A</h3>
-                    <br>
-                    <ul class="list-group">
-                        <h4 class="List-group-item-heading">{{ "Conversations involved in" }}</h4>
-                        <li class="list-group-item">Analysis</li>
-                        <li class="list-group-item">Design</li>
-                        <li class="list-group-item">Implementation</li>
-                        <li class="list-group-item">Testing</li>
-                    </ul>
-
-                    <br>
-                    <h4 class="List-group-item-heading">{{ "Frequently talks about" }}</h4>
-                    <p class ="List-group-item">{{ "Features (2 conversations)" }}</p>
-                    <p class ="List-group-item">{{ "Enhancements (2 conversations)" }}</p>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Project A <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Analysis</a></li>
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">Implementation</a></li>
+                            <li><a href="#">Testing</a></li>
+                        </ul>
+                    </div>
 
                 </div>
+                <div class="col-sm-6">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Project B <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">What's for lunch?</a></li>
+                            <li><a href="#">We need to start doing work soon</a></li>
+                            <li><a href="#">Can anyone code?</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Project C <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Some more chats</a></li>
+                            <li><a href="#">If only these existed</a></li>
+                        </ul>
+                    </div>
 
+                </div>
+                <div class="col-sm-6">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Project D <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">One wee thing</a></li>
 
-            <br><br>
-            <h3>Project B</h3>
-            <br>
-            <ul class="list-group">
-                <h4 class="List-group-item-heading">{{ "Conversations involved in" }}</h4>
-                <li class="list-group-item">What's for lunch?</li>
-                <li class="list-group-item">We need to start doing work soon</li>
-                <li class="list-group-item">Can anyone here code?</li>
-            </ul>
+                        </ul>
+                    </div>
+                </div>
 
-            <br>
-            <h4 class="List-group-item-heading">{{ "Frequently talks about" }}</h4>
-            <p class ="List-group-item">{{ "Bugs (3 conversations)" }}</p>
-
+            </div>
         </div>
+        <br>
+        <div id="profile-graph"></div>
+        <br>
+        <div id="profile-graph2"></div>
+        <br>
+        <div id="profile-graph3"></div>
     </div>
-            {% comment %}           <div class="row">
+    {% comment %}           <div class="row">
                 <div class="col-sm-6">
                     {% for project in projects %}
                         <h3>{{ project.name }}</h3>
@@ -78,10 +99,8 @@
 
 
 
-        </div>
-
     </div>
-</div>
+
 
 
 

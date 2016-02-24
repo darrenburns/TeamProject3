@@ -11,7 +11,7 @@ var GLOBALS = require('./globals');
 var moment = require('moment');
 
 
-var UserGraph = React.createClass({
+var ProfileGraph = React.createClass({
     //functionDataAPI : function(){
     //
     //},
@@ -102,53 +102,44 @@ var UserGraph = React.createClass({
             labels: ["2016-02-10", "2016-02-11", "2016-02-12", "2016-02-13", "2016-02-14", "2016-02-15", "2016-02-16"],
             datasets: [
                 {
-                    label: "David",
-                    fillColor: "rgba(50,50,160,0.2)",
-                    strokeColor: "rgba(50,50,160,1)",
-                    pointColor: "rgba(50,50,160,1)",
+                    label: "Project 1",
+                    fillColor: "rgba(218,105,18,0.2)",
+                    strokeColor: "rgba(218,105,18,1)",
+                    pointColor: "rgba(218,105,18,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
                     data: [12, 23, 4, 8, 11, 22, 1]
                 },
                 {
-                    label: "Mike",
-                    fillColor: "rgba(255,98,50,0.2)",
-                    strokeColor: "rgba(255,98,50,1)",
-                    pointColor: "rgba(255,98,50,1)",
+                    label: "Project 2",
+                    fillColor: "rgba(18,211,218,0.2)",
+                    strokeColor: "rgba(18,211,218,1)",
+                    pointColor: "rgba(18,211,218,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
                     data: [32, 2, 4, 19, 100, 25, 45]
                 },
-                {
-                    label: "Paul",
-                    fillColor: "rgba(100,20,90,0.2)",
-                    strokeColor: "rgba(100,20,90,0.1)",
-                    pointColor: "rgba(100,20,90,0.1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(100,20,90,0.1)",
-                    data: [21, 15, 78, 8, 11, 55, 11]
-                }
+
             ]
         };
 
         return <div>
-            <h3>Number of messages per day per participant (example data)</h3>
+            <h3>My contributions per project (example data)</h3>
             <LineChart data={data} width="800" height="250"/>
         </div>
 
     }
 });
 
-/*var mountPoint = document.getElementById('graph-chartjs3');
+var mountPoint = document.getElementById('profile-graph');
 if (mountPoint !== null) {
     React.render(
-        <userGraph/>,
+        <ProfileGraph/>,
         mountPoint
     );
-}*/
+}
 
 moment.locale('en-gb');
-module.exports = UserGraph;
+module.exports = ProfileGraph;
