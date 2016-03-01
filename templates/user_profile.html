@@ -15,69 +15,135 @@
                         <h1><strong> <u> {{ userProfile.user }} </u> </strong></h1> <HR>
 
                     </div>
-
-                </div>
-                <div class="col-sm-6">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Project A <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Analysis</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Implementation</a></li>
-                            <li><a href="#">Testing</a></li>
-                        </ul>
+                    <div class="col-sm-2">
+                        <h3>Project with most activity</h3>
+                        <h4> <a href="#" class="list-group-item">Project 2</a></h4>
                     </div>
 
                 </div>
-                <div class="col-sm-6">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Project B <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">What's for lunch?</a></li>
-                            <li><a href="#">We need to start doing work soon</a></li>
-                            <li><a href="#">Can anyone code?</a></li>
-                        </ul>
+                <div class="row">
+
+
+
+                    <div class="col-sm-4">
+
+                        {% comment %}  <div class="col-sm-6">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Project A <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Analysis</a></li>
+                                    <li><a href="#">Design</a></li>
+                                    <li><a href="#">Implementation</a></li>
+                                    <li><a href="#">Testing</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Project B <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">What's for lunch?</a></li>
+                                    <li><a href="#">We need to start doing work soon</a></li>
+                                    <li><a href="#">Can anyone code?</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Project C <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Some more chats</a></li>
+                                    <li><a href="#">If only these existed</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Project D <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">One wee thing</a></li>
+
+                                </ul>
+                            </div>
+                        </div>{% endcomment %}
+                        <div id="profile-graph"></div>
+                        <br>
+                        <div id="profile-graph2"></div>
+                        <br>
+                        <div id="profile-graph3"></div>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="col-sm-6">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Project C <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Some more chats</a></li>
-                            <li><a href="#">If only these existed</a></li>
-                        </ul>
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Conversations involved in</h3>
+                        <div class="list-group">
+                            <h4 class="list-group-item-heading">Project 1</h4>
+
+                            <a href="#" class="list-group-item">Convo A</a>
+                            <a href="#" class="list-group-item">Convo B</a>
+                            <br>
+
+                            <h4 class="list-group-item-heading">Project 2</h4>
+
+                            <a href="#" class="list-group-item">Convo D</a>
+                            <br>
+                            <h4 class="list-group-item-heading">Project 3</h4>
+
+                            <a href="#" class="list-group-item">Convo E</a>
+                            <a href="#" class="list-group-item">Convo F</a>
+                            <a href="#" class="list-group-item">Convo G</a>
+                            <br>
+                        </div>
+                        <br>
+                        <h3>Conversations Started</h3>
+                        <div class="list-group">
+                            <h4 class="list-group-item-heading">Project 1</h4>
+
+                            <a href="#" class="list-group-item">Convo A</a>
+                            <a href="#" class="list-group-item">Convo B</a>
+                            <br>
+
+
+
+
+                        </div>
+                        <br>
+
+                        <h3>Suggested Conversations</h3>
+                        <div class="list-group">
+                            <h4 class="list-group-item-heading">Project 1</h4>
+
+                            <a href="#" class="list-group-item">Convo H</a>
+                            <a href="#" class="list-group-item">Convo J</a>
+                            <br>
+                            <h4 class="list-group-item-heading">Project 3</h4>
+
+                            <a href="#" class="list-group-item">Convo A</a>
+                            <br>
+                        </div>
+
+
+
                     </div>
 
                 </div>
-                <div class="col-sm-6">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Project D <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">One wee thing</a></li>
 
-                        </ul>
-                    </div>
-                </div>
 
             </div>
         </div>
-        <br>
-        <div id="profile-graph"></div>
-        <br>
-        <div id="profile-graph2"></div>
-        <br>
-        <div id="profile-graph3"></div>
     </div>
+
     {% comment %}           <div class="row">
                 <div class="col-sm-6">
                     {% for project in projects %}
@@ -99,7 +165,6 @@
 
 
 
-    </div>
 
 
 
