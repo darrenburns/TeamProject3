@@ -26,6 +26,7 @@ require('./ProjectGraph.react');
 require('./profileGraph.react');
 require('./profileGraph2.react');
 require('./profileGraph3.react');
+require('./profileGraph4.react');
 require('./utils');
 
 require('./NotificationCentre.react');
