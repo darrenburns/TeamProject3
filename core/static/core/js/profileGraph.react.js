@@ -126,7 +126,7 @@ var ProfileGraph = React.createClass({
         };
 
         return <div>
-            <h3>My contributions per project (example data)</h3>
+            <h3>My contributions per project over time</h3>
             <LineChart data={data} width="800" height="250"/>
         </div>
 

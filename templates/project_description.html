@@ -37,10 +37,6 @@
                 <div id="graph-chartjs1"></div>
                 <div id="graphs-panel-mount"></div>
 
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Project Manager: </strong>{{ project.manager }}</li>
-                    <li class="list-group-item"><strong>Project Description: </strong>{{ project.desc }}</li>
-                </ul>
 
 
                 <a href="{{ next }}">
@@ -55,11 +51,41 @@
                 </ul>
                 <h4>Related Projects</h4>
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-success">Project B</a>
+                    <a href="#" class="list-group-item list-group-item-success"> <div class="caption">
+                        <h3>Project A</h3>
+                        <p> Started at the same time as this project</p>
+                    </div>
+                    </a>
                     <br>
-                    <a href="#" class="list-group-item list-group-item-success">Davids Project</a>
+                    <a href="#" class="list-group-item list-group-item-success"> <div class="caption">
+                        <h3>Davids project</h3>
+                        <p> David and Paul both work on this project</p>
+                    </div>
+                    </a>                    <br>
+                    <a href="#" class="list-group-item list-group-item-success"> <div class="caption">
+                        <h3>And another one</h3>
+                        <p> The topic "nodejs" is discussed in this project</p>
+                    </div>
+                    </a>
+
+
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Project Manager: </strong>{{ project.manager }}</li>
+                    <li class="list-group-item"><strong>Project Description: </strong>{{ project.desc }}</li>
+                </ul>
+                <div class="jumbotron">
+                    <h3>Invite new users</h3>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">User List</a></p>
+                    Suggestions
+                    <a href='#' class="list-group-item">David Scott</a>
+                     You have 3 projects in common
                     <br>
-                    <a href="#" class="list-group-item list-group-item-success">And another</a>
+                    <br>
+                    <a href='#' class="list-group-item">Callum Mann </a>
+                    <br>
+                    <a href='#' class="list-group-item">Paul Campbell</a>
+
                 </div>
 
 
