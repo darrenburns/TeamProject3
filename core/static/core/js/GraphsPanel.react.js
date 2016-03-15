@@ -16,13 +16,14 @@ var GraphsPanel = React.createClass({
             <div className="graphs-panel">
                 <Graph/>
                 <Graph2/>
+
                 <UserGraph/>
                 <UserGraph2/>
                 <UserGraph3/>
 
             </div>
 
-        )
+            )
     }
 
 

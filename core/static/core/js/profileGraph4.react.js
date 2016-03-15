@@ -14,6 +14,7 @@ var ProfileGraph4 = React.createClass({
 
 
     render: function() {
+
         var data = {
             labels: ["Project A", "Project B", "Project 3"],
             datasets: [
