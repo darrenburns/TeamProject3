@@ -110,7 +110,7 @@ var ProjectGraph = React.createClass({
                 </div>
             );
         }else{
-            return (<h3>Leo</h3>);
+            return (<h3></h3>);
         }
     }
 });
