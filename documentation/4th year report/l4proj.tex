@@ -37,8 +37,13 @@ There are a number of existing systems which adhere to the 'ticket-based managem
 This project was originally undertaken as a third year group project, but was continued as an individual fourth year project.  This paper will discuss the research that was undertaken prior to beginning the project, and the work that was undertaken in the recent year and how that work assists in the aim of improving project task management.  Furthermore it will be discussed the difficulties that arose in working with what was effectively a legacy system as a result of work that was undertaken over the summer.
 
 \chapter{Related Work}
-A number of works were studied that related to the issue of team communication and team management.  These works covered a variety of topics pertaining to the field of management, namely that of 'Distributed Software Management', 'Task delegation', 'Informal versus formal communication in the workplace,
+A number of works were studied that related to the issue of team communication and team management.  These works covered a variety of topics pertaining to the field of management, namely that of 'Distributed Software Management', 'Task delegation', 'Informal versus formal communication' and 'Collaborative Techniques'.
+%----------------------------------------------------------------------------
+
 \section Informal versus Formal Communication
+
+These papers discussed how in a project environment people will tend towards using informal means of communication such as in person discussion, social media and phone calls.  This means there is a lot of information relating to the project that is produced by team members that is never formally recorded and thus is lost in time.  It is discussed the reasons for this reticence to record what is discussed, as well as potential solutions in order to better utilise the untapped resource of conversations.
+
 \subsection{Architectures, Coordination, and Distance: Conway's Law and Beyond}
 
 In this paper it is discussed how the architecture of a system being developed often dictates how the team organisation will be split up.  It states that this alone is not sufficient to fully coordinate a large development team, and taking into account different tasks, milestones, plans and processes must be considered to effectively manage a team.  It is said however that this is rarely successfully achieved in the real world, due to unpredictable factors in the development process such as inaccurate estimates, changing requirements, incomplete solutions and personnel leaving or joining the project.  
@@ -47,19 +52,9 @@ These problems are circumvented largely due to informal communication and organi
 
 A case study was carried out on a technology department of a multinational country, which was chosen for the factor that sites in different countries had the added organisational complication of multiple languages.  The department was currently working on a project whereby different teams worked on different components of a large system, and simulated the rest of the system for the purpose of development.  It was found however that in creating the simulated components the problem description lacked certain essential details and as a result each team had made their own assumptions regarding missing information.  As a result each team ended up with different assumptions and when the components were integrated they did not work correctly.  It was found that team members were reluctant to record these assumptions as they viewed it as taking away from time that could be spent developing the system, when they had already discussed it within their teams.
 
-\subsection {Sysiphus: Enabling informal collaboration in global software development}
-
-In this paper it is discussed that projects with a globally distributed development team informal communication is severely limited, resulting in difficulty in speading tactic knowledge.  This knowledge is what allows for a full overview of an organisation and thus all participants do not have access to the rational behind decisions.  As a result when problems arise it can take days to rectify despite the issues being easily rectifiable if the relevant stakeholders were identified.
-
-Thus the paper proposes a system that captures information about organisational roles and structures it for use.  The system encourages participants to make communication and issues explicite in the system models and thus relevant stakeholders are
-
-\subsection {Using Developer Activity Data to Enhance Awareness during Collaborative Software Development}
-
-This discusses that with the increase in scale and distribution of software development, the shared understanding that developers would previously have had is more difficult to attain, as this originally would have come about through formal and informal face-to-face meetings and gatherings.  Thus a model is proposed that seeks to encapsulate the ordering of tasks, artefacts and developers relevant to particular work contexts in projects.  This model would be built up using data gathered from the developers interactions with IDEs.  Specifically it would identify entities (developers, tasks, artefacts), associated with a particular work context, then identify relationships among these. Furthermore some information can be acquired regarding where developers work, and when.
-
 \subsection {CVS Integration with Notification and Chat: Lightweight Software Team Collaboration}
 
-It is discussed how Concurrent Version Systems (CVS) can be used in organisation of software development, but it is proposed that these do not encapsulate the informal discussions regarding the code and thus could stand to be augmented by the addition of a lightweight event notification system.  This tool would display messages from the CVS and offer a chat system for developers to discuss them, thus allowing for a combination of formal documentation and informal discussion.
+It is discussed how Concurrent Version Systems (CVS) can be used in the organisation of software development. These can serve to manage the software itself, and additional information can be attached to commits to record information.  However, it is proposed that these do not encapsulate the informal discussions regarding the code and thus could stand to be augmented by the addition of a lightweight event notification system.  This tool would display messages from the CVS and offer a chat system for developers to discuss them, thus allowing for a combination of formal documentation and informal discussion.
 
 
 \subsection {The Interdisciplinary Study of Coordination}
@@ -83,19 +78,31 @@ This paper is a report on a study on a synchronous messaging application with su
 
 This paper discusses how the trend of distributed development leads to isolating developers from one another.  It is stated that this isolation is good and bad at the same time.  On one hand developers and work without interference due to version control systems, whereby they can work without being affected by changes being made concurrently by other developers.  On the other hand it can lead to problems when changes are moved from a personal workspace to a central one.  
 
-To solve this problem a tool was developed, named a 'workspace awareness tool' which provides developers insight into other workspaces.  Specifically it informs developers when other developers change related artifacts.  These notifications show the severity and effect of changes, and allow developers to work around what has been changed in advance.
-
 \subsection {Hipikat: A Project Memory for Software Management}
 
 This paper discusses how as a result of distributed development teams new members of such companies cannot learn from their experiences colleagues, due to absence of informal encounters.
  the paper proposes a solution through a tool that provides a "project memory".  The tool helps newcomers working on a task find similar examples in the source code from previous work done. 
 
-%----------------------------------------------------------------------------
-\section Distributed Software Development
+To solve this problem a tool was developed, named a 'workspace awareness tool' which provides developers insight into other workspaces.  Specifically it informs developers when other developers change related artifacts.  These notifications show the severity and effect of changes, and allow developers to work around what has been changed in advance.
+
+\subsection {Sysiphus: Enabling informal collaboration in global software development}
+
+In this paper it is discussed that projects with a globally distributed development team informal communication is severely limited, resulting in difficulty in speading tactic knowledge.  This knowledge is what allows for a full overview of an organisation and thus all participants do not have access to the rational behind decisions.  As a result when problems arise it can take days to rectify despite the issues being easily rectifiable if the relevant stakeholders were identified.
+
+Thus the paper proposes a system that captures information about organisational roles and structures it for use.  The system encourages participants to make communication and issues explicite in the system models and thus relevant stakeholders are identified.  This means when people are working on a part of the system Sysiphus can display what other users have worked on that particular section.
+
+\subsection {Using Developer Activity Data to Enhance Awareness during Collaborative Software Development}
+
+This discusses that with the increase in scale and distribution of software development, the shared understanding that developers would previously have had is more difficult to attain, as this originally would have come about through formal and informal face-to-face meetings and gatherings.  Thus a model is proposed that seeks to encapsulate the ordering of tasks, artefacts and developers relevant to particular work contexts in projects.  This model would be built up using data gathered from the developers interactions with IDEs.  Specifically it would identify entities (developers, tasks, artefacts), associated with a particular work context, then identify relationships among these. Furthermore some information can be acquired regarding where developers work, and when.
+
 %----------------------------------------------------------------------------
 \section Task Delegation
-%----------------------------------------------------------------------------
 
+\subsection {Who Should Fix This Bug?}
+
+This paper suggests a semi-automated way of assigning bug reports to a developer, through use of a machine learning algorithm.  This algorithm looks at an open bug repository in order to learn the kind of reports each different developer on the team resolves.  When a new bug report arrives the the system will then recommend a group of developers that could be expected to resolve this based on what they have done previously.
+%----------------------------------------------------------------------------
+\section Distributed Software Development
 \subsection{Global Software Engineering: The Future of Socio-technical Coordination}
 
 This paper discusses the current trend of software development projects to have multiple teams in different locations, often even different continents.  This is due to the increased ease of communication over long distances as well as the accessibility of skilled workers regardless of where they live.
@@ -117,10 +124,6 @@ a case study made was one whereby participants of a project were represented by 
 The hexagons were arranged according to their position within the organisation.  This allowed for an overview of the participants to be easily viewed as well as what tasks were completed.
 
 
-\subsection {Who Should Fix This Bug?}
-
-This paper suggests a semi-automated way of assigning bug reports to a developer, through use of a machine learning algorithm.  This algorithm looks at an open bug repository in order to learn the kind of reports each different developer on the team resolves.  When a new bug report arrives the the system will then recommend a group of developers that could be expected to resolve this based on what they have done previously.
-
 
 \subsection {Virtual software team project management}
 
@@ -128,8 +131,6 @@ This paper looks at the necessary differences in organising a virtual team (i.e.
 
 It is stated that global projects carry additional risk of delay or failure due to linguistic and cultural difference, motivational differences and temporal distance.  The paper proposes how best to organise a virtual team in order to prevent this.  It is essential to formalise roles, relationships and rules to aid in communication and control.  This process must be documented and formalised in order to ensure these are followed. 
 
-
- 
 
 \subsection {Collaboration in Global Software Projects at Siemens: An Experience Report}
 
@@ -141,19 +142,6 @@ This information was gathered through semi-structured interviews whereby partici
 \item Distributed Pair Programming, whereby two geographically separated members of the team practice virual pair programming together, jointly reviewing software and making changes where necessary.  Through this link a reciprocal relationship is established whereby information and knowledge will be shared.
 \item Urgent Request, which is a broadcast mechanism for requesting information pertaining to a project.  This relies upon project members volunteering themselves as a contact for specific topics, and aims at promoting unplanned communication in the case that there arises an urgent need for information about a particular aspect of the project.
 \end{itemize}
-
-
-\subsection {Social Coding in GitHub: Transparency and Collaboration in an Open Software Repository}
-
-This paper discusses how from looking at activity information in github a large amount of information can be inferred pertaining to the persons technical aims and vision regarding a piece of code.  Moreover it can be used to guess a projects prospective success based on how regularly it is updated, and how supported a project is based on attention from the community.
-
-The information was obtained through semi-structured interviews on GitHub users, in order to document and understand how different aspects of GitHubs functionality were used.  The users were asked to walk through a session on GitHub and describe how they interpreted information displayed on the site.
-
-
-
-\subsection {Unifying Artifacts and Activities in a Visual Tool for Distributed Software Development Teams}
-
-This paper proposes a tool that combines the two sources of complexity in software development - Code complexity and the complexity that comes with producing it.  This tool would provide a development environment in which both the code would be visible as well as activity that has recently been performed in relation to the code.
 
 
 
@@ -179,7 +167,10 @@ In this paper it is discussed practices that aid global development projects.  A
 
 It was also found that planning for problem-solving communication was often neglected early on in a project.  In order to fix this the use of bulletin boards or e-mail lists is suggested.  This could also apply to a software-based fix whereby a ticket is created for all related problems to be posted to.
 
+%----------------------------------------------------------------------------
+\section {Collaborative Techniques}
 
+This section details papers which discuss ways the software development process can be improved through use of better project management software.  This includes the suggestion of addons to existing systems, as well as tools that directly aid software development. Although the latter does not directly relate to project task management, concepts from these could be taken and integrated into task management tools.
 
 \subsection {Collaboration in Software Engineering: A Roadmap}
 
@@ -202,6 +193,17 @@ This paper proposes an improvement to the concept of comments, whereby developer
 
 This could also be taken the opposite way, whereby a ticketing system could integrate with a source code repository and support direct linking to parts of the code.
 
+\subsection {Unifying Artifacts and Activities in a Visual Tool for Distributed Software Development Teams}
+
+A tool is proposed that combines the two sources of complexity in software development - Code complexity and the complexity that comes with producing it.  This tool would provide a development environment in which both the code would be visible as well as activity that has recently been performed in relation to the code.
+
+\subsection {Social Coding in GitHub: Transparency and Collaboration in an Open Software Repository}
+
+This paper discusses how from looking at activity information in github a large amount of information can be inferred pertaining to the persons technical aims and vision regarding a piece of code.  Moreover it can be used to guess a projects prospective success based on how regularly it is updated, and how supported a project is based on attention from the community.
+
+The information was obtained through semi-structured interviews on GitHub users, in order to document and understand how different aspects of GitHubs functionality were used.  The users were asked to walk through a session on GitHub and describe how they interpreted information displayed on the site.
+
+%----------------------------------------------------
 
 \chapter{Features}
 
@@ -228,7 +230,7 @@ Sample graphs were also created for the user profile page, whereby the informati
 \item Types of conversations involved in.  This shows what sort of topic the user is likely to be most experienced in. 
 \end{itemize}
 
-When using a chat system if a user has to stop chatting in order to
+When using a chat system if a user has to stop chatting in order to TODO
 
 The various chat commands allow for users to alter various metadata attributes through using certain symbols in a message to denote the piece of information that follows is a command.  For example, the phrase ''\^High'' in a message will set the priority of that chat to high.  This is done to further reinforce the idea of integration between a chat and ticketing system, allowing for users to change metadata in the middle of the conversation in a natural way, meaning they do not have to navigate to a seperate page.  A formatting cheat sheet for the various commands was also added to help new users learn how to use the system.
 
