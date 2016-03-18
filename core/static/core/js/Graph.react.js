@@ -112,7 +112,7 @@ var Graph = React.createClass({
 
             return (
                 <div>
-                    <h3>Number of characters per day per chat</h3>
+                    <h3>Number of Messages per day per chat</h3>
                     <LineChart data={x} width="800" height="250"/>
                  </div>
             )
