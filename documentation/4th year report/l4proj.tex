@@ -1,7 +1,8 @@
 \pdfoutput=1
 
 \documentclass{l4proj}
-
+\usepackage{graphicx}
+\graphicspath{{images/}}
 %
 % put any packages here
 %
@@ -28,9 +29,9 @@
 \pagenumbering{arabic}
 
 
-Project task management is typically done using a combination of ticketing systems, to formally record aspects about the project, and informal communication such as social networking, messaging tools or simply face to face discussion. This represents a duplication of effort whereby developers with discuss a task using an informal medium and then go on to record what has been done using the ticketing system.  As a result developers often become less dilligent in using their management tools due to the perceieved waste of time in recording information that has already been discussed elsewhere. 
+Project task management is typically done using a combination of ticketing systems, to formally record aspects about the project, and informal communication such as social networking, messaging tools or simply face to face discussion. This represents a duplication of effort whereby developers with discuss a task using an informal medium and then go on to record what has been done using the ticketing system.  As a result developers often become less diligent in using their management tools due to the perceived waste of time in recording information that has already been discussed elsewhere. 
 
-Tearooms seeks to solve this problem by providing a platform which integrates a social networking platform with a ticketing system.  As such a conversation system is provided whereby metadata can attached to each conversation in order to store additional information that relates to the topic.  Moreover a variety of metrics can be viewed regarding the chats, such as what chats are most active, what participants contribute the most or what chats has the most information per message.
+Tearooms seeks to solve this problem by providing a platform which integrates a social networking platform with a ticketing system.  As such a conversation system is provided whereby meta-data can attached to each conversation in order to store additional information that relates to the topic.  Moreover a variety of metrics can be viewed regarding the chats, such as what chats are most active, what participants contribute the most or what chats has the most information per message.
 
 There are a number of existing systems which adhere to the 'ticket-based management', 'conversation based management' and 'task management' paradigms, such as Jira, Slack, Trello and Trac.
 
@@ -83,26 +84,24 @@ This paper discusses how the trend of distributed development leads to isolating
 This paper discusses how as a result of distributed development teams new members of such companies cannot learn from their experiences colleagues, due to absence of informal encounters.
  the paper proposes a solution through a tool that provides a "project memory".  The tool helps newcomers working on a task find similar examples in the source code from previous work done. 
 
-To solve this problem a tool was developed, named a 'workspace awareness tool' which provides developers insight into other workspaces.  Specifically it informs developers when other developers change related artifacts.  These notifications show the severity and effect of changes, and allow developers to work around what has been changed in advance.
+To solve this problem a tool was developed, named a 'workspace awareness tool' which provides developers insight into other workspaces.  Specifically it informs developers when other developers change related artefacts.  These notifications show the severity and effect of changes, and allow developers to work around what has been changed in advance.
 
 \subsection {Sysiphus: Enabling informal collaboration in global software development}
 
-In this paper it is discussed that projects with a globally distributed development team informal communication is severely limited, resulting in difficulty in speading tactic knowledge.  This knowledge is what allows for a full overview of an organisation and thus all participants do not have access to the rational behind decisions.  As a result when problems arise it can take days to rectify despite the issues being easily rectifiable if the relevant stakeholders were identified.
+In this paper it is discussed that projects with a globally distributed development team informal communication is severely limited, resulting in difficulty in spreading tactic knowledge.  This knowledge is what allows for a full overview of an organisation and thus all participants do not have access to the rational behind decisions.  As a result when problems arise it can take days to rectify despite the issues being easily rectifiable if the relevant stakeholders were identified.
 
-Thus the paper proposes a system that captures information about organisational roles and structures it for use.  The system encourages participants to make communication and issues explicite in the system models and thus relevant stakeholders are identified.  This means when people are working on a part of the system Sysiphus can display what other users have worked on that particular section.
+Thus the paper proposes a system that captures information about organisational roles and structures it for use.  The system encourages participants to make communication and issues explicit in the system models and thus relevant stakeholders are identified.  This means when people are working on a part of the system Sysiphus can display what other users have worked on that particular section.
 
 \subsection {Using Developer Activity Data to Enhance Awareness during Collaborative Software Development}
 
 This discusses that with the increase in scale and distribution of software development, the shared understanding that developers would previously have had is more difficult to attain, as this originally would have come about through formal and informal face-to-face meetings and gatherings.  Thus a model is proposed that seeks to encapsulate the ordering of tasks, artefacts and developers relevant to particular work contexts in projects.  This model would be built up using data gathered from the developers interactions with IDEs.  Specifically it would identify entities (developers, tasks, artefacts), associated with a particular work context, then identify relationships among these. Furthermore some information can be acquired regarding where developers work, and when.
 
 %----------------------------------------------------------------------------
-\section Task Delegation
 
-\subsection {Who Should Fix This Bug?}
-
-This paper suggests a semi-automated way of assigning bug reports to a developer, through use of a machine learning algorithm.  This algorithm looks at an open bug repository in order to learn the kind of reports each different developer on the team resolves.  When a new bug report arrives the the system will then recommend a group of developers that could be expected to resolve this based on what they have done previously.
-%----------------------------------------------------------------------------
 \section Distributed Software Development
+
+It is discussed as to how best manage a geographically distributed software development team, meaning a team which may have multiple members or sub-teams separated by a great distance, or perhaps even in different countries.  This links back to the previous section, as due to this separation it is usually impossible to have face to face meetings with other team members, and informal interaction is severely limited.   As a result the amount of working information that is usually generated about a project, through team members getting to know each others strengths and weaknesses, will not build up.  Moreover, there arise difficulties in communication, as without frequent discussion the different teams may differ in their objectives or interpretations as to what has to be done.  This can also occur due to language or cultural differences.
+
 \subsection{Global Software Engineering: The Future of Socio-technical Coordination}
 
 This paper discusses the current trend of software development projects to have multiple teams in different locations, often even different continents.  This is due to the increased ease of communication over long distances as well as the accessibility of skilled workers regardless of where they live.
@@ -116,9 +115,9 @@ As a result globalisation is considered by some to be one of the major research 
 
 This paper discusses the fact that the software development tools are primarily focused on assisting the technical side of development, despite the fact that large parts of the process are organisational tasks.
 
-It is discussed that software development originally conducted in such a way whereby all code would be developed in one place, then over time it would be maintained by other people in different locations, thus communication between developers could be done via comments in the code.  Now however this has evolved such that it is now commonplace to have distributed development teams and a variety of communication methods to support the development and maintenance of systems.  With small local teams physically walking into someones office is often the best way to discuss something, but this is not possible for larger scale companies.
+It is discussed that software development originally conducted in such a way whereby all code would be developed in one place, then over time it would be maintained by other people in different locations, thus communication between developers could be done via comments in the code.  Now however this has evolved such that it is now commonplace to have distributed development teams and a variety of communication methods to support the development and maintenance of systems.  With small local teams physically walking into someone's office is often the best way to discuss something, but this is not possible for larger scale companies.
 
-Another issue identified is the visualisation of the development of software.  It is proposed that visualising data gathered from version control could be used to identify trends in the evolution of very large software systems, for example to identify candidates for refactoring.  
+Another issue identified is the visualisation of the development of software.  It is proposed that visualising data gathered from version control could be used to identify trends in the evolution of very large software systems, for example to identify candidates for re-factoring.  
 
 a case study made was one whereby participants of a project were represented by a coloured hexagon.  The colour represented the status of the person in relation to a task (e.g. in progress, completed or not started)
 The hexagons were arranged according to their position within the organisation.  This allowed for an overview of the participants to be easily viewed as well as what tasks were completed.
@@ -167,7 +166,15 @@ In this paper it is discussed practices that aid global development projects.  A
 
 It was also found that planning for problem-solving communication was often neglected early on in a project.  In order to fix this the use of bulletin boards or e-mail lists is suggested.  This could also apply to a software-based fix whereby a ticket is created for all related problems to be posted to.
 
+\section {Task Delegation}
+
+In this section it is discussed what can be done to assign tasks to specific people autonomously, as currently having to manually assign people requires the commitment of time which otherwise could be used on more important tasks.
+
 %----------------------------------------------------------------------------
+
+\subsection {Who Should Fix This Bug?}
+
+This paper suggests a semi-automated way of assigning bug reports to a developer, through use of a machine learning algorithm.  This algorithm looks at an open bug repository in order to learn the kind of reports each different developer on the team resolves.  When a new bug report arrives the the system will then recommend a group of developers that could be expected to resolve this based on what they have done previously.%----------------------------------------------------------------------------
 \section {Collaborative Techniques}
 
 This section details papers which discuss ways the software development process can be improved through use of better project management software.  This includes the suggestion of addons to existing systems, as well as tools that directly aid software development. Although the latter does not directly relate to project task management, concepts from these could be taken and integrated into task management tools.
@@ -179,10 +186,10 @@ This paper discusses how collaboration techniques have evolved to remedy the lim
 \begin {enumerate}
 \item Establish scope of a project
 \item Push the project towards an end result
-\item Manage dependencies between artifacts in the project
+\item Manage dependencies between artefacts in the project
 \item Reduce dependencies among developers
 \item Identify and solve errors
-\item Record the timeline of the project
+\item Record the time-line of the project
 \end {enumerate}
 
 In order to achieve these goals a number of technologies are adopted by software engineers.  These different technologies are used at different points in the development cycle, such as a single tool for the requirements phase, then another tool for creating UML diagrams, and so on.  It is proposed that the a future development could be a tool that can be used to cover all points in a software development cycle.
@@ -209,18 +216,39 @@ The information was obtained through semi-structured interviews on GitHub users,
 
 The 'tearooms' project was started with the aim of tackling a number of identified issues with current task management systems. It was found that graphs could be used to monitor the progress of a project. The data in the graph can often reflect the state of the project or conversation it pertains to when compared to other similar examples.
 
-A graph of content over time per chat was added.  This can be compared with the graph of messages over time to determine which chats have longer messages.  In situations where two chats have similar amounts of messages but one has significantly more 'content' it could be true that a more detailed discussion is taking place in this chat.
+\begin{itemize}
+\item A graph of messages over time per chat.  This can show which chats are currently being actively worked on, as well as showing which have been worked on - and to what extent - over the last week.
+\item A graph of content over time per chat (\ref{fig:1}).  This can be compared with the graph of messages over time to determine which chats have longer messages.  In situations where two chats have similar amounts of messages but one has significantly more 'content' it could be true that a more detailed discussion is taking place in this chat.
+\item The graph 'number of messages over time per participant.  This can be used to determine an individuals contributions over time, or to compare two different users contributions.
+\item The graph 'content over time per participant' can be used in conjunction with the previous graph to ascertain the quality of messages.  For example, a high amount of messages with low total characters implies a lot of short answers, while a few messages but lots of characters may mean a detailed post.
+\end{itemize}
 
-Similarly the new graphs of 'number of messages over time per participant' and 'content over time per participant' can be used to see which users tend to write more information rich messages.
+\begin{figure}[h]
+\includegraphics[scale=0.7]{WorkingGraph.png}
+\centering
+\caption{Graph of content over time per chat}
+\label{fig:1}
+\end{figure}
+
+\newpage
 
 A number of graphs with sample data were added.  A working example was not able to be completed in the timespan of the project and thus these were created in order to demonstrate the information that could be gleaned from these examples.  These example graphs are as follows:
 
 \begin{itemize}
 \item Number of messages per day per participant.  This can be used to view what users participate more in discussions, as well as being able to view trends in discussion such as on what days users are most active.
-\item Content per day per participant.  This can be used in conjunction with the previous graph to view what users have longer messages e.g. two users have similar numbers of messages, but one has far more content indicating more detailled discussion.
+\item Content per day per participant (\ref{fig:2}).  This can be used in conjunction with the previous graph to view what users have longer messages e.g. two users have similar numbers of messages, but one has far more content indicating more detailed discussion.
 \item Number of message type per day.  This denotes what type of conversation the message is posted in, e.g. the majority of comments could be in conversations tagged with "bug"
 \end{itemize}
 
+\begin{figure}[h]
+\includegraphics[scale=0.75]{SampleGraph.png}
+\centering
+\caption{Example graph of content over time per participant}
+\label{fig:2}
+
+\end{figure}
+
+\newpage
 Sample graphs were also created for the user profile page, whereby the information would reflect upon the user and provide an insight into what sort of topics they frequently discuss. These graphs where:
 
 \begin{itemize}
@@ -230,10 +258,38 @@ Sample graphs were also created for the user profile page, whereby the informati
 \item Types of conversations involved in.  This shows what sort of topic the user is likely to be most experienced in. 
 \end{itemize}
 
-When using a chat system if a user has to stop chatting in order to TODO
+Having to stop using the chat system in order to attach additional metatdata is an inconvenience and one that breaks the natural flow of discussion.  In order to remedy this a number of chat commands were added to allow for users to alter the various metadata attributes by using certain symbols. This was done in such a way that the symbol marked that the word that immediately followed was a phrase that represented a value to be stored in metadata. For example, the sentence:
+\newline
+\newline
+''This is a good idea for a \%feature''
+\newline
+\newline
+will set 'feature' as one of the tags for the conversation.  This is done to further reinforce the idea of integration between a chat and ticketing system, allowing for users to change metadata in the middle of the conversation in a natural way, meaning they do not have to navigate to a separate page.  A formatting cheat sheet for the various commands was also added to help new users learn how to use the system.  A full list of chat commands are as follows:
 
-The various chat commands allow for users to alter various metadata attributes through using certain symbols in a message to denote the piece of information that follows is a command.  For example, the phrase ''\^High'' in a message will set the priority of that chat to high.  This is done to further reinforce the idea of integration between a chat and ticketing system, allowing for users to change metadata in the middle of the conversation in a natural way, meaning they do not have to navigate to a seperate page.  A formatting cheat sheet for the various commands was also added to help new users learn how to use the system.
+\begin{itemize}
+\item @username tags a user in a conversation.  The user will receive a notification informing them they have been tagged.
+\item \%tag adds a tag to the conversation.  The possible tags are bug, feature, documentation, blocking and enhancement.
+\item \$cost adds a cost to the conversation.  The cost is a number between 1 and 10.
+\item \textasciicircum priority sets the priority of the conversation, which is either low, medium or high.
+\end{itemize}
 
+\newpage
+
+Additionally, a set of example features were added to demonstrate the potential use of data analytics for the system.  This included:
+
+\begin{itemize}
+\item Suggestions for related projects (\ref{fig:3}).  These could be generated by looking at aspects such as what is discussed in the conversations, who takes part in the conversations and what time these conversations were started
+\item Suggested users to invite to the project.  These would accompany a list of all the users currently in the system and would be created by looking at metrics such as projects in common and topics discussed.
+\item Conversations involved in.  These would be defined as any conversation the user has left a message in.
+\item Suggested Conversations.  Similar to related projects, this would suggest conversations on the basis of their content and who is involved.  However, this would be done on a project by project basis on the users home page, instead of the project page.
+\end{itemize}
+
+\begin{figure}[h]
+\includegraphics{RelatedProj.png}
+\centering
+\caption{Example 'related projects' feature}
+\label{fig:3}
+\end{figure}
 
 \chapter{Working with a legacy system}
 \chapter{Future work}
@@ -259,3 +315,4 @@ The various chat commands allow for users to alter various metadata attributes t
 \bibliography{bib}
 
 \end{document}
+
