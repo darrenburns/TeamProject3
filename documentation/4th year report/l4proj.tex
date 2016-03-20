@@ -31,17 +31,21 @@
 
 Project task management is typically done using a combination of ticketing systems, to formally record aspects about the project, and informal communication such as social networking, messaging tools or simply face to face discussion. This represents a duplication of effort whereby developers with discuss a task using an informal medium and then go on to record what has been done using the ticketing system.  As a result developers often become less diligent in using their management tools due to the perceived waste of time in recording information that has already been discussed elsewhere. 
 
-Tearooms seeks to solve this problem by providing a platform which integrates a social networking platform with a ticketing system.  As such a conversation system is provided whereby meta-data can attached to each conversation in order to store additional information that relates to the topic.  Moreover a variety of metrics can be viewed regarding the chats, such as what chats are most active, what participants contribute the most or what chats has the most information per message.
+Tearooms seeks to solve this problem by providing a platform which integrates a social networking platform with a ticketing system. This project was originally undertaken as a third year group project, but was continued as an individual fourth year project.  In this tool a conversation system is provided whereby meta-data can attached to each conversation in order to store additional information that relates to the topic.  Moreover a variety of metrics can be viewed regarding the chats, such as what chats are most active, what participants contribute the most or what chats has the most information per message.
 
-There are a number of existing systems which adhere to the 'ticket-based management', 'conversation based management' and 'task management' paradigms, such as Jira, Slack, Trello and Trac.
+There are a number of existing systems which adhere to the 'ticket-based management', 'conversation based management' and 'task management' paradigms, such as Jira, Slack, Trello and Trac.  These systems offer different approaches to management but none manage to properly integrate all the various approaches into one system.
 
-This project was originally undertaken as a third year group project, but was continued as an individual fourth year project.  This paper will discuss the research that was undertaken prior to beginning the project, and the work that was undertaken in the recent year and how that work assists in the aim of improving project task management.  Furthermore it will be discussed the difficulties that arose in working with what was effectively a legacy system as a result of work that was undertaken over the summer.
+The second chapter of this paper will discuss the research that was undertaken prior to beginning the project. In this a number of papers relating to the subject of software team management were studied.  These discussed the potential problems that can arise in these areas, such as the loss of information due to developers discussing their work informally and not documenting these talks, the difficulties in assigning tasks to the appropriate people and issues with globally distributed development teams.
+
+The third chapter will detail the work that was undertaken in the recent academic year and how that work contributes towards the aim of improving project task management. Specifically this will discuss what features have been added, and how these will assist with one of the issues identified in the previous chapter.
+
+In the fourth chapter it will be discussed the difficulties that arose in working with what was effectively a legacy system as a result of work that was undertaken over the summer.  During this time the entire front-end framework was re-written, meaning returning to the project in fourth year was a great challenge, as the system was in many ways completely different and thus past experience in developing the project was of limited use.  
 
 \chapter{Related Work}
 A number of works were studied that related to the issue of team communication and team management.  These works covered a variety of topics pertaining to the field of management, namely that of 'Distributed Software Management', 'Task delegation', 'Informal versus formal communication' and 'Collaborative Techniques'.
 %----------------------------------------------------------------------------
 
-\section Informal versus Formal Communication
+\section {Informal versus Formal Communication}
 
 These papers discussed how in a project environment people will tend towards using informal means of communication such as in person discussion, social media and phone calls.  This means there is a lot of information relating to the project that is produced by team members that is never formally recorded and thus is lost in time.  It is discussed the reasons for this reticence to record what is discussed, as well as potential solutions in order to better utilise the untapped resource of conversations.
 
@@ -98,7 +102,7 @@ This discusses that with the increase in scale and distribution of software deve
 
 %----------------------------------------------------------------------------
 
-\section Distributed Software Development
+\section {Distributed Software Development}
 
 It is discussed as to how best manage a geographically distributed software development team, meaning a team which may have multiple members or sub-teams separated by a great distance, or perhaps even in different countries.  This links back to the previous section, as due to this separation it is usually impossible to have face to face meetings with other team members, and informal interaction is severely limited.   As a result the amount of working information that is usually generated about a project, through team members getting to know each others strengths and weaknesses, will not build up.  Moreover, there arise difficulties in communication, as without frequent discussion the different teams may differ in their objectives or interpretations as to what has to be done.  This can also occur due to language or cultural differences.
 
@@ -214,37 +218,65 @@ The information was obtained through semi-structured interviews on GitHub users,
 
 \chapter{Features}
 
-The 'tearooms' project was started with the aim of tackling a number of identified issues with current task management systems. It was found that graphs could be used to monitor the progress of a project. The data in the graph can often reflect the state of the project or conversation it pertains to when compared to other similar examples.
+The 'tearooms' project was started with the aim of tackling a number of identified issues with current task management systems. A common problem with systems such as this is that users have to spend a lot of time recording information.  This is time that could otherwise be spent developing, or doing other important tasks.  In order to help alleviate this a number of tools are provided, such as being able to change meta-data attributes through the chat, or saving messages to the details tab for future reference.   Another issue is that of knowing who should do what.  In response it is proposed that this sort of information can be found through data analytics, as looking at metrics such as users previous work and who they work with can paint a picture of the sort of developer they are.  This information can be used to suggest users to add to a conversation, or to recommend to a user what sort of project they might be interested in.
+
+Previously the workflow when using project management software would resemble something like figure \ref{fig:1}.  
+
+
+\begin{figure}[h]
+\includegraphics[scale=0.75]{old-workflow.png}
+\centering
+\caption{Normal workflow for project task management}
+\label{fig:1}
+\end{figure}
+\newpage
+
+However, tearooms looks to simplify the process by eliminating as many unnecessary steps as possible, or automating a step if possible.  As a result an ideal workflow could look more like figure \ref{fig:2}. 
+
+\begin{figure}[h]
+\includegraphics[scale=0.75]{New-workflow.png}
+\centering
+\caption{Normal workflow for project task management}
+\label{fig:2}
+\end{figure}
+
+\section{Graphs}
+
+It was found that graphs could be used to monitor the progress of a project. The data in the graph can often reflect the state of the project or conversation it pertains to when compared to other similar examples.
 
 \begin{itemize}
 \item A graph of messages over time per chat.  This can show which chats are currently being actively worked on, as well as showing which have been worked on - and to what extent - over the last week.
-\item A graph of content over time per chat (\ref{fig:1}).  This can be compared with the graph of messages over time to determine which chats have longer messages.  In situations where two chats have similar amounts of messages but one has significantly more 'content' it could be true that a more detailed discussion is taking place in this chat.
+\item A graph of content over time per chat (\ref{fig:3}).  This can be compared with the graph of messages over time to determine which chats have longer messages.  In situations where two chats have similar amounts of messages but one has significantly more 'content' it could be true that a more detailed discussion is taking place in this chat.
 \item The graph 'number of messages over time per participant.  This can be used to determine an individuals contributions over time, or to compare two different users contributions.
 \item The graph 'content over time per participant' can be used in conjunction with the previous graph to ascertain the quality of messages.  For example, a high amount of messages with low total characters implies a lot of short answers, while a few messages but lots of characters may mean a detailed post.
 \end{itemize}
 
-\begin{figure}[h]
-\includegraphics[scale=0.7]{WorkingGraph.png}
-\centering
-\caption{Graph of content over time per chat}
-\label{fig:1}
-\end{figure}
+
 
 \newpage
+
 
 A number of graphs with sample data were added.  A working example was not able to be completed in the timespan of the project and thus these were created in order to demonstrate the information that could be gleaned from these examples.  These example graphs are as follows:
 
 \begin{itemize}
 \item Number of messages per day per participant.  This can be used to view what users participate more in discussions, as well as being able to view trends in discussion such as on what days users are most active.
-\item Content per day per participant (\ref{fig:2}).  This can be used in conjunction with the previous graph to view what users have longer messages e.g. two users have similar numbers of messages, but one has far more content indicating more detailed discussion.
+\item Content per day per participant (\ref{fig:4}).  This can be used in conjunction with the previous graph to view what users have longer messages e.g. two users have similar numbers of messages, but one has far more content indicating more detailed discussion.
 \item Number of message type per day.  This denotes what type of conversation the message is posted in, e.g. the majority of comments could be in conversations tagged with "bug"
 \end{itemize}
+
+\begin{figure}[h]
+\includegraphics[scale=0.75]{WorkingGraph.png}
+\centering
+\caption{Graph of content over time per chat}
+\label{fig:3}
+\end{figure}
+
 
 \begin{figure}[h]
 \includegraphics[scale=0.75]{SampleGraph.png}
 \centering
 \caption{Example graph of content over time per participant}
-\label{fig:2}
+\label{fig:4}
 
 \end{figure}
 
@@ -257,6 +289,8 @@ Sample graphs were also created for the user profile page, whereby the informati
 \item Who do I talk to.  This can be used to identify other users the current user frequently talks to.  This may be of interest as if someone has taken an interest in what the user frequently works on this can direct them to other people
 \item Types of conversations involved in.  This shows what sort of topic the user is likely to be most experienced in. 
 \end{itemize}
+
+\section{Editing Metadata in the Chat System}
 
 Having to stop using the chat system in order to attach additional metatdata is an inconvenience and one that breaks the natural flow of discussion.  In order to remedy this a number of chat commands were added to allow for users to alter the various metadata attributes by using certain symbols. This was done in such a way that the symbol marked that the word that immediately followed was a phrase that represented a value to be stored in metadata. For example, the sentence:
 \newline
@@ -275,10 +309,11 @@ will set 'feature' as one of the tags for the conversation.  This is done to fur
 
 \newpage
 
+\section{Data Analytics}
 Additionally, a set of example features were added to demonstrate the potential use of data analytics for the system.  This included:
 
 \begin{itemize}
-\item Suggestions for related projects (\ref{fig:3}).  These could be generated by looking at aspects such as what is discussed in the conversations, who takes part in the conversations and what time these conversations were started
+\item Suggestions for related projects (\ref{fig:5}).  These could be generated by looking at aspects such as what is discussed in the conversations, who takes part in the conversations and what time these conversations were started
 \item Suggested users to invite to the project.  These would accompany a list of all the users currently in the system and would be created by looking at metrics such as projects in common and topics discussed.
 \item Conversations involved in.  These would be defined as any conversation the user has left a message in.
 \item Suggested Conversations.  Similar to related projects, this would suggest conversations on the basis of their content and who is involved.  However, this would be done on a project by project basis on the users home page, instead of the project page.
@@ -288,10 +323,17 @@ Additionally, a set of example features were added to demonstrate the potential 
 \includegraphics{RelatedProj.png}
 \centering
 \caption{Example 'related projects' feature}
-\label{fig:3}
+\label{fig:5}
 \end{figure}
 
 \chapter{Working with a legacy system}
+
+The project was originally a third year group project.  However, over the summer a subset of the original development team worked to completely re-write the front-end of the software.  The front-end was originally written using the javascript library 'JQuery'.  However, this was redone using the 'React' library.  Moreover, the original graphing library d3 was removed and the existing graphs were re-created in 'react-chartjs'.
+
+This was done due as the speed limitations of jquery were becoming an issue on the already fairly cumbersome system.  React was found to be much faster, and as a more modern technology seemed a useful tool to be acquainted with.  Moreover, react seemed to be well suited to the project, as the component based architecture integrated well with the projects module-based interface whereby different elements on the screen are each contained in a different section.
+
+As a result of these changes, when beginning the project implementation was delayed as a result of having to learn the changes in the system.  This time was spent reading through the code itself, as well as getting in contact with the previous developers in order to question them about how certain components worked.  Moreover, over the course of the project there were recurring problems working with legacy code.  This often arose from difficulties in comprehending what a certain part of code did, sometimes accompanied by poor or incomplete documentation.
+
 \chapter{Future work}
 
 
@@ -315,4 +357,5 @@ Additionally, a set of example features were added to demonstrate the potential 
 \bibliography{bib}
 
 \end{document}
+
 
