@@ -342,13 +342,23 @@ The project could stand to benefit from a great deal of future work.  At present
 \item analysis of what a user frequently discusses, in order to build a profile of what sort of developer they are.  This information can be used to accurately recommend what sort of projects and conversations they should participate in, as well as recommend them to other users who are working in these areas.  Users that frequently work together or work on similar subjects could be recorded, and a tag could be added to the user profile denoting this, e.g. tags such as 'bug fixer', 'adds features' or 'documenter'.
 \item Analysis of what is discussed in a project.  This could be done by determining certain keywords that are frequently mentioned in conversations.  This information could be automatically added to the meta-data as a tag, or used in recommending related projects.
 \item The information gathered in the graphs, such as the graph of 'Graph of content over time per chat' (\ref{fig:3}), could be used to categorise conversations.  For example, users could sort graphs according to which ones were worked on the most, or sort them by how recently they had been worked on.
-\item Similarly to the previous example, the graphs such as 'graph of content over time per participant'(\ref{fig:4}) or 'total contributions' could be used to determine which members of a conversation participate the most in discussion, and as such this information would be useful in recommending users to add to other projects.
+\item Similar to the previous example, the graphs such as 'graph of content over time per participant'(\ref{fig:4}) or 'total contributions' could be used to determine which members of a conversation participate the most in discussion, and as such this information would be useful in recommending users to add to other projects.
+\end{itemize}
+\newpage
+Moreover, there are currently limitations in the graphing library used, namely in terms of customisation and variety in graphs, and in order to add new and more complex visualisations a different library should be adopted.  The current library only allows for six different chart types - bar, line, radar, polar area, pie and doughnut charts.  Although sufficient for the most usage, a greater variety in chart types could allow for different representations of data, such as:
+
+\begin{itemize}
+\item A network graph could be used to visualise how different users interact (\ref{fig:6}).  Each user would be represented as a node on the graph.  The user would be linked to other users that have a conversation in common with, and an overview of the graph could be used to view groups of users, as well as what sort of users work on what.  The colour of the connection could also denote the type of conversation they are linked by, e.g. a blue link for documentation, a yellow one for a feature, etc.
+\item A bubble chart could be used to express conversations.  The size of each bubble could indicate the number of messages in the conversation, while the colour could show what type tag the conversation has.  This could be used to determine at a glance what sort of conversation a project predominantly consists of, as well as what sort of tag tends to have more discussion associated with it.
+
 \end{itemize}
 
-Moreover, there are currently limitations in the graphing library used, namely in terms of customisation and variety in graphs, and in order to add new and more complex visualisations a different library should be adopted.
-
-
-
+\begin{figure}[h]
+\includegraphics[scale = 0.5]{Proposed-graph.png}
+\centering
+\caption{Concept of future work for network graph}
+\label{fig:6}
+\end{figure}
 
 %%%%%%%%%%%%%%%% 
 %              %
