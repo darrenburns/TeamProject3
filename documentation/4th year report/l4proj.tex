@@ -236,7 +236,7 @@ However, tearooms looks to simplify the process by eliminating as many unnecessa
 \begin{figure}[h]
 \includegraphics[scale=0.75]{New-workflow.png}
 \centering
-\caption{Normal workflow for project task management}
+\caption{Tearooms proposed workflow for project task management}
 \label{fig:2}
 \end{figure}
 
@@ -335,6 +335,17 @@ This was done due as the speed limitations of jquery were becoming an issue on t
 As a result of these changes, when beginning the project implementation was delayed as a result of having to learn the changes in the system.  This time was spent reading through the code itself, as well as getting in contact with the previous developers in order to question them about how certain components worked.  Moreover, over the course of the project there were recurring problems working with legacy code.  This often arose from difficulties in comprehending what a certain part of code did, sometimes accompanied by poor or incomplete documentation.
 
 \chapter{Future work}
+
+The project could stand to benefit from a great deal of future work.  At present, a great number of the graphs and various suggestions are populated with sample data and as such these should be implemented properly for an actual release of the system.  The data analytics side of the system is yet to be fully explored, with only basic concepts being demoed in the current build.  Further development of these ideas could involve:
+
+\begin{itemize}
+\item analysis of what a user frequently discusses, in order to build a profile of what sort of developer they are.  This information can be used to accurately recommend what sort of projects and conversations they should participate in, as well as recommend them to other users who are working in these areas.  
+\item Analysis of what is discussed in a project.  This could be done by determining certain keywords that are frequently mentioned in conversations.  This information could be automatically added to the meta-data as a tag, or used in recommending related projects.
+\item The information gathered in the graphs, such as the graph of 'Graph of content over time per chat' (\ref{fig:3}), could be used to categorise conversations.  For example, users could sort graphs according to which ones were worked on the most, or sort them by how recently they had been worked on.
+\item Similarly to the previous example, the graphs such as 'graph of content over time per participant'(\ref{fig:4}) or 'total contributions' could be used to determine which members of a conversation participate the most in discussion, and as such this information would be useful in recommending users to add to other projects.
+\end{itemize}
+
+Moreover, there are currently limitations in the graphing library used, namely in terms of customisation and variety in graphs, and in order to add new and more complex visualisations a different library should be adopted.
 
 
 
