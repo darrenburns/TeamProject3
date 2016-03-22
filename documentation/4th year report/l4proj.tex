@@ -37,9 +37,12 @@ There are a number of existing systems which adhere to the 'ticket-based managem
 
 The second chapter of this paper will discuss the research that was undertaken prior to beginning the project. In this a number of papers relating to the subject of software team management were studied.  These discussed the potential problems that can arise in these areas, such as the loss of information due to developers discussing their work informally and not documenting these talks, the difficulties in assigning tasks to the appropriate people and issues with globally distributed development teams.
 
-The third chapter will detail the work that was undertaken in the recent academic year and how that work contributes towards the aim of improving project task management. Specifically this will discuss what features have been added, and how these will assist with one of the issues identified in the previous chapter.
+In the third chapter it will be discussed the difficulties that arose in working with what was effectively a legacy system as a result of work that was undertaken over the summer.  During this time the entire front-end framework was re-written, meaning returning to the project in fourth year was a great challenge, as the system was in many ways completely different and thus past experience in developing the project was of limited use.  
 
-In the fourth chapter it will be discussed the difficulties that arose in working with what was effectively a legacy system as a result of work that was undertaken over the summer.  During this time the entire front-end framework was re-written, meaning returning to the project in fourth year was a great challenge, as the system was in many ways completely different and thus past experience in developing the project was of limited use.  
+The fourth chapter will detail the work that was undertaken in the recent academic year and how that work contributes towards the aim of improving project task management. Specifically this will discuss what features have been added, and how these will assist with one of the issues identified in the previous chapter.
+
+The fifth chapter will discuss the next logical steps for the project, and what work could be done in the future to fully realise the key aspects of the concept.
+
 
 \chapter{Related Work}
 A number of works were studied that related to the issue of team communication and team management.  These works covered a variety of topics pertaining to the field of management, namely that of 'Distributed Software Management', 'Task delegation', 'Informal versus formal communication' and 'Collaborative Techniques'.
@@ -111,8 +114,10 @@ In distributed development teams it is inevitable that as a result of so many di
 This information was gathered through semi-structured interviews whereby participants filled in a form describing a practice they employed in dealing with a Global Software Development related issue that had been successful.  It was proposed that a good way to share the information could be
 
 \begin{itemize}
-\item Distributed Pair Programming, whereby two geographically separated members of the team practice virual pair programming together, jointly reviewing software and making changes where necessary.  Through this link a reciprocal relationship is established whereby information and knowledge will be shared.
-\item Urgent Request, which is a broadcast mechanism for requesting information pertaining to a project.  This relies upon project members volunteering themselves as a contact for specific topics, and aims at promoting unplanned communication in the case that there arises an urgent need for information about a particular aspect of the project.
+\item \textit{Distributed Pair Programming} \par
+Two geographically separated members of the team practice virtual pair programming together, jointly reviewing software and making changes where necessary.  Through this link a reciprocal relationship is established whereby information and knowledge will be shared.
+\item\textit{Urgent Request} \par
+A broadcast mechanism for requesting information pertaining to a project.  This relies upon project members volunteering themselves as a contact for specific topics, and aims at promoting unplanned communication in the case that there arises an urgent need for information about a particular aspect of the project.
 \end{itemize}
 
 
@@ -166,17 +171,64 @@ From looking at activity information in Github a large amount of information can
 
 \section{Conclusion}
 
-Based on previous research, there exist a number of issues with modern software management.  These issues stem from a variety of causes, such as the modes of communication between teams.  In this a large amount of information is lost due to the informal conversations between team members not being recorded.  This issue is further exemplified by the issues in distributed development.  In this situation a physical separation prevents the fostering of a familiarity with the other members of the development team.  This means it is more difficult to know other peoples strengths and weaknesses, as well as who to ask about specific topics. These such problems could stand to benefit from a system such as tearooms which seeks to integrate casual conversation with a ticketing system, thus using the information taken from the conversation and storing it as data.  Supporting management through casual conversation also assists in encouraging a working relationship between different team members in different place.
+Based on previous research, there exist a number of issues with modern software management.  These issues stem from a variety of causes, such as the modes of communication between teams.  In this a large amount of information is lost due to the informal conversations between team members not being recorded.  This issue is further exemplified by the issues in distributed development.  In this situation a physical separation prevents the fostering of a familiarity with the other members of the development team.  This means it is more difficult to know other peoples strengths and weaknesses, as well as who to ask about specific topics. These such problems could stand to benefit from a system such as tearooms which seeks to integrate casual conversation with a ticketing system, thus using the information taken from the conversation and storing it as data.  Supporting management through casual conversation also assists in encouraging a working relationship between different team members in different places, meanwhile also ensuring proper documentation is taking place.
 
 \chapter{Analysis of the existing system}
 
 \section{Prior Work}
 
+The project originally began as a third year group project.  The premise of the system was to create a tool that integrated social networking with project task management.  This was to provide an alternative approach to the traditional ticket management system so as to allow developers to focus on communication rather than spending time recording data in the system.  This primary focus of the system was identified due to the duplication of effort that currently exists in other systems.  This is defined as the repetition that occurs when a team discusses an issue on a different messaging platform, or in person, and then goes on to formally record this in a ticket.
+
+The system had to closely integrate with a social networking feature in order to capture and process information gleaned from the users communication.  It was originally considered that the system would be a Skype extension, but the decision was made to create a chat system from scratch. 
+
+The resultant system was built on the Django framework, which is a python web development framework.  The server side of the application was written in python, while the client side was written primarily with the 'Jquery' JavaScript library, and a number of other libraries to handle components such as the chat and graphs. 
+
+\subsection{metadata}
+The ability to attach metadata to conversations separates the software from normal messaging systems, and makes it suitable for project management.  It provides information to developers relating to the conversations and can be seen in the 'details' tab.  The metadata consisted of:
+
+\begin{itemize}
+\item \textit{Assignee} 
+\par By default this is the user that created the conversation.  This can be changed manually from a dropdown list of all the other users
+\item \textit{Cost}
+\par This is an arbitrary number between 1 and 10 used to represent the effort needed to complete a task. 
+\item \textit{due Date}
+\par This refers to the date and time by which the conversation should be resolved
+\item \textit{Notes}
+\par This is a text field used to attach additional information to the ticket, such as linking to resources or websites. 
+\item \textit{Saved Messages}
+\par These are messages that have been sent in the conversation that, if marked as important, are saved to the details page. 
+\item \textit{Priority}
+\par This is a value used to denote the importance of of a conversation.  This field can be one of three values: 'High', 'Medium' or 'Low'.
+\item \textit{Tags} 
+\par Users can set tags to signify what topics are discussed within the conversation.  These are stored in the details tab as well as attached to the conversations entry on the project page.
+\end{itemize}
+
+\subsection{Statistics}
+
+The visual representation of statistics related to the projects was a feature that was identified and started in the original project.  These provide an insight into the state of a project, allowing users to view the amount of activity within a project and the individual contribution of each participant.  These graphs were implemented using the d3 Javascript library.
+In the original version of the system there were three graphs added:
+
+\begin{itemize}
+\item Messages sent per user in a conversation
+\item Messages sent per user in a project
+\item Messages contained in each conversation in a project
+\end{itemize}
+
+\subsection{Notifications}
+
+The system provided notifications whereby users receive a message informing them that a chat they are participating in has new messages.  This was done as when a user is active in many chats it becomes very difficult, not to mention time consuming, to keep track of what is being discussed in each.  Each notification consists of a pop-up which shows the name of the chat that the message is in, as well as a preview of the message.
+
+\subsection{Filtering and Sorting}
+
+In large scale projects it can be difficult to find specific conversations.  To remedy this the ability to sort the conversations by priority and due date was implemented in order to better find particular conversations. 
+
+Moreover users can filter the conversations, whereby the user enters a keyword and any conversation that does not have this in the title is hidden.  Similarly this was implemented in the conversations themselves, whereby messages can be filtered by a keyword, or by user.
+
 \section{Working with a Legacy System}
 
-Over the summer a subset of the original development team worked to completely re-write the front-end of the software.  The front-end was originally written using the javascript library 'JQuery'.  However, this was redone using the 'React' library.  Moreover, the original graphing library d3 was removed and the existing graphs were re-created in 'react-chartjs'.
+Over the summer a subset of the original development team worked to completely re-write the front-end of the software.  The front-end was originally written using the JavaScript library 'JQuery'.  However, this was redone using the 'React' library.  Moreover, the original graphing library d3 was removed and the existing graphs were re-created in 'react-chartjs'.
 
-This was done due as the speed limitations of jquery were becoming an issue on the already fairly cumbersome system.  React was found to be much faster, and as a more modern technology seemed a useful tool to be acquainted with.  Moreover, react seemed to be well suited to the project, as the component based architecture integrated well with the projects module-based interface whereby different elements on the screen are each contained in a different section.
+This was done due as the speed limitations of JQuery were becoming an issue on the already fairly cumbersome system.  React was found to be much faster, and as a more modern technology seemed a useful tool to be acquainted with.  Moreover, react seemed to be well suited to the project, as the component based architecture integrated well with the project's module-based interface whereby different elements on the screen are each contained in different sections.
 
 As a result of these changes, when beginning the project implementation was delayed as a result of having to learn the changes in the system.  This time was spent reading through the code itself, as well as getting in contact with the previous developers in order to question them about how certain components worked.  Moreover, over the course of the project there were recurring problems working with legacy code.  This often arose from difficulties in comprehending what a certain part of code did, sometimes accompanied by poor or incomplete documentation.
 
@@ -209,10 +261,14 @@ However, tearooms looks to simplify the process by eliminating as many unnecessa
 It was found that graphs could be used to monitor the progress of a project. The data in the graph can often reflect the state of the project or conversation it pertains to when compared to other similar examples.
 
 \begin{itemize}
-\item A graph of messages over time per chat.  This can show which chats are currently being actively worked on, as well as showing which have been worked on - and to what extent - over the last week.
-\item A graph of content over time per chat (\ref{fig:3}).  This can be compared with the graph of messages over time to determine which chats have longer messages.  In situations where two chats have similar amounts of messages but one has significantly more 'content' it could be true that a more detailed discussion is taking place in this chat.
-\item The graph 'number of messages over time per participant.  This can be used to determine an individuals contributions over time, or to compare two different users contributions.
-\item The graph 'content over time per participant' can be used in conjunction with the previous graph to ascertain the quality of messages.  For example, a high amount of messages with low total characters implies a lot of short answers, while a few messages but lots of characters may mean a detailed post.
+\item \textit{A graph of messages over time per chat}
+\par This can show which chats are currently being actively worked on, as well as showing which have been worked on - and to what extent - over the last week.
+\item \textit{A graph of content over time per chat (\ref{fig:3})}
+\par This can be compared with the graph of messages over time to determine which chats have longer messages.  In situations where two chats have similar amounts of messages but one has significantly more 'content' it could be true that a more detailed discussion is taking place in this chat.
+\item \textit{Number of messages over time per participant}
+\par This can be used to determine an individuals contributions over time
+\item \textit{Content over time per participant}
+\par This can be used in conjunction with the previous graph to ascertain the quality of messages.  For example, a high amount of messages with low total characters implies a lot of short answers, while a few messages but lots of characters may mean a detailed post.
 \end{itemize}
 
 
@@ -223,9 +279,12 @@ It was found that graphs could be used to monitor the progress of a project. The
 A number of graphs with sample data were added.  A working example was not able to be completed in the timespan of the project and thus these were created in order to demonstrate the information that could be gleaned from these examples.  These example graphs are as follows:
 
 \begin{itemize}
-\item Number of messages per day per participant.  This can be used to view what users participate more in discussions, as well as being able to view trends in discussion such as on what days users are most active.
-\item Content per day per participant (\ref{fig:4}).  This can be used in conjunction with the previous graph to view what users have longer messages e.g. two users have similar numbers of messages, but one has far more content indicating more detailed discussion.
-\item Number of message type per day.  This denotes what type of conversation the message is posted in, e.g. the majority of comments could be in conversations tagged with "bug"
+\item \textit{Number of messages per day per participant}
+\par This can be used to view what users participate more in discussions, as well as being able to view trends in discussion such as on what days users are most active.
+\item \textit{Content per day per participant (\ref{fig:4})}
+\par This can be used in conjunction with the previous graph to view what users have longer messages e.g. two users have similar numbers of messages, but one has far more content indicating more detailed discussion.
+\item \textit{Number of message type per day}
+\par This denotes what type of conversation the message is posted in, e.g. the majority of comments could be in conversations tagged with "bug"
 \end{itemize}
 
 \begin{figure}[h]
@@ -248,13 +307,17 @@ A number of graphs with sample data were added.  A working example was not able 
 Sample graphs were also created for the user profile page, whereby the information would reflect upon the user and provide an insight into what sort of topics they frequently discuss. These graphs where:
 
 \begin{itemize}
-\item Contributions per project over time.  This showed which projects the user participates, and how much they contribute over the last week.  This can be used to determine which projects are currently the most important to the user.
-\item Total Contributions.  This shows the total amount of messages the user has posted in all the projects, and can show which projects they have been most involved in.
-\item Who do I talk to.  This can be used to identify other users the current user frequently talks to.  This may be of interest as if someone has taken an interest in what the user frequently works on this can direct them to other people
-\item Types of conversations involved in.  This shows what sort of topic the user is likely to be most experienced in. 
+\item \textit{Contributions per project over time} 
+\par This showed which projects the user participates, and how much they contribute over the last week.  This can be used to determine which projects are currently the most important to the user.
+\item \textit{Total Contributions}
+\par This shows the total amount of messages the user has posted in all the projects, and can show which projects they have been most involved in.
+\item \textit{Who do I talk to}
+\par This can be used to identify other users the current user frequently talks to.  This may be of interest as if someone has taken an interest in what the user frequently works on this can direct them to other people
+\item \textit{Types of conversations involved in}
+\par This shows what sort of topic the user is likely to be most experienced in. 
 \end{itemize}
 
-\section{Editing Metadata in the Chat System}
+\section{Editing Metadata through the Chat System}
 
 Having to stop using the chat system in order to attach additional metatdata is an inconvenience and one that breaks the natural flow of discussion.  In order to remedy this a number of chat commands were added to allow for users to alter the various metadata attributes by using certain symbols. This was done in such a way that the symbol marked that the word that immediately followed was a phrase that represented a value to be stored in metadata. For example, the sentence:
 \newline
@@ -277,17 +340,32 @@ will set 'feature' as one of the tags for the conversation.  This is done to fur
 Additionally, a set of example features were added to demonstrate the potential use of data analytics for the system.  This included:
 
 \begin{itemize}
-\item Suggestions for related projects (\ref{fig:5}).  These could be generated by looking at aspects such as what is discussed in the conversations, who takes part in the conversations and what time these conversations were started
-\item Suggested users to invite to the project.  These would accompany a list of all the users currently in the system and would be created by looking at metrics such as projects in common and topics discussed.
-\item Conversations involved in.  These would be defined as any conversation the user has left a message in.
-\item Suggested Conversations.  Similar to related projects, this would suggest conversations on the basis of their content and who is involved.  However, this would be done on a project by project basis on the users home page, instead of the project page.
+\item \textit{Suggestions for related projects (\ref{fig:5})}
+\par These could be generated by looking at aspects such as what is discussed in the conversations, who takes part in the conversations and what time these conversations were started
+\item \textit{Suggested users to invite to the project}
+\par These would accompany a list of all the users currently in the system and would be created by looking at metrics such as projects in common and topics discussed.
+\item \textit{Conversations involved in}
+\par These would be defined as any conversation the user has left a message in.
+\item \textit{Suggested Conversations}
+\par Similar to related projects, this would suggest conversations on the basis of their content and who is involved.  However, this would be done on a project by project basis on the users home page, instead of the project page.
 \end{itemize}
 
 \begin{figure}[h]
-\includegraphics{RelatedProj.png}
+\includegraphics[scale = 0.8]{RelatedProj.png}
 \centering
 \caption{Example 'related projects' feature}
 \label{fig:5}
+\end{figure}
+
+\section{Dashboards}
+
+The various graphs and user metrics were grouped depending on their content.  The ones with information relating to the user's activity were added to a dashboard on the user profile (\ref{fig:6})
+
+\begin{figure}[h]
+\includegraphics[scale=0.50]{profile-dashboard.png}
+\centering
+\caption{User dashboard populated with sample data}
+\label{fig:6}
 \end{figure}
 
 
