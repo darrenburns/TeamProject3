@@ -7,7 +7,6 @@
 % put any packages here
 %
 \usepackage{natbib}
-
 \begin{document}
 \title{Social Networking with Project Task Management}
 \author{Euan Parker}
@@ -48,24 +47,17 @@ A number of works were studied that related to the issue of team communication a
 
 \section {Informal versus Formal Communication}
 
-These papers discussed how in a project environment people will tend towards using informal means of communication such as in person discussion, social media and phone calls.  This means there is a lot of information relating to the project that is produced by team members that is never formally recorded and thus is lost in time.  It is discussed the reasons for this reticence to record what is discussed, as well as potential solutions in order to better utilise the untapped resource of conversations.
+In a project environment people will tend towards using informal means of communication such as in person discussion, social media and phone calls.  It is discussed how this will mean there is a lot of information relating to the project that is produced by team members that is never formally recorded and thus is lost in time.  It is discussed the reasons for this reticence to record what is discussed, as well as potential solutions in order to better utilise the untapped resource of conversations.
 
-\subsection{Architectures, Coordination, and Distance: Conway's Law and Beyond}
-
-In this paper it is discussed how the architecture of a system being developed often dictates how the team organisation will be split up.  It states that this alone is not sufficient to fully coordinate a large development team, and taking into account different tasks, milestones, plans and processes must be considered to effectively manage a team.  It is said however that this is rarely successfully achieved in the real world, due to unpredictable factors in the development process such as inaccurate estimates, changing requirements, incomplete solutions and personnel leaving or joining the project.  
+It is discussed how the architecture of a system being developed often dictates how the team organisation will be split up.  It is proposed that this alone is not sufficient to fully coordinate a large development team, and taking into account different tasks, milestones, plans and processes must be considered to effectively manage a team.  It is said however that this is rarely successfully achieved in the real world, due to unpredictable factors in the development process such as inaccurate estimates, changing requirements, incomplete solutions and personnel leaving or joining the project.  
 
 These problems are circumvented largely due to informal communication and organisation, whereby the developers will discuss components of their work while at lunch, on a break or over social media.
 
-A case study was carried out on a technology department of a multinational country, which was chosen for the factor that sites in different countries had the added organisational complication of multiple languages.  The department was currently working on a project whereby different teams worked on different components of a large system, and simulated the rest of the system for the purpose of development.  It was found however that in creating the simulated components the problem description lacked certain essential details and as a result each team had made their own assumptions regarding missing information.  As a result each team ended up with different assumptions and when the components were integrated they did not work correctly.  It was found that team members were reluctant to record these assumptions as they viewed it as taking away from time that could be spent developing the system, when they had already discussed it within their teams.
+A case study was carried by \citet{herbsleb99architectures} on a technology department of a multinational country, which was chosen for the factor that sites in different countries had the added organisational complication of multiple languages.  The department was currently working on a project whereby different teams worked on different components of a large system, and simulated the rest of the system for the purpose of development.  It was found however that in creating the simulated components the problem description lacked certain essential details and as a result each team had made their own assumptions regarding missing information.  As a result each team ended up with different assumptions and when the components were integrated they did not work correctly.  It was found that team members were reluctant to record these assumptions as they viewed it as taking away from time that could be spent developing the system, when they had already discussed it within their teams.
 
-\subsection {CVS Integration with Notification and Chat: Lightweight Software Team Collaboration}
+It is discussed how Concurrent Version Systems (CVS) can be used in the organisation of software development. These can serve to manage the software itself, and additional information can be attached to commits to record information.  However, \citet{fitzpatrick06cvs} proposes that these do not encapsulate the informal discussions regarding the code and thus could stand to be augmented by the addition of a lightweight event notification system.  This tool would display messages from the CVS and offer a chat system for developers to discuss them, thus allowing for a combination of formal documentation and informal discussion.
 
-It is discussed how Concurrent Version Systems (CVS) can be used in the organisation of software development. These can serve to manage the software itself, and additional information can be attached to commits to record information.  However, it is proposed that these do not encapsulate the informal discussions regarding the code and thus could stand to be augmented by the addition of a lightweight event notification system.  This tool would display messages from the CVS and offer a chat system for developers to discuss them, thus allowing for a combination of formal documentation and informal discussion.
-
-
-\subsection {The Interdisciplinary Study of Coordination}
-
-This paper documents a survey on coordination theory, which details the problem of communication in a development group.  The motivating question of this is "How will the widespread use of information technology change the ways people work together?"
+In a paper by \citet{malone94interdisciplinary} a survey on coordination theory is documented, which details the problem of communication in a development group.  The motivating question of this is "How will the widespread use of information technology change the ways people work together?"
 
 This is a relevant question due the the in computers that are used for coordinating work, and how the improvements in information technologies are allowing for greater communication and coordination.
 
@@ -76,30 +68,17 @@ It is stated that in order to best aid coordination, work should be done in orde
 \item creating more flexible ways of organising collective activity.
 \end{enumerate}
 
-\subsection {What is Chat Doing in the Workplace?}
+A system was produced by \citet{handel02chat} on a synchronous messaging application with support for group discussions.  This tool was used by teams in a workplace to discuss a project currently being worked on via text. It was found that despite text persisting for one day, the tool was mostly used in bursts of synchronous discussion with only occasional asynchronous exchanges, meaning discussions were mostly conducted in real time with immediate responses, instead of leaving a message as a note to be responded to when appropriate. 
 
-This paper is a report on a study on a synchronous messaging application with support for group discussions.  This tool was used by teams in a workplace to discuss a project currently being worked on via text. It was found that despite text persisting for one day, the tool was mostly used in bursts of synchronous discussion with only occasional asynchronous exchanges, meaning discussions were mostly conducted in real time with immediate responses, instead of leaving a message as a note to be responded to when appropriate. 
-
-\subsection {Palantir: Raising Awareness among Configuration Management Workspaces}
-
-This paper discusses how the trend of distributed development leads to isolating developers from one another.  It is stated that this isolation is good and bad at the same time.  On one hand developers and work without interference due to version control systems, whereby they can work without being affected by changes being made concurrently by other developers.  On the other hand it can lead to problems when changes are moved from a personal workspace to a central one.  
-
-\subsection {Hipikat: A Project Memory for Software Management}
-
-This paper discusses how as a result of distributed development teams new members of such companies cannot learn from their experiences colleagues, due to absence of informal encounters.
- the paper proposes a solution through a tool that provides a "project memory".  The tool helps newcomers working on a task find similar examples in the source code from previous work done. 
+\citet{cubranic03hipikat} discusses how as a result of distributed development teams new members of such companies cannot learn from their experiences colleagues, due to absence of informal encounters. The paper proposes a solution through a tool that provides a "project memory".  The tool helps newcomers working on a task find similar examples in the source code from previous work done. 
 
 To solve this problem a tool was developed, named a 'workspace awareness tool' which provides developers insight into other workspaces.  Specifically it informs developers when other developers change related artefacts.  These notifications show the severity and effect of changes, and allow developers to work around what has been changed in advance.
 
-\subsection {Sysiphus: Enabling informal collaboration in global software development}
+It is discussed that projects with a globally distributed development team informal communication is severely limited, resulting in difficulty in spreading tactic knowledge.  This knowledge is what allows for a full overview of an organisation and thus all participants do not have access to the rational behind decisions.  As a result when problems arise it can take days to rectify despite the issues being easily rectifiable if the relevant stakeholders were identified.
 
-In this paper it is discussed that projects with a globally distributed development team informal communication is severely limited, resulting in difficulty in spreading tactic knowledge.  This knowledge is what allows for a full overview of an organisation and thus all participants do not have access to the rational behind decisions.  As a result when problems arise it can take days to rectify despite the issues being easily rectifiable if the relevant stakeholders were identified.
+\citet{bruegge06sysiphus} proposes a system that captures information about organisational roles and structures it for use.  The system encourages participants to make communication and issues explicit in the system models and thus relevant stakeholders are identified.  This means when people are working on a part of the system Sysiphus can display what other users have worked on that particular section.
 
-Thus the paper proposes a system that captures information about organisational roles and structures it for use.  The system encourages participants to make communication and issues explicit in the system models and thus relevant stakeholders are identified.  This means when people are working on a part of the system Sysiphus can display what other users have worked on that particular section.
-
-\subsection {Using Developer Activity Data to Enhance Awareness during Collaborative Software Development}
-
-This discusses that with the increase in scale and distribution of software development, the shared understanding that developers would previously have had is more difficult to attain, as this originally would have come about through formal and informal face-to-face meetings and gatherings.  Thus a model is proposed that seeks to encapsulate the ordering of tasks, artefacts and developers relevant to particular work contexts in projects.  This model would be built up using data gathered from the developers interactions with IDEs.  Specifically it would identify entities (developers, tasks, artefacts), associated with a particular work context, then identify relationships among these. Furthermore some information can be acquired regarding where developers work, and when.
+With the increase in scale and distribution of software development the shared understanding that developers would historically built up is more difficult to attain, as this originally would have come about through formal and informal face-to-face meetings and gatherings.  Thus \citet{omoronyia09developer} proposes a model that seeks to encapsulate the ordering of tasks, artefacts and developers relevant to particular work contexts in projects.  This model would be built up using data gathered from the developers interactions with IDEs.  Specifically it would identify entities (developers, tasks, artefacts), associated with a particular work context, then identify relationships among these. Furthermore some information can be acquired regarding where developers work, and when.
 
 %----------------------------------------------------------------------------
 
@@ -107,38 +86,27 @@ This discusses that with the increase in scale and distribution of software deve
 
 It is discussed as to how best manage a geographically distributed software development team, meaning a team which may have multiple members or sub-teams separated by a great distance, or perhaps even in different countries.  This links back to the previous section, as due to this separation it is usually impossible to have face to face meetings with other team members, and informal interaction is severely limited.   As a result the amount of working information that is usually generated about a project, through team members getting to know each others strengths and weaknesses, will not build up.  Moreover, there arise difficulties in communication, as without frequent discussion the different teams may differ in their objectives or interpretations as to what has to be done.  This can also occur due to language or cultural differences.
 
-\subsection{Global Software Engineering: The Future of Socio-technical Coordination}
 
-This paper discusses the current trend of software development projects to have multiple teams in different locations, often even different continents.  This is due to the increased ease of communication over long distances as well as the accessibility of skilled workers regardless of where they live.
+There is a rising trend of software development projects to have multiple teams in different locations, often even different continents.  This is due to the increased ease of communication over long distances as well as the accessibility of skilled workers regardless of where they live.
 
-It is found however that many of the usual aspects of co-located projects are lost in a distributed team, whereby through frequent, informal interactions team members get to know the skills and expertise of their team members.  Ideas are also more effectively communicated when teams share a common native language as there is less chance of misunderstandings, or ideas that are difficult to communicate.
+\citet{herbsleb07global} finds however that many of the usual aspects of co-located projects are lost in a distributed team, whereby through frequent, informal interactions team members get to know the skills and expertise of their team members.  Ideas are also more effectively communicated when teams share a common native language as there is less chance of misunderstandings, or ideas that are difficult to communicate.
 
 As a result globalisation is considered by some to be one of the major research challenges in requirements engineering.  Suggested solutions were improving communications and more disciplined project management such as assigning roles and frequently documenting what has been done
 
+Software development tools are primarily focused on assisting the technical side of development, despite the fact that large parts of the process are organisational tasks.
 
-\subsection{Designing Task Visualizations to Support the Coordination of Work in Software Development}
-
-This paper discusses the fact that the software development tools are primarily focused on assisting the technical side of development, despite the fact that large parts of the process are organisational tasks.
-
-It is discussed that software development originally conducted in such a way whereby all code would be developed in one place, then over time it would be maintained by other people in different locations, thus communication between developers could be done via comments in the code.  Now however this has evolved such that it is now commonplace to have distributed development teams and a variety of communication methods to support the development and maintenance of systems.  With small local teams physically walking into someone's office is often the best way to discuss something, but this is not possible for larger scale companies.
+\citet{halverson06designing} discusses that software development was originally conducted in such a way whereby all code would be developed in one place, then over time it would be maintained by other people in different locations, thus communication between developers could be done via comments in the code.  Now however this has evolved such that it is now commonplace to have distributed development teams and a variety of communication methods to support the development and maintenance of systems.  With small local teams physically walking into someone's office is often the best way to discuss something, but this is not possible for larger scale companies.
 
 Another issue identified is the visualisation of the development of software.  It is proposed that visualising data gathered from version control could be used to identify trends in the evolution of very large software systems, for example to identify candidates for re-factoring.  
 
 a case study made was one whereby participants of a project were represented by a coloured hexagon.  The colour represented the status of the person in relation to a task (e.g. in progress, completed or not started)
 The hexagons were arranged according to their position within the organisation.  This allowed for an overview of the participants to be easily viewed as well as what tasks were completed.
 
+There are a number of necessary differences in organising a virtual team (i.e. geographically distributed) versus organising a collocated team.  Geographic, temporal, cultural and linguistic distance all hinder coordination, cooperation and communication. 
 
+\citet{casey10virtual} states that global projects carry additional risk of delay or failure due to linguistic and cultural difference, motivational differences and temporal distance.  The paper proposes how best to organise a virtual team in order to prevent this.  It is essential to formalise roles, relationships and rules to aid in communication and control.  This process must be documented and formalised in order to ensure these are followed. 
 
-\subsection {Virtual software team project management}
-
-This paper looks at the necessary differences in organising a virtual team (i.e. geographically distributed) versus organising a collocated team.  Geographic, temporal, cultural and linguistic distance all hinder coordination, cooperation and communication. 
-
-It is stated that global projects carry additional risk of delay or failure due to linguistic and cultural difference, motivational differences and temporal distance.  The paper proposes how best to organise a virtual team in order to prevent this.  It is essential to formalise roles, relationships and rules to aid in communication and control.  This process must be documented and formalised in order to ensure these are followed. 
-
-
-\subsection {Collaboration in Global Software Projects at Siemens: An Experience Report}
-
-In this paper it is discussed that in distributed development teams it is inevitable that as a result of so many different developers in so many different places a huge knowledge base will be created but is largely inaccessible.  This paper proposes a system to gather this information and compiling it in a form that is more accessible.
+In distributed development teams it is inevitable that as a result of so many different developers in so many different places a huge knowledge base will be created but is largely inaccessible.  \citet{bass07collaborative} proposes a system to gather this information and compiling it in a form that is more accessible.
 
 This information was gathered through semi-structured interviews whereby participants filled in a form describing a practice they employed in dealing with a Global Software Development related issue that had been successful.  It was proposed that a good way to share the information could be
 
@@ -148,47 +116,29 @@ This information was gathered through semi-structured interviews whereby partici
 \end{itemize}
 
 
+Distributed development can actually increase the time it takes for the development of individual tasks, such as requests for modifications.  This can be attributed to the amount of people involved and the time taken to contact these people (who may even be in different time zones) can add large amounts of time to tasks.  
 
-\subsection {An Empirical Study of Speed and Communication in Globally Distributed Software Development}
-
-This paper discusses that distributed development can actually increase the time it takes for the development of individual tasks, such as requests for modifications.  This can be attributed to the amount of people involved and the time taken to contact these people (who may even be in different time zones) can add large amounts of time to tasks.  
-
-In order to solve this it is proposed that tasks must be decoupled from each other and distrbuted based on location, such that different development sites can work independently of each other.
+In order to solve this \citet{herbsleb03empirical} proposes that tasks must be decoupled from each other and distributed based on location, such that different development sites can work independently of each other.
 
 Alternatively increased use of communication technology allows for an approximation of same-site communication through thorough documentation of what has been done.
 
-\subsection {Global Software Engineering: The Future of Socio-technical Coordination}
-
-This paper also discusses how distributed development can lead to tasks taking longer, yet states that the benefits of access to a massive amount of workers and experts outweighs this.
-
-It is suggested that while suggestions such as dividing work by area (as proposed in the previous subsection) are a start, they do not completely solve the problem of slowing tasks and thus concludes that further research is needed to overcome this.
-
-
-
-\subsection {Collaboration Practices in Global Inter-organizational Software Development Projects}
-
-In this paper it is discussed practices that aid global development projects.  A case study was carried out over the scope of 8 different globally operating projects.  34 Semi-structured interviews were carried out and from these it was gleaned that collaboration practices such as milestone sychronisation, frequent deliveries and establishing peer-to-peer links are often identified (by interviewees) to be successful. 
+There are a number of proposed practices that aid global development projects.  \citet{paasivaara03collaboration} carried out a case study was carried out over the scope of 8 different globally operating projects.  34 Semi-structured interviews were carried out and from these it was gleaned that collaboration practices such as milestone synchronisation, frequent deliveries and establishing peer-to-peer links are often identified (by interviewees) to be successful. 
 
 It was also found that planning for problem-solving communication was often neglected early on in a project.  In order to fix this the use of bulletin boards or e-mail lists is suggested.  This could also apply to a software-based fix whereby a ticket is created for all related problems to be posted to.
 
 \section {Task Delegation}
 
-In this section it is discussed what can be done to assign tasks to specific people autonomously, as currently having to manually assign people requires the commitment of time which otherwise could be used on more important tasks.
+In most systems it is necessary to manually assign a user to resolve a task.  This can take up time unnecessarily as often research will have to be done into who is best suited to such a a task if it is not immediately obvious, and having to access the management software and assign them takes up time which could be spent on more important tasks.
 
 %----------------------------------------------------------------------------
-
-\subsection {Who Should Fix This Bug?}
-
-It has been suggested that bugs should be allocated to fixers using recommendation systems \citep{anvik06who}.
-
-\citet{anvik06who} suggests a semi-automated way of assigning bug reports to a developer, through use of a machine learning algorithm.  This algorithm looks at an open bug repository in order to learn the kind of reports each different developer on the team resolves.  When a new bug report arrives the the system will then recommend a group of developers that could be expected to resolve this based on what they have done previously.%----------------------------------------------------------------------------
+ 
+\citet{anvik06who} suggests a semi-automated way of assigning bug reports to a developer, through use of a machine learning algorithm.  This algorithm looks at an open bug repository in order to learn the kind of reports each different developer on the team resolves.  When a new bug report arrives the the system will then recommend a group of developers that could be expected to resolve this based on what they have done previously.
+%----------------------------------------------------------------------------
 \section {Collaborative Techniques}
 
-This section details papers which discuss ways the software development process can be improved through use of better project management software.  This includes the suggestion of addons to existing systems, as well as tools that directly aid software development. Although the latter does not directly relate to project task management, concepts from these could be taken and integrated into task management tools.
+This section details ways the software development process can be improved through use of better project management software.  This includes the suggestion of add-ons to existing systems, as well as tools that directly aid software development. Although the latter does not directly relate to project task management, concepts from these could be taken and integrated into task management tools.
 
-\subsection {Collaboration in Software Engineering: A Roadmap}
-
-This paper discusses how collaboration techniques have evolved to remedy the limitations of memory. It is discussed how the goals of collaboration techniques are:
+\citet{whitehead07collaboration} discusses how collaboration techniques have evolved to remedy the limitations of memory. It is discussed how the goals of collaboration techniques are:
 
 \begin {enumerate}
 \item Establish scope of a project
@@ -201,23 +151,34 @@ This paper discusses how collaboration techniques have evolved to remedy the lim
 
 In order to achieve these goals a number of technologies are adopted by software engineers.  These different technologies are used at different points in the development cycle, such as a single tool for the requirements phase, then another tool for creating UML diagrams, and so on.  It is proposed that the a future development could be a tool that can be used to cover all points in a software development cycle.
 
-\subsection {How Software Developers Use Tagging to Support Reminding and Refinding}
-
-This paper proposes an improvement to the concept of comments, whereby developers often add these annotations to source code to remind them of relevant information and mark locations of interest.  A tool was developed that supports semantically rich tagging whereby annotations to code are managed by the tool and can be browsed independently.  These annotations can be edited and created, as well as associated with pertinant pieces of code.  
+Moreover, \citet{storey09software} proposes an improvement to the concept of comments, whereby developers often add these annotations to source code to remind them of relevant information and mark locations of interest.  A tool was developed that supports semantically rich tagging whereby annotations to code are managed by the tool and can be browsed independently.  These annotations can be edited and created, as well as associated with pertinent pieces of code.  
 
 This could also be taken the opposite way, whereby a ticketing system could integrate with a source code repository and support direct linking to parts of the code.
 
-\subsection {Unifying Artifacts and Activities in a Visual Tool for Distributed Software Development Teams}
 
-A tool is proposed that combines the two sources of complexity in software development - Code complexity and the complexity that comes with producing it.  This tool would provide a development environment in which both the code would be visible as well as activity that has recently been performed in relation to the code.
+\citet{froehlich04unifying} proposed a tool that combines the two sources of complexity in software development - Code complexity and the complexity that comes with producing it.  This tool would provide a development environment in which both the code would be visible as well as activity that has recently been performed in relation to the code.
 
-\subsection {Social Coding in GitHub: Transparency and Collaboration in an Open Software Repository}
+From looking at activity information in Github a large amount of information can be inferred pertaining to the persons technical aims and vision regarding a piece of code.  Moreover it can be used to guess a projects prospective success based on how regularly it is updated, and how supported a project is based on attention from the community.
 
-This paper discusses how from looking at activity information in github a large amount of information can be inferred pertaining to the persons technical aims and vision regarding a piece of code.  Moreover it can be used to guess a projects prospective success based on how regularly it is updated, and how supported a project is based on attention from the community.
-
-The information was obtained through semi-structured interviews on GitHub users, in order to document and understand how different aspects of GitHubs functionality were used.  The users were asked to walk through a session on GitHub and describe how they interpreted information displayed on the site.
+\citet{dabbish12social} gathered information on this through semi-structured interviews on GitHub users, in order to document and understand how different aspects of GitHub's functionality were used.  The users were asked to walk through a session on GitHub and describe how they interpreted information displayed on the site.
 
 %----------------------------------------------------
+
+\section{Conclusion}
+
+Based on previous research, there exist a number of issues with modern software management.  These issues stem from a variety of causes, such as the modes of communication between teams.  In this a large amount of information is lost due to the informal conversations between team members not being recorded.  This issue is further exemplified by the issues in distributed development.  In this situation a physical separation prevents the fostering of a familiarity with the other members of the development team.  This means it is more difficult to know other peoples strengths and weaknesses, as well as who to ask about specific topics. These such problems could stand to benefit from a system such as tearooms which seeks to integrate casual conversation with a ticketing system, thus using the information taken from the conversation and storing it as data.  Supporting management through casual conversation also assists in encouraging a working relationship between different team members in different place.
+
+\chapter{Analysis of the existing system}
+
+\section{Prior Work}
+
+\section{Working with a Legacy System}
+
+Over the summer a subset of the original development team worked to completely re-write the front-end of the software.  The front-end was originally written using the javascript library 'JQuery'.  However, this was redone using the 'React' library.  Moreover, the original graphing library d3 was removed and the existing graphs were re-created in 'react-chartjs'.
+
+This was done due as the speed limitations of jquery were becoming an issue on the already fairly cumbersome system.  React was found to be much faster, and as a more modern technology seemed a useful tool to be acquainted with.  Moreover, react seemed to be well suited to the project, as the component based architecture integrated well with the projects module-based interface whereby different elements on the screen are each contained in a different section.
+
+As a result of these changes, when beginning the project implementation was delayed as a result of having to learn the changes in the system.  This time was spent reading through the code itself, as well as getting in contact with the previous developers in order to question them about how certain components worked.  Moreover, over the course of the project there were recurring problems working with legacy code.  This often arose from difficulties in comprehending what a certain part of code did, sometimes accompanied by poor or incomplete documentation.
 
 \chapter{Features}
 
@@ -329,13 +290,6 @@ Additionally, a set of example features were added to demonstrate the potential 
 \label{fig:5}
 \end{figure}
 
-\chapter{Working with a legacy system}
-
-The project was originally a third year group project.  However, over the summer a subset of the original development team worked to completely re-write the front-end of the software.  The front-end was originally written using the javascript library 'JQuery'.  However, this was redone using the 'React' library.  Moreover, the original graphing library d3 was removed and the existing graphs were re-created in 'react-chartjs'.
-
-This was done due as the speed limitations of jquery were becoming an issue on the already fairly cumbersome system.  React was found to be much faster, and as a more modern technology seemed a useful tool to be acquainted with.  Moreover, react seemed to be well suited to the project, as the component based architecture integrated well with the projects module-based interface whereby different elements on the screen are each contained in a different section.
-
-As a result of these changes, when beginning the project implementation was delayed as a result of having to learn the changes in the system.  This time was spent reading through the code itself, as well as getting in contact with the previous developers in order to question them about how certain components worked.  Moreover, over the course of the project there were recurring problems working with legacy code.  This often arose from difficulties in comprehending what a certain part of code did, sometimes accompanied by poor or incomplete documentation.
 
 \chapter{Future work}
 
