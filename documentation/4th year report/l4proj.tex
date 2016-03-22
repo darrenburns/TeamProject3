@@ -6,6 +6,7 @@
 %
 % put any packages here
 %
+\usepackage{natbib}
 
 \begin{document}
 \title{Social Networking with Project Task Management}
@@ -178,7 +179,9 @@ In this section it is discussed what can be done to assign tasks to specific peo
 
 \subsection {Who Should Fix This Bug?}
 
-This paper suggests a semi-automated way of assigning bug reports to a developer, through use of a machine learning algorithm.  This algorithm looks at an open bug repository in order to learn the kind of reports each different developer on the team resolves.  When a new bug report arrives the the system will then recommend a group of developers that could be expected to resolve this based on what they have done previously.%----------------------------------------------------------------------------
+It has been suggested that bugs should be allocated to fixers using recommendation systems \citep{anvik06who}.
+
+\citet{anvik06who} suggests a semi-automated way of assigning bug reports to a developer, through use of a machine learning algorithm.  This algorithm looks at an open bug repository in order to learn the kind of reports each different developer on the team resolves.  When a new bug report arrives the the system will then recommend a group of developers that could be expected to resolve this based on what they have done previously.%----------------------------------------------------------------------------
 \section {Collaborative Techniques}
 
 This section details papers which discuss ways the software development process can be improved through use of better project management software.  This includes the suggestion of addons to existing systems, as well as tools that directly aid software development. Although the latter does not directly relate to project task management, concepts from these could be taken and integrated into task management tools.
@@ -374,8 +377,8 @@ Moreover, there are currently limitations in the graphing library used, namely i
 %   BIBLIOGRAPHY   %
 %%%%%%%%%%%%%%%%%%%%
 
-\bibliographystyle{plain}
-\bibliography{bib}
+\bibliographystyle{plainnat}
+\bibliography{l4proj}
 
 \end{document}
 
