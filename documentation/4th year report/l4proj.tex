@@ -15,6 +15,8 @@
 
 \begin{abstract}
 
+The duplication of effort present in project management refers to the situation that occurs when software developers discuss an issue through informal means, then have to go and document what they have discussed in a project management system.  This report will detail the work undertaken over the last year on Tearooms, a management system that was created the previous year as a 3rd year group project that looks to circumvent the usual problems by integrating a chat system and a ticket management system.  This report will include details on research that was carried out prior to starting, what was implemented over the course of the year and what potential future work should be carried out if the project was to be developed further.
+
 \end{abstract}
 
 \educationalconsent
@@ -31,9 +33,11 @@
 
 Project task management is typically done using a combination of ticketing systems, to formally record aspects about the project, and informal communication such as social networking, messaging tools or simply face to face discussion. This represents a duplication of effort whereby developers with discuss a task using an informal medium and then go on to record what has been done using the ticketing system.  As a result developers often become less diligent in using their management tools due to the perceived waste of time in recording information that has already been discussed elsewhere. 
 
-Tearooms seeks to solve this problem by providing a platform which integrates a social networking platform with a ticketing system. This project was originally undertaken as a third year group project, but was continued as an individual fourth year project.  In this tool a conversation system is provided whereby meta-data can attached to each conversation in order to store additional information that relates to the topic.  Moreover a variety of metrics can be viewed regarding the chats, such as what chats are most active, what participants contribute the most or what chats has the most information per message.
+Tearooms seeks to solve this problem by providing a platform which integrates a social networking platform with a ticketing system. This project was originally undertaken as a third year group project, but was continued as an individual fourth year project.  In this tool a conversation system is provided in which meta-data can be attached to each conversation in order to store additional information that relates to the topic of discussion.  Moreover a variety of metrics can be viewed regarding the chats, such as what chats are most active, what participants contribute the most or what chats has the most information per message.
 
 There are a number of existing systems which adhere to the 'ticket-based management', 'conversation based management' and 'task management' paradigms, such as Jira, Slack, Trello and Trac.  These systems offer different approaches to management but none manage to properly integrate all the various approaches into one system.
+
+The aim of the work undertaken this year was to explore the possible usage of data analytics, user recommendations and visual representations of information gathered from the project.  It was proposed that these could improve the usability of the system, allowing for users to easily view useful information relating to themselves and the projects they participate in.  This information could be used to determine aspects such as the work being done in a project, who does the most work or what other users would be good additions to a conversation. 
 
 The second chapter of this paper will discuss the research that was undertaken prior to beginning the project. In this a number of papers relating to the subject of software team management were studied.  These discussed the potential problems that can arise in these areas, such as the loss of information due to developers discussing their work informally and not documenting these talks, the difficulties in assigning tasks to the appropriate people and issues with globally distributed development teams.
 
@@ -58,7 +62,7 @@ These problems are circumvented largely due to informal communication and organi
 
 A case study was carried by \citet{herbsleb99architectures} on a technology department of a multinational country, which was chosen for the factor that sites in different countries had the added organisational complication of multiple languages.  The department was currently working on a project whereby different teams worked on different components of a large system, and simulated the rest of the system for the purpose of development.  It was found however that in creating the simulated components the problem description lacked certain essential details and as a result each team had made their own assumptions regarding missing information.  As a result each team ended up with different assumptions and when the components were integrated they did not work correctly.  It was found that team members were reluctant to record these assumptions as they viewed it as taking away from time that could be spent developing the system, when they had already discussed it within their teams.
 
-It is discussed how Concurrent Version Systems (CVS) can be used in the organisation of software development. These can serve to manage the software itself, and additional information can be attached to commits to record information.  However, \citet{fitzpatrick06cvs} proposes that these do not encapsulate the informal discussions regarding the code and thus could stand to be augmented by the addition of a lightweight event notification system.  This tool would display messages from the CVS and offer a chat system for developers to discuss them, thus allowing for a combination of formal documentation and informal discussion.
+Concurrent Version Systems (CVS) can be used in the organisation of software development. These can serve to manage the software itself, and additional information can be attached to commits to record information.  However, \citet{fitzpatrick06cvs} proposes that these do not encapsulate the informal discussions regarding the code and thus could stand to be augmented by the addition of a lightweight event notification system.  This tool would display messages from the CVS and offer a chat system for developers to discuss them, thus allowing for a combination of formal documentation and informal discussion.
 
 In a paper by \citet{malone94interdisciplinary} a survey on coordination theory is documented, which details the problem of communication in a development group.  The motivating question of this is "How will the widespread use of information technology change the ways people work together?"
 
@@ -439,8 +443,17 @@ The data analytics demoed in the project came about as a result of brief discuss
 \label{fig:14}
 \end{figure}
 
-Alternatively a number of the existing features (when properly implemented) could be trialled with an actual development team.  After having used the system for a period of time the team could be questioned on which ones they found the most useful.  
+Alternatively the current set of the existing features (when properly implemented) could be trialled with an actual development team.  After having used the system for a period of time the team could be questioned on which ones they found the most useful. 
+
 \chapter{Conclusion}
+
+In order to further explore the concepts of user recommendations, content management and data analytics the system was extended to include a number of new features.  These included an extension to the current chat system, a number of working graphs and a set of mock ups to demonstrate further features that could be of use to the system - namely a set of recommendation features based on analysis of user data, and further graphs.  
+
+The work on the chat system served to work towards the aim of integrating social networking with project task management, as a user being able to use the system to chat informally, and formal documentation is produced as they go is one of the core aims of the project. An issue identified in the related literature is the difficulty in knowing who to assign tasks to.  As a response the user recommendations were created.  Although only mocked up, they represent an effective solution to this issue, as when accurate recommendations are generated by the system there is no time wasted manually finding people.  Moreover, an identified issue, due to distributed software development, was the difficulty in obtaining an overview of a project, due to restrictions in communication.  As a supplement to this the graphs offer a good way to view the state of the project without requiring an actual discussion. 
+
+A number of issues were identified, and the features produced provided a solution these problems.  In this respect efforts were mostly a success, however a definite failure was the inability to properly implement more of the features within the time period of the project.
+
+
 
 %%%%%%%%%%%%%%%% 
 %              %
