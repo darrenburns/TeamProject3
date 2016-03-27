@@ -102,12 +102,9 @@ As a result globalisation is considered by some to be one of the major research 
 
 Software development tools are primarily focused on assisting the technical side of development, despite the fact that large parts of the process are organisational tasks.
 
-\citet{halverson06designing} discusses that software development was originally conducted in such a way whereby all code would be developed in one place, then over time it would be maintained by other people in different locations, thus communication between developers could be done via comments in the code.  Now however this has evolved such that it is now commonplace to have distributed development teams and a variety of communication methods to support the development and maintenance of systems.  With small local teams physically walking into someone's office is often the best way to discuss something, but this is not possible for larger scale companies.
+\citet{halverson06designing} discusses that software development was originally conducted in such a way whereby all code would be developed in one place, then over time it would be maintained by other people in different locations, thus communication between developers could be done via comments in the code.  Now however this has evolved such that it is now commonplace to have distributed development teams and a variety of communication methods to support the development and maintenance of systems.  With small local teams physically walking into someone's office is often the best way to discuss something, but this is not possible for larger scale companies. Another issue identified is the visualisation of the development of software.  It is proposed that visualising data gathered from version control could be used to identify trends in the evolution of very large software systems, for example to identify candidates for re-factoring.  
 
-Another issue identified is the visualisation of the development of software.  It is proposed that visualising data gathered from version control could be used to identify trends in the evolution of very large software systems, for example to identify candidates for re-factoring.  
-
-a case study made was one whereby participants of a project were represented by a coloured hexagon.  The colour represented the status of the person in relation to a task (e.g. in progress, completed or not started)
-The hexagons were arranged according to their position within the organisation.  This allowed for an overview of the participants to be easily viewed as well as what tasks were completed.
+A case study was made whereby participants of a project were represented by a coloured hexagon.  The colour represented the status of the person in relation to a task. (e.g. in progress, completed or not started) The hexagons were arranged according to their position within the organisation.  This allowed for an overview of the participants to be easily viewed as well as what tasks were completed.
 
 There are a number of necessary differences in organising a virtual team (i.e. geographically distributed) versus organising a collocated team.  Geographic, temporal, cultural and linguistic distance all hinder coordination, cooperation and communication. 
 
@@ -187,7 +184,7 @@ The system had to closely integrate with a social networking feature in order to
 
 The resultant system was built on the Django framework, which is a python web development framework.  The server side of the application was written in python, while the client side was written primarily with the 'Jquery' JavaScript library, and a number of other libraries to handle components such as the chat and graphs. 
 
-\subsection{metadata}
+\subsection{Metadata}
 The ability to attach metadata to conversations separates the software from normal messaging systems, and makes it suitable for project management.  It provides information to developers relating to the conversations and can be seen in the 'details' tab.  The metadata consisted of:
 
 \begin{itemize}
@@ -215,7 +212,7 @@ In the original version of the system there were three graphs added:
 \begin{itemize}
 \item Messages sent per user in a conversation
 \item Messages sent per user in a project
-\item Messages contained in each conversation in a project
+\item Total Messages contained in each conversation in a project
 \end{itemize}
 
 \subsection{Notifications}
